@@ -58,6 +58,79 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                     attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
+
+  /programs/{program_id}:
+    get:
+      summary: "Get a specific program."
+      tags:
+      - "Programs"
+      operationId: "GetProgram"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "program_id"swagger: "2.0"
+info:
+  description: |
+    A program is something that can be shown.
+    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+    It could equally be a VOD item that can be played on demand.
+    The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
+  version: "1.0.0"
+  title: "Program endpoints"
+externalDocs:
+  description: "Original ticket"
+  url: "https://jira.aminocom.com/browse/BPLAT-4173"
+host: "demo.aminocom.com"
+basePath: "/api/epg/v1/"
+tags:
+- name: "Programs"
+  description: ""
+schemes:
+- "https"
+paths:
+
+  /programs:
+    get:
+      summary: "Get an index of programs"
+      tags:
+      - "Programs"
+      operationId: "GetProgramIndex"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Program
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                    attributes:
                       $ref: "#/definitions/ProgramEntity"
 
 
@@ -72,6 +145,86 @@ paths:
       parameters:
       - in: "path"
         name: "program_id"
+        type: "string"
+        required: true
+        description: "The identifier of the program"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                required:
+                - type
+                - id
+                properties:
+                  type:
+                    type: string
+                    example: Program
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "3173335a-810b-4b53-b009-122a169f9920"
+                  attributes:
+                    $ref: "#/definitions/ProgramEntity"
+
+
+  /programs/{program_id}/credited_persons:
+    get:
+      summary: "Get the credited persons for a specific program."
+      tags:
+      - "Programs"
+      operationId: "GetProgramCreditedPersons"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "program_id"
+        type: "string"
+        required: true
+        description: "The identifier of the program"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: object
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: CreditedPerson
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                    attributes:
+                      $ref: "#/definitions/CreditedPersonEntity"
+
         type: "string"
         required: true
         description: "The identifier of the program"
@@ -103,38 +256,7 @@ paths:
                     description: "The id of the entity being referenced"
                     example: "3173335a-810b-4b53-b009-122a169f9920"
                   attributes:
-                    $ref: "#/definitions/ProgramEntity"
-                  relationships:
-                      type: object
-                      properties:
-                        image:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  type:
-                                    type: string
-                                    example: Image
-                                  id:
-                                    type: string
-                                    example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-              included:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: Image
-                      description: Note that the JSON API spec allows for multiple types of entities to be included
-                    id:
-                      type: string
-                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-                    attributes:
-                      $ref: "#/definitions/ImageEntity"
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
 
   /programs/{program_id}/credited_persons:
@@ -181,127 +303,4 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                     attributes:
-                      $ref: "#/definitions/CreditedPersonEntity"
-                    relationships:
-                      type: object
-                      properties:
-                        image:
-                          type: object
-                          properties:
-                            data:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  type:
-                                    type: string
-                                    example: Image
-                                  id:
-                                    type: string
-                                    example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-              included:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: Image
-                      description: Note that the JSON API spec allows for multiple types of entities to be included
-                    id:
-                      type: string
-                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-                    attributes:
-                      $ref: "#/definitions/ImageEntity"
-
-
-
-
-definitions:
-
-
-  ProgramEntity:
-    type: object
-    required:
-    - id
-    - program_type
-    - long_title
-    - grid_title
-    - duration_seconds
-    - release_year
-    - spoken_iso2_language
-    - subtitle_iso2_language
-    - created_at
-    - modified_at
-    properties:
-      id:
-        type: string
-        example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-      program_type:
-        type: string
-        example: "trailer"
-        description: "One of trailer|movie|progam|episode"
-      duration_seconds:
-        type: integer
-        example: 5400
-      release_year:
-        type: integer
-        example: 1984
-      images:
-        type: array
-        items:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml?token=ABUp5J1Q1Z8WRL9L-7oCT0P_kd7_OgXOks5auNAawA%3D%3D"
-      created_at:
-        type: integer
-        example: 1516804728
-      modified_at:
-        type: integer
-        example: 1516935732
-
-
-
-  CreditedPersonEntity:
-    type: object
-    properties:
-      name:
-        type: string
-        example: "Marta Kaufmann"
-      credit:
-        type: string
-        description: "This will be one of Cast|Creator|Director|Other"
-        example: "Creator"
-
-
-  ImageValueObject:
-    type: object
-    required:
-    - id
-    - image_type
-    - alternate_access_description
-    - width_pixels
-    - height_pixels
-    - iso3_language
-    - url
-    properties:
-      id:
-        type: string
-        example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-      image_type:
-        type: string
-        example: "Thumbnail"
-        description: "This is part of the PK and forms an identifying relationship with the ImageType sub-table"
-      alternate_access_description:
-        type: string
-        example: "Bruce Willis shooting a big gun at some bad guys, pew pew pew"
-      width_pixels:
-        type: integer
-        example: 320
-      height_pixels:
-        type: integer
-        example: 200
-      iso_639-2_lang:
-        type: string
-        example: fin
-      url:
-        type: string
-        example: "https://www.demo.com/assets/img/thumbnails/movies/diehard.png"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml"
