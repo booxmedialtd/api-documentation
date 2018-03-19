@@ -1,5 +1,8 @@
-CreditedPersonEntity:
+  CreditedPersonEntity:
     type: object
+    required:
+    - name
+    - credit
     properties:
       name:
         type: string
@@ -8,3 +11,7 @@ CreditedPersonEntity:
         type: string
         description: "This will be one of Cast|Creator|Director|Other"
         example: "Creator"
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml?token=ABUp5J1Q1Z8WRL9L-7oCT0P_kd7_OgXOks5auNAawA%3D%3D"
