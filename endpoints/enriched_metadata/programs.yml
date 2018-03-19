@@ -58,7 +58,7 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "3173335a-810b-4b53-b009-122a169f9920"
                     attributes:
-                      $ref: "#/definitions/ProgramEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
 
   /programs/{program_id}:
@@ -103,8 +103,8 @@ paths:
                     description: "The id of the entity being referenced"
                     example: "3173335a-810b-4b53-b009-122a169f9920"
                   attributes:
-                    $ref: "#/definitions/ProgramEntity"
-                
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
 
 
   /programs/{program_id}/credited_persons:
@@ -151,4 +151,4 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                     attributes:
-                      $ref: "#/definitions/CreditedPersonEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml#CreditedPersonEntity"
