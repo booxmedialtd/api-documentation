@@ -15,6 +15,10 @@ ChannelEntity:
           channel_name:
             type: string
             example: "MTV"
+          images:
+            type: array
+            items:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
           rank:
             type: integer
             description: "A suggestion to the frontend of where to display it in a list"
@@ -74,4 +78,3 @@ ChannelEntity:
                 type: integer
                 example: 2
                 description: "The size of the pause window, in hours"
-                

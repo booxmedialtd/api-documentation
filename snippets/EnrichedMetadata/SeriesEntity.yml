@@ -4,3 +4,10 @@ SeriesEntity:
       title:
         type: string
         example: "Friends"
+      year_released:
+        type: integer
+        example: 1993
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"

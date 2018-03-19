@@ -3,4 +3,7 @@
     properties:
       name:
         type: string
+        example: Romantic Comedy
+      parent_genre:
+        type: string
         example: Comedy

@@ -7,4 +7,8 @@ SeasonEntity:
       series:
         type: string
         example: "Friends"
-        description: This is an identifying relationship and links to the PK of the Series which is the title of the series    
+        description: This is an identifying relationship and links to the PK of the Series which is the title of the series
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"

@@ -12,4 +12,8 @@
         example: "bc410ca1-8bc4-4a4a-836c-693e5e1473cb"
       episode_number:
         type: integer
-        example: 2  
+        example: 2
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
