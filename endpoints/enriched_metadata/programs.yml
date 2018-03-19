@@ -32,7 +32,7 @@ paths:
         name: language
         type: string
         required: false
-        description: "The PK of the language to use, which will be a 5 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
 
       responses:
         200:
@@ -56,80 +56,7 @@ paths:
                     id:
                       type: string
                       description: "The id of the entity being referenced"
-                      example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-                    attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
-
-
-  /programs/{program_id}:
-    get:
-      summary: "Get a specific program."
-      tags:
-      - "Programs"
-      operationId: "GetProgram"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "path"
-        name: "program_id"swagger: "2.0"
-info:
-  description: |
-    A program is something that can be shown.
-    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
-    It could equally be a VOD item that can be played on demand.
-    The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
-  version: "1.0.0"
-  title: "Program endpoints"
-externalDocs:
-  description: "Original ticket"
-  url: "https://jira.aminocom.com/browse/BPLAT-4173"
-host: "demo.aminocom.com"
-basePath: "/api/epg/v1/"
-tags:
-- name: "Programs"
-  description: ""
-schemes:
-- "https"
-paths:
-
-  /programs:
-    get:
-      summary: "Get an index of programs"
-      tags:
-      - "Programs"
-      operationId: "GetProgramIndex"
-      produces:
-      - "application/json"
-      parameters:
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "object"
-            required:
-            - data
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: Program
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                      example: "3173335a-810b-4b53-b009-122a169f9920"
                     attributes:
                       $ref: "#/definitions/ProgramEntity"
 
@@ -152,7 +79,7 @@ paths:
         name: language
         type: string
         required: false
-        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
 
       responses:
         200:
@@ -177,7 +104,7 @@ paths:
                     example: "3173335a-810b-4b53-b009-122a169f9920"
                   attributes:
                     $ref: "#/definitions/ProgramEntity"
-
+                
 
 
   /programs/{program_id}/credited_persons:
@@ -198,7 +125,7 @@ paths:
         name: language
         type: string
         required: false
-        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
 
       responses:
         200:
@@ -225,83 +152,3 @@ paths:
                       example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                     attributes:
                       $ref: "#/definitions/CreditedPersonEntity"
-
-        type: "string"
-        required: true
-        description: "The identifier of the program"
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "object"
-            required:
-            - data
-            properties:
-              data:
-                type: object
-                required:
-                - type
-                - id
-                properties:
-                  type:
-                    type: string
-                    example: Program
-                  id:
-                    type: string
-                    description: "The id of the entity being referenced"
-                    example: "3173335a-810b-4b53-b009-122a169f9920"
-                  attributes:
-                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
-
-
-  /programs/{program_id}/credited_persons:
-    get:
-      summary: "Get the credited persons for a specific program."
-      tags:
-      - "Programs"
-      operationId: "GetProgramCreditedPersons"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "path"
-        name: "program_id"
-        type: "string"
-        required: true
-        description: "The identifier of the program"
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: object
-            required:
-            - data
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: CreditedPerson
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-                    attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml"
