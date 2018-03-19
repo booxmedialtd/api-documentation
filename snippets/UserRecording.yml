@@ -1,0 +1,126 @@
+UserRecordingEntity:
+    type: "object"
+    properties:
+      type:
+        type: string
+        description: "This will be a UserRecording entity"
+        example: UserRecording
+      id:
+        type: integer
+        format: int64
+        description: "The id of the entity being referenced"
+        example: '{"user_id":1,"epg_id":749,"continuous":0}'
+      attributes:
+        type: object
+        required:
+          - watched_time_seconds
+          - continuous
+          - auto_delete
+          - explicit
+          - favourite
+        properties:
+          watched_time_seconds:
+            type: integer
+            format: int64
+            description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+          continuous:
+            type: integer
+            example: 0
+          auto_delete:
+            type: boolean
+          explicit:
+            type: boolean
+          favourite:
+            type: boolean
+            example: true
+      relationships:
+        type: object
+        properties:
+          recording:
+            type: array
+            items:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    self:
+                      type: string
+                    related:
+                      type: string
+                      example: https://demo.aminocom.com/api/recordings/v1/recordings/100/relationships/streams
+          epg:
+            type: object
+            properties:
+              links:
+                type: object
+                properties:
+                  self:
+                    type: string
+                    example: "<domain>/api/v3/user/<userEmail>/epg/<programUId>"
+                    description: "EPG V3 - Program Details"
+                  thumbnail:
+                    type: string
+                    description: "The thumbnail url"
+              data:
+                type: object
+                description: We are breaking the philosophy of not hydrating the EPG because there are hundreds of items and asking the client to fetch them all would be bad for performance
+                required:
+                - service_id
+                - title
+                - description
+                - start
+                - duration_seconds
+                - program_cat
+                - program_sub_cat
+                properties:
+                  type:
+                    type: string
+                    example: EPG
+                  id:
+                    type: integer
+                  attributes:
+                    type: object
+                    properties:
+                      event_id:
+                        type: integer
+                      network_id:
+                        type: integer
+                      service_id:
+                        type: integer
+                      transport_id:
+                        type: integer
+                      service_name:
+                        type: string
+                      lang:
+                        type: string
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      media_id:
+                        type: integer
+                      start:
+                        type: integer
+                      duration_seconds:
+                        type: integer
+                      created:
+                        type: integer
+                      updated:
+                        type: integer
+                      program_uid:
+                        type: string
+                      program_cat:
+                        type: integer
+                      program_sub_cat:
+                        type: integer
+                      group_id:
+                        type: integer
+                      is_expired:
+                        type: boolean
+                      vertical_size:
+                        type: integer
+                      aspect_ratio:
+                        type: string
+                      parental_rating:
+                        type: integer

@@ -1,0 +1,15 @@
+ EpisodeEntity:
+    type: object
+    required:
+    - program_id
+    - title
+    properties:
+      program_id:
+        type: string
+        example: "3173335a-810b-4b53-b009-122a169f9920"
+      season_id:
+        type: string
+        example: "bc410ca1-8bc4-4a4a-836c-693e5e1473cb"
+      episode_number:
+        type: integer
+        example: 2  

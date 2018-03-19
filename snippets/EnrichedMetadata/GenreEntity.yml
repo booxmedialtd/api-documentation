@@ -1,0 +1,6 @@
+ GenreEntity:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Comedy

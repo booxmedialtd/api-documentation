@@ -1,0 +1,10 @@
+CreditedPersonEntity:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "Marta Kaufmann"
+      credit:
+        type: string
+        description: "This will be one of Cast|Creator|Director|Other"
+        example: "Creator"

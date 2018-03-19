@@ -1,0 +1,77 @@
+ChannelEntity:
+    type: object
+    properties:
+      type:
+        type: string
+        description: "The name of the entity from our Ubiquitous Domain Logic"
+        example: "Channel"
+      id:
+        type: string
+        description: "The id of the entity, initially this will be integer but in roadmapped features it will become string"
+        example: "123"
+      attributes:
+        type: object
+        properties:
+          channel_name:
+            type: string
+            example: "MTV"
+          rank:
+            type: integer
+            description: "A suggestion to the frontend of where to display it in a list"
+            example: 10
+          media_type:
+            type: string
+            description: "This will be either VIDEO or AUDIO and is used for ........?"
+            example: VIDEO
+          channel_availability:
+            type: object
+            properties:
+              visibility_start_time_unix:
+                type: integer
+                description: "The unix timestamp after which the channel is available to be watched"
+              visibility_end_time_unix:
+                type: integer
+                description: "The unix timestamp after which the channel will no longer be available to watch"
+          npvr_permissions:
+            type: object
+            required:
+            - recording_allowed
+            - catchup_allowed
+            properties:
+              recording_allowed:
+                type: boolean
+                description: "Whether this channel may be recorded.  Note: This does not take into account individual user licensing so it is possible that a channel may be recorded, but the user does not have a license to do so"
+                example: true
+              catchup_allowed:
+                type: boolean
+                description: "Whether this channel is available for catchup.  Note: This does not take into account individual user licensing so it is possible that a channel may be available for catchup, but the user does not have a license to do so"
+                example: true
+              catchup_window_length_seconds:
+                type: integer
+                description: "The number of seconds for the catchup length"
+                example: 86400
+          live_time_shift_permissions:
+            type: object
+            required:
+            - startover_allowed
+            - fastforward_startover_allowed
+            - pause_supported
+            - pause_window_length_hours
+            properties:
+              startover_allowed:
+                type: boolean
+                example: 1
+                description: "User can restart Programs on the Channel from the beginning but may not necessarily use fast-forward in it (separate permission required for that)"
+              fastforward_startover_allowed:
+                type: boolean
+                example: 1
+                description: "User can restart a Program on the Channel and is allowed to use fast-forwarding features"
+              pause_supported:
+                type: boolean
+                example: 1
+                description: "The channel is able to be paused"
+              pause_window_length_hours:
+                type: integer
+                example: 2
+                description: "The size of the pause window, in hours"
+                

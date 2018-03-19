@@ -1,0 +1,6 @@
+  ContentRatingFlagEntity:
+    type: object
+    properties:
+      audience_advice:
+        type: string
+        example: "NU18"

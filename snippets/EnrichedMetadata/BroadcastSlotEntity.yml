@@ -1,0 +1,16 @@
+BroadcastSlotEntity:
+    type: object
+    required:
+    - id
+    - time_start
+    - duration_seconds
+    properties:
+      id:
+        type: string
+        example: "7e59c996-fdf5-4a03-910a-12731bcd5e15"
+      time_start:
+        type: integer
+        example: 1516798894
+      duration_seconds:
+        type: integer
+        example: 5400

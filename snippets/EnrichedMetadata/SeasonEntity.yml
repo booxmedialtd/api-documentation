@@ -1,0 +1,10 @@
+SeasonEntity:
+    type: object
+    properties:
+      title:
+        type: string
+        example: "Season 1 (1994)"
+      series:
+        type: string
+        example: "Friends"
+        description: This is an identifying relationship and links to the PK of the Series which is the title of the series    
