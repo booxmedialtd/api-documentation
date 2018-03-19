@@ -179,6 +179,7 @@ paths:
                     $ref: "#/definitions/ProgramEntity"
 
 
+
   /programs/{program_id}/credited_persons:
     get:
       summary: "Get the credited persons for a specific program."
@@ -232,7 +233,7 @@ paths:
         name: language
         type: string
         required: false
-        description: "The PK of the language to use, which will be a 5 character ISO_3166-1 string (e.g.: fi-FI).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
 
       responses:
         200:
@@ -277,7 +278,7 @@ paths:
         name: language
         type: string
         required: false
-        description: "The PK of the language to use, which will be a 5 character ISO_3166-1 string (e.g.: fi-FI).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+        description: "The PK of the language to use, which will be a 3 character iso_639-2_lang string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
 
       responses:
         200:
