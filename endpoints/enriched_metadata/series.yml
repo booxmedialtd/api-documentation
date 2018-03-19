@@ -1,0 +1,299 @@
+swagger: "2.0"
+info:
+  description: |
+    Multiple Programs are grouped into a Series which consists of several Episodes that belong to Seasons
+    A Program can be either part of a Series (in which case it is an Episode) or stand alone.
+    Note: The plural of a single Series is Series
+  version: "1.0.0"
+  title: "Series endpoints"
+externalDocs:
+  description: "Original ticket"
+  url: "https://jira.aminocom.com/browse/BPLAT-4173"
+host: "demo.aminocom.com"
+basePath: "/api/epg/v1/"
+tags:
+- name: "Series"
+  description: ""
+schemes:
+- "https"
+paths:
+
+  /series:
+    get:
+      summary: "Get an index of series"
+      tags:
+      - "Series"
+      operationId: "GetSeriesIndex"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Series
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "3173335a-810b-4b53-b009-122a169f9920"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+
+
+
+  /series/{series_id}/programs:
+    get:
+      summary: "Get list of programs for a series"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesPrograms"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Program
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
+
+
+  /series/{series_id}/content_flags:
+    get:
+      summary: "Get list of content flags for a series"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesAudienceRating"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: ContentFlag
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentRatingFlag.yml#ContentRatingFlagEntity"
+
+
+  /series/{series_id}/credited_persons:
+    get:
+      summary: "Get list of cast members for series (the client can filter out non-cast people)"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesCast"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: CreditedPerson
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml#CreditedPersonEntity"
+
+
+
+
+  /series/{series_id}/images:
+    get:
+      summary: "Get list of images for a series"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesImages"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Image
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+                    attributes:
+                      $ref: "https://github.com/booxmedialtd/api-documentation/blob/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+
+
+  /series/{series_id}/episodes:
+    get:
+      summary: "Get list of episodes for a series"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesEpisodes"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Episode
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"

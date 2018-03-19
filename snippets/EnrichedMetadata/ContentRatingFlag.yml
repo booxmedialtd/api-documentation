@@ -1,6 +1,9 @@
   ContentRatingFlagEntity:
     type: object
     properties:
+      id:
+        type: string
+        example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
       audience_advice:
         type: string
         example: "NU18"
