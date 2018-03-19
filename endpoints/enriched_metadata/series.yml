@@ -204,54 +204,6 @@ paths:
 
 
 
-
-  /series/{series_id}/images:
-    get:
-      summary: "Get list of images for a series"
-      tags:
-      - "Series"
-      operationId: "SeeSeriesImages"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "path"
-        name: "series_id"
-        type: "string"
-        required: true
-        description: "The identifier of the series"
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "object"
-            required:
-            - data
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: Image
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-                    attributes:
-                      $ref: "https://github.com/booxmedialtd/api-documentation/blob/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
-
-
   /series/{series_id}/episodes:
     get:
       summary: "Get list of episodes for a series"
