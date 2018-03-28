@@ -1,7 +1,6 @@
  EpisodeEntity:
     type: object
     required:
-    - program_id
     - title
     properties:
       episode_number:
@@ -18,7 +17,7 @@
           type: object
           description: "NOTE: The items in this array can be objects of either Program or Season type"
           properties:
-            program:
+            season:
                 type: array
                 items:
                   type: object
@@ -28,5 +27,4 @@
                       example: "3173335a-810b-4b53-b009-122a169f9920"
                     type:
                       type: string
-                      example: "Program"
-                      description: "NOTE: This could also be a Season"
+                      example: "Season"
