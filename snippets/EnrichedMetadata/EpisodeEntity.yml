@@ -4,12 +4,6 @@
     - program_id
     - title
     properties:
-      program_id:
-        type: string
-        example: "3173335a-810b-4b53-b009-122a169f9920"
-      season_id:
-        type: string
-        example: "bc410ca1-8bc4-4a4a-836c-693e5e1473cb"
       episode_number:
         type: integer
         example: 2
@@ -17,3 +11,22 @@
         type: array
         items:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
+      relationships:
+        description: "This key MUST NOT be included if the `included` parameter is not used"
+        type: array
+        items:
+          type: object
+          description: "NOTE: The items in this array can be objects of either Program or Season type"
+          properties:
+            program:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "3173335a-810b-4b53-b009-122a169f9920"
+                    type:
+                      type: string
+                      example: "Program"
+                      description: "NOTE: This could also be a Season"
