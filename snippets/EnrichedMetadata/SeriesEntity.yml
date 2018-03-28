@@ -13,7 +13,7 @@ SeriesEntity:
       content_flags:
         type: array
         items:
-          type: objects
+          type: object
           required:
           - country_code_iso_alpha2
           - content_rating_flag
