@@ -68,7 +68,7 @@ paths:
                   properties:
                     type:
                       type: string
-                      example: "Season"
+                      example: "Series"
                       description: The type of the entity that is being included
                     id:
                       type: string
