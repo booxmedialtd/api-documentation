@@ -36,7 +36,7 @@ paths:
         required: false
         description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support ssparse field sets."
 
-            responses:
+      responses:
         200:
           description: "Successful response"
           schema:
