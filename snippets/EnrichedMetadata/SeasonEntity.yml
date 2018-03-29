@@ -26,7 +26,7 @@ SeasonEntity:
                   properties:
                     id:
                       type: string
-                      example: "Friends"
+                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                     type:
                       type: string
                       example: "Series"
