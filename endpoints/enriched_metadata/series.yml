@@ -63,7 +63,7 @@ paths:
 
   /series/{series_id}/programs:
     get:
-      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related"
+      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related.  NOTE:  The relationships in the Program entity MUST be omitted in this endpoint because the `included` parameter is not supported"
       tags:
       - "Series"
       operationId: "SeeSeriesPrograms"
@@ -109,7 +109,7 @@ paths:
 
   /series/{series_id}/seasons:
     get:
-      summary: "Get list of seasons for a series"
+      summary: "Get list of seasons for a series.  NOTE:  The relationships in the seasons entity MUST be omitted in this endpoint because the `included` parameter is not supported"
       tags:
       - "Series"
       operationId: "SeeSeriesSeasons"
@@ -221,6 +221,11 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+      - in: query
+        name: included
+        type: string
+        required: false
+        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
 
       responses:
         200:
