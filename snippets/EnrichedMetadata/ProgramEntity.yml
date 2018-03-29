@@ -32,9 +32,28 @@
         type: array
         items:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+      relationships:
+        description: "This key MUST NOT be included if the `included` parameter is not used"
+        type: array
+        items:
+          type: object
+          description: "NOTE: This should ONLY be used for Programs that are not Episodes of a Series.  The evening news is an example of such a Program"
+          properties:
+            season:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                    type:
+                      type: string
+                      example: "Series"
       created_at:
         type: integer
         example: 1516804728
+        description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
       modified_at:
         type: integer
         example: 1516935732
