@@ -11,7 +11,7 @@ SeasonEntity:
         items:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
       relationships:
-        description: "This key MUST NOT be included if the `included` parameter is not used"
+        description: "This key MUST NOT be included if the `included` parameter is not used."
         type: array
         items:
           type: object
