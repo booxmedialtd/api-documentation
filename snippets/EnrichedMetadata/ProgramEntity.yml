@@ -39,7 +39,7 @@
           type: object
           description: "NOTE: This should ONLY be used for Programs that are not Episodes of a Series.  The evening news is an example of such a Program"
           properties:
-            season:
+            series:
                 type: array
                 items:
                   type: object
