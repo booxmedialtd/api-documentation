@@ -55,7 +55,7 @@ paths:
                     id:
                       type: string
                       description: "The id of the entity being referenced"
-                      example: "3173335a-810b-4b53-b009-122a169f9920"
+                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
@@ -63,7 +63,7 @@ paths:
 
   /series/{series_id}/programs:
     get:
-      summary: "Get list of programs for a series"
+      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related"
       tags:
       - "Series"
       operationId: "SeeSeriesPrograms"
