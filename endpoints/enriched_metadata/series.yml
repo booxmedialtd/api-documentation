@@ -204,7 +204,7 @@ paths:
 
   /series/{series_id}/episodes:
     get:
-      summary: "Get list of episodes for a series"
+      summary: "Get list of episodes for a series.  NOTE:  This endpoint is an exception in that it allows nested Seasons to be included in Programs."
       tags:
       - "Series"
       operationId: "SeeSeriesEpisodes"
@@ -252,3 +252,19 @@ paths:
                       example: "63bbc7de-d394-4252-abf9-701f35310b1e"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
+              included:
+                type: array
+                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL. "
+                items:
+                  type: object
+                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                  properties:
+                    type:
+                      type: string
+                      example: "Season"
+                      description: The type of the entity that is being included
+                    id:
+                      type: string
+                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                    attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
