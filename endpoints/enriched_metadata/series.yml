@@ -107,6 +107,51 @@ paths:
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
+  /series/{series_id}/seasons:
+    get:
+      summary: "Get list of seasons for a series"
+      tags:
+      - "Series"
+      operationId: "SeeSeriesSeasons"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Season
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "feaf803a-3ca9-4d2e-b86b-9d217183efc5"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
 
 
   /series/{series_id}/credited_persons:
