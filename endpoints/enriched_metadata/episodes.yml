@@ -34,7 +34,7 @@ paths:
         name: included
         type: string
         required: false
-        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support ssparse field sets."
+        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
 
       responses:
         200:

@@ -33,3 +33,44 @@ Files in "snippets" refer to Entities and must contain JUST the attributes of th
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
 ```
+
+Note that value objects (which can be inserted into entities) are explicitly named in the file, for example consider how Image and Content Rating is included
+in the Program Entity:
+
+```yaml
+    ProgramEntity:
+      type: object
+      required:
+      - id
+      - program_type
+      - long_title
+      - grid_title
+      - duration_seconds
+      - release_year
+      - spoken_iso2_language
+      - subtitle_iso2_language
+      - created_at
+      - modified_at
+      properties:
+        id:
+          type: string
+          example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+        program_type:
+          type: string
+          example: "trailer"
+          description: "One of trailer|movie|progam|episode"
+        duration_seconds:
+          type: integer
+          example: 5400
+        release_year:
+          type: integer
+          example: 1984
+        images:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+        content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+```
