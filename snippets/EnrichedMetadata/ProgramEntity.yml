@@ -37,7 +37,7 @@
         type: array
         items:
           type: object
-          description: "NOTE: This should ONLY be used for Programs that are not Episodes of a Series.  The evening news is an example of such a Program"
+          description: "NOTE: Linking to Series should ONLY be used for Programs that are not Episodes of a Series.  The evening news is an example of such a Program"
           properties:
             series:
                 type: array
@@ -50,6 +50,7 @@
                     type:
                       type: string
                       example: "Series"
+                      description: "This could also be an Episode"
       created_at:
         type: integer
         example: 1516804728
