@@ -7,8 +7,7 @@
     - grid_title
     - duration_seconds
     - release_year
-    - spoken_iso2_language
-    - subtitle_iso2_language
+    - content_flags
     - created_at
     - modified_at
     properties:

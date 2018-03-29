@@ -9,39 +9,21 @@ SeasonEntity:
       content_flags:
         type: array
         items:
-          type: objects
-          required:
-          - country_code_iso_alpha2
-          - content_rating_flag
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+      relationships:
+        description: "This key MUST NOT be included if the `included` parameter is not used"
+        type: array
+        items:
+          type: object
           properties:
-            country_code_iso_alpha2:
-              type: string
-              example: "fi"
-            content_rating_flag:
-              type: string
-              example: "S"
-            is_adult_rated:
-              type: boolean
-              example: 1
-              description: "Different countries use different flags, the middleware must compute whether the flag being used is adult or not to standardize this for clients"
-        images:
-          type: array
-          items:
-            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
-        relationships:
-          description: "This key MUST NOT be included if the `included` parameter is not used"
-          type: array
-          items:
-            type: object
-            properties:
-              series:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: "Friends"
-                      type:
-                        type: string
-                        example: "Series"
+            series:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "Friends"
+                    type:
+                      type: string
+                      example: "Series"
