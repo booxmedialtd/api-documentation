@@ -36,7 +36,7 @@ paths:
         required: false
         description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support ssparse field sets."
 
-      responses:
+            responses:
         200:
           description: "Successful response"
           schema:
@@ -61,23 +61,21 @@ paths:
                       example: "3173335a-810b-4b53-b009-122a169f9920"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
-                included:
-                  type: array
-                  items:
-                      type: object
-                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                      properties:
-                        type:
-                          type: string
-                          example: Season
-                          description: The type of the entity that is being included
-                        id:
-                          type: string
-                          example: 3173335a-810b-4b53-b009-122a169f9920
-                        attributes:
-                          type: object
-                          properties:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+              included:
+                type: array
+                items:
+                  type: object
+                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                  properties:
+                    type:
+                      type: string
+                      example: "Season"
+                      description: The type of the entity that is being included
+                    id:
+                      type: string
+                      example: "3173335a-810b-4b53-b009-122a169f9920"
+                    attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
 
 
 
