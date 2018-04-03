@@ -49,6 +49,13 @@
           type: string
           example: "fi"
           description: The ISO 2 letter code of the country in which production occurred
+      created_at:
+        type: integer
+        example: 1516804728
+        description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
+      modified_at:
+        type: integer
+        example: 1516935732
       relationships:
         description: "This key MUST NOT be included if the `included` parameter is not used"
         type: array
@@ -67,11 +74,4 @@
                     type:
                       type: string
                       example: "Series"
-                      description: "This could also be an Episode"
-      created_at:
-        type: integer
-        example: 1516804728
-        description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
-      modified_at:
-        type: integer
-        example: 1516935732
+                      description: "This could also be an Episode"    
