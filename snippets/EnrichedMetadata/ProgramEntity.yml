@@ -18,6 +18,17 @@
         type: string
         example: "trailer"
         description: "One of trailer|movie|progam|episode"
+      descriptions:
+        type: object
+        properties:
+          short:
+            type: string
+            example: "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+            description: "The short description of the program"
+          long:
+            type: string
+          extended:
+            type: string
       duration_seconds:
         type: integer
         example: 5400
@@ -32,6 +43,12 @@
         type: array
         items:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+      production_countries:
+        type: array
+        items:
+          type: string
+          example: "fi"
+          description: The ISO 2 letter code of the country in which production occurred
       relationships:
         description: "This key MUST NOT be included if the `included` parameter is not used"
         type: array
