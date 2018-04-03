@@ -15,10 +15,11 @@ SeriesEntity:
       properties:
         short:
           type: string
-          example: "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+          example: "Follows the personal and professional lives of six 20 to 30-something-year-old friends living in Manhattan."
           description: "The short description of the program"
         long:
           type: string
+          example: "Rachel Green, Ross Geller, Monica Geller, Joey Tribbiani, Chandler Bing and Phoebe Buffay are six 20 something year-olds, living off of one another in the heart of New York City. Over the course of ten years, this average group of buddies goes through massive mayhem, family trouble, past and future romances, fights, laughs, tears and surprises as they learn what it really means to be a friend."
         extended:
           type: string
     year_released:
