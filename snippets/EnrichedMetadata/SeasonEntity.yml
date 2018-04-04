@@ -1,13 +1,25 @@
 SeasonEntity:
     type: object
+    required:
+    - title
     properties:
       id:
         type: string
-        example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
+        example: "feaf803a-3ca9-4d2e-b86b-9d217183efc5"
       title:
         type: string
         example: "Season 1 (1994)"
-      images:
+      descriptions:
+        type: object
+        properties:
+          short:
+            type: string
+            description: "The short description of the program"
+          long:
+            type: string
+          extended:
+            type: string
+      content_flags:
         type: array
         items:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"

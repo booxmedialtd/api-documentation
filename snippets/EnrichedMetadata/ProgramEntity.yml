@@ -7,8 +7,7 @@
     - grid_title
     - duration_seconds
     - release_year
-    - spoken_iso2_language
-    - subtitle_iso2_language
+    - content_flags
     - created_at
     - modified_at
     properties:
@@ -19,6 +18,17 @@
         type: string
         example: "trailer"
         description: "One of trailer|movie|progam|episode"
+      descriptions:
+        type: object
+        properties:
+          short:
+            type: string
+            example: "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+            description: "The short description of the program"
+          long:
+            type: string
+          extended:
+            type: string
       duration_seconds:
         type: integer
         example: 5400
@@ -28,10 +38,40 @@
       images:
         type: array
         items:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+      content_flags:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+      production_countries:
+        type: array
+        items:
+          type: string
+          example: "fi"
+          description: The ISO 2 letter code of the country in which production occurred
       created_at:
         type: integer
         example: 1516804728
+        description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
       modified_at:
         type: integer
         example: 1516935732
+      relationships:
+        description: "This key MUST NOT be included if the `included` parameter is not used"
+        type: array
+        items:
+          type: object
+          description: "NOTE: Linking to Series should ONLY be used for Programs that are not Episodes of a Series.  The evening news is an example of such a Program"
+          properties:
+            series:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                    type:
+                      type: string
+                      example: "Series"
+                      description: "This could also be an Episode"    
