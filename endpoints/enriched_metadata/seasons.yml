@@ -45,22 +45,20 @@ paths:
             - data
             properties:
               data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: Season
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
-                    attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+                type: object
+                required:
+                - type
+                - id
+                properties:
+                  type:
+                    type: string
+                    example: Season
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
 
 
   /seasons/{season_id}/episodes:
