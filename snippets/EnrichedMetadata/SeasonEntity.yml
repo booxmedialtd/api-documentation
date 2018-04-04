@@ -18,8 +18,4 @@ SeasonEntity:
           long:
             type: string
           extended:
-            type: string
-      content_flags:
-        type: array
-        items:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+            type: string    

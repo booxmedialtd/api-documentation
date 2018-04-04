@@ -9,22 +9,4 @@
     images:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
-    relationships:
-      description: "This key MUST NOT be included if the `included` parameter is not used"
-      type: array
-      items:
-        type: object
-        description: "NOTE: The items in this array can be objects of either Program or Season type"
-        properties:
-          season:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: "3173335a-810b-4b53-b009-122a169f9920"
-                  type:
-                    type: string
-                    example: "Season"
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"    

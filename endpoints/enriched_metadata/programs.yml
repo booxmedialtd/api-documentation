@@ -33,11 +33,6 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-      - in: query
-        name: included
-        type: string
-        required: false
-        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
 
       responses:
         200:
@@ -64,22 +59,6 @@ paths:
                       example: "3173335a-810b-4b53-b009-122a169f9920"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
-              included:
-                type: array
-                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
-                items:
-                  type: object
-                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                  properties:
-                    type:
-                      type: string
-                      example: "Series"
-                      description: The type of the entity that is being included
-                    id:
-                      type: string
-                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                    attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
 
   /programs/{program_id}:
@@ -101,11 +80,6 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-      - in: query
-        name: included
-        type: string
-        required: false
-        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
 
       responses:
         200:
@@ -130,23 +104,96 @@ paths:
                     example: "3173335a-810b-4b53-b009-122a169f9920"
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
-              included:
-                type: array
-                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
-                items:
-                  type: object
-                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                  properties:
-                    type:
-                      type: string
-                      example: "Series"
-                      description: The type of the entity that is being included
-                    id:
-                      type: string
-                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                    attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
+  /programs/{program_id}/episode:
+    get:
+      summary: "Get the episode (this is an identifying one-to-one relationship) that is associated with this program.  NOTE:  This should return 404 if the program is not associated with an episode (it is a movie, for example)"
+      tags:
+      - "Programs"
+      operationId: "GetProgramEpisode"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "program_id"
+        type: "string"
+        required: true
+        description: "The identifier of the program"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                required:
+                - type
+                - id
+                properties:
+                  type:
+                    type: string
+                    example: Episode
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "3173335a-810b-4b53-b009-122a169f9920"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
+
+
+
+  /programs/{program_id}/series:
+    get:
+      summary: "Some programs are part of a series that does not have episodes (like the evening news), this endpoint returns the series that this program might belong to.  It should *also* include the series that the program belongs to by virtue of its episodes"
+      tags:
+      - "Programs"
+      operationId: "GetProgramSeries"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "program_id"
+        type: "string"
+        required: true
+        description: "The identifier of the program"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                required:
+                - type
+                - id
+                properties:
+                  type:
+                    type: string
+                    example: Series
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
 
   /programs/{program_id}/credited_persons:

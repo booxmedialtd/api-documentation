@@ -68,7 +68,7 @@ paths:
 
   /series/{series_id}/programs:
     get:
-      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related.  NOTE:  The relationships in the Program entity MUST be omitted in this endpoint because the `included` parameter is not supported"
+      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related."
       tags:
       - "Series"
       operationId: "SeeSeriesPrograms"
@@ -112,9 +112,10 @@ paths:
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
+
   /series/{series_id}/seasons:
     get:
-      summary: "Get list of seasons for a series.  NOTE:  The relationships in the seasons entity MUST be omitted in this endpoint because the `included` parameter is not supported"
+      summary: "Get list of seasons for a series.  (Note:  There is a transitive relationship to Episodes through Seasons)"
       tags:
       - "Series"
       operationId: "SeeSeriesSeasons"
@@ -157,119 +158,3 @@ paths:
                       example: "feaf803a-3ca9-4d2e-b86b-9d217183efc5"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
-
-
-  /series/{series_id}/credited_persons:
-    get:
-      summary: "Get list of cast members for series (the client can filter out non-cast people)"
-      tags:
-      - "Series"
-      operationId: "SeeSeriesCast"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "path"
-        name: "series_id"
-        type: "string"
-        required: true
-        description: "The identifier of the series"
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "object"
-            required:
-            - data
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: CreditedPerson
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-                    attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml#CreditedPersonEntity"
-
-
-
-  /series/{series_id}/episodes:
-    get:
-      summary: "Get list of episodes for a series.  NOTE:  This endpoint is an exception in that it allows nested Seasons to be included in Programs."
-      tags:
-      - "Series"
-      operationId: "SeeSeriesEpisodes"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "path"
-        name: "series_id"
-        type: "string"
-        required: true
-        description: "The identifier of the series"
-      - in: query
-        name: language
-        type: string
-        required: false
-        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-      - in: query
-        name: included
-        type: string
-        required: false
-        description: "Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
-
-      responses:
-        200:
-          description: "Successful response"
-          schema:
-            type: "object"
-            required:
-            - data
-            properties:
-              data:
-                type: array
-                items:
-                  type: object
-                  required:
-                  - type
-                  - id
-                  properties:
-                    type:
-                      type: string
-                      example: Episode
-                    id:
-                      type: string
-                      description: "The id of the entity being referenced"
-                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
-                    attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
-              included:
-                type: array
-                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL. "
-                items:
-                  type: object
-                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                  properties:
-                    type:
-                      type: string
-                      example: "Season"
-                      description: The type of the entity that is being included
-                    id:
-                      type: string
-                      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                    attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
