@@ -21,7 +21,7 @@ paths:
 
   /programs:
     get:
-      summary: "Get an index of programs"
+      summary: "Get an index of programs.  By default you should return this list sorted by release_year descending and force pagination (100 results per page)"
       tags:
       - "Programs"
       operationId: "GetProgramIndex"
@@ -33,6 +33,11 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+      - in: query
+        name: page_number
+        type: integer
+        required: false
+        description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
 
       responses:
         200:
