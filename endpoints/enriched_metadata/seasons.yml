@@ -1,0 +1,110 @@
+swagger: "2.0"
+info:
+  description: |
+    A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+  version: "1.0.0"
+  title: "Seasons endpoints"
+externalDocs:
+  description: "Original ticket"
+  url: "https://jira.aminocom.com/browse/BPLAT-4173"
+host: "demo.aminocom.com"
+basePath: "/api/epg/v1/"
+tags:
+- name: "Seasons"
+  description: ""
+schemes:
+- "https"
+paths:
+
+  /seasons/{season_id}:
+    get:
+      summary: "Get an individual season"
+      tags:
+      - "Seasons"
+      operationId: "GetSeasonEntity"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "season_id"
+        type: "string"
+        required: true
+        description: "The identifier of the season"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Season
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+
+
+  /seasons/{season_id}/episodes:
+    get:
+      summary: "Get list of episodes for a seasons"
+      tags:
+      - "Seasons"
+      operationId: "SeeSeasonEpisodes"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "season_id"
+        type: "string"
+        required: true
+        description: "The identifier of the season"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Episode
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
