@@ -9,4 +9,25 @@
     images:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"    
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
+    relationships:
+      type: object
+      description: "This key MUST ONLY be included if Program data is being included as a compound document."
+      properties:
+        program:
+          type: object
+          required:
+          - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                type:
+                  type: string
+                  example: "Program"
