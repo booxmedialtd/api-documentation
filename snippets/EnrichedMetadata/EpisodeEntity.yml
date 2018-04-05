@@ -21,6 +21,7 @@
           properties:
             data:
               type: object
+              description: The relationship between Episode and Program is one-to-one so this is an object, not an array
               required:
               - id
               - type
