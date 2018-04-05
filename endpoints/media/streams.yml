@@ -35,7 +35,9 @@ paths:
         required: true
       - in: path
         name: restart_at_beginning
-        description: "The client can set this to true to indicate that it wants to start playing at the beginning of the Program"
+        description: "The client can set this to true to indicate that it wants to start playing at the beginning of the Program. The default value for this parameter is `false`"
+        type: bool
+        required: false
 
       responses:
         200:
