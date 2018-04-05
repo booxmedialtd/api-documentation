@@ -1,0 +1,69 @@
+swagger: "2.0"
+info:
+  description: |
+    This API provides information about playback streams which belong to a Channel (one Channel has many Stream).
+
+    Please refer to https://confluence.aminocom.com/display/BPLAT/Ubiquitous+Domain+Language#UbiquitousDomainLanguage-Stream for the domain understanding of what a Stream is.
+  version: "1.0.0"
+  title: "Streams API"
+externalDocs:
+  description: "Requirements documentation"
+  url: "https://confluence.aminocom.com/display/BPLAT/C+More+subscription+for+Clients"
+
+host: "demo.aminocom.com"
+basePath: "/api/v1/"
+tags:
+- name: "Stream"
+  description: |
+    This API focuses on one relationship of the Channel Entity.
+schemes:
+- "https"
+paths:
+  /channels/{channel_id}/relationships/streams:
+    get:
+      tags:
+      - "Stream"
+      summary: "Returns a collection of Stream entities"
+      operationId: "getChannelStreams"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "channel_id"
+        description: "The id of the channel that you want to retrieve playback streams for"
+        type: string
+        required: true
+
+      responses:
+        200:
+          description: "A collection of Stream entities"
+          schema:
+            type: "object"
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - type
+                  - attributes
+                  properties:
+                    id:
+                      type: integer
+                      example: 123
+                    type:
+                      type: string
+                      example: "Stream"
+                    attributes:
+                      type: array
+                      items:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Media/StreamEntity.yml#StreamEntity"
+
+        404:
+          description: "Not found"
+          schema:
+            type: "object"
+            properties:
+              errors:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
