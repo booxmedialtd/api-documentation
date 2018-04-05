@@ -55,4 +55,20 @@
         description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
       modified_at:
         type: integer
-        example: 1516935732      
+        example: 1516935732
+      relationships:
+        type: array
+        description: Multiple sorts of entities could be included so this is an array, not an object
+        items:
+          type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+            type:
+              type: string
+              example: Series
+              description: This could be any of [Series|Episode|Season]
