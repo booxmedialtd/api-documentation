@@ -18,9 +18,9 @@ schemes:
 - "https"
 paths:
 
-  /series/{series_id}:
+  /series:
     get:
-      summary: "Get an individual series"
+      summary: "Get an index of series"
       tags:
       - "Series"
       operationId: "GetSeriesIndex"
@@ -63,6 +63,52 @@ paths:
                       example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+
+
+
+  /series/{series_id}:
+    get:
+      summary: "Get an individual series"
+      tags:
+      - "Series"
+      operationId: "GetSeriesEntity"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "series_id"
+        type: "string"
+        required: true
+        description: "The identifier of the series"
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                required:
+                - type
+                - id
+                properties:
+                  type:
+                    type: string
+                    example: Series
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
 
 

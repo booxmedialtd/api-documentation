@@ -18,4 +18,8 @@ SeasonEntity:
           long:
             type: string
           extended:
-            type: string    
+            type: string
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"

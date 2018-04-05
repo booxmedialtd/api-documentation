@@ -110,6 +110,7 @@ paths:
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
+
   /programs/{program_id}/episode:
     get:
       summary: "Get the episode (this is an identifying one-to-one relationship) that is associated with this program.  NOTE:  This should return 404 if the program is not associated with an episode (it is a movie, for example)"

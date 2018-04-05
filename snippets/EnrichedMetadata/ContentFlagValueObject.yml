@@ -7,9 +7,10 @@ ContentFlagValueObject:
       country_code_iso_alpha2:
         type: string
         example: "fi"
-      content_rating_flag:
+      content_rating_authority:
         type: string
         example: "S"
+        description: "This can be either a rating system (like PEGI) or some national authority (in which case the ISO2 country code is used)"
       is_adult_rated:
         type: boolean
         example: 1
