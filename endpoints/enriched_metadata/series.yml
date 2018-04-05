@@ -114,7 +114,7 @@ paths:
 
   /series/{series_id}/programs:
     get:
-      summary: "Get list of programs for a series - including Episodes that are members of the Series and Programs that are directly related."
+      summary: "Get list of programs for a series - this should only be Programs that are *directly* related to a Series and NOT Programs that are transitively related through an Episode."
       tags:
       - "Series"
       operationId: "SeeSeriesPrograms"
@@ -157,6 +157,7 @@ paths:
                       example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
 
 
   /series/{series_id}/seasons:
