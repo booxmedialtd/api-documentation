@@ -1,0 +1,23 @@
+UserRecordingEntity:
+  type: object
+  required:
+    - watched_time_seconds
+    - continuous
+    - auto_delete
+    - explicit
+    - favourite
+  properties:
+    watched_time_seconds:
+      type: integer
+      format: int64
+      description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+    continuous:
+      type: integer
+      example: 0
+    auto_delete:
+      type: boolean
+    explicit:
+      type: boolean
+    favourite:
+      type: boolean
+      example: true

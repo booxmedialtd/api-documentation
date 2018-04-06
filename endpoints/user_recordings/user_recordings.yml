@@ -1,0 +1,103 @@
+swagger: "2.0"
+info:
+  description: |
+    This API returns a list of recordings that includes how far the user has already watched through them.  This allows the frontend to indicate a progress bar and for playback to be resumed at the last watching point.
+  version: "1.0.0"
+  title: "User recording index"
+externalDocs:
+  description: "Original ticket"
+  url: "https://jira.aminocom.com/browse/BPLAT-3647"
+host: "demo.aminocom.com"
+basePath: "/api/recordings/v1/"
+tags:
+- name: "Recordings"
+  description: "Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed"
+schemes:
+- "https"
+paths:
+
+  /user/{user_id}/user_recordings/{epg_id}/{continuous}:
+    patch:
+      tags:
+      - "Recordings"
+      summary: "Update one or more attributes of an existing entity"
+      description: "This can be used, for example, to reset the amount of time that a recording has been watched."
+      operationId: "modifyRecordings"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "user_id"
+        description: "The user id to obtain recordings for"
+        type: "integer"
+        format: "int64"
+        required: true
+      - in: "path"
+        name: "epg_id"
+        description: "The epg id to obtain recordings for"
+        type: "integer"
+        format: "int64"
+        required: true
+      - in: "path"
+        name: "continuous"
+        description: "The integer value of the continuous flag"
+        type: integer
+        format: int64
+        required: true
+      - name: "data"
+        in: "body"
+        description: "The Recording entity to modify.  Note that you only have to provide the attributes that you want to change (this is a PATCH request)"
+        schema:
+          type: "object"
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: integer
+                type:
+                  type: string
+                attributes:
+                  type: object
+                  properties:
+                    watched_time_seconds:
+                      type: integer
+                      format: int64
+                      description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+                    continuous:
+                      type: integer
+                      example: 0
+                    auto_delete:
+                      type: boolean
+                    explicit:
+                      type: boolean
+                    favourite:
+                      type: boolean
+                      example: true
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    description: "This will be a UserRecording entity"
+                    example: UserRecording
+                  id:
+                    type: string
+                    example: '{"user_id":1,"epg_id":749,"continuous":0}'
+                  attributes:
+                    $ref: "#/definitions/UserRecording"
+
+        400:
+          description: "Standard error format"
+          schema:
+            type: "object"
+            properties:
+              errors:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"

@@ -68,7 +68,7 @@ paths:
 
   /programs/{program_id}:
     get:
-      summary: "Get a specific program."
+      summary: "Get a specific program.  NOTE:  This endpoint will *always* include [Series|Episode|Season] relationships and DOES NOT support the `included` parameter."
       tags:
       - "Programs"
       operationId: "GetProgram"
@@ -85,12 +85,6 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-      - in: query
-        name: included
-        type: string
-        required: false
-        description: "One or more of the following values: [Series|Episode|Season].  Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
-
 
       responses:
         200:
