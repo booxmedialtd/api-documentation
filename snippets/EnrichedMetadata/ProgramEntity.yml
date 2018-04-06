@@ -58,7 +58,7 @@
         example: 1516935732
       relationships:
         type: array
-        description: Multiple sorts of entities could be included so this is an array, not an object
+        description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
         items:
           type: object
           required:
