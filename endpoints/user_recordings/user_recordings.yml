@@ -92,7 +92,7 @@ paths:
                     type: string
                     example: '{"user_id":1,"epg_id":749,"continuous":0}'
                   attributes:
-                    $ref: "#/definitions/UserRecording"
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
         400:
           description: "Standard error format"
