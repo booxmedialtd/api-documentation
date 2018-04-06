@@ -35,29 +35,30 @@ paths:
         required: true
 
       responses:
-        description: "A collection of Stream entities"
-        schema:
-          type: "object"
-          properties:
-            data:
-              type: array
-              items:
-                type: object
-                required:
-                - id
-                - type
-                - attributes
-                properties:
-                  id:
-                    type: integer
-                    example: 123
-                  type:
-                    type: string
-                    example: "Stream"
-                  attributes:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Media/StreamEntity.yml#StreamEntity"
+        200:
+          description: "A collection of Stream entities"
+          schema:
+            type: "object"
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - type
+                  - attributes
+                  properties:
+                    id:
+                      type: integer
+                      example: 123
+                    type:
+                      type: string
+                      example: "Stream"
+                    attributes:
+                      type: array
+                      items:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Media/StreamEntity.yml#StreamEntity"
 
         400:
           description: "Standard error format"
