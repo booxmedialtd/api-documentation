@@ -62,3 +62,19 @@ paths:
                       example: "89e3a147-2ff6-448f-959f-a6200434259d"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/ChannelEntity.yml#ChannelEntity"
+              included:
+                type: array
+                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                items:
+                  type: object
+                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                  properties:
+                    type:
+                      type: string
+                      example: "Genre"
+                      description: The type of the entity that is being included.
+                    id:
+                      type: string
+                      example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+                    attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
