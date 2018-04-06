@@ -1,12 +1,16 @@
 swagger: "2.0"
 info:
   description: |
-    This API returns a list of recordings that includes how far the user has already watched through them.  This allows the frontend to indicate a progress bar and for playback to be resumed at the last watching point.
+    If a User has the "Record" access for a Channel then they are able to request that we record a Program for them from that Channel.
+    A Recording should start off as a request.  A User may request that an entire series be recorded in which case the recording script will create requests on behalf of the User.
+    Once the Program has finished Recording is is marked as available.
+    Currently the identity of this Entity is a combination of the User and the EPG item that were recorded.  This introduces implicit relationships between other entities (for example EPG item must be unique across all Channel)
+    The plan is that when User Recording is separated into its own component as part of the Recording service it will be given its own independent identity.
   version: "1.0.0"
-  title: "User recording index"
+  title: "User recording"
 externalDocs:
-  description: "Original ticket"
-  url: "https://jira.aminocom.com/browse/BPLAT-3647"
+  description: "Entry in Ubiquitous Domain Language"
+  url: "https://confluence.aminocom.com/display/BPLAT/Domain+Entities#DomainEntities-(Entity).8"
 host: "demo.aminocom.com"
 basePath: "/api/recordings/v1/"
 tags:
