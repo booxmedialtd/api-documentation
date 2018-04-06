@@ -63,7 +63,7 @@ paths:
 
   /seasons/{season_id}/episodes:
     get:
-      summary: "Get list of episodes for a seasons."
+      summary: "Get list of episodes for a seasons.  Note:  This endpoint will *always* return included Programs and does not support the `include` parameter in order to comply with the JSON API spec requirment that If an endpoint supports the include parameter and a client supplies it, the server MUST NOT include unrequested resource objects in the included section of the compound document."
       tags:
       - "Seasons"
       operationId: "SeeSeasonEpisodes"
@@ -80,11 +80,6 @@ paths:
         type: string
         required: false
         description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
-      - in: query
-        name: included
-        type: string
-        required: false
-        description: "One or more of the following values: [Programs].  Request the middleware to include related resources.  Refer to http://jsonapi.org/format/#fetching-includes.  Please note we do not support sparse field sets."
 
       responses:
         200:
@@ -113,7 +108,7 @@ paths:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
               included:
                 type: array
-                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                description: "This key MUST always be included"
                 items:
                   type: object
                   description: ""
