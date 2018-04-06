@@ -1,0 +1,122 @@
+ChannelEntity:
+  type: object
+  required:
+      - "channel_name"
+      - "skimmtv_name"
+      - "description"
+      - "thumbnail"
+      - "recording_commercial"
+      - "geoblocked"
+      - "rank"
+      - "visibility_start"
+      - "visibility_end"
+      - "start_time"
+      - "end_time"
+      - "recording_blacklisted"
+      - "catchup_blacklisted"
+      - "is_live_provisioned"
+      - "is_recording_provisioned"
+      - "is_catchup_provisioned"
+      - "drm_mode"
+      - "media_type"
+  properties:
+    id:
+      type: string
+      example: "89e3a147-2ff6-448f-959f-a6200434259d"
+      description: "The id of the entity, initially this will be integer but in roadmapped features it will become string"
+    name:
+      type: string
+      example: "YLE TV1"
+      description: "The short name of the channel to show in listings"
+    description:
+      type: string
+      example: "Yle TV1 is a Finnish television channel owned and operated by Finnish public broadcaster Yle. It is the first and oldest television channel in Finland. More than 70% of channel's programs are documentaries, news or educational programmes."
+      description: "A longer description that can be shown in channel detail pages"
+    content_flags:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+    media_type:
+      type: string
+      description: "This will be either VIDEO or AUDIO and is used for ........?"
+      example: VIDEO
+    display_order_weight:
+      type: integer
+      example: 10
+      description: "An indication to the client on how to order channels when displaying a list.  Channels with a higher weight should appear above channels with a lower weight"
+    visibility:
+      type: object
+      required:
+      - visible_from_timestamp
+      - visible_until_timestamp
+      properties:
+        visible_from_timestamp:
+          type: integer
+          example: 1491487639
+          description: "The unix epoch timestamp from which this channel is allowed to be watched"
+        visible_until_timestamp:
+          type: integer
+          example: 1554559639
+          description: "The unix epoch timestamp until when this channel is allowed to be watched"
+    images:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+    npvr_permissions:
+      type: object
+      required:
+      - recording_allowed
+      - catchup_allowed
+      properties:
+        recording_allowed:
+          type: boolean
+          description: "Whether this channel may be recorded.  Note: This does not take into account individual user licensing so it is possible that a channel may be recorded, but the user does not have a license to do so"
+          example: true
+        catchup_allowed:
+          type: boolean
+          description: "Whether this channel is available for catchup.  Note: This does not take into account individual user licensing so it is possible that a channel may be available for catchup, but the user does not have a license to do so"
+          example: true
+        catchup_window_length_seconds:
+          type: integer
+          description: "The number of seconds for the catchup length"
+          example: 86400
+    live_time_shift_permissions:
+      type: object
+      required:
+      - startover_allowed
+      - fastforward_startover_allowed
+      - pause_supported
+      - pause_window_length_hours
+      properties:
+        startover_allowed:
+          type: boolean
+          example: 1
+          description: "User can restart Programs on the Channel from the beginning but may not necessarily use fast-forward in it (separate permission required for that)"
+        fastforward_startover_allowed:
+          type: boolean
+          example: 1
+          description: "User can restart a Program on the Channel and is allowed to use fast-forwarding features"
+        pause_supported:
+          type: boolean
+          example: 1
+          description: "The channel is able to be paused"
+        pause_window_length_hours:
+          type: integer
+          example: 2
+          description: "The size of the pause window, in hours"
+    relationships:
+      type: array
+      description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
+      items:
+        type: object
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+          type:
+            type: string
+            example: Genre
+            description: The type of the entity being included
