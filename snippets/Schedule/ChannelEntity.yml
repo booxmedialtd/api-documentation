@@ -44,6 +44,13 @@ ChannelEntity:
       type: integer
       example: 10
       description: "An indication to the client on how to order channels when displaying a list.  Channels with a higher weight should appear above channels with a lower weight"
+    geo_blocking:
+      type: object
+      properties:
+        allowed_countries:
+          type: string
+          example: "fi,es,gb"
+          description: "A comma seperated list of ISO2 country codes that the channel is allowed to be played in"
     visibility:
       type: object
       required:
