@@ -1,24 +1,16 @@
 ChannelEntity:
   type: object
   required:
-      - "channel_name"
-      - "skimmtv_name"
-      - "description"
-      - "thumbnail"
-      - "recording_commercial"
-      - "geoblocked"
-      - "rank"
-      - "visibility_start"
-      - "visibility_end"
-      - "start_time"
-      - "end_time"
-      - "recording_blacklisted"
-      - "catchup_blacklisted"
-      - "is_live_provisioned"
-      - "is_recording_provisioned"
-      - "is_catchup_provisioned"
-      - "drm_mode"
-      - "media_type"
+      - name
+      - description
+      - content_flags
+      - media_type
+      - display_order_weight
+      - geo_blocking
+      - availability
+      - images
+      - npvr_permissions
+      - live_time_shift_permissions
   properties:
     id:
       type: string
