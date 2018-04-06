@@ -27,11 +27,6 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "path"
-        name: "series_id"
-        type: "string"
-        required: true
-        description: "The identifier of the series"
       - in: query
         name: language
         type: string

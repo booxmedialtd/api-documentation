@@ -1,0 +1,18 @@
+swagger: "2.0"
+info:
+  description: |
+    A channel is a source of content in the form of stream or signal, which can be watched / listened on a multimedia device.
+    A channel is one of the elements that users can subscribe to.
+    One Channel can be related to many BroadcastSlots which are placeholders in which a Program can be displayed.
+    Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
+    Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
+  version: "1.0.0"
+  title: "Channel endpoints"
+host: "demo.aminocom.com"
+basePath: "/api/schedule/v1/"
+tags:
+- name: "Channels"
+  description: ""
+schemes:
+- "https"
+paths:
