@@ -19,7 +19,7 @@ paths:
 
   /channels:
     get:
-      summary: "Get an index of Channels"
+      summary: "Get an index of Channels.  NOTE:  This endpoint will *always* include Genre relationships and DOES NOT support the `included` parameter."
       tags:
       - "Channels"
       operationId: "GetChannelIndex"

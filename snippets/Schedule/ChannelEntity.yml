@@ -51,7 +51,7 @@ ChannelEntity:
           type: string
           example: "fi,es,gb"
           description: "A comma seperated list of ISO2 country codes that the channel is allowed to be played in"
-    visibility:
+    availability:
       type: object
       required:
       - visible_from_timestamp
