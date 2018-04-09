@@ -1,0 +1,16 @@
+ProductEntity:
+  type: object
+  required:
+  properties:
+    name:
+      type: string
+      example: "Yle sports bundle"
+      description: The name under which the product is sold
+    amino_id:
+      type: string
+      example: "e4b6a7fb-5edc-4239-aa84-dc8f022e260c"
+      description: These could be integers or strings as roadmapped features are deployed
+    external_id:
+      type: string
+      example: "13"
+      description: If this is sold externally (e.g. Hybris) then this is the external identity

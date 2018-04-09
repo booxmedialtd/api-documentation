@@ -87,5 +87,5 @@ ChannelEntity:
             example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
           type:
             type: string
-            example: Genre
+            example: Genre (or Product)
             description: The type of the entity being included

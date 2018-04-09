@@ -19,7 +19,7 @@ paths:
 
   /channels:
     get:
-      summary: "Get an index of Channels.  NOTE:  This endpoint will *always* include Genre relationships and DOES NOT support the `included` parameter."
+      summary: "Get an index of Channels.  NOTE:  This endpoint will *always* include Genre and Product relationships and DOES NOT support the `included` parameter."
       tags:
       - "Channels"
       operationId: "GetChannelIndex"
@@ -66,13 +66,13 @@ paths:
                   properties:
                     type:
                       type: string
-                      example: "Genre"
+                      example: "Product (or Genre)"
                       description: The type of the entity that is being included.
                     id:
                       type: string
                       example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
                     attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Subscription/ProductEntity.yml#ProductEntity"
 
   /user/{user_id}/user_favourite_channels:
     get:
