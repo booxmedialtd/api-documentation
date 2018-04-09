@@ -20,7 +20,7 @@ BroadcastSlotEntity:
           description: "The Unix epoch timestamp denoting the end of the timeslot.  Note:  end_time_unix - start_time_unix = program_duration_seconds + commercial_break_duration_seconds"
         advertising_enabled:
           type: boolean
-          example: false
+          example: true
           description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"        
         program_duration_seconds:
           type: integer
