@@ -16,3 +16,7 @@ ContentFlagValueObject:
         type: boolean
         example: 1
         description: "Different countries use different flags, the middleware must compute whether the flag being used is adult or not to standardize this for clients"
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
