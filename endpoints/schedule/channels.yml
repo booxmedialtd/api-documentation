@@ -88,10 +88,10 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: url
+      - in: path
         name: user_id
         type: string
-        required: false
+        required: true
         description: "The user identifier"
 
       responses:
