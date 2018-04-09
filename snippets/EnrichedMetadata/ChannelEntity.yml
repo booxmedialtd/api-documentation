@@ -12,6 +12,10 @@ ChannelEntity:
       attributes:
         type: object
         properties:
+          rank:
+            type: integer
+            description: "A suggestion to the frontend of where to display it in a list"
+            example: 10
           channel_name:
             type: string
             example: "MTV"
@@ -19,23 +23,7 @@ ChannelEntity:
             type: array
             items:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml"
-          rank:
-            type: integer
-            description: "A suggestion to the frontend of where to display it in a list"
-            example: 10
-          media_type:
-            type: string
-            description: "This will be either VIDEO or AUDIO and is used for ........?"
-            example: VIDEO
-          channel_availability:
-            type: object
-            properties:
-              visibility_start_time_unix:
-                type: integer
-                description: "The unix timestamp after which the channel is available to be watched"
-              visibility_end_time_unix:
-                type: integer
-                description: "The unix timestamp after which the channel will no longer be available to watch"
+
           npvr_permissions:
             type: object
             required:
