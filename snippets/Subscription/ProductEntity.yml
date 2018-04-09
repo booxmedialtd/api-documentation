@@ -2,14 +2,14 @@ ProductEntity:
   type: object
   required:
   properties:
+    id:
+      type: string
+      example: "cdf6b44c-2e44-41c7-9325-62d600431b5f"
+      description: "The uuid of the product, used as our internal identifier"
     name:
       type: string
       example: "Yle sports bundle"
       description: The name under which the product is sold
-    amino_id:
-      type: string
-      example: "e4b6a7fb-5edc-4239-aa84-dc8f022e260c"
-      description: These could be integers or strings as roadmapped features are deployed
     external_id:
       type: string
       example: "13"
