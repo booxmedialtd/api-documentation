@@ -1,0 +1,65 @@
+swagger: "2.0"
+info:
+  description: |
+    A BroadcastSlot is a time period on a Channel in which a Program may be shown.
+    Our BroadcastSlot entity is just a single appearance of a Program on a Channel.
+    We store information about the time slot as well as a title for the slot.
+    Note: The title of a BroadcastSlot does not have to be the same as the title of the Program in that slot.
+    In English a schedule is understood to be a list or a plan and so we avoid using that word for a single item.
+  version: "1.0.0"
+  title: "Channel endpoints"
+host: "demo.aminocom.com"
+basePath: "/api/schedule/v1/"
+tags:
+- name: "BroadcastSlots"
+  description: ""
+schemes:
+- "https"
+paths:
+
+  /broadcast_slots:
+    get:
+      summary: "Get an index of BroadcastSlots"
+      tags:
+      - "BroadcastSlots"
+      operationId: "GetBroadcastSlotsIndex"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+      - in: query
+        name: page_number
+        type: integer
+        required: false
+        description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Channel
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "89e3a147-2ff6-448f-959f-a6200434259d"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/ChannelEntity.yml#ChannelEntity"
+              
