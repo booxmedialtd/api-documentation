@@ -79,43 +79,43 @@ paths:
                     attributes:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
 
-    /user/{user_id}/user_favourite_channels:
-      get:
-        summary: "Get an index of the users favourite channels"
-        tags:
-        - "Channels"
-        operationId: "GetUserFavouriteChannelIndex"
-        produces:
-        - "application/json"
-        parameters:
-        - in: url
-          name: user_id
-          type: string
-          required: false
-          description: "The user identifier"
+  /user/{user_id}/user_favourite_channels:
+    get:
+      summary: "Get an index of the users favourite channels"
+      tags:
+      - "Channels"
+      operationId: "GetUserFavouriteChannelIndex"
+      produces:
+      - "application/json"
+      parameters:
+      - in: url
+        name: user_id
+        type: string
+        required: false
+        description: "The user identifier"
 
-        responses:
-          200:
-            description: "Successful response"
-            schema:
-              type: "object"
-              required:
-              - data
-              properties:
-                data:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        type: string
-                        example: UserFavouriteChannel
-                      id:
-                        type: string
-                        description: "The id of the channel that is selected as a favourite.  The identity of the value object is bound to its value."
-                        example: "123"
-                      attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserFavouriteChannelValueObject.yml#UserFavouriteChannelValueObject"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: UserFavouriteChannel
+                    id:
+                      type: string
+                      description: "The id of the channel that is selected as a favourite.  The identity of the value object is bound to its value."
+                      example: "123"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserFavouriteChannelValueObject.yml#UserFavouriteChannelValueObject"
