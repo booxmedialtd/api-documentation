@@ -4,7 +4,6 @@ ChannelEntity:
       - name
       - description
       - content_flags
-      - media_type
       - display_order_weight
       - geo_blocking
       - availability
@@ -20,43 +19,14 @@ ChannelEntity:
       type: string
       example: "YLE TV1"
       description: "The short name of the channel to show in listings"
-    description:
-      type: string
-      example: "Yle TV1 is a Finnish television channel owned and operated by Finnish public broadcaster Yle. It is the first and oldest television channel in Finland. More than 70% of channel's programs are documentaries, news or educational programmes."
-      description: "A longer description that can be shown in channel detail pages"
     content_flags:
       type: array
       items:
         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
-    media_type:
-      type: string
-      description: "This will be either VIDEO or AUDIO and is used for ........?"
-      example: VIDEO
     display_order_weight:
       type: integer
       example: 10
       description: "An indication to the client on how to order channels when displaying a list.  Channels with a higher weight should appear above channels with a lower weight"
-    geo_blocking:
-      type: object
-      properties:
-        allowed_countries:
-          type: string
-          example: "fi,es,gb"
-          description: "A comma seperated list of ISO2 country codes that the channel is allowed to be played in"
-    availability:
-      type: object
-      required:
-      - visible_from_timestamp
-      - visible_until_timestamp
-      properties:
-        visible_from_timestamp:
-          type: integer
-          example: 1491487639
-          description: "The unix epoch timestamp from which this channel is allowed to be watched"
-        visible_until_timestamp:
-          type: integer
-          example: 1554559639
-          description: "The unix epoch timestamp until when this channel is allowed to be watched"
     images:
       type: array
       items:
