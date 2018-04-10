@@ -101,7 +101,7 @@ paths:
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
-/programs/{program_id}/broadcast_slots:
+  /programs/{program_id}/broadcast_slots:
     get:
       summary: "Find all the times that a particular Program is scheduled to be displayed"
       tags:
