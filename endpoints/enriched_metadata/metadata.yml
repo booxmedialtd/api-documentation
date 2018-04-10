@@ -529,9 +529,9 @@ paths:
                     id:
                       type: string
                       description: "The id of the entity being referenced"
-                      example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+                      example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -582,9 +582,9 @@ paths:
                     id:
                       type: string
                       description: "The id of the entity being referenced"
-                      example: "d3bd2c5d-795d-446e-86a6-ab96e2ccd7bb"
+                      example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/CreditedPersonEntity.yml#CreditedPersonEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
