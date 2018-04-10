@@ -547,6 +547,11 @@ paths:
       type: string
       required: false
       description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+    - in: query
+      name: filter
+      type: array
+      required: false
+      description: "[See http://jsonapi.org/recommendations/#filtering]  Supported fields are: `role`"
 
     responses:
       200:
