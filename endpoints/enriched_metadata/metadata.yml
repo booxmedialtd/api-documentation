@@ -530,7 +530,7 @@ paths:
 
   /credited_persons/{credited_person_id}/programs:
     get:
-      summary: "Get list of programs for a genre."
+      summary: "Get list of programs for a credited person.  Note: This endpoint supports the `filter` parameter, please see http://jsonapi.org/recommendations/#filtering for syntax specification."
       tags:
       - "CreditedPerson"
       operationId: "SeeCreditedPersonPrograms"
