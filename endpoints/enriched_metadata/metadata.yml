@@ -245,7 +245,7 @@ paths:
 
   /programs/{program_id}:
     get:
-      summary: "Get a specific program.  NOTE:  This endpoint will *always* include [Series|Episode|Season] relationships and DOES NOT support the `included` parameter."
+      summary: "Get a specific program.  NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter."
       tags:
       - "Programs"
       operationId: "GetProgram"
@@ -296,13 +296,13 @@ paths:
                     type:
                       type: string
                       example: "Series"
-                      description: The type of the entity that is being included.  It will be one of [Series|Episode|Season]
+                      description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
                     id:
                       type: string
                       example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                     attributes:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
-  
+
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /series:
