@@ -7,12 +7,13 @@ info:
     Note: The title of a BroadcastSlot does not have to be the same as the title of the Program in that slot.
     In English a schedule is understood to be a list or a plan and so we avoid using that word for a single item.
   version: "1.0.0"
-  title: "Channel endpoints"
+  title: "BroadcastSlots endpoints"
 host: "demo.aminocom.com"
 basePath: "/api/schedule/v1/"
 tags:
 - name: "BroadcastSlots"
   description: ""
+- name: "Programs"
 schemes:
 - "https"
 paths:
@@ -99,3 +100,44 @@ paths:
                       example: "3173335a-810b-4b53-b009-122a169f9920"
                     attributes:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
+/programs/{program_id}/broadcast_slots:
+    get:
+      summary: "Find all the times that a particular Program is scheduled to be displayed"
+      tags:
+      - "Programs"
+      operationId: "GetProgramsBroadcastSlotsIndex"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: language
+        type: string
+        required: false
+        description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "object"
+            required:
+            - data
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - id
+                  properties:
+                    type:
+                      type: string
+                      example: Program
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
