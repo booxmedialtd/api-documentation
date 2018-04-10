@@ -11,7 +11,7 @@ externalDocs:
   url: "https://confluence.aminocom.com/display/BPLAT/C+More+subscription+for+Clients"
 
 host: "demo.aminocom.com"
-basePath: "/api/v1/"
+basePath: "/api/v1/media/"
 tags:
 - name: "Stream"
   description: |
