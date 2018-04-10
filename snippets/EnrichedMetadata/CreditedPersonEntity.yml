@@ -4,6 +4,9 @@
     - name
     - credit
     properties:
+      id:
+        type: string
+        example: "d3bd2c5d-795d-446e-86a6-ab96e2ccd7bb"
       name:
         type: string
         example: "Marta Kaufmann"
