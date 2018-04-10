@@ -29,7 +29,7 @@
             type: string
           extended:
             type: string
-      duration_seconds:
+      duration_without_adverts_seconds:
         type: integer
         example: 5400
       release_year:

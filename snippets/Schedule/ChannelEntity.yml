@@ -19,6 +19,10 @@ ChannelEntity:
       type: string
       example: "YLE TV1"
       description: "The short name of the channel to show in listings"
+    logical_channel_number:
+      type: integer
+      example: 30
+      description: "https://en.wikipedia.org/wiki/Virtual_channel"
     content_flags:
       type: array
       items:
