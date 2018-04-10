@@ -147,7 +147,10 @@ paths:
 
   /seasons/{season_id}/series:
     get:
-      summary: "Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response"
+      summary: |
+        Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response.  
+        See also the `/series/{series_id}/programs` endpoint that returns the direct relationships.  By combining the usage of these two endpoints the client is able to 
+        distinguish between series related to programs that don't have Seasons (like the News) and ones that do (like Friends)
       tags:
       - "Seasons"
       operationId: "SeeSeasonSeries"
