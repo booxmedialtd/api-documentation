@@ -135,7 +135,7 @@ paths:
                   properties:
                     type:
                       type: string
-                      example: Program
+                      example: BroadcastSlot
                     id:
                       type: string
                       description: "The id of the entity being referenced"
