@@ -5,7 +5,7 @@ info:
   version: "1.0.0"
   title: "Metadata endpoints"
 host: "demo.aminocom.com"
-basePath: "/api/epg/v1/"
+basePath: "/api/metadata/v1/"
 tags:
 - name: "Seasons"
   description: "A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons"
