@@ -1,17 +1,16 @@
 # This is not an entity or a value object, it is just to save copy/paste
 ChannelServicePermissionsSnippet:
   type: object
-  required:
-  - fast_forward_available
-  - rewind_startover_available
-  - pause_available
   properties:
     fast_forward_available:
       type: boolean
       example: True
+      description: "If this key is absent you can assume that its value is false"
     rewind_startover_available:
       type: boolean
       example: True
+      description: "If this key is absent you can assume that its value is false"
     pause_available:
       type: boolean
       example: True
+      description: "If this key is absent you can assume that its value is false"
