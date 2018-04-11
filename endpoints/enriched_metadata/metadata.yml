@@ -350,7 +350,7 @@ paths:
 
   /series/{series_id}:
     get:
-      summary: "Get an individual series.  NOTE:  This endpoint will *always* include [Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.""
+      summary: "Get an individual series.  NOTE:  This endpoint will *always* include [Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter."
       tags:
       - "Series"
       operationId: "GetSeriesEntity"
