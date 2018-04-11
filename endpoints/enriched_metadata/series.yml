@@ -15,7 +15,7 @@ tags:
       A Program can be either part of a Series (in which case it is an Episode) or stand alone.
     Note: The plural of a single Series is Series
 servers:
-  - url: 'https://demo.aminocom.com/api/recordings/v1/'
+  - url: 'https://demo.aminocom.com/api/metadata/v1/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme

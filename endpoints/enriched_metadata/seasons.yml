@@ -10,6 +10,16 @@ tags:
   - name: Season
     description: |
       A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+servers:
+  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
 paths:
 
   /seasons/{season_id}:
@@ -227,14 +237,3 @@ paths:
 
 
 
-
-servers:
-  - url: 'https://demo.aminocom.com/api/recordings/v1/'
-components:
-  securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
-security:
-  - bearerAuth: []         # use the same name as above
