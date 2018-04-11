@@ -670,9 +670,13 @@ paths:
                     attributes:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Subscription/ProductEntity.yml#ProductEntity"
 
-  /user/{user_id}/user_favourite_channels:
+  /user/{user_id}/user_specific_channels:
     get:
-      summary: "Get an index of the users favourite channels"
+      summary: |
+        Get an index of the users favourite channels.
+        NOTE:  This is an exception to our REST based API in that it does not refer directly to an entity (but rather a value object).  Value objects do not have their own
+        identity (their identity is bound to their value), but in order to comply with the JSON API standard we are using the id of the Channel entity that it is associated with.
+        The reason for this exception is to keep this response as small as possible and to improve caching of the larger (more computationally expensive) Channel endpoint
       tags:
       - "Channels"
       operationId: "GetUserFavouriteChannelIndex"
@@ -701,12 +705,12 @@ paths:
                   - type
                   - id
                   properties:
-                    type:
-                      type: string
-                      example: UserFavouriteChannel
                     id:
                       type: string
-                      description: "The id of the channel that is selected as a favourite.  The identity of the value object is bound to its value."
+                      description: "The id of the channel (the identity of the value object is bound to its value)"
                       example: "123"
+                    type:
+                      type: string
+                      example: UserSpecificChannel
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserFavouriteChannelValueObject.yml#UserFavouriteChannelValueObject"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"
