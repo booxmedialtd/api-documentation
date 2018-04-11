@@ -1,15 +1,19 @@
 openapi: 3.0.0
 info:
   description: >
-    This endpoint provides metadata about Seasons.
+    This endpoint provides metadata about Series.
 
-    A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+    Multiple Programs are grouped into a Series which consists of several Episodes that belong to Seasons
+    A Program can be either part of a Series (in which case it is an Episode) or stand alone.
+    Note: The plural of a single Series is Series
   version: 1.0.0
-  title: Season metadata
+  title: Series metadata
 tags:
-  - name: Season
+  - name: Series
     description: |
-      A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+      Multiple Programs are grouped into a Series which consists of several Episodes that belong to Seasons
+      A Program can be either part of a Series (in which case it is an Episode) or stand alone.
+    Note: The plural of a single Series is Series
 servers:
   - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
