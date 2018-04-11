@@ -1,15 +1,23 @@
 openapi: 3.0.0
 info:
   description: >
-    This endpoint provides metadata about Seasons.
+    This endpoint provides metadata about Channels.
 
-    A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+    A channel is a source of content in the form of stream or signal, which can be watched / listened on a multimedia device.
+    A channel is one of the elements that users can subscribe to.
+    One Channel can be related to many BroadcastSlots which are placeholders in which a Program can be displayed.
+    Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
+    Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
   version: 1.0.0
-  title: Season metadata
+  title: Channel metadata
 tags:
-  - name: Season
+  - name: Channels
     description: |
-      A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+      A channel is a source of content in the form of stream or signal, which can be watched / listened on a multimedia device.
+      A channel is one of the elements that users can subscribe to.
+      One Channel can be related to many BroadcastSlots which are placeholders in which a Program can be displayed.
+      Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
+      Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
 servers:
   - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
@@ -30,13 +38,16 @@ paths:
         Get an index of Channels.
         NOTE:  This endpoint will *always* include Genre and Product relationships and DOES NOT support the `included` parameter.
       tags:
-      - "Channels"
-      operationId: "GetChannelIndex"
+      - Channels
+      operationId: GetChannelIndex
       parameters:
         - in: query
           name: language
           required: false
-          description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences"
           schema:
             type: string
         - in: query
@@ -53,7 +64,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
+                type: object
                 required:
                 - data
                 properties:
@@ -116,7 +127,7 @@ paths:
         The reason for this exception is to keep this response as small as possible and to improve caching of the larger
         (more computationally expensive) Channel endpoint
       tags:
-      - "Channels"
+      - Channels
       operationId: "GetUserFavouriteChannelIndex"
       parameters:
         - in: path
@@ -132,7 +143,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "object"
+                type: object
                 required:
                 - data
                 properties:
