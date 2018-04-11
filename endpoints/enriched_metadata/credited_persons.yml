@@ -8,7 +8,7 @@ info:
 
     Examples could include actors, creators, directors, writers, special effects companies, and so on.
   version: 1.0.0
-  title: Genre metadata
+  title: CreditedPerson metadata
 tags:
   - name: CreditedPerson
     description: |
