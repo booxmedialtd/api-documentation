@@ -4,6 +4,7 @@ info:
     This API provides information about playback streams which belong to a Channel (one Channel has many Stream).
 
     Please refer to https://confluence.aminocom.com/display/BPLAT/Ubiquitous+Domain+Language#UbiquitousDomainLanguage-Stream for the domain understanding of what a Stream is.
+
   version: "1.0.0"
   title: "Streams API"
 externalDocs:
@@ -24,6 +25,7 @@ paths:
       tags:
       - "Stream"
       summary: "Returns a collection of Stream entities"
+      description: "Available since March 2018 (BPLAT-4755)"
       operationId: "getChannelStreams"
       produces:
       - "application/json"

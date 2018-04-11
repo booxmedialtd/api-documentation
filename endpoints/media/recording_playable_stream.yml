@@ -24,6 +24,7 @@ paths:
       tags:
       - "Stream"
       summary: "Returns a collection of Stream entities"
+      description: "Available since "
       operationId: "getChannelStreams"
       produces:
       - "application/json"
