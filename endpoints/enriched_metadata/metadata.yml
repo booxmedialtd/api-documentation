@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: |
-    
+
   version: "1.0.0"
   title: "Metadata endpoints"
 host: "demo.aminocom.com"
@@ -148,8 +148,8 @@ paths:
   /seasons/{season_id}/series:
     get:
       summary: |
-        Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response.  
-        See also the `/series/{series_id}/programs` endpoint that returns the direct relationships.  By combining the usage of these two endpoints the client is able to 
+        Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response.
+        See also the `/series/{series_id}/programs` endpoint that returns the direct relationships.  By combining the usage of these two endpoints the client is able to
         distinguish between series related to programs that don't have Seasons (like the News) and ones that do (like Friends)
       tags:
       - "Seasons"
@@ -350,7 +350,7 @@ paths:
 
   /series/{series_id}:
     get:
-      summary: "Get an individual series"
+      summary: "Get an individual series.  NOTE:  This endpoint will *always* include [Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.""
       tags:
       - "Series"
       operationId: "GetSeriesEntity"
@@ -391,6 +391,22 @@ paths:
                     example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+              included:
+                type: array
+                description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                items:
+                  type: object
+                  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                  properties:
+                    type:
+                      type: string
+                      example: Season
+                    id:
+                      type: string
+                      description: "The id of the entity being referenced"
+                      example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
 
 
 
