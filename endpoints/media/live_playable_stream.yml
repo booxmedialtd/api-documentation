@@ -85,5 +85,11 @@ paths:
         - application/json
 servers:
   - url: 'https://demo.aminocom.com/api/v1/media/'
-x-s2o-consumes: []
-x-s2o-produces: ["application/json"]
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
