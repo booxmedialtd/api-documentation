@@ -636,7 +636,7 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "89e3a147-2ff6-448f-959f-a6200434259d"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/ChannelEntity.yml#ChannelEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
               included:
                 type: array
                 description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
