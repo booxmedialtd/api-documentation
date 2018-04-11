@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  description: >
+    This endpoint provides metadata about Seasons.
+
+    A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+  version: 1.0.0
+  title: Season metadata
+tags:
+  - name: Season
+    description: |
+      A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+servers:
+  - url: 'https://demo.aminocom.com/api/recordings/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /channels:
+    get:
+      summary: >-
+        Get an index of Channels.
+        NOTE:  This endpoint will *always* include Genre and Product relationships and DOES NOT support the `included` parameter.
+      tags:
+      - "Channels"
+      operationId: "GetChannelIndex"
+      parameters:
+        - in: query
+          name: language
+          required: false
+          description: "The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).  If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.  If the requested language is not available then the system will return translations in order of the system defined preferences"
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
+          schema:
+            type: integer
+            format: int64
+
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Channel
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "89e3a147-2ff6-448f-959f-a6200434259d"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
+                  included:
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      type: object
+                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                      properties:
+                        type:
+                          type: string
+                          example: "Product (or Genre)"
+                          description: The type of the entity that is being included.
+                        id:
+                          type: string
+                          example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+                        attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Subscription/ProductEntity.yml#ProductEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/user_specific_channels:
+    get:
+      summary: |
+        Get an index of the users favourite channels.
+        NOTE:  This is an exception to our REST based API in that it does not refer directly to an entity (but rather a value object).
+
+        Value objects do not have their own identity (their identity is bound to their value), but in order to comply with the JSON API standard
+        we are using the id of the Channel entity that it is associated with.
+
+        The reason for this exception is to keep this response as small as possible and to improve caching of the larger
+        (more computationally expensive) Channel endpoint
+      tags:
+      - "Channels"
+      operationId: "GetUserFavouriteChannelIndex"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        id:
+                          type: string
+                          description: "The id of the channel (the identity of the value object is bound to its value)"
+                          example: "123"
+                        type:
+                          type: string
+                          example: UserSpecificChannel
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"

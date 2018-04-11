@@ -5,7 +5,7 @@ info:
 
     A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
   version: 1.0.0
-  title: Channel metadata
+  title: Season metadata
 tags:
   - name: Season
     description: |
@@ -61,6 +61,17 @@ paths:
                         example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
                       attributes:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
 
 
 
