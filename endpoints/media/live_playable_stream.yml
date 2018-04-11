@@ -68,7 +68,7 @@ paths:
                           type: array
                           items:
                             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Media/StreamEntity.yml#StreamEntity"
-        '404':
+        '400':
           description: Standard error response
           content:
             application/json:
