@@ -164,3 +164,4 @@ paths:
                           example: UserSpecificChannel
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"
+
