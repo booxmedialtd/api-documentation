@@ -50,11 +50,11 @@ paths:
           schema:
             type: string
         - in: query
-          name: service
+          name: network
           description: >-
             This is a legacy parameter that will be removed in a future release.  It describes the service that
             the user belongs to.
-          required: true
+          required: false
           schema:
             type: string
       responses:
