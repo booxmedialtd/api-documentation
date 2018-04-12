@@ -49,6 +49,14 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: service
+          description: >-
+            This is a legacy parameter that will be removed in a future release.  It describes the service that
+            the user belongs to.
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: A collection of Stream entities
