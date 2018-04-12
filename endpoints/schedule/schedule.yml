@@ -262,12 +262,12 @@ paths:
                         - type
                         - id
                         properties:
-                          id:
-                            type: string
-                            description: "The id of the channel (the identity of the value object is bound to its value)"
-                            example: "123"
                           type:
                             type: string
-                            example: UserSpecificChannel
+                            example: BroadcastSlot
+                          id:
+                            type: string
+                            description: "The id of the entity being referenced"
+                            example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
