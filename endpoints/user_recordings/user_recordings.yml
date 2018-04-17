@@ -24,8 +24,6 @@ security:
 - bearerAuth: []         # use the same name as above
 paths:
 
-paths:
-
   /user/{user_id}/user_recordings/{epg_id}/{continuous}:
     get:
       tags:
@@ -42,7 +40,6 @@ paths:
         - in: path
           name: epg_id
           description: The epg id to obtain recordings for
-          format: int64
           required: true
           schema:
             type: string
@@ -54,7 +51,7 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
+        '200':
           description: "Successful response"
           content:
             application/json:
@@ -81,6 +78,17 @@ paths:
                             {"user_id":1,"epg_id":749,"continuous":0}
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
 
 
     patch:
@@ -99,7 +107,6 @@ paths:
         - in: path
           name: epg_id
           description: The epg id to obtain recordings for
-          format: int64
           required: true
           schema:
             type: string
@@ -110,64 +117,55 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: "data"
-          in: "body"
-          description: >-
-            The Recording entity to modify.  Note that you only have to provide the attributes that you want to change (this is a PATCH request) and that you cannot
-            change the time that the recording expires.
-          required: true
-          schema:
-            type: "object"
-            properties:
-              data:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  type:
-                    type: string
-                  attributes:
-                    type: object
-                    properties:
-                      watched_time_seconds:
-                        type: integer
-                        format: int64
-                        description: >-
-                          This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value).
-                      continuous:
-                        type: integer
-                        example: 0
-                      auto_delete:
-                        type: boolean
-                      explicit:
-                        type: boolean
-                      favourite:
-                        type: boolean
-                        example: true
+      requestBody:
+        description: >-
+          The Recording entity to modify.  Note that you only have to provide the attributes that you want to change (this is a PATCH request) and that you cannot
+          change the time that the recording expires.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    type:
+                      type: string
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
       responses:
-        200:
+        '200':
           description: "Successful response"
-          schema:
-            type: "object"
-            properties:
-              data:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: "This will be a UserRecording entity"
+                        example: UserRecording
+                      id:
+                        type: string
+                        example: '{"user_id":1,"epg_id":749,"continuous":0}'
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
                 type: object
                 properties:
-                  type:
-                    type: string
-                    description: "This will be a UserRecording entity"
-                    example: UserRecording
-                  id:
-                    type: string
-                    example: '{"user_id":1,"epg_id":749,"continuous":0}'
-                  attributes:
-                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
-
-        400:
-          description: "Standard error format"
-          schema:
-            type: "object"
-            properties:
-              errors:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
