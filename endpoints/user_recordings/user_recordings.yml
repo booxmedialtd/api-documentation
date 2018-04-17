@@ -90,11 +90,11 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: "Series"
+                          example: Program
                           description: The type of the entity that is being included.  Each entry in the array will be one of [Program|PlayableStream] but both types will be included
                         id:
                           type: string
-                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                          example: d0de0088-3141-439e-8455-839bdb8f6cec
                         attributes:
                             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
