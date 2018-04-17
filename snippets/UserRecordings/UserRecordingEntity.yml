@@ -34,7 +34,7 @@ UserRecordingEntity:
           favourite:
             type: boolean
             example: true
-          expires_at_timestamþ:
+          expires_at_timestamp:
             type: integer
             format: int64
             description: "The unix epoch timestamp at which the recording expires and will no longer be available"
