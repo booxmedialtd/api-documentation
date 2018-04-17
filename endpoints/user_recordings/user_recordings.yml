@@ -1,6 +1,6 @@
-swagger: "2.0"
+openapi: 3.0.0
 info:
-  description: |
+  description: >-
     If a User has the "Record" access for a Channel then they are able to request that we record a Program for them from that Channel.
     A Recording should start off as a request.  A User may request that an entire series be recorded in which case the recording script will create requests on behalf of the User.
     Once the Program has finished Recording is is marked as available.
@@ -8,76 +8,142 @@ info:
     The plan is that when User Recording is separated into its own component as part of the Recording service it will be given its own independent identity.
   version: "1.0.0"
   title: "User recording"
-externalDocs:
-  description: "Entry in Ubiquitous Domain Language"
-  url: "https://confluence.aminocom.com/display/BPLAT/Domain+Entities#DomainEntities-(Entity).8"
-host: "demo.aminocom.com"
-basePath: "/api/recordings/v1/"
 tags:
-- name: "Recordings"
-  description: "Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed"
-schemes:
-- "https"
+- name: Recordings
+  description: >-
+    Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
+servers:
+- url: 'https://demo.aminocom.com/api/recordings/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
 paths:
 
   /user/{user_id}/user_recordings/{epg_id}/{continuous}:
+    get:
+      tags:
+      - Recordings
+      summary: Get an index of user recording entities
+      operationId: indexRecordings
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: epg_id
+          description: The epg id to obtain recordings for
+          format: int64
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: continuous
+          description: "The integer value of the continuous flag"
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecording
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: >-
+                            {"user_id":1,"epg_id":749,"continuous":0}
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+
+
     patch:
       tags:
-      - "Recordings"
-      summary: "Update one or more attributes of an existing entity"
-      description: "This can be used, for example, to reset the amount of time that a recording has been watched."
-      operationId: "modifyRecordings"
-      produces:
-      - "application/json"
+      - Recordings
+      summary: Update one or more attributes of an existing entity
+      description: This can be used, for example, to reset the amount of time that a recording has been watched.
+      operationId: modifyRecordings
       parameters:
-      - in: "path"
-        name: "user_id"
-        description: "The user id to obtain recordings for"
-        type: "integer"
-        format: "int64"
-        required: true
-      - in: "path"
-        name: "epg_id"
-        description: "The epg id to obtain recordings for"
-        type: "integer"
-        format: "int64"
-        required: true
-      - in: "path"
-        name: "continuous"
-        description: "The integer value of the continuous flag"
-        type: integer
-        format: int64
-        required: true
-      - name: "data"
-        in: "body"
-        description: "The Recording entity to modify.  Note that you only have to provide the attributes that you want to change (this is a PATCH request)"
-        schema:
-          type: "object"
-          properties:
-            data:
-              type: object
-              properties:
-                id:
-                  type: integer
-                type:
-                  type: string
-                attributes:
-                  type: object
-                  properties:
-                    watched_time_seconds:
-                      type: integer
-                      format: int64
-                      description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
-                    continuous:
-                      type: integer
-                      example: 0
-                    auto_delete:
-                      type: boolean
-                    explicit:
-                      type: boolean
-                    favourite:
-                      type: boolean
-                      example: true
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: epg_id
+          description: The epg id to obtain recordings for
+          format: int64
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: continuous
+          description: "The integer value of the continuous flag"
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: "data"
+          in: "body"
+          description: >-
+            The Recording entity to modify.  Note that you only have to provide the attributes that you want to change (this is a PATCH request) and that you cannot
+            change the time that the recording expires.
+          required: true
+          schema:
+            type: "object"
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  type:
+                    type: string
+                  attributes:
+                    type: object
+                    properties:
+                      watched_time_seconds:
+                        type: integer
+                        format: int64
+                        description: >-
+                          This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value).
+                      continuous:
+                        type: integer
+                        example: 0
+                      auto_delete:
+                        type: boolean
+                      explicit:
+                        type: boolean
+                      favourite:
+                        type: boolean
+                        example: true
 
       responses:
         200:
