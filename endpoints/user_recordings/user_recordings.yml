@@ -39,19 +39,6 @@ paths:
           required: true
           schema:
             type: string
-        - in: path
-          name: epg_id
-          description: The epg id to obtain recordings for
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: continuous
-          description: "The integer value of the continuous flag"
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
         '200':
           description: "Successful response"
