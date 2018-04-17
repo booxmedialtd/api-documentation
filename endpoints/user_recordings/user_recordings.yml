@@ -96,7 +96,7 @@ paths:
                           type: string
                           example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#PrgoramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
         '400':
           description: Standard error response
