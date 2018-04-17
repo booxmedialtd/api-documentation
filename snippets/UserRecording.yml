@@ -18,6 +18,7 @@ UserRecordingEntity:
           - auto_delete
           - explicit
           - favourite
+          - expires_at_timestamþ
         properties:
           watched_time_seconds:
             type: integer
@@ -33,6 +34,10 @@ UserRecordingEntity:
           favourite:
             type: boolean
             example: true
+          expires_at_timestamþ:
+            type: integer
+            format: int64
+            description: "The unix epoch timestamp at which the recording expires and will no longer be available"
       relationships:
         type: object
         properties:

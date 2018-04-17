@@ -41,7 +41,7 @@ paths:
       - Channels
       operationId: GetChannelIndex
       parameters:
-        - in: query
+        - in: 'query'
           name: language
           required: false
           description: >-
