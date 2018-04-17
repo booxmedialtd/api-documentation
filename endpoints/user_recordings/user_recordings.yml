@@ -24,7 +24,7 @@ security:
 - bearerAuth: []         # use the same name as above
 paths:
 
-  /user/{user_id}/user_recordings/{epg_id}/{continuous}:
+  /user/{user_id}/user_recordings/:
     get:
       tags:
       - Recordings
@@ -111,6 +111,8 @@ paths:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
 
 
+
+  /user/{user_id}/user_recordings/{epg_id}/{continuous}:
     patch:
       tags:
       - Recordings
