@@ -29,6 +29,8 @@ paths:
       tags:
       - Recordings
       summary: Get an index of user recording entities
+      description: >-
+        NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
       operationId: indexRecordings
       parameters:
         - in: path
@@ -78,6 +80,24 @@ paths:
                             {"user_id":1,"epg_id":749,"continuous":0}
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                  included:
+                    type: array
+                    description: >-
+                      NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
+                    items:
+                      type: object
+                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                      properties:
+                        type:
+                          type: string
+                          example: "Series"
+                          description: The type of the entity that is being included.  Each entry in the array will be one of [Program|PlayableStream] but both types will be included
+                        id:
+                          type: string
+                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                        attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/PrgoramEntity.yml#PrgoramEntity"
+
         '400':
           description: Standard error response
           content:
