@@ -178,3 +178,140 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+
+  /user/{user_id}/previously_started_user_recordings:
+    get:
+      tags:
+      - Recordings
+      summary: "This endpoint will be deprecated soon and it is not recommended to rely on it"
+      description: "This endpoint will be deprecated soon and it is not recommended to rely on it"
+      operationId: "getStartedRecordings"
+      parameters:
+        - in: query
+          name: maxItems
+          description: How many items must be returned.  Valid values are in the set [20, 50, 100].
+          required: true 
+          schema:
+            type: integer      
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: integer
+            format: "int64"
+    
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  links:
+                    type: object
+                    properties: 
+                      self: 
+                        type: string
+                        example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=2"
+                      first:
+                        type: string
+                        description: "The fully qualified url of the first page in the collection"
+                        example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=1"
+                      last:
+                        type: string
+                        description: "The fully qualified url of the last page in the collection"
+                        example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=4"
+                      next:
+                        type: string
+                        description: "The fully qualified url of the next page of data in the collection"
+                        example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=3"
+                      prev:
+                        type: string
+                        description: "The fully qualified url of the prev page of data in the collection"
+                        example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=1"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: This will be a UserRecording entity
+                          example: UserRecording
+                        id: 
+                          type: integer
+                          format: int64
+                          description: The id of the entity being referenced
+                          example: '{"user_id":1,"epg_id":749,"continuous":0}'
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                        relationships:
+                          type: object
+                          properties:
+                            recording:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  links:
+                                    type: object
+                                    properties:
+                                      self:
+                                        type: string
+                                      stream:
+                                        type: string
+                                  data:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        example: Recording
+                                      id: 
+                                        type: integer
+                                        example: 123
+                                      attributes:
+                                        type: object
+                                        properties:
+                                          status:
+                                            type: string
+                                            example: "deployed"
+                                          stream:
+                                            type: object
+                                            properties:
+                                              bitrate:
+                                                type: string
+                                              type:
+                                                type: string
+                                              protocol: 
+                                                type: string
+                            epg:
+                              type: object
+                              properties:
+                                links: 
+                                  type: object
+                                  properties:
+                                    self:
+                                      type: string
+                                      example: "<domain>/api/v3/user/<userEmail>/epg/<programUId>"
+                                      description: "EPG V3 - Program Details"
+                                    thumbnail:
+                                      type: string
+                                      description: "The thumbnail url"
+                                data:
+                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/EPGEntity.yml#EPGEntity"
+            
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
