@@ -184,8 +184,10 @@ paths:
     get:
       tags:
       - Recordings
-      summary: "This endpoint will be deprecated soon and it is not recommended to rely on it"
-      description: "This endpoint will be deprecated soon and it is not recommended to rely on it"
+      summary: This endpoint will be deprecated soon and it is not recommended to build new systems using it.
+      description: >-
+        This endpoint will be deprecated soon and it is not recommended to build new systems using it.
+        Note: Many of the keys in the recording entity are not mandatory and only the mandatory keys can be relied upon.
       operationId: "getStartedRecordings"
       parameters:
         - in: query
