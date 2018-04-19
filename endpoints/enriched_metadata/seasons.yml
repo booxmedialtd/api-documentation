@@ -115,11 +115,11 @@ paths:
           schema:
             type: string
         - in: query
-            name: sort
-            required: false
-            description: >-
-              Please see http://jsonapi.org/format/#fetching-sorting
-              The following are attributes to sort on: [episode.title|episode.number]
+          name: sort
+          required: false
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            The following are attributes to sort on: [episode.title|episode.number]
       responses:
         '200':
           description: "Successful response"
@@ -203,17 +203,21 @@ paths:
           schema:
             type: string
         - in: query
-            name: sort
-            required: false
-            description: >-
-              Please see http://jsonapi.org/format/#fetching-sorting
-              The following are attributes to sort on: [series.title|series.release_year]
+          name: sort
+          required: false
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            The following are attributes to sort on: [series.title|series.release_year]
+          schema:
+            type: string
         - in: query
           name: filter
           required: false
           description: >-
             Please see http://jsonapi.org/recommendations/#filtering
             The following are attributes to filter on: [content_rating.adult|genre.name|season.release_year]
+          schema:
+            type: string
       responses:
         '200':
           description: "Successful response"
