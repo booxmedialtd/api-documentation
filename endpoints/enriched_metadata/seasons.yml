@@ -120,6 +120,8 @@ paths:
           description: >-
             Please see http://jsonapi.org/format/#fetching-sorting
             The following are attributes to sort on: [episode.title|episode.number]
+          schema:
+            type: string
       responses:
         '200':
           description: "Successful response"
