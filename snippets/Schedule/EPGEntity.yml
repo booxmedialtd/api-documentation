@@ -1,6 +1,6 @@
 EPGEntity:
   type: object
-  description: We are breaking the philosophy of not hydrating the EPG because there are hundreds of items and asking the client to fetch them all would be bad for performance
+  description: Note that not all the fields are mandatory
   required:
   - service_id
   - title
