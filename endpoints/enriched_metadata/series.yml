@@ -13,7 +13,7 @@ tags:
     description: |
       Multiple Programs are grouped into a Series which consists of several Episodes that belong to Seasons
       A Program can be either part of a Series (in which case it is an Episode) or stand alone.
-    Note: The plural of a single Series is Series
+      Note: The plural of a single Series is Series
 servers:
   - url: 'https://demo.aminocom.com/api/metadata/v1/'
 components:
