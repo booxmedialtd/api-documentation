@@ -2,6 +2,7 @@
     type: object
     required:
     - id
+    - title
     - program_type
     - long_title
     - grid_title
@@ -14,6 +15,8 @@
       id:
         type: string
         example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+      title:
+        type: string
       program_type:
         type: string
         example: "trailer"

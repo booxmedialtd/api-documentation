@@ -22,7 +22,7 @@ SeriesEntity:
           example: "Rachel Green, Ross Geller, Monica Geller, Joey Tribbiani, Chandler Bing and Phoebe Buffay are six 20 something year-olds, living off of one another in the heart of New York City. Over the course of ten years, this average group of buddies goes through massive mayhem, family trouble, past and future romances, fights, laughs, tears and surprises as they learn what it really means to be a friend."
         extended:
           type: string
-    year_released:
+    release_year:
       type: integer
       example: 1993
     content_flags:

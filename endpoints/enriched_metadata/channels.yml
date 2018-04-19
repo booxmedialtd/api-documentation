@@ -57,6 +57,18 @@ paths:
           schema:
             type: integer
             format: int64
+        - in: query
+          name: sort
+          required: false
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            The following are attributes to sort on: [channel.title]
+        - in: query
+          name: filter
+          required: false
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering
+            The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year]
 
       responses:
         '200':
