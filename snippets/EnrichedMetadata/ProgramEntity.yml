@@ -17,6 +17,10 @@
         example: "d0de0088-3141-439e-8455-839bdb8f6cec"
       title:
         type: string
+        description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.
+      original_title:
+        type: string
+        description: The title of the Program in it's original language, or otherwise not edited
       program_type:
         type: string
         example: "trailer"
