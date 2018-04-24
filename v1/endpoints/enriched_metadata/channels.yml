@@ -96,7 +96,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "89e3a147-2ff6-448f-959f-a6200434259d"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -112,7 +112,7 @@ paths:
                           type: string
                           example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Subscription/ProductEntity.yml#ProductEntity"
         '400':
           description: Standard error response
           content:
@@ -123,7 +123,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -175,5 +175,5 @@ paths:
                           type: string
                           example: UserSpecificChannel
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/UserSpecificChannelValueObject.yml#UserSpecificChannelValueObject"
 

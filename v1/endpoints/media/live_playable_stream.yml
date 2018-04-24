@@ -83,7 +83,7 @@ paths:
                         attributes:
                           type: array
                           items:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Media/StreamEntity.yml#StreamEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Media/StreamEntity.yml#StreamEntity"
         '400':
           description: Standard error response
           content:
@@ -94,7 +94,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
       x-s2o-consumes: []
       x-s2o-produces:

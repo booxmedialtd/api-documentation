@@ -99,7 +99,7 @@ paths:
                             description: "The id of the entity being referenced"
                             example: "3173335a-810b-4b53-b009-122a169f9920"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
           '400':
             description: Standard error response
@@ -111,7 +111,7 @@ paths:
                     errors:
                       type: array
                       items:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 
   /programs/{program_id}:
@@ -163,7 +163,7 @@ paths:
                         description: "The id of the entity being referenced"
                         example: "3173335a-810b-4b53-b009-122a169f9920"
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -179,7 +179,7 @@ paths:
                           type: string
                           example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
 
         '400':
           description: Standard error response
@@ -191,4 +191,4 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"

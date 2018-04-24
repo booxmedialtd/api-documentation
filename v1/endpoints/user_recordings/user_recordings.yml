@@ -66,7 +66,7 @@ paths:
                           example: >-
                             {"user_id":1,"epg_id":749,"continuous":0}
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
                   included:
                     type: array
                     description: >-
@@ -83,7 +83,7 @@ paths:
                           type: string
                           example: d0de0088-3141-439e-8455-839bdb8f6cec
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
 
         '400':
           description: Standard error response
@@ -95,7 +95,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 
 
@@ -144,7 +144,7 @@ paths:
                     type:
                       type: string
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
       responses:
         '200':
@@ -165,7 +165,7 @@ paths:
                         type: string
                         example: '{"user_id":1,"epg_id":749,"continuous":0}'
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
         '400':
           description: Standard error response
@@ -177,7 +177,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 
   /user/{user_id}/previously_started_user_recordings:
@@ -249,7 +249,7 @@ paths:
                           description: The id of the entity being referenced
                           example: '{"user_id":1,"epg_id":749,"continuous":0}'
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
                         relationships:
                           type: object
                           properties:
@@ -303,7 +303,7 @@ paths:
                                       type: string
                                       description: "The thumbnail url"
                                 data:
-                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/EPGEntity.yml#EPGEntity"
+                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/EPGEntity.yml#EPGEntity"
             
         '400':
           description: Standard error response
@@ -315,5 +315,5 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 

@@ -70,7 +70,7 @@ paths:
                         description: "The id of the entity being referenced"
                         example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
         '400':
           description: Standard error response
           content:
@@ -81,7 +81,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 
 
@@ -148,7 +148,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "63bbc7de-d394-4252-abf9-701f35310b1e"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
                   included:
                     type: array
                     description: "This key MUST always be included"
@@ -164,7 +164,7 @@ paths:
                           type: string
                           example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -175,7 +175,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
   /seasons/{season_id}/series:
     get:
@@ -246,7 +246,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
         '400':
           description: Standard error response
           content:
@@ -257,7 +257,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
 
 
