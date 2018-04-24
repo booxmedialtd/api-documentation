@@ -1,0 +1,40 @@
+UserRecordingEntity:
+    type: "object"
+    properties:
+      type:
+        type: string
+        description: "This will be a UserRecording entity"
+        example: UserRecording
+      id:
+        type: integer
+        format: int64
+        description: "The id of the entity being referenced"
+        example: '{"user_id":1,"epg_id":749,"continuous":0}'
+      attributes:
+        type: object
+        required:
+          - watched_time_seconds
+          - continuous
+          - auto_delete
+          - explicit
+          - favourite
+          - expires_at_timestamþ
+        properties:
+          watched_time_seconds:
+            type: integer
+            format: int64
+            description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+          continuous:
+            type: integer
+            example: 0
+          auto_delete:
+            type: boolean
+          explicit:
+            type: boolean
+          favourite:
+            type: boolean
+            example: true
+          expires_at_timestamp:
+            type: integer
+            format: int64
+            description: "The unix epoch timestamp at which the recording expires and will no longer be available"

@@ -1,0 +1,81 @@
+  ProgramEntity:
+    type: object
+    required:
+    - id
+    - title
+    - program_type
+    - long_title
+    - grid_title
+    - duration_seconds
+    - release_year
+    - content_flags
+    - created_at
+    - modified_at
+    properties:
+      id:
+        type: string
+        example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+      title:
+        type: string
+        description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.
+      original_title:
+        type: string
+        description: The title of the Program in it's original language, or otherwise not edited
+      program_type:
+        type: string
+        example: "trailer"
+        description: "One of trailer|movie|progam|episode"
+      descriptions:
+        type: object
+        properties:
+          short:
+            type: string
+            example: "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+            description: "The short description of the program"
+          long:
+            type: string
+          extended:
+            type: string
+      duration_without_adverts_seconds:
+        type: integer
+        example: 5400
+      release_year:
+        type: integer
+        example: 1984
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+      content_flags:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+      production_countries:
+        type: array
+        items:
+          type: string
+          example: "fi"
+          description: The ISO 2 letter code of the country in which production occurred
+      created_at:
+        type: integer
+        example: 1516804728
+        description: "I've included timestamps for this entity because I suspect it could be useful for caching, importing, and so on"
+      modified_at:
+        type: integer
+        example: 1516935732
+      relationships:
+        type: array
+        description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
+        items:
+          type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+            type:
+              type: string
+              example: Series
+              description: This could be any of [Series|Episode|Season]

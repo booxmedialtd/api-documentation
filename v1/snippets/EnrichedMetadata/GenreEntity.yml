@@ -1,0 +1,12 @@
+GenreEntity:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+    name:
+      type: string
+      example: Romantic Comedy
+    parent_genre:
+      type: string
+      example: Comedy

@@ -1,0 +1,49 @@
+BroadcastSlotEntity:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
+    timeslot:
+      type: object
+      required:
+      - start_time_unix
+      - end_time_unix
+      properties:
+        start_time_unix:
+          type: integer
+          example: 1523268666
+          description: "The Unix epoch timestamp denoting the start of the timeslot"
+        end_time_unix:
+          type: integer
+          example: 1523270886
+          description: "The Unix epoch timestamp denoting the end of the timeslot.  Note:  end_time_unix - start_time_unix = program_duration_seconds + commercial_break_duration_seconds"
+        advertising_enabled:
+          type: boolean
+          example: true
+          description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"        
+        program_duration_seconds:
+          type: integer
+          example: 2100
+          description: "The duration (in seconds) of the program sans adverts"
+        commercial_break_duration_seconds:
+          type: integer
+          example: 120
+          description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
+    program:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          example: "Movie: Die Hard"
+          description: "This may be different from the Program title, to allow broadcasters flexibility, for example to add prefixes"
+        images:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+        content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"

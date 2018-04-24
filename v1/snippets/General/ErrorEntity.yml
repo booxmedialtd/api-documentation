@@ -1,0 +1,24 @@
+  Error:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "A unique identifier for this instance of error (allows tracking in logs)"
+      href:
+        type: "string"
+        description: "The url where you can find documentation about this class of error"
+      code:
+        type: "string"
+        description: "A static 7 character code that is associated with this family of errors"
+      title:
+        type: "string"
+        description: "A human readable and user friendly (no implementation details) description of the general condition of the error"
+      details:
+        type: "string"
+        description: "A human readable and user friendly description of the specific details of the error"
+    example:
+      - id: "5941163294aef"
+        href: null
+        code: "4INZEX"
+        title: "Method not allowed"
+        details: "This method is not supported for this resource"

@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  description: >
+    This endpoint provides metadata about Seasons.
+
+    A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+  version: 1.0.0
+  title: Season metadata
+tags:
+  - name: Season
+    description: |
+      A Season is a grouping of Episodes into a collection. A Series may have multiple Seasons
+servers:
+  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+  /seasons/{season_id}:
+    get:
+      summary: Get an individual season
+      tags:
+      - Seasons
+      operationId: GetSeasonEntity
+      parameters:
+        - in: path
+          name: season_id
+          required: true
+          description: >-
+            The identifier of the season
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
+      responses:
+        200:
+          description: A collection of Stream entities
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: Season
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+
+
+
+  /seasons/{season_id}/episodes:
+    get:
+      summary: >-
+        Get list of episodes for a seasons.
+        Note:  This endpoint will *always* return included Programs and does not support the `include` parameter in order to comply with the
+        JSON API spec requirment that If an endpoint supports the include parameter and a client supplies it, the server MUST NOT
+        include unrequested resource objects in the included section of the compound document.
+      tags:
+      - "Seasons"
+      operationId: "SeeSeasonEpisodes"
+      parameters:
+        - in: path
+          name: season_id
+          required: true
+          description: >-
+            The identifier of the season
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
+        - in: query
+          name: sort
+          required: false
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            The following are attributes to sort on: [episode.title|episode.number]
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Episode
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
+                  included:
+                    type: array
+                    description: "This key MUST always be included"
+                    items:
+                      type: object
+                      description: ""
+                      properties:
+                        type:
+                          type: string
+                          example: "Program"
+                          description: The type of the entity that is being included.  It will be Program
+                        id:
+                          type: string
+                          example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                        attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+  /seasons/{season_id}/series:
+    get:
+      summary: >-
+        Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response.
+        See also the `/series/{series_id}/programs` endpoint that returns the direct relationships.  By combining the usage of these two endpoints the client is able to
+        distinguish between series related to programs that don't have Seasons (like the News) and ones that do (like Friends)
+      tags:
+      - "Seasons"
+      operationId: "SeeSeasonSeries"
+      parameters:
+        - in: path
+          name: season_id
+          required: true
+          description: >-
+            The identifier of the season
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
+        - in: query
+          name: sort
+          required: false
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            The following are attributes to sort on: [series.title|series.release_year]
+          schema:
+            type: string
+        - in: query
+          name: filter
+          required: false
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering
+            The following are attributes to filter on: [content_rating.adult|genre.name|season.release_year]
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Series
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+
+

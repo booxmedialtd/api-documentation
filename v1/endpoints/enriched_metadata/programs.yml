@@ -1,0 +1,194 @@
+openapi: 3.0.0
+info:
+  description: >-
+    This endpoint provides metadata about Programs.
+
+    A program is something that can be shown.
+    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+    It could equally be a VOD item that can be played on demand.
+    The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
+  version: 1.0.0
+  title: Program metadata
+tags:
+  - name: Programs
+    description: >-
+      A program is something that can be shown.
+      It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+      It could equally be a VOD item that can be played on demand.
+      The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
+servers:
+  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /programs:
+      get:
+        summary: >
+          Get an index of programs.
+          By default you should return this list sorted by release_year descending and force pagination (100 results per page).
+          NOTE:  there is a Swagger limitation that includes the `series` relationship into the entities, ignore this for this endpoint
+        tags:
+        - Programs
+        operationId: GetProgramIndex
+        parameters:
+          - in: query
+            name: language
+            required: false
+            description: >-
+              The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+              If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+              If the requested language is not available then the system will return translations in order of the system defined preferences
+            schema:
+              type: string
+          - in: query
+            name: page_number
+            required: false
+            description: >
+              The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
+            schema:
+              type: integer
+          - in: query
+            name: sort
+            required: false
+            description: >-
+              Please see http://jsonapi.org/format/#fetching-sorting
+              The following are attributes to sort on: [program.title|program.release_year]
+            schema:
+              type: string
+          - in: query
+            name: filter
+            required: false
+            description: >-
+              Please see http://jsonapi.org/recommendations/#filtering
+              The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year]
+            schema:
+              type: string
+
+        responses:
+          '200':
+            description: "Successful response"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  required:
+                  - data
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            type: string
+                            example: Program
+                          id:
+                            type: string
+                            description: "The id of the entity being referenced"
+                            example: "3173335a-810b-4b53-b009-122a169f9920"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+
+          '400':
+            description: Standard error response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"
+
+
+  /programs/{program_id}:
+    get:
+      summary: >-
+        Get a specific program.
+        NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
+      tags:
+      - Programs
+      operationId: GetProgram
+      parameters:
+        - in: path
+          name: program_id
+          required: true
+          description: "The identifier of the program"
+          schema:
+            type: string
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: Program
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "3173335a-810b-4b53-b009-122a169f9920"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                  included:
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      type: object
+                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                      properties:
+                        type:
+                          type: string
+                          example: "Series"
+                          description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                        id:
+                          type: string
+                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                        attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/General/ErrorEntity.yml#Error"

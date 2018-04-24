@@ -1,0 +1,33 @@
+ImageValueObject:
+  type: object
+  required:
+  - id
+  - image_type
+  - alternate_access_description
+  - width_pixels
+  - height_pixels
+  - iso3_language
+  - url
+  properties:
+    id:
+      type: string
+      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
+    image_type:
+      type: string
+      example: "Thumbnail"
+      description: "This is part of the PK and forms an identifying relationship with the ImageType sub-table"
+    alternate_access_description:
+      type: string
+      example: "Bruce Willis shooting a big gun at some bad guys, pew pew pew"
+    width_pixels:
+      type: integer
+      example: 320
+    height_pixels:
+      type: integer
+      example: 200
+    iso_639-2_lang:
+      type: string
+      example: fin
+    url:
+      type: string
+      example: "https://www.demo.com/assets/img/thumbnails/movies/diehard.png"
