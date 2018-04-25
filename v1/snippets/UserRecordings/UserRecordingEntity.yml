@@ -34,3 +34,25 @@ UserRecordingEntity:
         type: boolean
         example: true
         description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
+      relationships:
+        type: object
+        description: "This key MUST ONLY be included if Program data is being included as a compound document."
+        properties:
+          program:
+            type: object
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                description: The relationship between Episode and Program is one-to-one so this is an object, not an array
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                  type:
+                    type: string
+                    example: "Program"
