@@ -71,7 +71,7 @@ paths:
                           type: string
                           description: "The id of the entity being referenced"
                           example: >-
-                            {"user_id":1,"epg_id":749,"continuous":0}
+                            2329883
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
                   included:
