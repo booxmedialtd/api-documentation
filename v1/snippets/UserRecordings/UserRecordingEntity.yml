@@ -1,15 +1,6 @@
 UserRecordingEntity:
     type: "object"
     properties:
-      type:
-        type: string
-        description: "This will be a UserRecording entity"
-        example: UserRecording
-      id:
-        type: integer
-        format: int64
-        description: "The id of the entity being referenced"
-        example: '{"user_id":1,"epg_id":749,"continuous":0}'
       attributes:
         type: object
         required:
