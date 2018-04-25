@@ -63,13 +63,16 @@ paths:
           description: >-
             Please see http://jsonapi.org/format/#fetching-sorting
             The following are attributes to sort on: [channel.title]
+          schema:
+            type: string
         - in: query
           name: filter
           required: false
           description: >-
             Please see http://jsonapi.org/recommendations/#filtering
             The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year]
-
+          schema:
+            type: string
       responses:
         '200':
           description: "Successful response"
