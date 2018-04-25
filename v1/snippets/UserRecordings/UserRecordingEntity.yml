@@ -10,7 +10,8 @@ UserRecordingEntity:
     properties:
       id: 
         type: string
-        example: {"user_id":1,"epg_id":749,"continuous":0}
+        example: "2329883"
+        description: The id of the recording itself
       watched_time_seconds:
         type: integer
         format: int64
