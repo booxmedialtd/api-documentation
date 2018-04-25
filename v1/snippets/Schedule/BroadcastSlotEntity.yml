@@ -30,6 +30,21 @@ BroadcastSlotEntity:
           type: integer
           example: 120
           description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
+        audio_language_iso639_1:
+          type: integer
+          example: fi
+          description: The ISO 639-1 two letter code for the language that the audio is in
+        subtitle_languages:
+          type: array
+          items:
+            type: object
+            properties:
+              language_iso639_1: 
+                type: string
+                example: fi
+                description: The ISO 639-1 two letter code for a subitle language that is available
+
+
     program:
       type: object
       required:
