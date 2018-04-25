@@ -56,6 +56,23 @@
           type: string
           example: "fi"
           description: The ISO 2 letter code of the country in which production occurred
+      external_program_information:
+        type: array
+        items:
+          type: object
+          required:
+          - provider
+          - external_program_id
+          properties:
+            provider:
+              type: string
+              example: "ERICSSON"
+            external_program_id:
+              type: string
+              example: "5271885"
+            external_showing_id:
+              type: string
+              example: "724693092"
       created_at:
         type: integer
         example: 1516804728
