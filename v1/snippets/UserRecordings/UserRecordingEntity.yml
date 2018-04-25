@@ -38,3 +38,7 @@ UserRecordingEntity:
             type: integer
             format: int64
             description: "The unix epoch timestamp at which the recording expires and will no longer be available"
+          is_about_to_expire:
+            type: boolean
+            example: true
+            description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
