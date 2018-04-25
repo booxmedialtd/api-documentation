@@ -1,35 +1,35 @@
 UserRecordingEntity:
     type: "object"
+    required:
+    - watched_time_seconds
+    - continuous
+    - auto_delete
+    - explicit
+    - favourite
+    - expires_at_timestamp
     properties:
-      attributes:
-        type: object
-        required:
-          - watched_time_seconds
-          - continuous
-          - auto_delete
-          - explicit
-          - favourite
-          - expires_at_timestamp
-        properties:
-          watched_time_seconds:
-            type: integer
-            format: int64
-            description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
-          continuous:
-            type: integer
-            example: 0
-          auto_delete:
-            type: boolean
-          explicit:
-            type: boolean
-          favourite:
-            type: boolean
-            example: true
-          expires_at_timestamp:
-            type: integer
-            format: int64
-            description: "The unix epoch timestamp at which the recording expires and will no longer be available"
-          is_about_to_expire:
-            type: boolean
-            example: true
-            description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
+      id: 
+        type: string
+        example: {"user_id":1,"epg_id":749,"continuous":0}
+      watched_time_seconds:
+        type: integer
+        format: int64
+        description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+      continuous:
+        type: integer
+        example: 0
+      auto_delete:
+        type: boolean
+      explicit:
+        type: boolean
+      favourite:
+        type: boolean
+        example: true
+      expires_at_timestamp:
+        type: integer
+        format: int64
+        description: "The unix epoch timestamp at which the recording expires and will no longer be available"
+      is_about_to_expire:
+        type: boolean
+        example: true
+        description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
