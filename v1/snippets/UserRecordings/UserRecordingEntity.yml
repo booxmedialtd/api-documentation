@@ -18,7 +18,7 @@ UserRecordingEntity:
           - auto_delete
           - explicit
           - favourite
-          - expires_at_timestamþ
+          - expires_at_timestamp
         properties:
           watched_time_seconds:
             type: integer
