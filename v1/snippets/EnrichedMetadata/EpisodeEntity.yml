@@ -6,6 +6,9 @@
     episode_number:
       type: integer
       example: 2
+    episode_title:
+      type: string
+      example: 'The one where Ross is fine'
     images:
       type: array
       items:
