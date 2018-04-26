@@ -121,7 +121,7 @@ paths:
             type: string
         - in: path
           name: user_recordings_id
-          description: The id of the user_recording to obtain playable for
+          description: The id of the user_recording to obtain playable for.  This is an ugly JSON string while we transition from our legacy API's to our new domain driven modeling.  It will become a UUID in due course.
           required: true
           schema:
             type: string
