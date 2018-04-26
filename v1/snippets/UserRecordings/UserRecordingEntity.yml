@@ -55,7 +55,7 @@ UserRecordingEntity:
                     example: /user/c2de5595-e63d-4346-bc6d-1ef11fbe9fb6/user_recordings/relationships/streams
                     description: >-
                       Note: This is not currently supported.  It will be the path to the relationship itself (used to manage the links between entities).  
-                  related:
+                  watch:
                     type: array
                     items:
                       type: string
