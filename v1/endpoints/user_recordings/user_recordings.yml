@@ -30,7 +30,7 @@ paths:
       - Recordings
       summary: Get an index of user recording entities
       description: >-
-        NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
+        Note: Although the UserRecordingEntity allows for Programs to be included this is NOT currently supported in this endpoint.
       operationId: indexRecordings
       parameters:
         - in: path
@@ -73,24 +73,6 @@ paths:
                           description: The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
-                  included:
-                    type: array
-                    description: >-
-                      NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
-                    items:
-                      type: object
-                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                      properties:
-                        type:
-                          type: string
-                          example: Program
-                          description: The type of the entity that is being included.  Each entry in the array will be one of [Program|PlayableStream] but both types will be included
-                        id:
-                          type: string
-                          example: d0de0088-3141-439e-8455-839bdb8f6cec
-                        attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
-
         '400':
           description: Standard error response
           content:
