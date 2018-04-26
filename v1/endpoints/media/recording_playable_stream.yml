@@ -4,6 +4,8 @@ info:
     This API provides information about playback streams which belong to a
     Recording (one Recording has many Stream).
 
+    Note:  This is a transition API and uses a legacy concept of "Recording".  The new 
+    entity "User Recording" streams are described in /user/{user_id}/user_recordings/{user_recordings_id}/streams
 
     Please refer to
     https://confluence.aminocom.com/display/BPLAT/Ubiquitous+Domain+Language#UbiquitousDomainLanguage-Stream

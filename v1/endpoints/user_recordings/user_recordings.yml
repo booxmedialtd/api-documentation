@@ -104,7 +104,66 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
-
+  /user/{user_id}/user_recordings/{user_recordings_id}/streams:
+    get:
+      tags:
+      - Recordings
+      summary: Get an index of the playable streams that are associated with a particular user recording.
+      description: >-
+        Note: We do not currently allow the client to filter on stream attributes (such as on suggested device or quality)
+      operationId: indexUserRecordingStreams
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: user_recordings_id
+          description: The id of the user_recording to obtain playable streams for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        id:
+                          type: integer
+                          example: 123
+                        type:
+                          type: string
+                          example: Stream
+                        attributes:
+                          type: array
+                          items:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Media/StreamEntity.yml#StreamEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"    
 
   /user/{user_id}/user_recordings/{epg_id}/{continuous}:
     patch:
