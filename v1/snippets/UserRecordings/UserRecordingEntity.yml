@@ -56,10 +56,12 @@ UserRecordingEntity:
                     description: >-
                       Note: This is not currently supported.  It will be the path to the relationship itself (used to manage the links between entities).  
                   related:
-                    type: string
-                    example: /user/c2de5595-e63d-4346-bc6d-1ef11fbe9fb6/user_recordings/%7B%7B%22user_id%22%3A1%2C%22epg_id%22%3A749%2C%22continuous%22%3A0%7D%7D/streams
-                    description: >-
-                      A string containing the location of the streams related to this entity.  Note: The parameters are URL encoded for the convenience of the client. 
+                    type: array
+                    items:
+                      type: string
+                      example: /user/c2de5595-e63d-4346-bc6d-1ef11fbe9fb6/user_recordings/%7B%7B%22user_id%22%3A1%2C%22epg_id%22%3A749%2C%22continuous%22%3A0%7D%7D/streams
+                      description: >-
+                        A string containing the location of the streams related to this entity.  Note: The parameters are URL encoded for the convenience of the client. 
           program:
             type: object
             required:
