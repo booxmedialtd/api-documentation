@@ -1,0 +1,75 @@
+UserRecordingEntity:
+    type: "object"
+    required:
+    - watched_time_seconds
+    - continuous
+    - auto_delete
+    - explicit
+    - favourite
+    - expires_at_timestamp
+    properties:
+      id: 
+        type: string
+        example: {"user_id":1,"epg_id":749,"continuous":0}
+        description: The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
+      watched_time_seconds:
+        type: integer
+        format: int64
+        description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
+      continuous:
+        type: integer
+        example: 0
+      auto_delete:
+        type: boolean
+      explicit:
+        type: boolean
+      favourite:
+        type: boolean
+        example: true
+      expires_at_timestamp:
+        type: integer
+        format: int64
+        description: "The unix epoch timestamp at which the recording expires and will no longer be available"
+      is_about_to_expire:
+        type: boolean
+        example: true
+        description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
+      relationships:
+        type: object
+        description: "This key MUST ONLY be included if Program data is being included as a compound document."
+        required:
+        - streams
+        properties:
+          streams:
+            type: object
+            required:
+            - links
+            properties:
+              links:
+                type: object
+                required:
+                - watch
+                properties:
+                  watch:
+                    type: string
+                    example: /user/c2de5595-e63d-4346-bc6d-1ef11fbe9fb6/user_recordings/%7B%7B%22user_id%22%3A1%2C%22epg_id%22%3A749%2C%22continuous%22%3A0%7D%7D/streams
+                    description: >-
+                      A string containing the location of the streams related to this entity.  Note: The parameters are URL encoded for the convenience of the client. 
+          program:
+            type: object
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                description: The relationship between Episode and Program is one-to-one so this is an object, not an array
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                  type:
+                    type: string
+                    example: "Program"

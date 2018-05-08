@@ -1,0 +1,35 @@
+SeriesEntity:
+  type: object
+  required:
+  - title
+  - year_released
+  properties:
+    id:
+      type: string
+      example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+    title:
+      type: string
+      example: "Friends"
+    descriptions:
+      type: object
+      properties:
+        short:
+          type: string
+          example: "Follows the personal and professional lives of six 20 to 30-something-year-old friends living in Manhattan."
+          description: "The short description of the program"
+        long:
+          type: string
+          example: "Rachel Green, Ross Geller, Monica Geller, Joey Tribbiani, Chandler Bing and Phoebe Buffay are six 20 something year-olds, living off of one another in the heart of New York City. Over the course of ten years, this average group of buddies goes through massive mayhem, family trouble, past and future romances, fights, laughs, tears and surprises as they learn what it really means to be a friend."
+        extended:
+          type: string
+    release_year:
+      type: integer
+      example: 1993
+    content_flags:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+    images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"

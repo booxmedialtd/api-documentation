@@ -1,0 +1,58 @@
+ChannelEntity:
+  type: object
+  required:
+      - name
+      - logical_channel_number
+      - content_flags
+      - display_order_weight
+      - images
+      - services_available
+  properties:
+    id:
+      type: string
+      example: "89e3a147-2ff6-448f-959f-a6200434259d"
+      description: "The id of the entity, initially this will be integer but in roadmapped features it will become string"
+    name:
+      type: string
+      example: "YLE TV1"
+      description: "The short name of the channel to show in listings"
+    logical_channel_number:
+      type: integer
+      example: 30
+      description: "https://en.wikipedia.org/wiki/Virtual_channel"
+    content_flags:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+    display_order_weight:
+      type: integer
+      example: 10
+      description: "An indication to the client on how to order channels when displaying a list.  Channels with a higher weight should appear above channels with a lower weight"
+    images:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+    services_available:
+      type: object
+      properties:
+        live_service:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+        npvr_service:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+
+    relationships:
+      type: array
+      description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
+      items:
+        type: object
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+          type:
+            type: string
+            example: Genre (or Product)
+            description: The type of the entity being included

@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  description: >
+    This API provides information about playback streams which belong to a
+    Recording (one Recording has many Stream).
+
+    Note:  This is a transition API and uses a legacy concept of "Recording".  The new 
+    entity "User Recording" streams are described in /user/{user_id}/user_recordings/{user_recordings_id}/streams
+
+    Please refer to
+    https://confluence.aminocom.com/display/BPLAT/Ubiquitous+Domain+Language#UbiquitousDomainLanguage-Stream
+    for the domain understanding of what a Stream is.
+  version: 1.0.0
+  title: Recording Streams API
+externalDocs:
+  description: Requirements documentation
+  url: 'https://confluence.aminocom.com/pages/viewpage.action?pageId=124061868'
+tags:
+  - name: Stream
+    description: |
+      This API focuses on one relationship of the User - Recording Entity.
+paths:
+  '/recordings/{recording_id}/relationships/streams':
+    get:
+      tags:
+        - Stream
+      summary: Returns a collection of Stream entities
+      description: 'Available since '
+      operationId: getChannelStreams
+      parameters:
+        - in: path
+          name: recording_id
+          description: >-
+            The id of the recording that you want to retrieve playback streams
+            for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A collection of Stream entities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      properties:
+                        id:
+                          type: integer
+                          example: 123
+                        type:
+                          type: string
+                          example: Stream
+                        attributes:
+                          type: array
+                          items:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Media/StreamEntity.yml#StreamEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
+
+servers:
+  - url: 'https://demo.aminocom.com/api/recordings/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above

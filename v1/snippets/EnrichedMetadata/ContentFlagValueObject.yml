@@ -1,0 +1,22 @@
+ContentFlagValueObject:
+  type: object
+  required:
+  - country_code_iso_alpha2
+  - content_rating_flag
+  properties:
+      content_rating_authority:
+        type: string
+        example: "fi"
+        description: "This can be either a rating system (like PEGI) or some national authority (in which case the ISO2 country code is used)"
+      content_rating_flag:
+        type: string
+        example: "13"
+        description: "The freeform text value of the flag"
+      is_adult_rated:
+        type: boolean
+        example: 1
+        description: "Different countries use different flags, the middleware must compute whether the flag being used is adult or not to standardize this for clients"
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
