@@ -50,7 +50,9 @@ paths:
         required: false
         description: >-
           Please see http://jsonapi.org/format/#fetching-sorting
-          The following are attributes to sort on: [program.title|program.release_year].  Future versions may include sorting on [program.original_title]
+          The following are attributes to sort on: [program.title|program.release_year].
+          Future versions may include sorting on [program.original_title]
+          The default sort order is by program.release_year descending
         schema:
           type: string
       - in: query

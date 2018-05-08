@@ -65,6 +65,7 @@ paths:
             description: >-
               Please see http://jsonapi.org/format/#fetching-sorting
               The following are attributes to sort on: [program.title|program.release_year]
+              The default sort order is by release_year descending
           - in: query
             name: filter
             required: false
