@@ -30,7 +30,7 @@ paths:
       - Recordings
       summary: Get an index of user recording entities
       description: >-
-        NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
+        NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.  The default sort order is by time recorded descending.
       operationId: indexRecordings
       parameters:
         - in: path
@@ -104,7 +104,7 @@ paths:
       tags:
       - Recordings
       summary: Update one or more attributes of an existing entity
-      description: This can be used, for example, to reset the amount of time that a recording has been watched.
+      description: This can be used, for example, to reset the amount of time that a recording has been watched.  The default sort order is by time recorded descending.
       operationId: modifyRecordings
       parameters:
         - in: path
@@ -188,14 +188,15 @@ paths:
       description: >-
         This endpoint will be deprecated soon and it is not recommended to build new systems using it.
         Note: Many of the keys in the recording entity are not mandatory and only the mandatory keys can be relied upon.
+        The default sort order is by time recorded descending.
       operationId: "getStartedRecordings"
       parameters:
         - in: query
           name: maxItems
           description: How many items must be returned.  Valid values are in the set [20, 50, 100].
-          required: true 
+          required: true
           schema:
-            type: integer      
+            type: integer
         - in: path
           name: user_id
           description: The user id to obtain recordings for
@@ -203,7 +204,7 @@ paths:
           schema:
             type: integer
             format: "int64"
-    
+
       responses:
         '200':
           description: "Successful response"
@@ -214,8 +215,8 @@ paths:
                 properties:
                   links:
                     type: object
-                    properties: 
-                      self: 
+                    properties:
+                      self:
                         type: string
                         example: "https:\/\/boox.fi\/api\/recordings\/v1\/user\/1\/recording?sort_field=name&sort_direction=DESC&page=2"
                       first:
@@ -243,7 +244,7 @@ paths:
                           type: string
                           description: This will be a UserRecording entity
                           example: UserRecording
-                        id: 
+                        id:
                           type: integer
                           format: int64
                           description: The id of the entity being referenced
@@ -271,7 +272,7 @@ paths:
                                       type:
                                         type: string
                                         example: Recording
-                                      id: 
+                                      id:
                                         type: integer
                                         example: 123
                                       attributes:
@@ -287,12 +288,12 @@ paths:
                                                 type: string
                                               type:
                                                 type: string
-                                              protocol: 
+                                              protocol:
                                                 type: string
                             epg:
                               type: object
                               properties:
-                                links: 
+                                links:
                                   type: object
                                   properties:
                                     self:
@@ -304,7 +305,7 @@ paths:
                                       description: "The thumbnail url"
                                 data:
                                   $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/Schedule/EPGEntity.yml#EPGEntity"
-            
+
         '400':
           description: Standard error response
           content:
