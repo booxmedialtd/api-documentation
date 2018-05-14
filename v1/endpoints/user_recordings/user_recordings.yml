@@ -83,7 +83,7 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: "Series"
+                          example: "Program"
                           description: The type of the entity that is being included.  It will always be [Program] in this endpoint.
                         id:
                           type: string
