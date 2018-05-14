@@ -30,6 +30,22 @@ UserRecordingEntity:
         type: boolean
         example: true
         description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry.
+      original_broadcast_slot:
+        type: object
+        description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
+        properties:
+          channel_id:
+            type: string
+            example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+          channel_name:
+            type: string
+            example: "Yle-TV"
+          time_start:
+            type: integer
+            example: 1516798894
+          duration_seconds:
+            type: integer
+            example: 5400
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."
