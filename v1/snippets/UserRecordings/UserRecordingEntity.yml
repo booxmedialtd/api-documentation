@@ -37,9 +37,6 @@ UserRecordingEntity:
           channel_id:
             type: string
             example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
-          channel_name:
-            type: string
-            example: "Yle-TV"
           time_start:
             type: integer
             example: 1516798894
