@@ -13,9 +13,6 @@ StreamEntity:
     - stream_url
     - protection_types
   properties:
-    id:
-      type: integer
-      description: It might make better sense to remove this field and treat Streams as Value Objects of the entity that they relate to.  Streams are ephemeral and their identity is bound up in their values.
     profile_name:
       type: string
     suggested_devices:

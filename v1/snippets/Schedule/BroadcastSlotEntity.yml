@@ -1,9 +1,9 @@
 BroadcastSlotEntity:
   type: object
+  required:
+  - timeslot
+  - program
   properties:
-    id:
-      type: string
-      example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
     timeslot:
       type: object
       required:
@@ -21,7 +21,7 @@ BroadcastSlotEntity:
         advertising_enabled:
           type: boolean
           example: true
-          description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"        
+          description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"
         program_duration_seconds:
           type: integer
           example: 2100
@@ -39,7 +39,7 @@ BroadcastSlotEntity:
           items:
             type: object
             properties:
-              language_iso639_1: 
+              language_iso639_1:
                 type: string
                 example: fi
                 description: The ISO 639-1 two letter code for a subitle language that is available

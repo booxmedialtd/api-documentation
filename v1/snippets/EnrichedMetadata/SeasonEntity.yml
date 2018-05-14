@@ -3,9 +3,6 @@ SeasonEntity:
     required:
     - title
     properties:
-      id:
-        type: string
-        example: "feaf803a-3ca9-4d2e-b86b-9d217183efc5"
       title:
         type: string
         example: "Season 1 (1994)"

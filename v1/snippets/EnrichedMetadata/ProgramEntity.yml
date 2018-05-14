@@ -1,7 +1,6 @@
   ProgramEntity:
     type: object
     required:
-    - id
     - title
     - program_type
     - long_title
@@ -12,9 +11,6 @@
     - created_at
     - modified_at
     properties:
-      id:
-        type: string
-        example: "d0de0088-3141-439e-8455-839bdb8f6cec"
       title:
         type: string
         description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.

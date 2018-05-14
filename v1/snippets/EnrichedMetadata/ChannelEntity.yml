@@ -8,10 +8,6 @@ ChannelEntity:
       - images
       - services_available
   properties:
-    id:
-      type: string
-      example: "89e3a147-2ff6-448f-959f-a6200434259d"
-      description: "The id of the entity, initially this will be integer but in roadmapped features it will become string"
     name:
       type: string
       example: "YLE TV1"

@@ -8,10 +8,6 @@ UserRecordingEntity:
     - favourite
     - expires_at_timestamp
     properties:
-      id: 
-        type: string
-        example: {"user_id":1,"epg_id":749,"continuous":0}
-        description: The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
       watched_time_seconds:
         type: integer
         format: int64
@@ -33,7 +29,7 @@ UserRecordingEntity:
       is_about_to_expire:
         type: boolean
         example: true
-        description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry. 
+        description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry.
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."
@@ -54,7 +50,7 @@ UserRecordingEntity:
                     type: string
                     example: /user/c2de5595-e63d-4346-bc6d-1ef11fbe9fb6/user_recordings/%7B%7B%22user_id%22%3A1%2C%22epg_id%22%3A749%2C%22continuous%22%3A0%7D%7D/streams
                     description: >-
-                      A string containing the location of the streams related to this entity.  Note: The parameters are URL encoded for the convenience of the client. 
+                      A string containing the location of the streams related to this entity.  Note: The parameters are URL encoded for the convenience of the client.
           program:
             type: object
             required:

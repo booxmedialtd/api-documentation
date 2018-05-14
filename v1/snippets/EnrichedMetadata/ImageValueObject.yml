@@ -1,7 +1,6 @@
 ImageValueObject:
   type: object
   required:
-  - id
   - image_type
   - alternate_access_description
   - width_pixels
@@ -9,9 +8,6 @@ ImageValueObject:
   - iso3_language
   - url
   properties:
-    id:
-      type: string
-      example: "63bbc7de-d394-4252-abf9-701f35310b1e"
     image_type:
       type: string
       example: "Thumbnail"
