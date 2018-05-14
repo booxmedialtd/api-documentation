@@ -31,7 +31,7 @@ paths:
       summary: Get an index of user recording entities
       description:  >-
         NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
-        The default sort order is by time recorded descending.
+        The default sort order is by time of broadcast descending.
       operationId: indexRecordings
       parameters:
         - in: path
