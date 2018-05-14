@@ -40,9 +40,6 @@ UserRecordingEntity:
           time_start:
             type: integer
             example: 1516798894
-          duration_seconds:
-            type: integer
-            example: 5400
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."
