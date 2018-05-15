@@ -33,7 +33,7 @@ UserRecordingEntity:
       recording_duration_seconds:
         type: integer
         example: 2400
-        description: The integer number of seconds that the recording lasts for.
+        description: The integer number of seconds that the recording lasts for.  This is not the same as the BroadcastSlot duration or the Program duration but is the length of what was actually recorded.
       original_broadcast_slot:
         type: object
         description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
