@@ -70,7 +70,7 @@ paths:
                           example: UserRecording
                         id:
                           type: string
-                          example: {"user_id":1,"epg_id":749,"continuous":0}
+                          example: '{"user_id":1,"epg_id":749,"continuous":0}'
                           description: NOTE:  THIS IS A STRING, NOT AN OBJECT (see the model).  The example gets parsed to display like an object.  The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
