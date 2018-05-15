@@ -30,6 +30,10 @@ UserRecordingEntity:
         type: boolean
         example: true
         description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry.
+      recording_duration_seconds:
+        type: integer
+        example: 2400
+        description: The integer number of seconds that the recording lasts for.
       original_broadcast_slot:
         type: object
         description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
