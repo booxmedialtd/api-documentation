@@ -141,6 +141,8 @@ UserEntity:
         soft_deletion_timestamp:
           type: integer
           example: 1926525714
-          description: THe Unix timestamp that the user was marked for soft deletion.  Note:  Soft deletion removes all information from 'name' and 'contact details'
+          description: >-
+            The Unix timestamp that the user was marked for soft deletion.
+            Note:  Soft deletion removes all information from 'name' and 'contact details'
 
 
