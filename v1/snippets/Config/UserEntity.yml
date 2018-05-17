@@ -1,0 +1,146 @@
+UserEntity:
+  type: object
+  required:
+  - name
+  - contact_details
+  - security
+  - viewer_advice
+  - registration_information
+  properties:
+
+    name:
+      type: object
+      required:
+        - full_name
+      properties:
+        first_name:
+          type: string
+          example: "Andrew"
+          description: >-
+            We want to be i18n compliant, but our database is modeled on Western European norms.
+            We should fix our database, but until then this field will be the euro-centric first name
+            See: https://www.w3.org/International/questions/qa-personal-names
+        last_name:
+          type: string
+          example: "Beak"
+          description: >-
+            This is the European concept of last name.  It is not i18n compliant.
+            NOTE: This field will most probably be dropped in some future iteration of this service.
+            See: https://www.w3.org/International/questions/qa-personal-names
+        full_name:
+          type: string
+          example: "Andrew George Beak"
+          description: >-
+            We want to be i18n compliant, but our database is modeled on Western European norms.
+            We should fix our database, but until then this field will be the concatenation of first name and last name.
+            See: https://www.w3.org/International/questions/qa-personal-names
+
+    contact_details:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          example: "andy.beak@aminocom.com"
+          description: "The users email address.  This must not be used as the entity identity."
+        telephone_number_E123:
+          type: string
+          example: "+22 607 123 4567"
+          description: "The E.123 international notation formatted telephone number for the customer (https://en.wikipedia.org/wiki/E.123)"
+
+    security:
+      type: object
+      required:
+      - password_hashing_algorithm
+      - last_authentication_timestamp
+      - last_generated_reset_linkcode
+      - linkcode_expiry_timestamp
+      properties:
+        password_hashing_algorithm:
+          type: string
+          example: "digest"
+          description: The algorithm that the user's password is hashed with.
+        last_authentication_timestamp:
+          type: integer
+          example: 1526549811
+          description: The Unix timestamp that the user last authenticated
+        last_generated_reset_linkcode:
+          type: string
+          example: "f3a4b6fe"
+          description: This code is generated when the user requests a password reset and is emailed to them so that they can provide it to a later challenge.
+        linkcode_expiry_timestamp:
+          type: integer
+          example: 1526550812
+          description: The unix timestamp that the link code is active until.  If this time passes the user will need to obtain a new code.
+        auth_pin:
+          type: string
+          example: 5732
+          description: This PIN is used to ......??
+        purchase_pin:
+          type: string
+          example: 4a5f
+          description: This PIN must be provided by the user before any purchase transaction can be processed
+        licenses_must_auto_renew:
+          type: boolean
+          example: False
+          description: This flag controls whether subscription licenses must automatically renew themselves or become lapsed when their expiry timestamp is reached.
+
+    viewer_advice:
+      type: object
+      required:
+      - parental_pin_code
+      - block_adult_viewing_default
+      - block_adult_viewing_parental_override
+      properties:
+        date_of_birth_timestamp:
+          type: integer
+          example: 204336000
+          description: The timestamp at 00:00:00 of the day on which the user was born
+        age_last_birthday:
+          type: integer
+          example: 41
+          description: The age that the user turned on their last birthday
+        parental_pin_code:
+          type: string
+          example: s3cr3t
+          description: The PIN code that can be entered to unblock age restricted content
+        block_adult_viewing_default:
+          type: boolean
+          example: True
+          description: Boolean flag that indicates whether viewing content that is flagged as adult by our metadata system should be blocked for this user
+        block_adult_viewing_parental_override:
+          type: boolean
+          example: True
+          description: Boolean flag that overrides 'block_adult_viewing_default' as a result of the parent entering their PIN
+        override_expiry_timestamp:
+          type: integer
+          example: 1526551292
+          description: The time after which the parental override is no longer valid and the default blocking behaviour must be used.  Only required if block_adult_viewing_parental_override is true
+
+    registration_information:
+      type: object
+      required:
+      - registration_timestamp
+      - expiry_timestamp
+      properties:
+        registration_timestamp:
+          type: integer
+          example: 1526549811
+          description: The timestamp when the user registered
+        expiry_timestamp:
+          type: integer
+          example: 1926525714
+          description: The timestamp after which this user will no longer be able to authenticate against the system
+        current_registration_state:
+          type: string
+          example: "DELETED"
+        previous_registration_state:
+          type: string
+          example: "REGISTERED"
+        soft_deletion_timestamp:
+          type: integer
+          example: 1926525714
+          description: THe Unix timestamp that the user was marked for soft deletion.  Note:  Soft deletion removes all information from 'name' and 'contact details'
+
+
