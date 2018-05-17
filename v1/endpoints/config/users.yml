@@ -59,4 +59,4 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "e07a7130-4048-4a5f-bfa4-7adc5a5e860e"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ConfigEntity.yml#ConfigEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
