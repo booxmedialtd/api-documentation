@@ -44,7 +44,7 @@ paths:
         - in: query
           name: included
           required: false
-          description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
+          description: "See http://jsonapi.org/format/#fetching-includes"
           schema:
             type: integer
             format: int64
@@ -117,7 +117,7 @@ paths:
         - in: query
           name: included
           required: false
-          description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
+          description: "See http://jsonapi.org/format/#fetching-includes"
           schema:
             type: integer
             format: int64
