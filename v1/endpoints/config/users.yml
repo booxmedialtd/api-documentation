@@ -102,7 +102,7 @@ paths:
                             description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
                           id:
                             type: string
-                            example: "5f596672-2796-4f86-b608-9295fa111916"
+                            example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
                           attributes:
                             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
 

@@ -150,15 +150,28 @@ UserEntity:
       type: array
       description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
       items:
-        type: object
-        required:
-        - id
-        - type
-        properties:
-          id:
-            type: string
-            example: "e37d9306-6156-4e9f-89a2-291b86ebdc0d"
-          type:
-            type: string
-            example: Product or License
-            description: The type of the entity being included
+        anyOf:
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              example: "5f596672-2796-4f86-b608-9295fa111916"
+            type:
+              type: string
+              example: Product
+              description: The type of the entity being included
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
+            type:
+              type: string
+              example: License
+              description: The type of the entity being included
