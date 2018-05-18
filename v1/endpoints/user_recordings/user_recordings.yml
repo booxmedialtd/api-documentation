@@ -467,11 +467,12 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /user/{user_id}/relationships/user_recording_tags/:
+
+  /user/{user_id}/relationships/user_recording_tags/{rule_id}:
     post:
       tags:
       - "User Recording Tags"
-      summary: Add a new user recording tag
+      summary: Create a new relationship between user and tag
       operationId: createRecordingTag
       parameters:
         - in: path
@@ -480,12 +481,12 @@ paths:
           required: true
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingTagEntity.yml#UserRecordingTagEntity"
+        - in: path
+          name: rule_id
+          description: The tag id to connect to the user
+          required: true
+          schema:
+            type: string
 
       responses:
         '201':
@@ -507,11 +508,10 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
-  /user/{user_id}/relationships/user_recording_tags/{rule_id}:
     delete:
       tags:
       - "User Recording Tags"
-      summary: Delete a user recording tag
+      summary: Delete a relationship between the user and the tag
       operationId: deleteRecordingTag
       parameters:
         - in: path
