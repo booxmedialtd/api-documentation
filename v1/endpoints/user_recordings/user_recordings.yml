@@ -407,7 +407,7 @@ paths:
       parameters:
         - in: path
           name: user_id
-          description: The user id to obtain recordings for
+          description: The user id to obtain recording tags for
           required: true
           schema:
             type: string
