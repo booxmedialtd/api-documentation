@@ -1,0 +1,26 @@
+UserRecordingRuleEntity:
+  type: "object"
+  required:
+  - human_friendly
+  properties:
+    criteria:
+      type: array
+      items:
+        type: object
+        properties:
+          criteria_name:
+            type: string
+            example: "title:contains"
+            description: "The name of the criteria"
+          value:
+            type: string
+            example: "simpsons"
+            description: "The value that the criteria must be matched with"
+          logical_operator:
+            type: string
+            example: "and"
+            description: "The logical operator to apply to *this* criteria in the array.  Operators have left-associativity."
+    human_friendly:
+      type: string
+      example: "Title includes 'simpsons' and Genre is 'Comedy'"
+      description: "The human readable description of the rule.  "

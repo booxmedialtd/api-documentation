@@ -12,6 +12,12 @@ tags:
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
+- name: "User Recording Rules"
+  description: >-
+    A user recording rule describes a filter that determines whether content is to be recorded for a user.
+    Users may have multiple recording rules.
+    A piece of content is matched against each rule in turn.  If it matches a rule then it is marked to be recorded (and no further rules are tested)
+    If content does not match any rules then it is not recorded for the user.
 servers:
 - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
@@ -103,6 +109,8 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
   /user/{user_id}/user_recordings/{user_recordings_id}/streams:
     get:
       tags:
@@ -163,6 +171,8 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recordings/{epg_id}/{continuous}:
     patch:
@@ -244,6 +254,7 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/previously_started_user_recordings:
     get:
@@ -382,3 +393,74 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/user_recording_rules/:
+    get:
+      tags:
+      - "User Recording Rules"
+      summary: Get an index of user recording rules
+      description:  >-
+        The default sort order is by natural database order (i.e: unsorted)
+      operationId: indexRecordingRules
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: >
+            The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
+          schema:
+            type: integer
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingRule
+                        id:
+                          type: string
+                          example: 1a31deef-a775-4af4-af2a-92c97db41778
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingRuleEntity.yml#UserRecordingRuleEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
