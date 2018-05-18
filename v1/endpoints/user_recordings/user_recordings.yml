@@ -468,7 +468,7 @@ paths:
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /user/{user_id}/relationships/user_recording_tags/{rule_id}:
+  /user/{user_id}/relationships/user_recording_tags/{tag_id}:
     post:
       tags:
       - "User Recording Tags"
@@ -482,7 +482,7 @@ paths:
           schema:
             type: string
         - in: path
-          name: rule_id
+          name: tag_id
           description: The tag id to connect to the user
           required: true
           schema:
@@ -521,8 +521,8 @@ paths:
           schema:
             type: string
         - in: path
-          name: rule_id
-          description: The rule id to delete
+          name: tag_id
+          description: The tag id to delete
           required: true
           schema:
             type: string
