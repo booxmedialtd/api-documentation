@@ -35,6 +35,7 @@ ProductEntity:
         price_currency_amount:
           type: float
           example: 12.23
+          description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
         price_currency_iso4217:
           type: string
           example: EUR
@@ -95,9 +96,9 @@ ProductEntity:
     links:
       type: object
       properties:
-        self:
+        details:
           type: string
-          example: "https://demo.aminocom.com/api/user/guest/product/580?service=unitedclient"
+          example: https://demo.aminocom.com/api/user/guest/product/580?service=unitedclient
         purchase:
           type: string
-          example: "https://demo.aminocom.com/ui/user/guest/product/580?ssid=5566aa55d83211.31197725&usid=&service=unitedclient&options=buy"
+          example: https://demo.aminocom.com/ui/user/guest/product/580?ssid=5566aa55d83211.31197725&usid=&service=unitedclient&options=buy

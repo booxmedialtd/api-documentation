@@ -85,7 +85,7 @@ paths:
                           properties:
                             type:
                               type: string
-                              example: "Program"
+                              example:  Product
                               description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
                             id:
                               type: string

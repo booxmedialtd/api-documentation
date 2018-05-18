@@ -1,0 +1,42 @@
+LicenseEntity:
+  type: object
+  properties:
+    status:
+      type: string
+      example: ACTIVE
+    valid_from_timestamp:
+      type: integer
+      example: 1513728000
+      description: The Unix timestamp that the license is active from
+    valid_until_timestamp:
+      type: integer
+      example: 1526645894
+      description: The Unix timestamp when this license expires
+    recurring:
+      type: boolean
+      example: false
+    purchase_record:
+      type: object
+      properties:
+        price_currency_amount:
+          type: float
+          example: 12.23
+          description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
+        price_currency_iso4217:
+          type: string
+          example: EUR
+          description: The ISO-4217 code of the currency (https://en.wikipedia.org/wiki/ISO_4217)
+        purchase_timestamp:
+          type: integer
+          example: 1526648593
+          description: The Unix timestamp at which this license was purchased
+        payment_method:
+          type: string
+          example: credit card
+          description: The purchase instrument
+    links:
+      type: object
+      properties:
+        view_product:
+          type: string
+          example: https://boox.fi/api/user/waqqas.jabbar%40gmail.com/product/2?service=sevice1
