@@ -34,6 +34,13 @@ paths:
         type: string
         required: false
         description: "An optional parameter to filter by a particular registration state.  By default all users will be returned."
+      - in: query
+        name: included
+        required: false
+        description: "The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)"
+        schema:
+          type: integer
+          format: int64
 
       responses:
         200:

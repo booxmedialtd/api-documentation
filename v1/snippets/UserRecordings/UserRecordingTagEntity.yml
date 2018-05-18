@@ -1,4 +1,4 @@
-UserRecordingRuleEntity:
+UserRecordingTagEntity:
   type: "object"
   required:
   - human_friendly

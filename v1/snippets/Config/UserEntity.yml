@@ -146,3 +146,19 @@ UserEntity:
             Note:  Soft deletion removes all information from 'name' and 'contact details'
 
 
+    relationships:
+      type: array
+      description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
+      items:
+        type: object
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            example: "e37d9306-6156-4e9f-89a2-291b86ebdc0d"
+          type:
+            type: string
+            example: Product or License
+            description: The type of the entity being included
