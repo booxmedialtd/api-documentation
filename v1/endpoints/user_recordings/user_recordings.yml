@@ -464,3 +464,44 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/user_recording_rules/{rule_id}:
+    delete:
+      tags:
+      - "User Recording Rules"
+      summary: Delete a user recording rule
+      operationId: deleteRecordingRule
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to delete recordings for
+          required: true
+          schema:
+            type: string
+        - in: path:
+          name: rule_id
+          description: The rule id to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "OK"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#Error"
