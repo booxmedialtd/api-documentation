@@ -92,8 +92,8 @@ paths:
                             type: string
                             example: "5f596672-2796-4f86-b608-9295fa111916"
                           attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
-                       - type: object
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
+                      - type: object
                         description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
                         properties:
                           type:
@@ -104,5 +104,5 @@ paths:
                             type: string
                             example: "5f596672-2796-4f86-b608-9295fa111916"
                           attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
 
