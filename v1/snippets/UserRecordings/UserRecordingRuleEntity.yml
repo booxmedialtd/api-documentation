@@ -8,10 +8,18 @@ UserRecordingRuleEntity:
       items:
         type: object
         properties:
-          criteria_name:
+          position:
+            type: integer
+            example: 1
+            description: "The position of this criteria in the rule chain"
+          metadata_field:
             type: string
-            example: "title:contains"
-            description: "The name of the criteria"
+            example: "title"
+            description: "The name of the metadata field to compare against"
+          assertion:
+            type: string
+            example: "contains"
+            description: "The assertion to use to match the criteria.  Note that there is a well-defined set of assertions and this is not free-form"
           value:
             type: string
             example: "simpsons"

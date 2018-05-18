@@ -493,7 +493,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "OK"
+                example: OK
         '400':
           description: Standard error response
           content:
