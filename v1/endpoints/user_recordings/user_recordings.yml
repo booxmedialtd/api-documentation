@@ -14,10 +14,8 @@ tags:
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
 - name: "User Recording Tags"
   description: >-
-    A user recording rule describes a filter that determines whether content is to be recorded for a user.
-    Users may have multiple recording rules.
-    A piece of content is matched against each rule in turn.  If it matches a rule then it is marked to be recorded (and no further rules are tested)
-    If content does not match any rules then it is not recorded for the user.
+    In the future content will be tagged.  The system will record content for a user that is tagged up with whatever the user indicates they are interested in.
+    Currently the "tagging" process is mocked up by looking exclusively at the program title.  This endpoint structure is unlikely to change when the system is improved.
 servers:
 - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
