@@ -77,18 +77,32 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
                   included:
-                        type: array
-                        description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
-                        items:
-                          type: object
-                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                          properties:
-                            type:
-                              type: string
-                              example:  Product
-                              description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
-                            id:
-                              type: string
-                              example: "5f596672-2796-4f86-b608-9295fa111916"
-                            attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      anyOf:
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  Product
+                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
+                          id:
+                            type: string
+                            example: "5f596672-2796-4f86-b608-9295fa111916"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
+                       - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  License
+                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
+                          id:
+                            type: string
+                            example: "5f596672-2796-4f86-b608-9295fa111916"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
+
