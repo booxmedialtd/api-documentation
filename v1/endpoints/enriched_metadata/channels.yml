@@ -61,9 +61,9 @@ paths:
           name: sort
           required: false
           description: >-
-            Please see http://jsonapi.org/format/#fetching-sorting
+            "Please see http://jsonapi.org/format/#fetching-sorting
             The following are attributes to sort on: [channel.title]
-	          The default sort order is by channel.title ascending
+	          The default sort order is by channel.title ascending"
           schema:
             type: string
         - in: query
