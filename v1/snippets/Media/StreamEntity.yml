@@ -8,7 +8,6 @@ StreamEntity:
     - streaming_protocols
     - bitrate
     - max_resolution
-    - max_fps
     - vbr_max_bitrate
     - stream_url
     - protection_types
