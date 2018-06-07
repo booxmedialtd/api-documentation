@@ -64,7 +64,7 @@ paths:
           required: false
           description: >-
             Please see the JSON API specification for fetching and sorting.
-            The following are attributes to sort on: [program.title|program.release_year]
+            The following are attributes to sort on [program.title|program.release_year]
 	          The default sort order is by release_year descending
           schema:
             type: string
