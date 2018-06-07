@@ -168,18 +168,63 @@ paths:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
                     items:
-                      type: object
-                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                      properties:
-                        type:
-                          type: string
-                          example: "Series"
-                          description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
-                        id:
-                          type: string
-                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                        attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                      anyOf:
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "Series"
+                            description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                          id:
+                            type: string
+                            example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "Episode"
+                            description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                          id:
+                            type: string
+                            example: "6a5118ad-e73f-4b76-9ec1-5855f9ce40fa"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/EpisodeEntity.yml#EpisodeEntity"
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "Season"
+                            description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                          id:
+                            type: string
+                            example: "e84416c1-d750-43de-aa06-b52788aeacb3"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "Genre"
+                            description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                          id:
+                            type: string
+                            example: "d8199df1-9d97-4732-b600-223a886881f2"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "CreditedPerson"
+                            description: The type of the entity that is being included.  It will be one of [Series|Episode|Season|Genre|CreditedPerson]
+                          id:
+                            type: string
+                            example: "6ddbd042-a912-4aa3-9db6-6daa24948ade"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/CreditedPersonEntity.yml#CreditedPersonEntity"
+
 
         '400':
           description: Standard error response
