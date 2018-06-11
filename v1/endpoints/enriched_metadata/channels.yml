@@ -41,13 +41,20 @@ paths:
       - Channels
       operationId: GetChannelIndex
       parameters:
-        - in: 'query'
+        - in: query
           name: language
           required: false
           description: >-
             The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
             If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
             If the requested language is not available then the system will return translations in order of the system defined preferences"
+          schema:
+            type: string
+        - in: query
+          name: include
+          required: false
+          description: >-
+            See http://jsonapi.org/format/#fetching-includes
           schema:
             type: string
         - in: query
@@ -103,18 +110,31 @@ paths:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
                     items:
-                      type: object
-                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                      properties:
-                        type:
-                          type: string
-                          example: "Product (or Genre)"
-                          description: The type of the entity that is being included.
-                        id:
-                          type: string
-                          example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
-                        attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                      anyOf:
+                        - type: object
+                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                          properties:
+                            type:
+                              type: string
+                              example: "Product"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                        - type: object
+                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                          properties:
+                            type:
+                              type: string
+                              example: "Genre"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: "8958c820-1757-4f58-96d6-6e365729224c"
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
         '400':
           description: Standard error response
           content:
