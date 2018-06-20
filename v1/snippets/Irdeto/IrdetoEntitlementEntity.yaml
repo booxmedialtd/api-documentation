@@ -1,0 +1,62 @@
+IrdetoEntitlementEntity:
+  type: object
+  required:
+
+  properties:
+    device_id:
+      type: string
+      description: "The means by which we identify the particular device, for example its MAC address"
+
+    dvb:
+      type: array
+      items:
+        type: object
+        properties:
+          transmission_type:
+            type: string
+            description: >-
+              DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
+            example: "C"
+          triplet:
+            type: object
+            required:
+            - original_network_id
+            - transport_stream
+            - service_id
+            properties:
+              original_network_id:
+                type: integer
+                description: >-
+                  An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
+                  Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
+                  Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
+                example: 42249
+              transport_stream_id:
+                type: integer
+                example: 122
+              service_id:
+                type: string
+                example: 1553
+
+
+    relationships:
+      type: object
+      description: "This key MUST ONLY be included if Channel data is being included as a compound document."
+      properties:
+        program:
+          type: object
+          required:
+          - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                type:
+                  type: string
+                  example: "Channel"
+                id:
+                  type: integer
+                  example: 123

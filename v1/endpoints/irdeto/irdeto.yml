@@ -1,40 +1,59 @@
-swagger: "2.0"
+openapi: 3.0.0
 info:
   description: |
 
   version: "1.0.0"
   title: "Irdeto"
-host: "demo.aminocom.com"
-basePath: "/api/irdeto/v1/"
+servers:
+- url: 'https://demo.aminocom.com/api/irdeto/v1/'
 tags:
 - name: "Irdeto"
   description: ""
-schemes:
-- "https"
 paths:
 
   /device/{device_id}/entitlements:
     post:
       summary: "Entitle device"
+      description: "The device will call this Move API to request that Move call the Irdeto KMS and entitle the device"
+      tags:
+      - "Irdeto"
+      operationId: "createDeviceEntitlement"
+      parameters:
+      - in: path
+        name: device_id
+        required: true
+        description: "The identifier of the device"
+        schema:
+          type: string
+
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+    delete:
+      summary: "Remove entitlement from device"
       description: ""
       tags:
       - "Irdeto"
       operationId: "createDeviceEntitlement"
-      produces:
-      - "application/json"
       parameters:
       - in: path
         name: device_id
-        type: string
         required: true
         description: "The identifier of the device"
+        schema:
+          type: string
 
-
-    responses:
-    '201':
-      description: "Successful response"
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: OK
+      responses:
+        200:
+          description: "The device is no longer entitled"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
