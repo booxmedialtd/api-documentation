@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  description: |
+
+  version: "1.0.0"
+  title: "Irdeto"
+host: "demo.aminocom.com"
+basePath: "/api/irdeto/v1/"
+tags:
+- name: "Irdeto"
+  description: ""
+schemes:
+- "https"
+paths:
+
+  /device/{device_id}/entitlements:
+    post:
+      summary: "Entitle device"
+      description: ""
+      tags:
+      - "Irdeto"
+      operationId: "createDeviceEntitlement"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: device_id
+        type: string
+        required: true
+        description: "The identifier of the device"
+
+
+    responses:
+    '201':
+      description: "Successful response"
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: OK

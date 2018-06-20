@@ -1,0 +1,431 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: 'PVR'
+  description: '(Recording) Manage PVR'
+tags:
+  - name: PVR
+    description: |
+      PVR stands for Personal Video Recording.  The entity refers to a recording made for a user that has completed and can be played.
+  - name: RecordingRequest
+    description: |
+      A RecordingRequest is a request by the user that a PVR be made of a set of RecordingTags
+# ----------------------------------------------------------------------------------------------------------
+
+paths:
+
+  /user/{user_id}/recording_requests:
+    get:
+      summary: >-
+        Get a list of what the user has requested to be recorded
+      tags:
+      - "RecordingRequest"
+      operationId: GetUserRecordingRequests
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The identifier of the user.  This should not be an email address"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: RecordingRequest
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "3b6afaec-6387-4e48-902f-ba5a684602e8"
+                        attributes:
+                          $ref: '#/components/schemas/RecordingRequestModel'
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+    post:
+      summary: >-
+        Make a new request for something to be recorded
+      tags:
+      - "RecordingRequest"
+      operationId: GetUserRecordingRequests
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The identifier of the user.  This should not be an email address"
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required:
+              - program_uid
+              properties:
+                program_uid:
+                  type: string
+                  description: Identifier of the program to record as received in the EPG.
+                  example: 20111119184517
+                title:
+                  type: string
+                  description: The program title
+                  example: "Simpsons"
+                slot_duration_seconds:
+                  type: integer
+                  description: The duration of the program in seconds.  This can be different from the program duration, for example when the slot includes advertising breaks.
+                  example: 900
+                continuously_match_and_record_programs:
+                  type: boolean
+                  description: >-
+                    Whether this request should run continuously and attempt to match more than one program, for example all episodes in a series.
+                    The default value is /false/
+                  example: false
+                automatic_deletion:
+                  type: boolean
+                  description: Whether all programs matching this program should be marked for automatic deletion. Only applicable if “cont=true”.
+                  example: false
+                start_timestamp:
+                  type: integer
+                  description: The UNIX epoch timestamp that the recording should start at
+                  example: 1528804283
+                end_timestamp:
+                  type: integer
+                  description: The UNIX epoch timestamp that the recording should end at
+                  example: 1528805483
+
+
+      responses:
+        '201':
+          description: "Successful response"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+  /user/{user_id}/pvr:
+
+    get:
+      summary: >-
+        Get an index of pvr for the user
+      tags:
+      - "PVR"
+      operationId: GetUserPVRIndex
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The identifier of the user.  This should not be an email address"
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: PVR
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "b760ba94-9727-4e0c-aa67-f4af77dfc2c2"
+                        attributes:
+                          $ref: '#/components/schemas/PVRModel'
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+  /user/{user_id}/pvr/{pvr_id}:
+
+    get:
+      summary: >-
+        Get a specific pvr resource for the user
+      tags:
+      - "PVR"
+      operationId: GetUserPVRResource
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The identifier of the user.  This should not be an email address"
+          schema:
+            type: string
+        - in: path
+          name: pvr_id
+          required: true
+          description: "The identifier of the pvr."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: PVR
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "b760ba94-9727-4e0c-aa67-f4af77dfc2c2"
+                        attributes:
+                          $ref: '#/components/schemas/PVRModel'
+                  included:
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      anyOf:
+                        - type: object
+                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                          properties:
+                            type:
+                              type: string
+                              example: "Program"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: "a952415e-0c40-410b-9444-9c9387af17a2"
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                        - type: object
+                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                          properties:
+                            type:
+                              type: string
+                              example: "RecordingRequest"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: "a15d7bc2-1903-4b21-b055-91cbf10aa389"
+                            attributes:
+                                $ref: '#/components/schemas/RecordingRequestModel'
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+    delete:
+      summary: >-
+        Delete a specific pvr resource for the user
+      tags:
+      - "PVR"
+      operationId: DeleteUserPVR
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The identifier of the user.  This should not be an email address"
+          schema:
+            type: string
+        - in: path
+          name: pvr_id
+          required: true
+          description: "The identifier of the pvr."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+# ----------------------------------------------------------------------------------------------------------
+components:
+  schemas:
+    PVRModel:
+      type: object
+      required:
+      - start_timestamp
+      - duration_seconds
+      properties:
+        start_timestamp:
+          type: integer
+          description: "The UNIX epoch timestamp of the start time for the recording (when the Program was broadcast)"
+          example: 1528804283
+        duration_seconds:
+          type: integer
+          description: "The duration, in seconds, of the recording"
+          example: 5580
+        title:
+          type: string
+          description: >-
+            The (de-normalized) title of the Program that was recorded.
+            This saves from having to include the full Program data for the use case of displaying a list of pvr on screen
+        relationships:
+          type: array
+          description: "The index view of pvr MUST NOT support the 'include' parameter, but the individual resource view MUST support it"
+          items:
+            anyOf:
+              - type: object
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "a952415e-0c40-410b-9444-9c9387af17a2"
+                  type:
+                    type: string
+                    example: Program
+                    description: The type of the entity being included
+              - type: object
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "a15d7bc2-1903-4b21-b055-91cbf10aa389"
+                  type:
+                    type: string
+                    example: RecordingRequest
+                    description: The type of the entity being included
+    RecordingRequestModel:
+      type: object
+      properties:
+        expected_timestamp:
+          type: integer
+          description: >-
+            The expected time that the recording will start.  This is updated if the recording process fails and we are going to retry.  Before
+            deleting RecordingRequest we should check that the expected timestamp is in the past.
+          example: 1528804283
+        expiry_timestamp:
+          type: integer
+          description: >-
+            The timestamp after which no further pvr should be made for this request.  The process responsible for waking up and looking for
+            recordings should delete requests where this time is in the past and that don't have an expected timestamp in the future.
+          example: 1528819527
+        status:
+          type: string
+          description: One of the states given in the table in the Ubiquitous Domain Language
+        relationships:
+          type: array
+          items:
+            anyOf:
+            - type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "2344f588-af28-4358-ab87-69847659c50b"
+                type:
+                  type: string
+                  example: PVR
+                  description: The type of the entity being included
+            - type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "106f9a91-a34c-4a78-b075-f84947d86c83"
+                type:
+                  type: string
+                  example: User
+                  description: The type of the entity being included
+            - type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "fb52c083-09f1-48c7-965a-93cc75e9efc4"
+                type:
+                  type: string
+                  example: RecordingFile
+                  description: The type of the entity being included
+
+
+# ----------------------------------------------------------------------------------------------------------
+servers:
+  - description: Production
+    url: https://demo.aminocom.com/api/v1/recordings/pvr

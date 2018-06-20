@@ -40,15 +40,28 @@ ChannelEntity:
       type: array
       description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
       items:
-        type: object
-        required:
-        - id
-        - type
-        properties:
-          id:
-            type: string
-            example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
-          type:
-            type: string
-            example: Genre (or Product)
-            description: The type of the entity being included
+        anyOf:
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+              type:
+                type: string
+                example: Genre
+                description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
+              type:
+                type: string
+                example: Program
+                description: The type of the entity being included
