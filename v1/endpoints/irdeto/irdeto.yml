@@ -11,7 +11,7 @@ tags:
   description: ""
 paths:
 
-  /device/{device_id}/entitlements:
+  /user/{user_id}/device/{device_id}/entitlements:
     post:
       summary: "Entitle device"
       description: "The device will call this Move API to request that Move call the Irdeto KMS and entitle the device"
@@ -20,9 +20,15 @@ paths:
       operationId: "createDeviceEntitlement"
       parameters:
       - in: path
+        name: user_id
+        required: true
+        description: "The user identifier (this should not be an email address)"
+        schema:
+          type: string
+      - in: path
         name: device_id
         required: true
-        description: "The identifier of the device"
+        description: "The serial number of the device "
         schema:
           type: string
 
@@ -50,9 +56,15 @@ paths:
       operationId: "createDeviceEntitlement"
       parameters:
       - in: path
+        name: user_id
+        required: true
+        description: "The user identifier (this should not be an email address)"
+        schema:
+          type: string
+      - in: path
         name: device_id
         required: true
-        description: "The identifier of the device"
+        description: "The serial number of the device"
         schema:
           type: string
 
