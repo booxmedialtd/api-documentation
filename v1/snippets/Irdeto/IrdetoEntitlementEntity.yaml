@@ -2,11 +2,7 @@ IrdetoEntitlementEntity:
   type: object
   required:
 
-  properties:
-    device_id:
-      type: string
-      description: "The means by which we identify the particular device, for example its MAC address"
-
+  properties:    
     dvb:
       type: array
       items:
