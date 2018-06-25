@@ -11,10 +11,12 @@ tags:
   description: ""
 paths:
 
-  /user/{user_id}/device/{device_id}/entitlements:
+  /user/{user_id}/device/{device_id}/set_top_box_entitlements:
     post:
-      summary: "Entitle device"
-      description: "The device will call this Move API to request that Move call the Irdeto KMS and entitle the device"
+      summary: "Entitle a set top box to watch DVB channels"
+      description: >-
+        The set top box will scan the frequency range and find the DVB triplets for the channels that it wants to entitle the user to.
+        It will call this Move API to request that Move call the Irdeto KMS and entitle the device"
       tags:
       - "Irdeto"
       operationId: "createDeviceEntitlement"
@@ -37,12 +39,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                channel_id:
-                  type: string
-                  example: d64cc62d-cf26-4531-a605-c7fa873256ad
-                  description: The Amino identifier of the channel.  The middleware will map this to the Irdeto identifier.
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Irdeto/IrdetoEntitlementEntity.yaml#/IrdetoEntitlementEntity"
 
       responses:
         201:
@@ -54,7 +51,7 @@ paths:
                 example: OK
 
     delete:
-      summary: "Remove entitlement from device"
+      summary: "Remove entitlement from set top box"
       description: ""
       tags:
       - "Irdeto"
