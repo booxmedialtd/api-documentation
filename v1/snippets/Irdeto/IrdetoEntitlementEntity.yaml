@@ -37,8 +37,6 @@ IrdetoEntitlementEntity:
               service_id:
                 type: string
                 example: 1553
-
-
     relationships:
       type: object
       description: "This key MUST ONLY be included if Channel data is being included as a compound document."

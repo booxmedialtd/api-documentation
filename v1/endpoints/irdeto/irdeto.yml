@@ -26,6 +26,9 @@ paths:
         schema:
           type: string
 
+      requestBody:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Irdeto/IrdetoEntitlementEntity.yaml#IrdetoEntitlementEntity"
+        
       responses:
         201:
           description: "Successful response"
