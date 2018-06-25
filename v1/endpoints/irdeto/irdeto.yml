@@ -37,7 +37,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Irdeto/IrdetoEntitlementEntity.yaml#/IrdetoEntitlementEntity"
+              type: object
+              properties:
+                channel_id:
+                  type: string
+                  example: d64cc62d-cf26-4531-a605-c7fa873256ad
+                  description: The Amino identifier of the channel.  The middleware will map this to the Irdeto identifier.
 
       responses:
         201:
