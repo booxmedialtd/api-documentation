@@ -11,7 +11,7 @@ tags:
   description: ""
 paths:
 
-  /user/{user_id}/device/{device_id}/set_top_box_entitlements:
+  /user/{user_id}/device/{device_id}/entitlements:
     post:
       summary: "Entitle a set top box to watch DVB channels"
       description: >-
