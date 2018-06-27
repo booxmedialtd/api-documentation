@@ -4,7 +4,7 @@ info:
     This endpoint provides metadata about Programs.
 
     A program is something that can be shown.
-    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+    It could be an episode of a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
     It could equally be a VOD item that can be played on demand.
     The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
   version: 1.0.0
@@ -13,7 +13,7 @@ tags:
   - name: Programs
     description: >-
       A program is something that can be shown.
-      It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+      It could be an episode of a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
       It could equally be a VOD item that can be played on demand.
       The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
 servers:
