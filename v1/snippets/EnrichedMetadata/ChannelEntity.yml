@@ -35,6 +35,37 @@ ChannelEntity:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
         npvr_service:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+    dvb_triplet:
+      type: array
+      description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
+      items:
+        type: object
+        properties:
+          transmission_type:
+            type: string
+            description: >-
+              DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
+            example: "C"
+          triplet:
+            type: object
+            required:
+            - original_network_id
+            - transport_stream
+            - service_id
+            properties:
+              original_network_id:
+                type: integer
+                description: >-
+                  An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
+                  Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
+                  Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
+                example: 42249
+              transport_stream_id:
+                type: integer
+                example: 122
+              service_id:
+                type: string
+                example: 1553        
 
     relationships:
       type: array
