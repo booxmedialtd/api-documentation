@@ -1,8 +1,7 @@
 ChannelEntity:
   type: object
   required:
-      - name
-      - logical_channel_number
+      - name      
       - content_flags
       - display_order_weight
       - images
@@ -11,11 +10,7 @@ ChannelEntity:
     name:
       type: string
       example: "YLE TV1"
-      description: "The short name of the channel to show in listings"
-    logical_channel_number:
-      type: integer
-      example: 30
-      description: "https://en.wikipedia.org/wiki/Virtual_channel"
+      description: "The short name of the channel to show in listings"    
     content_flags:
       type: array
       items:
@@ -35,17 +30,25 @@ ChannelEntity:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
         npvr_service:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
-    dvb_triplet:
+    dvb:
       type: array
       description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
       items:
         type: object
+        required:
+        - transmission_type
+        - virtual_channel_number
+        - triplet
         properties:
           transmission_type:
             type: string
             description: >-
               DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
             example: "C"
+          virtual_channel_number:
+            type: integer
+            example: 30
+            description: Formerly known as a 'logical_channel_number' (see "https://en.wikipedia.org/wiki/Virtual_channel")
           triplet:
             type: object
             required:
