@@ -9,7 +9,7 @@ info:
 tags:
 - name: Users
   description: >-
-    Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
+    A user is a physical person consuming the services offered by Move.
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
