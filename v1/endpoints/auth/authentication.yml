@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Authentication is the process or action of proving or showing something to be true, genuine, or valid.
+  version: 1.0.0
+  title: Authentication
+tags:
+- name: Login
+  description: >-
+    Login endpoints break our rule that endpoints are nouns and not verbs.
+servers:
+- url: 'https://demo.aminocom.com/api/auth/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  /login/jwt:
+    post:
+      summary: Provide a JWT in order to obtain a middleware session
+      tags:
+      - Login
+      operationId: LoginWithJWT
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                  example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+
+
+      responses:
+        '201':
+          description: |
+            Successful response.
+            The status is '201 created' because we've created a user session, even if that is not clear from the non-compliant endpoint url
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
