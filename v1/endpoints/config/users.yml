@@ -26,7 +26,7 @@ paths:
     get:
       tags:
       - Users
-      summary: Get an index of Users
+      summary: Get an index of Users.
       operationId: indexUsers
       parameters:
         - in: query
@@ -41,13 +41,6 @@ paths:
           description: "An optional parameter to filter by a particular registration state.  By default all users will be returned."
           schema:
             type: string
-        - in: query
-          name: included
-          required: false
-          description: "See http://jsonapi.org/format/#fetching-includes"
-          schema:
-            type: integer
-            format: int64
 
       responses:
         200:
@@ -76,35 +69,7 @@ paths:
                           example: "e07a7130-4048-4a5f-bfa4-7adc5a5e860e"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
-                  included:
-                    type: array
-                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
-                    items:
-                      anyOf:
-                      - type: object
-                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                        properties:
-                          type:
-                            type: string
-                            example:  Product
-                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
-                          id:
-                            type: string
-                            example: "5f596672-2796-4f86-b608-9295fa111916"
-                          attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
-                      - type: object
-                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                        properties:
-                          type:
-                            type: string
-                            example:  License
-                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
-                          id:
-                            type: string
-                            example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
-                          attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
+
 
 
   /users/{user_id}:
