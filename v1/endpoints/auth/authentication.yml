@@ -7,7 +7,7 @@ info:
 tags:
 - name: Login
   description: >-
-    Login endpoints break our rule that endpoints are nouns and not verbs.
+    Login endpoints.
 servers:
 - url: 'https://demo.aminocom.com/api/auth/v1/'
 components:
@@ -23,12 +23,21 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /login/jwt:
+  /user/{user_id}/session/:
     post:
-      summary: Provide a JWT in order to obtain a middleware session
+      summary: |
+        Create a user session ("login") in the middleware and receive a session cookie in return.
+        Please look at the model of the request body to see all of the types of credentials supported.
       tags:
       - Login
-      operationId: LoginWithJWT
+      operationId: createUserSession
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
 
       requestBody:
         required: true
@@ -36,18 +45,41 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - authentication_mechanism
+              - credentials
               properties:
-                token:
+                authentication_mechanism:
                   type: string
-                  description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
-                  example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
-
+                  example: JWT
+                  description: Any of the (case-insensitive) strings [JWT|password]
+                credentials:
+                  oneOf:
+                    - type: object
+                      required:
+                      - token
+                      properties:
+                        token:
+                          type: string
+                          description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                    - type: object
+                      required:
+                      - password
+                      properties:
+                        password:
+                          type: string
+                          example: "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+                          description: |
+                            The SHA256 hashed password of the user.
+                            Hashing with SHA-256 prior to applying bcrypt is not intended to increase our system security.
+                            We're doing this to allow the STB to store a hashed password to make it harder for opponents
+                            with access to the STB local storage to try use it on other services belonging to the user.
 
       responses:
         '201':
           description: |
             Successful response.
-            The status is '201 created' because we've created a user session, even if that is not clear from the non-compliant endpoint url
           headers:
             Set-Cookie:
               schema:
@@ -57,7 +89,10 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: OK
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.
 
         '400':
           description: Standard error response
@@ -71,56 +106,3 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
 
-# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  /login/password:
-    post:
-      summary: Provide a username and password to authenticate
-      tags:
-      - Login
-      operationId: LoginWithPassword
-
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: string
-                  description: The user identity (please do not use an email address to identify the user)
-                  example: 123abc@kabelnoord.nl
-                password:
-                  type: string
-                  description: The password of the user, in the clear
-                  example: "password123"
-
-
-      responses:
-        '201':
-          description: |
-            Successful response.
-            The status is '201 created' because we've created a user session, even if that is not clear from the non-compliant endpoint url
-          headers:
-            Set-Cookie:
-              schema:
-                type: string
-              description: "Session cookie"
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: OK
-
-        '400':
-          description: Standard error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
