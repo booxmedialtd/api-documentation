@@ -4,7 +4,6 @@ UserEntity:
   - name
   - contact_details
   - security
-  - viewer_advice
   - registration_information
   properties:
 
@@ -53,9 +52,6 @@ UserEntity:
       type: object
       required:
       - password_hashing_algorithm
-      - last_authentication_timestamp
-      - last_generated_reset_linkcode
-      - linkcode_expiry_timestamp
       properties:
         password:
           type: string
@@ -92,10 +88,6 @@ UserEntity:
 
     viewer_advice:
       type: object
-      required:
-      - parental_pin_code
-      - block_adult_viewing_default
-      - block_adult_viewing_parental_override
       properties:
         date_of_birth_timestamp:
           type: integer
@@ -127,6 +119,7 @@ UserEntity:
       required:
       - registration_timestamp
       - expiry_timestamp
+      - current_registration_state
       properties:
         registration_timestamp:
           type: integer
