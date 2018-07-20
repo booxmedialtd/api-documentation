@@ -71,3 +71,56 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
 
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /login/password:
+    post:
+      summary: Provide a username and password to authenticate
+      tags:
+      - Login
+      operationId: LoginWithPassword
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: The user identity (please do not use an email address to identify the user)
+                  example: 123abc@kabelnoord.nl
+                password:
+                  type: string
+                  description: The password of the user, in the clear
+                  example: "password123"
+
+
+      responses:
+        '201':
+          description: |
+            Successful response.
+            The status is '201 created' because we've created a user session, even if that is not clear from the non-compliant endpoint url
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
