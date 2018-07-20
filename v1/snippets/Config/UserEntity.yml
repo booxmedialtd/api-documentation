@@ -57,6 +57,10 @@ UserEntity:
       - last_generated_reset_linkcode
       - linkcode_expiry_timestamp
       properties:
+        password:
+          type: string
+          example: "password123"
+          description: This field should not be output and should only be used for POST or PUT requests.
         password_hashing_algorithm:
           type: string
           example: "digest"
