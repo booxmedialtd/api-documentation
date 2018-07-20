@@ -23,7 +23,7 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /user/{user_id}/session/:
+  /users/{user_id}/session/:
     post:
       summary: |
         Create a user session ("login") in the middleware and receive a session cookie in return.
