@@ -5,9 +5,9 @@ info:
   version: 1.0.0
   title: Authentication
 tags:
-- name: Login
+- name: User Session
   description: >-
-    Login endpoints.
+    Endpoints relating to the user session.  These are used to log in and out.
 servers:
 - url: 'https://demo.aminocom.com/api/auth/v1/'
 components:
@@ -29,7 +29,7 @@ paths:
         Create a user session ("login") in the middleware and receive a session cookie in return.
         Please look at the model of the request body to see all of the types of credentials supported.
       tags:
-      - Login
+      - User Session
       operationId: createUserSession
       parameters:
         - in: query
@@ -75,7 +75,6 @@ paths:
                             Hashing with SHA-256 prior to applying bcrypt is not intended to increase our system security.
                             We're doing this to allow the STB to store a hashed password to make it harder for opponents
                             with access to the STB local storage to try use it on other services belonging to the user.
-
       responses:
         '201':
           description: |
@@ -93,6 +92,38 @@ paths:
                 description: |
                   Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
                   rely on the HTTP status code being 201 to indicate success.
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+    delete:
+      summary: |
+        Delete a user session in the middleware ("logout")
+      tags:
+      - User Session
+      operationId: deleteUserSession
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+
+
+      responses:
+        '204':
+          description: |
+            The user session was deleted successfully
 
         '400':
           description: Standard error response
