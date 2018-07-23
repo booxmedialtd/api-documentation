@@ -1,7 +1,7 @@
 ChannelEntity:
   type: object
   required:
-      - name      
+      - name
       - content_flags
       - display_order_weight
       - images
@@ -10,7 +10,7 @@ ChannelEntity:
     name:
       type: string
       example: "YLE TV1"
-      description: "The short name of the channel to show in listings"    
+      description: "The short name of the channel to show in listings"
     content_flags:
       type: array
       items:
@@ -40,6 +40,10 @@ ChannelEntity:
         - virtual_channel_number
         - triplet
         properties:
+          operator_name:
+            type: string
+            example: "Blue Lake Communications Oy"
+            description: (optional) The name of the operator providing this service
           transmission_type:
             type: string
             description: >-
@@ -68,7 +72,7 @@ ChannelEntity:
                 example: 122
               service_id:
                 type: string
-                example: 1553        
+                example: 1553
 
     relationships:
       type: array
