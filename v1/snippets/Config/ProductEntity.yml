@@ -93,12 +93,3 @@ ProductEntity:
       items:
         type: string
         example: "home"
-    links:
-      type: object
-      properties:
-        details:
-          type: string
-          example: https://demo.aminocom.com/api/user/guest/product/580?service=unitedclient
-        purchase:
-          type: string
-          example: https://demo.aminocom.com/ui/user/guest/product/580?ssid=5566aa55d83211.31197725&usid=&service=unitedclient&options=buy
