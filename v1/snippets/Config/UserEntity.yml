@@ -78,11 +78,14 @@ UserEntity:
         auth_pin:
           type: string
           example: 5732
-          description: This PIN is used to ......??
+          description: >-
+            This field should not be output and should only be used for POST or PUT requests. The client needs to supply a plaintext version of the password and should use an empty string to indicate "no change"
         purchase_pin:
           type: string
           example: 4a5f
-          description: This PIN must be provided by the user before any purchase transaction can be processed
+          description: >-
+            This PIN must be provided by the user before any purchase transaction can be processed
+            This field should not be output and should only be used for POST or PUT requests. The client needs to supply a plaintext version of the password and should use an empty string to indicate "no change"
         licenses_must_auto_renew:
           type: boolean
           example: False
