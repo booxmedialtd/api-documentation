@@ -56,7 +56,9 @@ UserEntity:
         new_password:
           type: string
           example: "password123"
-          description: This field should not be output and should only be used for POST or PUT requests.  The client needs to supply a hashed version of the password.
+          description: |>
+            This field should not be output and should only be used for POST or PUT requests.
+            The client needs to supply a plaintext version of the password and should use an empty string to indicate "no change"
         password_hashing_algorithm:
           type: string
           example: "digest"
