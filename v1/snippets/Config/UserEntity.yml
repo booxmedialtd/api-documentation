@@ -53,7 +53,7 @@ UserEntity:
       required:
       - password_hashing_algorithm
       properties:
-        password:
+        new_password:
           type: string
           example: "password123"
           description: This field should not be output and should only be used for POST or PUT requests.
