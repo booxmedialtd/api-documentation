@@ -18,7 +18,9 @@ StreamEntity:
       type: array
       items:
         type: string
-        description: "This must be one of TV, Tablet, Mobile"
+        description: >-
+          By default the following values are allowed [iOS | Android | Linux STB | Android STB | Mac | Windows | Linux | Chromecast].
+          However this list is configurable for each installation.  Please ask your account manager for a list of acceptable values.
     codec_info:
       type: string
     transport_protocol:
