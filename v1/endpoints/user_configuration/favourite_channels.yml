@@ -157,7 +157,7 @@ paths:
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
-  delete:
+    delete:
       summary: |
         Delete a Favourite Channel List
       tags:
