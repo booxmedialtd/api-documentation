@@ -28,19 +28,19 @@ paths:
       summary: An index of all of the favourite channel lists for a specific user
       operationId: indexUserFavouriteChannelList
       parameters:        
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-       - in: query
-        name: sort
-        required: false
-        description: >-
-          Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
-        schema:
-          type: string
+        - in: query
+          name: sort
+          required: false
+          description: >-
+            Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
+          schema:
+            type: string
 
       responses:
         200:
@@ -75,7 +75,7 @@ paths:
       summary: Create a new favourite channel list
       operationId: createFavouriteChannelList
       parameters:        
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
@@ -126,13 +126,13 @@ paths:
       - Favourite Channel List Resource
       operationId: deleteFavouriteChannelList
       parameters:
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
           schema:
             type: string
-        - in: query
+        - in: path
           name: favourite_channel_list_id
           required: true
           description: The identity of the favourite channel list
@@ -150,13 +150,13 @@ paths:
       summary: Update a favourite channel list
       operationId: updateFavouriteChannelList
       parameters:        
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-        - in: query
+        - in: path
           name: favourite_channel_list_id
           required: true
           description: The identity of the favourite channel list
@@ -183,13 +183,13 @@ paths:
       summary: An index of all of the channels that a list contains
       operationId: indexChannelListContents
       parameters:        
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-        - in: query
+        - in: path
           name: favourite_channel_list_id
           required: true
           description: The identity of the favourite channel list
@@ -222,7 +222,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#/ChannelEntity"
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -235,19 +235,19 @@ paths:
       - Favourite Channel List Relationships
       operationId: deleteFavouriteChannelItem
       parameters:
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
           schema:
             type: string
-        - in: query
+        - in: path
           name: favourite_channel_list_id
           required: true
           description: The identity of the favourite channel list
           schema:
             type: string
-        - in: query
+        - in: path
           name: channel_id
           required: true
           description: The identity of the channel
@@ -265,19 +265,19 @@ paths:
       summary: Add a channel into a favourite list
       operationId: createFavouriteChannelListItem
       parameters:        
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-        - in: query
+        - in: path
           name: favourite_channel_list_id
           required: true
           description: The identity of the favourite channel list
           schema:
             type: string
-        - in: query
+        - in: path
           name: channel_id
           required: true
           description: The identity of the channel
