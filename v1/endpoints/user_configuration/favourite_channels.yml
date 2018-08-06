@@ -34,13 +34,13 @@ paths:
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-         - in: query
-          name: sort
-          required: false
-          description: >-
-            Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
-          schema:
-            type: string
+       - in: query
+        name: sort
+        required: false
+        description: >-
+          Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
+        schema:
+          type: string
 
       responses:
         200:
