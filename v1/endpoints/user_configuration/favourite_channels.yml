@@ -6,7 +6,8 @@ info:
   version: "1.0.0"
   title: "User specified favourite channel lists"
 tags:
-- name: Favourite Channel List
+- name: Favourite Channel List Collection
+- name: Favourite Channel List Resource
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -22,7 +23,7 @@ paths:
   /users/{user_id}/favourite_channel_lists:
     get:
       tags:
-      - Favourite Channel List
+      - Favourite Channel List Collection
       summary: An index of all of the favourite channel lists for a specific user
       operationId: indexUserFavouriteChannelList
       parameters:        
@@ -62,7 +63,7 @@ paths:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
     post:
       tags:
-      - Favourite Channel List
+      - Favourite Channel List Collection
       summary: Create a new favourite channel list
       operationId: createFavouriteChannelList
       parameters:        
@@ -106,12 +107,13 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
 
+                
 # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
     get:
       tags:
-      - Favourite Channel List
+      - Favourite Channel List Resource
       summary: An index of all of the channels that a list contains
       operationId: indexChannelListContents
       parameters:        
@@ -155,3 +157,27 @@ paths:
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
+  delete:
+      summary: |
+        Delete a Favourite Channel List
+      tags:
+      - Favourite Channel List Resource
+      operationId: deleteFavouriteChannelList
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: query
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            The user session was deleted successfully              
