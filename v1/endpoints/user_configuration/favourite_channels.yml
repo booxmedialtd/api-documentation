@@ -24,7 +24,7 @@ paths:
       tags:
       - Favourite Channel List
       summary: An index of all of the favourite channel lists for a specific user
-      operationId: indexUsersLists
+      operationId: indexUserFavouriteChannelList
       parameters:        
         - in: query
           name: user_id
@@ -60,6 +60,53 @@ paths:
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+    post:
+      tags:
+      - Favourite Channel List
+      summary: Create a new favourite channel list
+      operationId: createFavouriteChannelList
+      parameters:        
+        - in: query
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+
+# -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
     get:
