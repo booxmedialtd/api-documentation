@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Some customers provide hundreds of channels to their subscribers. 
+    To make it easier for subscriber to manage and navigate channels, we need to provide an intuitive way for subscribers to create different channel lists.
+  version: "1.0.0"
+  title: "User specified favourite channel lists"
+tags:
+- name: Favourite Channel List
+servers:
+- url: 'https://demo.aminocom.com/api/users/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+  /users/{user_id}/favourite_channel_lists:
+    get:
+      tags:
+      - Favourite Channel List
+      summary: An index of all of the favourite channel lists for a specific user
+      operationId: indexUsersLists
+      parameters:        
+        - in: query
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+
+  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
+    get:
+      tags:
+      - Favourite Channel List
+      summary: An index of all of the channels that a list contains
+      operationId: indexChannelListContents
+      parameters:        
+        - in: query
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: query
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Channel
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
