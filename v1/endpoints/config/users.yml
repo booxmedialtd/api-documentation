@@ -183,10 +183,10 @@ paths:
 
 # ------------------------------------------------------------------------
 
-/users/{user_id}/market_segments:
+  /users/{user_id}/market_segments:
     get:
       tags:
-      - Market Segments
+      - Market Segmentation
       summary: Get the market segments for a particular user
       operationId: getUserMarketSegments
       parameters:        
@@ -215,4 +215,3 @@ paths:
                     example: "bab838b3-def8-4bff-87ed-66e663134f50"
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/MarketSegment.yml#/MarketSegment"
-                    
