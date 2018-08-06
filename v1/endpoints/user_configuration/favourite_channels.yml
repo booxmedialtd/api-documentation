@@ -180,7 +180,9 @@ paths:
     get:
       tags:
       - Favourite Channel List Relationships
-      summary: An index of all of the channels that a list contains
+      summary: >-
+        An index of all of the channels that a list contains.  
+        Note that the `relationships` key will be absent because this endpoint does not support the `included` parameter
       operationId: indexChannelListContents
       parameters:        
         - in: path
