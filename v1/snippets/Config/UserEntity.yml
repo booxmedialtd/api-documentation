@@ -6,7 +6,10 @@ UserEntity:
   - security
   - registration_information
   properties:
-
+    external_reference:
+      type: string
+      example: "ABC123"
+      description: The reference for this user in our customers business support system.
     name:
       type: object
       required:

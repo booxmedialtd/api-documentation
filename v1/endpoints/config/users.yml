@@ -74,27 +74,19 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "e07a7130-4048-4a5f-bfa4-7adc5a5e860e"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
-
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#/UserEntity"
 
     post:
       tags:
       - Users
       summary: Create a user
       operationId: createUser
-      parameters:
-        - in: query
-          name: user_id
-          required: true
-          description: The user identity (please do not use an email address to identify the user)
-          schema:
-            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#/UserEntity"
       responses:
         '201':
           description: |
@@ -129,7 +121,7 @@ paths:
           schema:
             type: integer
             format: int64
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
@@ -153,7 +145,7 @@ paths:
                     description: "The id of the entity being referenced"
                     example: "e07a7130-4048-4a5f-bfa4-7adc5a5e860e"
                   attributes:
-                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#/UserEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -170,7 +162,7 @@ paths:
                             type: string
                             example: "5f596672-2796-4f86-b608-9295fa111916"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#ProductEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/ProductEntity.yml#/ProductEntity"
                       - type: object
                         description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
                         properties:
@@ -182,45 +174,9 @@ paths:
                             type: string
                             example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
-<<<<<<< HEAD
-=======
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#/LicenseEntity"
 
-    post:
-      tags:
-      - Users
-      summary: Create a user
-      operationId: createUser
-      parameters:
-        - in: query
-          name: user_id
-          required: true
-          description: The user identity (please do not use an email address to identify the user)
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
-      responses:
-        '201':
-          description: |
-            Successful response.
-          headers:
-            Set-Cookie:
-              schema:
-                type: string
-              description: "Session cookie"
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: CREATED
-                description: |
-                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
+
 
 # ------------------------------------------------------------------------
 
@@ -230,8 +186,8 @@ paths:
       - Market Segmentation
       summary: Get the market segments for a particular user
       operationId: getUserMarketSegments
-      parameters:        
-        - in: query
+      parameters:
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
@@ -256,4 +212,4 @@ paths:
                     example: "bab838b3-def8-4bff-87ed-66e663134f50"
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/MarketSegment.yml#/MarketSegment"
->>>>>>> ca924967611e4f37d6c396648abaf924bedeeb85
+
