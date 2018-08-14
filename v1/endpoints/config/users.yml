@@ -10,6 +10,10 @@ tags:
 - name: Users
   description: >-
     A user is a physical person consuming the services offered by Move.
+- name: Market Segmentation
+  description: >-
+    Market segmentation allows us to flexibly group users together by shared characteristics in order to provide services
+    that are more relevant to them.
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -179,3 +183,77 @@ paths:
                             example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
                           attributes:
                             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
+<<<<<<< HEAD
+=======
+
+    post:
+      tags:
+      - Users
+      summary: Create a user
+      operationId: createUser
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
+      responses:
+        '201':
+          description: |
+            Successful response.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.
+
+# ------------------------------------------------------------------------
+
+  /users/{user_id}/market_segments:
+    get:
+      tags:
+      - Market Segmentation
+      summary: Get the market segments for a particular user
+      operationId: getUserMarketSegments
+      parameters:        
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  type:
+                    type: string
+                    example: MarketSegment
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "bab838b3-def8-4bff-87ed-66e663134f50"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/MarketSegment.yml#/MarketSegment"
+>>>>>>> ca924967611e4f37d6c396648abaf924bedeeb85

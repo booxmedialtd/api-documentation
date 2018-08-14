@@ -1,0 +1,299 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Some customers provide hundreds of channels to their subscribers. 
+    To make it easier for subscriber to manage and navigate channels, we need to provide an intuitive way for subscribers to create different channel lists.
+  version: "1.0.0"
+  title: "User specified favourite channel lists"
+tags:
+- name: Favourite Channel List Collection
+- name: Favourite Channel List Resource
+- name: Favourite Channel List Relationships
+servers:
+- url: 'https://demo.aminocom.com/api/users/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+  /users/{user_id}/favourite_channel_lists:
+    get:
+      tags:
+      - Favourite Channel List Collection
+      summary: An index of all of the favourite channel lists for a specific user
+      operationId: indexUserFavouriteChannelList
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: query
+          name: sort
+          required: false
+          description: >-
+            Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+    post:
+      tags:
+      - Favourite Channel List Collection
+      summary: Create a new favourite channel list
+      operationId: createFavouriteChannelList
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
+
+    delete:
+      summary: |
+        Delete a Favourite Channel List
+      tags:
+      - Favourite Channel List Resource
+      operationId: deleteFavouriteChannelList
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: path
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully              
+
+    put:
+      tags:
+      - Favourite Channel List Resource
+      summary: Update a favourite channel list
+      operationId: updateFavouriteChannelList
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+      responses:        
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
+    get:
+      tags:
+      - Favourite Channel List Relationships
+      summary: >-
+        An index of all of the channels that a list contains.  
+        Note that the `relationships` key will be absent because this endpoint does not support the `included` parameter
+      operationId: indexChannelListContents
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Channel
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#/ChannelEntity"
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels/{channel_id}:
+    
+    delete:
+      summary: |
+        Remove a channel from a favourite list
+      tags:
+      - Favourite Channel List Relationships
+      operationId: deleteFavouriteChannelItem
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: path
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+        - in: path
+          name: channel_id
+          required: true
+          description: The identity of the channel
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
+
+    post:
+      tags:
+      - Favourite Channel List Relationships
+      summary: Add a channel into a favourite list
+      operationId: createFavouriteChannelListItem
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: favourite_channel_list_id
+          required: true
+          description: The identity of the favourite channel list
+          schema:
+            type: string
+        - in: path
+          name: channel_id
+          required: true
+          description: The identity of the channel
+          schema:
+            type: string      
+      responses:
+        201:
+          description: |
+            Successful response.  Note: We do not return a representation of the relationship.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.

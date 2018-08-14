@@ -1,0 +1,10 @@
+MarketSegment:
+  type: object
+  required:
+  - name
+  properties:
+    name:
+      type: string
+      example: "fibre-to-the-home"
+      description: "The name of the market segment"
+      
