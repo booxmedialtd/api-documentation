@@ -22,6 +22,8 @@ security:
 - bearerAuth: []         # use the same name as above
 paths:
 
+# ------------------------------------------------------------------------------------------------------------------------------------
+
   /users:
     get:
       tags:
@@ -71,6 +73,43 @@ paths:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
 
 
+    post:
+      tags:
+      - Users
+      summary: Create a user
+      operationId: createUser
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
+      responses:
+        '201':
+          description: |
+            Successful response.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.
+
+# ------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}:
     get:
@@ -140,39 +179,3 @@ paths:
                             example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
                           attributes:
                             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/LicenseEntity.yml#LicenseEntity"
-
-    post:
-      tags:
-      - Users
-      summary: Create a user
-      operationId: createUser
-      parameters:
-        - in: query
-          name: user_id
-          required: true
-          description: The user identity (please do not use an email address to identify the user)
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Config/UserEntity.yml#UserEntity"
-      responses:
-        '201':
-          description: |
-            Successful response.
-          headers:
-            Set-Cookie:
-              schema:
-                type: string
-              description: "Session cookie"
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: CREATED
-                description: |
-                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
