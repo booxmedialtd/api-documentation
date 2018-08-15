@@ -200,25 +200,3 @@ UserEntity:
                         type: string
                         example: License
                         description: The type of the entity being included
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
