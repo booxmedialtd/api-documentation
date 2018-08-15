@@ -188,18 +188,18 @@ UserEntity:
                 data:
                   type: array
                   items:
-                    - type: object
-                    required:
-                    - id
-                    - type
-                    properties:
-                      id:
-                        type: string
-                        example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
-                      type:
-                        type: string
-                        example: License
-                        description: The type of the entity being included
+                    type: object
+                      required:
+                      - id
+                      - type
+                      properties:
+                        id:
+                          type: string
+                          example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
+                        type:
+                          type: string
+                          example: License
+                          description: The type of the entity being included
 
 
 
