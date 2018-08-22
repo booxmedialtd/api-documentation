@@ -1,0 +1,196 @@
+openapi: 3.0.0
+info:
+  description: >
+    The Amino recommendation API provides a caching proxy for clients to a third-party vendor supplied recommendation engine.
+  version: 1.0.0
+  title: Recommendation API
+tags:
+  - name: "Recommendations"
+    description: ""
+  - name: "User event"
+    description: "We send third party vendors anonymized information about user viewing and 'like' activity.  The client should send this to the API which will in turn pass it on to the vendor"
+servers:
+  - url: 'https://demo.aminocom.com/api/contentdiscovery/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  /recommendation/event:
+    post:
+      tags:
+      - "User event"
+      description: |
+        Contains information about an event relating to the user and a particular piece of media.  Events can include watching it to a
+        certain point, or marking it as a favourite (for example).
+      operationId: sendUserEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
+
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
+
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /recommendation/personal/{user_id}:
+    get:
+      tags:
+      - "Recommendations"
+      description: |
+        Returns a personal recommendation for the identified user based on their individual profile.
+      operationId: getPersonalRecommendation
+      parameters:
+        - name: user_id
+          in: path
+          description: The user identity to obtain a recommendation for
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: PersonalRecommendation
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "23f54cc3-7933-43ef-8fb4-912e8b03e48e"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /recommendation/genre/{genre_id}/user/{user_id}:
+    get:
+      tags:
+      - "Recommendations"
+      description: |
+        Returns a recommendation from the specified genre
+      operationId: getGenreRecommendation
+      parameters:
+        - name: genre_id
+          in: path
+          description: The id of the genre to obtain a recommendation for
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          description: The user identity to obtain a recommendation for
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: PersonalRecommendation
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "23f54cc3-7933-43ef-8fb4-912e8b03e48e"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
