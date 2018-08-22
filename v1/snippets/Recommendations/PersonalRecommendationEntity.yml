@@ -1,0 +1,28 @@
+PersonalRecommendation:
+  type: object
+  properties:
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+    data:
+      type: array
+      items:
+        type: "object"
+        properties:
+          program_name:
+            type: string
+          teaser:
+            type: string
+          channel_id:
+            type: integer
+            format: int64
+          play_url:
+            type: string
+          start_timestamp:
+            type: integer
+            format: int64
+          duration:
+            type: integer
+            format: int64

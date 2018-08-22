@@ -1,0 +1,16 @@
+ViewerEvent:
+  type: object
+  required:
+    - event_name
+    - viewer_uid
+    - program_uid
+  properties:
+    viewer_uid:
+      type: string
+    program_uid:
+      type: string
+    event_name:
+      type: string
+    event_value:
+      type: string
+
