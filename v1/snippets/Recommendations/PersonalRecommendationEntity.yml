@@ -1,28 +1,64 @@
 PersonalRecommendation:
   type: object
+  required:
+  - foreign_user_id
+  - provider_name
   properties:
-    links:
-      type: object
-      properties:
-        self:
-          type: string
-    data:
+    foreign_user_id:
+      type: string
+      example: "ABC123"
+      description: "The id of the user profile in the foreign system for whom the recommendation was made"
+    foreign_program_id:
+      type: string
+      example: "XYZ123"
+      description: "The id of the program in the foreign system.  This is most likely going to be the same as our internal id."
+    provider_name:
+      type: string
+      example: "XRM"
+      description: "The name of the provider who gave this recommendation"
+    reason_for_suggestion:
+      type: string
+      example: "Because you watched Die Hard"
+      description: "The reason that this item is being recommended"
+
+    relationships:
       type: array
+      description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
       items:
-        type: "object"
-        properties:
-          program_name:
-            type: string
-          teaser:
-            type: string
-          channel_id:
-            type: integer
-            format: int64
-          play_url:
-            type: string
-          start_timestamp:
-            type: integer
-            format: int64
-          duration:
-            type: integer
-            format: int64
+        anyOf:
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+              type:
+                type: string
+                example: Genre
+                description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
+              type:
+                type: string
+                example: Program
+                description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "b36d0abf-f689-44c5-9a22-04e97b353bbf"
+              type:
+                type: string
+                example: BroadcastSlot
+                description: Obviously this relationship won't be present for VOD items!

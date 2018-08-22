@@ -1,14 +1,18 @@
 ViewerEvent:
   type: object
   required:
-    - event_name
-    - viewer_uid
+    - foreign_user_id
+    - foreign_program_id
     - program_uid
   properties:
-    viewer_uid:
+    foreign_user_id:
       type: string
-    program_uid:
+      example: "ABC123"
+      description: "The identity of the user profile in the foreign system"
+    foreign_program_id:
       type: string
+      example: "XYZ123"
+      description: "The id of the program in the foreign system.    This is most likely going to be the same as our internal id."
     event_name:
       type: string
     event_value:

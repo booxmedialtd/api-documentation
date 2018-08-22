@@ -59,7 +59,7 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: FavouriteChannelList
+                          example: ViewerEvent
                         id:
                           type: string
                           description: "The id of the entity that was created"
@@ -123,6 +123,47 @@ paths:
                           example: "23f54cc3-7933-43ef-8fb4-912e8b03e48e"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+                  included:
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      anyOf:
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  Genre
+                            description: The type of the entity that is being included.  It will always be one of [Genre|Program|BroadcastSlot] in this endpoint.
+                          id:
+                            type: string
+                            example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/GenreEntity.yml#/GenreEntity"
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  Program
+                            description: The type of the entity that is being included.  It will always be one of [Genre|Program|BroadcastSlot] in this endpoint.
+                          id:
+                            type: string
+                            example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  BroadcastSlot
+                            description: The type of the entity that is being included.  It will always be one of [Genre|Program|BroadcastSlot] in this endpoint. Obviously this relationship won't be present for VOD items!
+                          id:
+                            type: string
+                            example: "b36d0abf-f689-44c5-9a22-04e97b353bbf"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
