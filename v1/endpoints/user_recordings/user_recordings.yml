@@ -62,7 +62,7 @@ paths:
             Days must be calculated using the server timezone and should include time from 00:00:00 to 23:59:59 (in other words be rounded
             to a whole day rather than using the time of the request).
             Only a single value may be supplied.
-            This response must be privately cached for a period of 23 hours.            
+            This response must be privately cached until midnight of the day it was first made.       
           schema:
             type: string
       responses:
