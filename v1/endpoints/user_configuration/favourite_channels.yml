@@ -21,6 +21,9 @@ security:
 - bearerAuth: []         # use the same name as above
 paths:
 
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+
   /users/{user_id}/favourite_channel_lists:
     get:
       tags:
@@ -175,6 +178,49 @@ paths:
             The resource was updated successfully, no response body is needed
 
 # -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/favourite_channel_lists/relationships/channels:
+    get:
+      tags:
+      - Favourite Channel List Relationships
+      summary: >-
+        A list of ALL the channels that a user has marked as favourite in ANY list.
+        Note that the primary data object contains Resource Identifier Objects and NOT Resource Objects.
+      operationId: indexChannelListContents
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+       
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Channel
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"                        
+
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
     get:
