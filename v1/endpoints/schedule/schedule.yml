@@ -98,6 +98,7 @@ paths:
     get:
       summary: >-
         Get an index of Programs associated with the broadcast slot.  Note:  There should be only one
+        NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
       tags:
       - Programs
       operationId: GetBroadcastSlotProgramsIndex
