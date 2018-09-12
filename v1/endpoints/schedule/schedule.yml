@@ -23,7 +23,7 @@ tags:
     It could equally be a VOD item that can be played on demand.
     The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
 servers:
-- url: 'https://demo.aminocom.com/api/metadata/v1/'
+- url: 'https://demo.aminocom.com/api/metadata/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -79,7 +79,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -90,7 +90,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -143,7 +143,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "3173335a-810b-4b53-b009-122a169f9920"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -154,7 +154,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -227,7 +227,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -238,7 +238,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -304,7 +304,7 @@ paths:
                             description: "The id of the entity being referenced"
                             example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
           '400':
             description: Standard error response
             content:
@@ -315,4 +315,4 @@ paths:
                     errors:
                       type: array
                       items:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"

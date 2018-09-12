@@ -5,7 +5,7 @@ info:
   version: "1.0.0"
   title: "Irdeto"
 servers:
-- url: 'https://demo.aminocom.com/api/irdeto/v1/'
+- url: 'https://demo.aminocom.com/api/irdeto/v4/'
 tags:
 - name: "Irdeto"
   description: ""
@@ -39,7 +39,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Irdeto/IrdetoEntitlementEntity.yaml#/IrdetoEntitlementEntity"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Irdeto/IrdetoEntitlementEntity.yaml#/IrdetoEntitlementEntity"
 
       responses:
         201:

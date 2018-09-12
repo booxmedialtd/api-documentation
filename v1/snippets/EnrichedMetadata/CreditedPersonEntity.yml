@@ -17,4 +17,4 @@
       images:
         type: array
         items:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"

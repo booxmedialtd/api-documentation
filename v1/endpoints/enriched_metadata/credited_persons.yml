@@ -14,7 +14,7 @@ tags:
     description: |
       A CreditedPerson is any individual or company that can be credited with any portion of the production of the Program.
 servers:
-  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+  - url: 'https://demo.aminocom.com/api/metadata/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -95,4 +95,4 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"

@@ -9,7 +9,7 @@ tags:
   description: >-
     Endpoints relating to the user session.  These are used to log in and out.
 servers:
-- url: 'https://demo.aminocom.com/api/auth/v1/'
+- url: 'https://demo.aminocom.com/api/auth/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -103,7 +103,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
     delete:
       summary: |
@@ -135,5 +135,5 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 

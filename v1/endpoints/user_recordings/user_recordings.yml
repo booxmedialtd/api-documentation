@@ -17,7 +17,7 @@ tags:
     In the future content will be tagged.  The system will record content for a user that is tagged up with whatever the user indicates they are interested in.
     Currently the "tagging" process is mocked up by looking exclusively at the program title.  This endpoint structure is unlikely to change when the system is improved.
 servers:
-- url: 'https://demo.aminocom.com/api/recordings/v1/'
+- url: 'https://demo.aminocom.com/api/recordings/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -92,7 +92,7 @@ paths:
                           description: >-
                             The example gets parsed to display like an object.  The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -108,7 +108,7 @@ paths:
                           type: string
                           example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -119,7 +119,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -171,7 +171,7 @@ paths:
                         attributes:
                           type: array
                           items:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Media/StreamEntity.yml#StreamEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Media/StreamEntity.yml#StreamEntity"
         '400':
           description: Standard error response
           content:
@@ -182,7 +182,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -231,7 +231,7 @@ paths:
                     type:
                       type: string
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
       responses:
         '200':
@@ -252,7 +252,7 @@ paths:
                         type: string
                         example: '{"user_id":1,"epg_id":749,"continuous":0}'
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
 
         '400':
           description: Standard error response
@@ -264,7 +264,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -337,7 +337,7 @@ paths:
                           description: The id of the entity being referenced
                           example: '{"user_id":1,"epg_id":749,"continuous":0}'
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
                         relationships:
                           type: object
                           properties:
@@ -391,7 +391,7 @@ paths:
                                       type: string
                                       description: "The thumbnail url"
                                 data:
-                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/EPGEntity.yml#EPGEntity"
+                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Schedule/EPGEntity.yml#EPGEntity"
 
         '400':
           description: Standard error response
@@ -403,7 +403,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -464,7 +464,7 @@ paths:
                           type: string
                           example: 1a31deef-a775-4af4-af2a-92c97db41778
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserRecordings/UserRecordingTagEntity.yml#UserRecordingTagEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserRecordings/UserRecordingTagEntity.yml#UserRecordingTagEntity"
         '400':
           description: Standard error response
           content:
@@ -475,7 +475,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -518,7 +518,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
     delete:
       tags:
@@ -556,4 +556,4 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"

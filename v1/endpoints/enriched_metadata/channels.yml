@@ -19,7 +19,7 @@ tags:
       Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
       Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
 servers:
-  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+  - url: 'https://demo.aminocom.com/api/metadata/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -105,7 +105,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "89e3a147-2ff6-448f-959f-a6200434259d"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ChannelEntity.yml#ChannelEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -122,7 +122,7 @@ paths:
                               type: string
                               example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
                             attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Subscription/ProductEntity.yml#ProductEntity"
                         - type: object
                           description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
                           properties:
@@ -134,7 +134,7 @@ paths:
                               type: string
                               example: "8958c820-1757-4f58-96d6-6e365729224c"
                             attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/GenreEntity.yml#GenreEntity"
         '400':
           description: Standard error response
           content:
@@ -145,4 +145,4 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"

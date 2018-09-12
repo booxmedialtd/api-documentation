@@ -5,7 +5,7 @@ info:
   version: "1.0.0"
   title: "Subscription endpoints"
 host: "demo.aminocom.com"
-basePath: "/api/subscription/v1/"
+basePath: "/api/subscription/v4/"
 tags:
 - name: "Subscriptions"
   description: ""
@@ -57,4 +57,4 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "89e3a147-2ff6-448f-959f-a6200434259d"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Subscription/ProductEntity.yml#ProductEntity"

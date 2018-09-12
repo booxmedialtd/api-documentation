@@ -12,7 +12,7 @@
     images:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
     relationships:
       type: object
       description: "This key MUST ONLY be included if Program data is being included as a compound document."

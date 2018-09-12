@@ -9,6 +9,6 @@ UserChannelLicense:
       type: object
       properties:
         live_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
         npvr_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"

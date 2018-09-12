@@ -10,7 +10,7 @@ tags:
 - name: Favourite Channel List Resource
 - name: Favourite Channel List Relationships
 servers:
-- url: 'https://demo.aminocom.com/api/users/v1/'
+- url: 'https://demo.aminocom.com/api/users/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -71,7 +71,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
     post:
       tags:
       - Favourite Channel List Collection
@@ -89,7 +89,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
       responses:
         201:
           description: "Successful response"
@@ -116,7 +116,7 @@ paths:
                           description: "The id of the entity that was created"
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -171,7 +171,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
       responses:        
         204:
           description: |
@@ -270,7 +270,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelEntity.yml#/ChannelEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ChannelEntity.yml#/ChannelEntity"
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 

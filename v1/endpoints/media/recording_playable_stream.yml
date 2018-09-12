@@ -62,7 +62,7 @@ paths:
                         attributes:
                           type: array
                           items:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Media/StreamEntity.yml#StreamEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Media/StreamEntity.yml#StreamEntity"
         '400':
           description: Standard error response
           content:
@@ -73,10 +73,10 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 servers:
-  - url: 'https://demo.aminocom.com/api/recordings/v1/'
+  - url: 'https://demo.aminocom.com/api/recordings/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme

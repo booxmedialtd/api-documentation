@@ -10,7 +10,7 @@ tags:
   - name: "User event"
     description: "We send third party vendors anonymized information about user viewing and 'like' activity.  The client should send this to the API which will in turn pass it on to the vendor"
 servers:
-  - url: 'https://demo.aminocom.com/api/contentdiscovery/v1/'
+  - url: 'https://demo.aminocom.com/api/contentdiscovery/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -37,7 +37,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
 
       responses:
         201:
@@ -65,7 +65,7 @@ paths:
                           description: "The id of the entity that was created"
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
 
 
         '400':
@@ -78,7 +78,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "23f54cc3-7933-43ef-8fb4-912e8b03e48e"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -139,7 +139,7 @@ paths:
                             type: string
                             example: "73079cf6-2b82-4ad1-8e45-727caf84298b"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/GenreEntity.yml#/GenreEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/GenreEntity.yml#/GenreEntity"
                       - type: object
                         description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
                         properties:
@@ -151,7 +151,7 @@ paths:
                             type: string
                             example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
                       - type: object
                         description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
                         properties:
@@ -163,7 +163,7 @@ paths:
                             type: string
                             example: "b36d0abf-f689-44c5-9a22-04e97b353bbf"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -174,7 +174,7 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -222,7 +222,7 @@ paths:
                         description: "The id of the entity being referenced"
                         example: "23f54cc3-7933-43ef-8fb4-912e8b03e48e"
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
 
         '400':
           description: Standard error response
@@ -234,4 +234,4 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"

@@ -14,7 +14,7 @@ ChannelEntity:
     content_flags:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
     display_order_weight:
       type: integer
       example: 10
@@ -22,14 +22,14 @@ ChannelEntity:
     images:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"
     services_available:
       type: object
       properties:
         live_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
         npvr_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
     dvb:
       type: array
       description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."

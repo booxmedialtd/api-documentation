@@ -10,7 +10,7 @@ tags:
     description: |
       Known as a 'category' in our legacy API, a Program or a Channel as a whole may be associated with a number of Genres
 servers:
-  - url: 'https://demo.aminocom.com/api/metadata/v1/'
+  - url: 'https://demo.aminocom.com/api/metadata/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -90,7 +90,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -101,4 +101,4 @@ paths:
                   errors:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v1/snippets/General/ErrorEntity.yml#/Error"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
