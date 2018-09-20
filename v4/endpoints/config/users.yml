@@ -212,8 +212,7 @@ paths:
                     example: "bab838b3-def8-4bff-87ed-66e663134f50"
                   attributes:
                     $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Config/MarketSegment.yml#/MarketSegment"
-
-  /users/{user_id}/relationships/market_segments:
+  
     put:
       tags:
       - Market Segmentation
