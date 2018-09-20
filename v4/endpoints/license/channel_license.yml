@@ -98,54 +98,56 @@ paths:
                   type:
                     type: string
                     example: UserChannelLicense
-       '201':
-          description: |
-            Successful response.          
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: CREATED
-                description: |
-                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
+      responses:
+         '201':
+            description: |
+              Successful response.          
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: CREATED
+                  description: |
+                    Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                    rely on the HTTP status code being 201 to indicate success.
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/relationships/channel_licenses/{channel_license_id}:
-    summary: |
-        Remove a channel license from a user.
-    tags:
-    - Channels
-    operationId: "DeleteUserChannelLicenses"
-    parameters:
-      - in: path
-        name: user_id
-        required: true
-        description: "The user identifier"
-        schema:
-          type: string
-      - in: path
-        name: channel_license_id
-        required: true
-        description: "The identifier of the channel license"
-        schema:
-          type: string
+    delete:
+      summary: |
+          Remove a channel license from a user.
+      tags:
+      - Channels
+      operationId: "DeleteUserChannelLicenses"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+        - in: path
+          name: channel_license_id
+          required: true
+          description: "The identifier of the channel license"
+          schema:
+            type: string
 
-    responses:
-      '204':
-        description: |
-          The user session was deleted successfully
+      responses:
+        '204':
+          description: |
+            The user session was deleted successfully
 
-      '400':
-        description: Standard error response
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                errors:
-                  type: array
-                  items:
-                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
