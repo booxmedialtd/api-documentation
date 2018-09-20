@@ -26,7 +26,7 @@ paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /user/{user_id}/channel_licenses:
+  /user/{user_id}/relationships/channel_licenses:
     get:
       summary: |
         Get an index of the licenses that a user has for channels        
@@ -68,4 +68,84 @@ paths:
                           example: UserChannelLicense
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
+
+    post:
+      summary: |
+        Add a new channel license to a user
+      tags:
+      - Channels
+      operationId: addUserChannelLicenses
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "bab838b3-def8-4bff-87ed-66e663134f50"
+                  type:
+                    type: string
+                    example: UserChannelLicense
+       '201':
+          description: |
+            Successful response.          
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/relationships/channel_licenses/{channel_license_id}:
+    summary: |
+        Remove a channel license from a user.
+    tags:
+    - Channels
+    operationId: "DeleteUserChannelLicenses"
+    parameters:
+      - in: path
+        name: user_id
+        required: true
+        description: "The user identifier"
+        schema:
+          type: string
+      - in: path
+        name: channel_license_id
+        required: true
+        description: "The identifier of the channel license"
+        schema:
+          type: string
+
+    responses:
+      '204':
+        description: |
+          The user session was deleted successfully
+
+      '400':
+        description: Standard error response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/General/ErrorEntity.yml#/Error"
 
