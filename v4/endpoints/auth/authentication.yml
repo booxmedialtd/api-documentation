@@ -32,7 +32,7 @@ paths:
       - User Session
       operationId: createUserSession
       parameters:
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
@@ -53,28 +53,16 @@ paths:
                   type: string
                   example: JWT
                   description: Any of the (case-insensitive) strings [JWT|password]
-                credentials:
-                  oneOf:
-                    - type: object
-                      required:
-                      - token
-                      properties:
-                        token:
-                          type: string
-                          description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
-                          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
-                    - type: object
-                      required:
-                      - password
-                      properties:
-                        password:
-                          type: string
-                          example: "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
-                          description: |
-                            The SHA256 hashed password of the user.
-                            Hashing with SHA-256 prior to applying bcrypt is not intended to increase our system security.
-                            We're doing this to allow the STB to store a hashed password to make it harder for opponents
-                            with access to the STB local storage to try use it on other services belonging to the user.
+                credentials:                  
+                  type: object
+                  required:
+                  - token
+                  properties:
+                    token:
+                      type: string
+                      description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                    
       responses:
         '201':
           description: |
@@ -112,7 +100,7 @@ paths:
       - User Session
       operationId: deleteUserSession
       parameters:
-        - in: query
+        - in: path
           name: user_id
           required: true
           description: The user identity (please do not use an email address to identify the user)
