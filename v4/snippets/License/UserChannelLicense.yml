@@ -9,6 +9,28 @@ UserChannelLicense:
       type: object
       properties:
         live_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
-        npvr_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/License/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
+          type: object
+          properties:
+            fast_forward_available:
+              type: boolean
+              example: True
+              description: "If this key is absent you can assume that its value is false"
+            rewind_startover_available:
+              type: boolean
+              example: True
+              description: "If this key is absent you can assume that its value is false"
+            pause_available:
+              type: boolean
+              example: True
+              description: "If this key is absent you can assume that its value is false"
+        pvr_service:
+          type: object
+          properties:
+            may_record_npvr:
+              type: boolean
+              example: True
+              description: This will be set true if the user is permitted to make cloud recordings
+            may_record_local:
+              type: boolean
+              example: false
+              description: This will be set true if the user is allowed to record locally on their master STB
