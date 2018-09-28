@@ -1,0 +1,17 @@
+UserSession:
+  type: object
+  properties:
+    login_timestamp:       
+      type: integer
+      example: 1538126476 
+      description: The Unix epoch timestamp of when the session was created
+    jwt_token:
+      type: string
+      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTUzODEyNjk3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJ0eXBlIjoiYWNjZXNzIiwic3RiX3NlcmlhbF9ubyI6IjYxNTUwMDI2NjE2MiJ9.u61r1X5l--cbCZYPufcv5DXoFgKbzmjEVxwEr0dIwZ4
+      description: This token can be presented to authenticate the user.
+    refresh_token:
+      type: string
+      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTU0NTk4OTM3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJ0eXBlIjoicmVmcmVzaCJ9.9Pxzv0oGxjZmAIpZiH-aiue7LwAMcddPPHnaiOkpb-A
+      description: This token can be presented to the refresh endpoint to obtain a new authentication token
+
+

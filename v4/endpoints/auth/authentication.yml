@@ -75,11 +75,28 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
-                example: CREATED
-                description: |
-                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserSession
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Auth/UserSession.yml#/UserSession"
+                
 
         '400':
           description: Standard error response
