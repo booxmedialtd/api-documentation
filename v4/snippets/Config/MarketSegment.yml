@@ -5,6 +5,6 @@ MarketSegment:
   properties:
     name:
       type: string
-      example: "fibre-to-the-home"
+      example: "fibre"
       description: "The name of the market segment"
       
