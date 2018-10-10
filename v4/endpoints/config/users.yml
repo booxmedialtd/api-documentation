@@ -181,47 +181,13 @@ paths:
 # ------------------------------------------------------------------------
 
   /users/{user_id}/relationships/market_segments:
-    get:
-      tags:
-      - Market Segmentation
-      summary: Get the market segments for a particular user
-      operationId: getUserMarketSegments
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: The user identity (please do not use an email address to identify the user)
-          schema:
-            type: string
-      responses:
-        200:
-          description: "Successful response"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                required:
-                - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          example: MarketSegment
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "bab838b3-def8-4bff-87ed-66e663134f50"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/v4/snippets/Config/MarketSegment.yml#/MarketSegment"
-  
+   
     put:
       tags:
       - Market Segmentation
-      summary: Amend what segments a user belongs to.  This will replace all the relationships (it is NOT additive)
+      summary: >-
+        Amend what segments a user belongs to.  This will replace all the relationships (it is NOT additive).
+        See also the user configuration section for GET.
       operationId: createUserMarketSegments
       parameters:
         - in: path
