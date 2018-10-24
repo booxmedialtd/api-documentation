@@ -1,0 +1,318 @@
+openapi: 3.0.0
+info:
+  description: >-
+    A BroadcastSlot is a time period on a Channel in which a Program may be shown.
+    Our BroadcastSlot entity is just a single appearance of a Program on a Channel.
+    We store information about the time slot as well as a title for the slot.
+    Note: The title of a BroadcastSlot does not have to be the same as the title of the Program in that slot.
+    In English a schedule is understood to be a list or a plan and so we avoid using that word for a single item.
+  version: 1.0.0
+  title: BroadcastSlot metadata
+tags:
+- name: BroadcastSlots
+  description: >-
+    A BroadcastSlot is a time period on a Channel in which a Program may be shown.
+    Our BroadcastSlot entity is just a single appearance of a Program on a Channel.
+    We store information about the time slot as well as a title for the slot.
+    Note: The title of a BroadcastSlot does not have to be the same as the title of the Program in that slot.
+    In English a schedule is understood to be a list or a plan and so we avoid using that word for a single item.
+- name: Programs
+  description: >-
+    A program is something that can be shown.
+    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
+    It could equally be a VOD item that can be played on demand.
+    The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
+servers:
+- url: 'https://demo.aminocom.com/api/metadata/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  /broadcast_slots:
+    get:
+      summary: Get an index of BroadcastSlots
+      tags:
+      - BroadcastSlots
+      operationId: GetBroadcastSlotsIndex
+      parameters:
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: BroadcastSlot
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /broadcast_slots/{broadcast_slot_id}/programs:
+    get:
+      summary: >-
+        Get an index of Programs associated with the broadcast slot.  Note:  There should be only one
+        NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
+      tags:
+      - Programs
+      operationId: GetBroadcastSlotProgramsIndex
+      parameters:
+      - in: path
+        name: broadcast_slot_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: language
+        required: false
+        description: >-
+          The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+          If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+          If the requested language is not available then the system will return translations in order of the system defined preferences
+        schema:
+          type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Program
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "3173335a-810b-4b53-b009-122a169f9920"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /programs/{program_id}/broadcast_slots:
+    get:
+      summary: >-
+        Find all the times that a particular Program is scheduled to be displayed
+      tags:
+      - BroadcastSlots
+      operationId: GetProgramsBroadcastSlotsIndex
+
+      parameters:
+      - in: path
+        name: program_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: language
+        required: false
+        description: >-
+          The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+          If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+          If the requested language is not available then the system will return translations in order of the system defined preferences
+        schema:
+          type: string
+      - in: query
+        name: starting_day_timestamp
+        required: false
+        description: >-
+          Broadcast slots starting from 00:00 in the morning of this day will be returned.
+          This parameter value must not be more than one week in the past.
+        schema:
+          type: integer
+          format: int64
+      - in: query
+        name: ending_day_timestamp
+        required: false
+        description: >-
+          Broadcast slots *starting* from 23:59 in the morning of this day will be returned.
+          This parameter value must not be more than eight weeks in the future (this is deliberately longer than the channel window)
+          Note: Some broadcast slots may *end* on the following day if they run over midnight
+        schema:
+          type: integer
+          format: int64
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: BroadcastSlot
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /channels/{channel_id}/broadcast_slots:
+      get:
+        summary: |
+          Get a list of broadcast_slots for this channel.
+          Broadcast slots are provided in chunks of one day at a time.  Note that the window period supported is one week in the past and four weeks into the future.
+          Please avoid requesting more than seven days of slots at a time (this is not a hard limit)
+        tags:
+        - Channels
+        operationId: GetUserFavouriteChannelIndex
+        parameters:
+          - in: path
+            name: channel_id
+            required: true
+            description: "The user identifier"
+            schema:
+              type: string
+          - in: query
+            name: starting_day_timestamp
+            required: false
+            description: >-
+              Broadcast slots starting from 00:00 in the morning of this day will be returned.
+              This parameter value must not be more than one week in the past.
+            schema:
+              type: integer
+              format: int64
+          - in: query
+            name: ending_day_timestamp
+            required: false
+            description: >-
+              Broadcast slots *starting* from 23:59 in the morning of this day will be returned.
+              This parameter value must not be more than four weeks in the future.
+              Note: Some broadcast slots may *end* on the following day if they run over midnight
+            schema:
+              type: integer
+              format: int64
+
+        responses:
+          '200':
+            description: "Successful response"
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                  - data
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                        - type
+                        - id
+                        properties:
+                          type:
+                            type: string
+                            example: BroadcastSlot
+                          id:
+                            type: string
+                            description: "The id of the entity being referenced"
+                            example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+          '400':
+            description: Standard error response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"

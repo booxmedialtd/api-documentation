@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  description: >
+    This endpoint provides metadata about Channel Licenses.
+  version: 1.0.0
+  title: Channel metadata
+tags:
+  - name: Channels
+    description: |
+      A channel is a source of content in the form of stream or signal, which can be watched / listened on a multimedia device.
+      A channel is one of the elements that users can subscribe to.
+      One Channel can be related to many BroadcastSlots which are placeholders in which a Program can be displayed.
+      Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
+      Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
+servers:
+  - url: 'https://demo.aminocom.com/api/license/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/relationships/channel_licenses:
+    get:
+      summary: |
+        Get an index of the licenses that a user has for channels        
+      tags:
+      - Channels
+      operationId: "GetUserChannelLicenses"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        id:
+                          type: string
+                          description: "The id of the channel license"
+                          example: "2e4087f0-e17a-4ac9-a2ac-b6cbef5f9d35"
+                        type:
+                          type: string
+                          example: UserChannelLicense
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
+
+    post:
+      summary: |
+        Add a new channel license to a user
+      tags:
+      - Channels
+      operationId: addUserChannelLicenses
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: "The id of the entity being referenced"
+                    example: "bab838b3-def8-4bff-87ed-66e663134f50"
+                  type:
+                    type: string
+                    example: UserChannelLicense
+      responses:
+         '201':
+            description: |
+              Successful response.          
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: CREATED
+                  description: |
+                    Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                    rely on the HTTP status code being 201 to indicate success.
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/relationships/channel_licenses/{channel_license_id}:
+    delete:
+      summary: |
+          Remove a channel license from a user.
+      tags:
+      - Channels
+      operationId: "DeleteUserChannelLicenses"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+        - in: path
+          name: channel_license_id
+          required: true
+          description: "The identifier of the channel license"
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            The user session was deleted successfully
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+

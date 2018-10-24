@@ -1,0 +1,25 @@
+SeasonEntity:
+    type: object
+    required:
+    - title
+    properties:
+      title:
+        type: string
+        example: "Season 1 (1994)"
+      release_year:
+        type: integer
+        example: 1994
+      descriptions:
+        type: object
+        properties:
+          short:
+            type: string
+            description: "The short description of the program"
+          long:
+            type: string
+          extended:
+            type: string
+      images:
+        type: array
+        items:
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#ImageValueObject"

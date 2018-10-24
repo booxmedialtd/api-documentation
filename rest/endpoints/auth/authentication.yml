@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Authentication is the process or action of proving or showing something to be true, genuine, or valid.
+  version: 1.0.0
+  title: Authentication
+tags:
+- name: User Session
+  description: >-
+    Endpoints relating to the user session.  These are used to log in and out.
+servers:
+- url: 'https://demo.aminocom.com/api/auth/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  /users/{user_id}/session/:
+    post:
+      summary: |
+        Create a user session ("login") in the middleware and receive a session cookie in return.
+        Please look at the model of the request body to see all of the types of credentials supported.
+      tags:
+      - User Session
+      operationId: createUserSession
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - authentication_mechanism
+              - credentials
+              properties:
+                authentication_mechanism:
+                  type: string
+                  example: JWT
+                  description: Any of the (case-insensitive) strings [JWT|password]
+                credentials:                  
+                  type: object
+                  required:
+                  - token
+                  properties:
+                    token:
+                      type: string
+                      description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                    
+      responses:
+        '201':
+          description: |
+            Successful response.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserSession
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/UserSession.yml#/UserSession"
+                
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+    delete:
+      summary: |
+        Delete a user session in the middleware ("logout")
+      tags:
+      - User Session
+      operationId: deleteUserSession
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+
+
+      responses:
+        '204':
+          description: |
+            The user session was deleted successfully
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
