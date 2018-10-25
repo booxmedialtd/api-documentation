@@ -214,14 +214,6 @@ paths:
                     example: MarketSegment
 
       responses:
-        '200':
+        '204':
           description: |
             Successful response.          
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: OK
-                description: |
-                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
