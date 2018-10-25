@@ -1,16 +1,12 @@
 openapi: 3.0.0
-info:
-  description: >-
-    If a User has the "Record" access for a Channel then they are able to request that we record a Program for them from that Channel.
-    A Recording should start off as a request.  A User may request that an entire series be recorded in which case the recording script will create requests on behalf of the User.
-    Once the Program has finished Recording is is marked as available.
-    Currently the identity of this Entity is a combination of the User and the EPG item that were recorded.  This introduces implicit relationships between other entities (for example EPG item must be unique across all Channel)
-    The plan is that when User Recording is separated into its own component as part of the Recording service it will be given its own independent identity.
+info:    
   version: "1.0.0"
   title: "User recording"
 tags:
 - name: Recording Requests
-    Recording requests are requests for us to record a specific program.  They will be replaced with the new tag based recording system in due course.
+  description: >-
+    Recording requests are requests for us to record a specific program.  
+    They will be replaced with the new tag based recording system in due course.
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
