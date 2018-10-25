@@ -1,0 +1,44 @@
+UserRecordingRequestEntity:
+  type: object
+  properties:
+    original_broadcast_slot:
+      type: object
+      description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
+      properties:
+        channel_id:
+          type: string
+          example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+        time_start:
+          type: integer
+          example: 1516798894
+        title:
+          type: string
+          example: "Die Hard"
+    status:
+      type: string
+      description: "One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE]"
+
+    relationships:
+      type: object
+      description: "This key MUST ONLY be included if Program data is being included as a compound document."
+      required:
+      - streams
+      properties:          
+        program:
+          type: object
+          required:
+          - data
+          properties:
+            data:
+              type: object
+              description: The relationship between Episode and Program is one-to-one so this is an object, not an array
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                type:
+                  type: string
+                  example: "Program"

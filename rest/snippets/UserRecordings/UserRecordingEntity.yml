@@ -44,6 +44,9 @@ UserRecordingEntity:
           time_start:
             type: integer
             example: 1516798894
+          title:
+            type: string
+            example: "Die Hard"
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."

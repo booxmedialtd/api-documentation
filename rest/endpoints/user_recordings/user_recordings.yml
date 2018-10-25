@@ -9,6 +9,8 @@ info:
   version: "1.0.0"
   title: "User recording"
 tags:
+- name: Recording Requests
+    Recording requests are requests for us to record a specific program.  They will be replaced with the new tag based recording system in due course.
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
@@ -27,6 +29,80 @@ components:
 security:
 - bearerAuth: []         # use the same name as above
 paths:
+
+
+  /user/{user_id}/user_recording_requests/:
+    get:
+      tags:
+      - Recording Requests
+      summary: Get an index of user recording request entities      
+      operationId: indexRecordingRequests
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: >
+            The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
+          schema:
+            type: integer
+        - in: query
+          name: filter
+          required: false
+          description: >
+            Only the following filters are supported: [future]
+            Example usage:  /user/{user_id}/user_recordings?filter[status]=WAITING
+            Note: We do not support filtering on all of the statuses and only allow the client to specify that it
+            wants only requests which have not been recorded (or failed).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingRequest
+                        id:
+                          type: string
+                          example: 24369947-8d46-4453-bdc2-9e1d88c220ff
+                          description: >-
+                            The id of the request entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#\UserRecordingRequestEntity"                  
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recordings/:
     get:
