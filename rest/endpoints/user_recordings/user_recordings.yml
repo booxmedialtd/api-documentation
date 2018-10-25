@@ -88,7 +88,7 @@ paths:
                           description: >-
                             The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#\UserRecordingRequestEntity"                  
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"                  
         '400':
           description: Standard error response
           content:
