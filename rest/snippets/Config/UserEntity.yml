@@ -37,6 +37,19 @@ UserEntity:
             We should fix our database, but until then this field will be the concatenation of first name and last name.
             See: https://www.w3.org/International/questions/qa-personal-names
 
+    emergency_alert_service:
+      description: >-
+        This key may be omitted if the operator is not in the United States.
+      type: object
+      properties:
+        county_code_ansi_incits_31_2009:
+          type: string
+          example: 
+          description: >-
+            The Location code uses the codes described in the American National Standards Institute (ANSI) standard, ANSI INCITS 31-2009
+            See: https://www.ecfr.gov/cgi-bin/text-idx?SID=f736bb47d6cc9cbf28b0e77d48ea629f&mc=true&node=pt47.1.11&rgn=div5#se47.1.11_131
+            (search the page for PSSCCC)
+
     contact_details:
       type: object
       required:

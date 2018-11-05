@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  description: >-
+    A user is a physical person consuming the services offered by Move.
+    In the future we may introduce the concept of an Account where One Account Has Many User, but currently there is no distinction between User and Account
+    Users may be subscribers or guests.
+  version: "1.0.0"
+  title: "Users"
+tags:
+- name: Users
+  description: >-
+    A user is a physical person consuming the services offered by Move.
+servers:
+- url: 'https://demo.aminocom.com/api/users/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}:
+    get:
+      tags:
+      - Users
+      summary: >-
+        Get the details for a particular user.
+        Note:  A non-admin user MAY ONLY receive information about themself, not any other user
+      operationId: getUser
+      parameters:
+        - in: query
+          name: included
+          required: false
+          description: >-
+            See http://jsonapi.org/format/#fetching-includes
+            By default nothing is included.  We support a limited set of relationships for 
+            inclusion, other relationships need to be called as separate endpoints.
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  type:
+                    type: string
+                    example: User
+                  id:
+                    type: string
+                    description: >-
+                      The id of the entity being referenced.
+                      The API must return 403 if the client attempts to find information about a user other than the authenticated user,
+                      The API will not return 404 if the id is not found (to prevent attackers from using this endpoint to discover valid id's),
+                      but will rather return 403.
+                    example: "e07a7130-4048-4a5f-bfa4-7adc5a5e860e"
+                  attributes:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/UserEntity.yml#/UserEntity"
+                  included:
+                    type: array
+                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    items:
+                      anyOf:
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  Product
+                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
+                          id:
+                            type: string
+                            example: "5f596672-2796-4f86-b608-9295fa111916"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/ProductEntity.yml#/ProductEntity"
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example:  License
+                            description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
+                          id:
+                            type: string
+                            example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
+                          attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/LicenseEntity.yml#/LicenseEntity"
+
+
+        403:
+          description: The API must return 403 if the client attempts to find information about a user other than the authenticated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
