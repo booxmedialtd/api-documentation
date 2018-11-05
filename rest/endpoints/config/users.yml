@@ -32,7 +32,7 @@ paths:
     get:
       tags:
       - Users
-      summary: Get an index of Users.
+      summary: Get an index of Users.  Getting a specific user is not an administrative endpoint and is documented at https://confluence.aminocom.com/display/MAPI/User+information#Userinformation-/Users/getUser
       operationId: indexUsers
       parameters:
         - in: query
