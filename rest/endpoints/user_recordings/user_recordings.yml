@@ -118,10 +118,10 @@ paths:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
             example:
-              "op": "replace",
-              "path": "/data/0/attributes/status",
-              "value": "RECORDING_FAILED",
-              "from": null
+              op: "replace"
+              path: "/data/0/attributes/status"
+              value: "RECORDING_FAILED"
+              from: null
 
       responses:
         204:
