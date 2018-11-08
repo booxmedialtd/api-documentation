@@ -1,5 +1,11 @@
 UserRecordingRequestEntity:
   type: object
+  required:
+  - original_broadcast_slot
+  - recording_location
+  - requested_at_timestamp
+  - multiple_recording
+  - status
   properties:
     original_broadcast_slot:
       type: object
@@ -29,9 +35,18 @@ UserRecordingRequestEntity:
       example: 1541685487
       description: "The timestamp at which the request was made"
 
+    multiple_program_matching:
+      type: boolean
+      example: true
+      description: >-
+        Boolean flag indicating whether multiple programs could be recorded as a result of this request
+        In planned improvments to recordings we will introduce tagging.  These tags will be added as relationships
+        to the reecording request.
+
     status:
       type: string
       description: "One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE]"
+      example: WAITING
 
 
 

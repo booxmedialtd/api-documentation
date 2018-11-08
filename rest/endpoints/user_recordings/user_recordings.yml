@@ -1,11 +1,11 @@
 openapi: 3.0.0
-info:    
+info:
   version: "1.0.0"
   title: "User recording"
 tags:
 - name: Recording Requests
   description: >-
-    Recording requests are requests for us to record a specific program.  
+    Recording requests are requests for us to record a specific program.
     They will be replaced with the new tag based recording system in due course.
 - name: Recordings
   description: >-
@@ -31,7 +31,7 @@ paths:
     get:
       tags:
       - Recording Requests
-      summary: Get an index of user recording request entities      
+      summary: Get an index of user recording request entities
       operationId: indexRecordingRequests
       parameters:
         - in: path
@@ -84,7 +84,7 @@ paths:
                           description: >-
                             The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"                  
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
         '400':
           description: Standard error response
           content:
@@ -96,6 +96,31 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ---------------------------------------------------------------------------------------------------------------------------------
+
+  /user_recording_requests/{recording_request_id}:
+    patch:
+      tags:
+      - Recording Requests
+      summary: Update the status of a recording.  Note that only the status field is acceptable to patch.
+      operationId: putRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -134,7 +159,7 @@ paths:
             Days must be calculated using the server timezone and should include time from 00:00:00 to 23:59:59 (in other words be rounded
             to a whole day rather than using the time of the request).
             Only a single value may be supplied.
-            This response must be privately cached until midnight of the day it was first made.       
+            This response must be privately cached until midnight of the day it was first made.
           schema:
             type: string
       responses:
