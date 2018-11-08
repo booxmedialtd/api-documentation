@@ -7,23 +7,23 @@ UserRecordingRequestEntity:
   - multiple_recording
   - status
   properties:
-    original_broadcast_slot:
-      type: object
-      description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
-      properties:
-        channel_id:
-          type: string
-          example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
-        time_start:
-          type: integer
-          example: 1516798894
-        title:
-          type: string
-          example: "Die Hard"
-        is_adult:
-          type: boolean
-          example: false
-          description: This will be true if the program that should be recorded is marked as adult
+
+    legacy_program_id:
+      type: integer
+      example: 101
+      description: >-
+        While we migrate to the new recording system you will need to use this id in the frontend to refer to the recording request.
+        See documentation in Confluence for details.
+
+    record_series_of_episodes:
+      type: boolean
+      example: true
+      description: "This will be 'true' for recording series, or other situations where more than one user recording is expected to be made"
+
+    maximum_episodes_to_record:
+      type: integer
+      example: 10
+      description: "How many episodes of the program to record."
 
     recording_location:
       type: string
@@ -35,35 +35,23 @@ UserRecordingRequestEntity:
       example: 1541685487
       description: "The timestamp at which the request was made"
 
-    multiple_program_matching:
-      type: boolean
-      example: true
-      description: >-
-        Boolean flag indicating whether multiple programs could be recorded as a result of this request
-        In planned improvments to recordings we will introduce tagging.  These tags will be added as relationships
-        to the reecording request.
-
     status:
       type: string
       description: "One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE]"
       example: WAITING
 
-
-
     relationships:
       type: object
-      description: "This key MUST ONLY be included if Program data is being included as a compound document."
       required:
-      - streams
+      - BroadcastSlot
       properties:
-        program:
+        BroadcastSlot:
           type: object
           required:
           - data
           properties:
             data:
               type: object
-              description: The relationship between Episode and Program is one-to-one so this is an object, not an array
               required:
               - id
               - type
@@ -73,4 +61,5 @@ UserRecordingRequestEntity:
                   example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                 type:
                   type: string
-                  example: "Program"
+                  example: "BroadcastSlot"
+

@@ -32,6 +32,8 @@ paths:
       tags:
       - Recording Requests
       summary: Get an index of user recording request entities
+      description: >-
+        NOTE:  This endpoint will *always* include [BroadcastSlot] relationships and DOES NOT support the `included` parameter.
       operationId: indexRecordingRequests
       parameters:
         - in: path
@@ -47,6 +49,7 @@ paths:
             The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
           schema:
             type: integer
+        - in: query
         - in: query
           name: filter
           required: false
@@ -85,6 +88,20 @@ paths:
                             The id of the request entity
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+                  included:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: "BroadcastSlot"
+                          description: The type of the entity that is being included.  It will always be [BroadcastSlot] in this endpoint.
+                        id:
+                          type: string
+                          example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                        attributes:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/BroadcastSlotEntity.yml#BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
