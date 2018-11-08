@@ -14,16 +14,33 @@ UserRecordingRequestEntity:
         title:
           type: string
           example: "Die Hard"
+        is_adult:
+          type: boolean
+          example: false
+          description: This will be true if the program that should be recorded is marked as adult
+
+    recording_location:
+      type: string
+      example: "CLOUD"
+      description: "Where the user wants to make the recording, either of these options are accepted [CLOUD|LOCAL]"
+
+    requested_at_timestamp:
+      type: integer
+      example: 1541685487
+      description: "The timestamp at which the request was made"
+
     status:
       type: string
       description: "One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE]"
+
+
 
     relationships:
       type: object
       description: "This key MUST ONLY be included if Program data is being included as a compound document."
       required:
       - streams
-      properties:          
+      properties:
         program:
           type: object
           required:
