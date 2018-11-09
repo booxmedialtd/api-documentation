@@ -1,0 +1,29 @@
+PatchDocument:
+  description: A JSONPatch document as defined by RFC 6902
+  required:
+   - "op"
+   - "path"
+  properties:
+   op:
+    type: string
+    description: The operation to be performed
+    enum:
+     - "add"
+     - "remove"
+     - "replace"
+     - "move"
+     - "copy"
+     - "test"
+    example: "replace"
+   path:
+    type: string
+    description: A JSON-Pointer (https://tools.ietf.org/html/rfc6901)
+    example: "/data/0/attributes/status"
+   value:
+    type: object
+    description: The value to be used within the operations.
+    example: "RECORDING_FAILED"
+   from:
+    type: string
+    description: A string containing a JSON Pointer value.
+    example: null

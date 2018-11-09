@@ -9,4 +9,8 @@ BroadcastSlotEntity:
         example: 1516798894
       duration_seconds:
         type: integer
-        example: 5400
+        example: 7920
+      title:
+        type: string
+        example: "Elokuva: Die Hard"
+        description: "Storing the title of the broadcast slot allows the customer to amend the metadata title in a flexible manner"
