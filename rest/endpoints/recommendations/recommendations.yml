@@ -21,6 +21,7 @@ security:
   - bearerAuth: []         # use the same name as above
 paths:
 
+
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -68,6 +69,80 @@ paths:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Recommendations/ViewEvent.yml#/ViewerEvent"
 
 
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /recommendation/popular_recordings:
+    get:
+      tags:
+      - "Recommendations"   
+      description: >-
+        Returns a list of content that is recommended based on it being recorded by a lot of people.
+        This endpoint will *always* include the Program entity
+      operationId: getPopularRecordings
+      parameters:
+        - name: bucket
+          in: query
+          description: >-
+            The bucket of results to fetch, allowable values are [daily|weekly].  
+            Default is "weekly" if we use asynchronous workers, otherwise daily
+          required: false
+          schema:
+            type: string
+            enum: [daily,weekly]
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: PersonalRecommendation
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "c0b0065c-a736-426e-9e13-3ff38a8fbb74"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Recommendations/PersonalRecommendationEntity.yml#/PersonalRecommendation"
+                  included:
+                    type: array
+                    description: "This endpoint will *always* include the Program entity"
+                    items:                      
+                      type: object                        
+                      properties:
+                        type:
+                          type: string
+                          example:  Program
+                          description: The type of the entity that is being included.  It will always be one of [Genre|Program|BroadcastSlot] in this endpoint.
+                        id:
+                          type: string
+                          example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"                      
         '400':
           description: Standard error response
           content:
