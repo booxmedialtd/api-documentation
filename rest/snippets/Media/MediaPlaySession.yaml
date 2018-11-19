@@ -1,0 +1,28 @@
+MediaPlaySession:
+	type: object
+	required:
+	- stream_type
+	properties:
+		service:
+			type: string
+			description: This can be one of [live|npvr|catchup|startover|vod]
+			enum:
+			- live 
+			- npvr
+			- catchup
+			- startover
+			- vod
+    ip_address:
+      type: string
+      description: The ip address of the client that created this session
+    user_agent:
+      type: string
+      description: >-
+        The user agent of the client that created this session.  This should be included when listing the media sessions for the user so that they can
+        identify which devices they are thought to be connected with.
+    play_started_timestamp:
+      type: integer
+      description: The integer Unix timestamp that playback was started
+    last_updated_timestamp:
+      type: integer
+      description: Well-behaved clients will regularly ping the update endpoint to let us know the session is still active
