@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Media playback sessions are used to track how many concurrent streams a user is watching.  It is important to 
+    realize that the AminoTV middleware does not have direct control over the stream source; For example, a CDN
+    or third party vendor may be responsible for creating the streams.  Therefore media playback sessions are subject
+    to inaccuracy caused by clients losing power or internet connectivity or directly malicious client behaviour.
+  version: 1.0.0
+  title: Media Play Sessions
+tags:
+- name: Media Play Sessions
+  description: >-
+    Tracking how many streams a particular user is watching
+externalDocs:
+  description: Requirements documentation
+  url: >-
+    https://confluence.aminocom.com/display/BPLAT/BPLAT-8744%3A+Design+Concurrent+active+streams+limit+per+account
+servers:
+- url: 'https://demo.aminocom.com/api/v1/media/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/media_play_sessions:
+    get:
+      tags:
+      - Media Play Sessions
+      summary: An index of all of the MediaPlaySession entities associated with a user
+      operationId: indexMediaPlaySession
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string       
+  
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: MediaPlaySession
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "6b6bf3e1-555b-45cb-b5d3-63a2ff7be9e3 "
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
+
+
+    post:
+      tags:
+      - Media Play Sessions
+      summary: Create a new MediaPlaySession for a User.  A well-behaved client will call this when the user starts watching a stream.
+      operationId: postMediaPlaySession
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
+      responses:
+        201:
+          description: "Successful response.  Clients should use the HTTP response code and not the body content"
+          headers:
+            Location:
+              schema:
+                type: string
+              description: "The full url to the API location where the entity can be fetched from"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - id
+                    - type
+                    properties:
+                      type:
+                        type: string
+                        example: MediaPlaySession
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "6b6bf3e1-555b-45cb-b5d3-63a2ff7be9e3 "
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
+              
+# ------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/media_play_sessions/{media_play_session_id}:
+  
+    patch:
+      tags:
+      - Media Play Sessions
+      summary: Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
+      description: >-
+        Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
+        The API server will reject a PATCH whose timestamp is signficantly different (3-5 seconds) from the server timestamp.
+      operationId: patchMediaPlaySession
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: media_play_session_id
+          required: true
+          description: The id of the media play session
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
+            example:
+              op: "replace"
+              path: "/data/0/attributes/last_updated_timestamp"
+              value: 1542644294
+              from: null  
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+  
+    delete:
+      tags:
+      - Media Play Sessions
+      summary: Delete a MediaPlaySession.  A well-behaved client will call this when the user stops watching a stream
+      operationId: deleteMediaPlaySession
+      parameters:        
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string    
+        - in: path
+          name: media_play_session_id
+          required: true
+          description: The identity of the media play session 
+          schema:
+            type: string
+      responses:
+        '204':
+          description: |
+            Successful response code indicates that the resource was deleted and no response body is being returned.
