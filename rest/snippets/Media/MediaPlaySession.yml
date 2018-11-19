@@ -1,17 +1,17 @@
 MediaPlaySession:
-	type: object
-	required:
-	- stream_type
-	properties:
-		service:
-			type: string
-			description: This can be one of [live|npvr|catchup|startover|vod]
-			enum:
-			- live 
-			- npvr
-			- catchup
-			- startover
-			- vod
+  type: object
+  required:
+  - stream_type
+  properties:
+    service:
+      type: string
+      description: This can be one of [live|npvr|catchup|startover|vod]
+      enum:
+      - live 
+      - npvr
+      - catchup
+      - startover
+      - vod
     ip_address:
       type: string
       description: The ip address of the client that created this session
