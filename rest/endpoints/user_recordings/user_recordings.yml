@@ -106,7 +106,8 @@ paths:
         - in: path
           name: recording_request_id
           description: The id of the recording request
-          type: string
+          schema:
+            type: string
           example: d9db7aca-bc54-410f-af0d-a286adc0911f
       responses:
         '200':
@@ -137,28 +138,29 @@ paths:
                     type: array
                     items:
                       oneOf:
-                      - type: object
-                        properties:
-                          type:
-                            type: string
-                            example: "Program"
-                            description: The type of the entity that is being included.
-                          id:
-                            type: string
-                            example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
-                          attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
-                      - type: object
-                        properties:
-                          type:
-                            type: string
-                            example: "ClassificationTag"
-                            description: The type of the entity that is being included.
-                          id:
-                            type: string
-                            example: abdf8785-cb23-445b-946f-69e8770500a1
-                          attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
+                        - type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "Program"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                        - type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "ClassificationTag"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: abdf8785-cb23-445b-946f-69e8770500a1
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
+
 
     patch:
       tags:
@@ -169,8 +171,9 @@ paths:
         - in: path
           name: recording_request_id
           description: The id of the recording request
-          type: string
-          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+          schema:
+            type: string
+          example: 24369947-8d46-4453-bdc2-9e1d88c220ff
       requestBody:
         required: true
         content:
@@ -182,11 +185,28 @@ paths:
               path: "/data/0/attributes/status"
               value: "RECORDING_FAILED"
               from: null
-
       responses:
         204:
           description: |
             The resource was updated successfully, no response body is needed
+
+    delete:
+      tags:
+      - Recording Requests
+      summary: Cancel a request to record something
+      operationId: deleteUserRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -255,7 +275,7 @@ paths:
                           description: >-
                             The example gets parsed to display like an object.  The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -271,7 +291,7 @@ paths:
                           type: string
                           example: "d0de0088-3141-439e-8455-839bdb8f6cec"
                         attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -287,16 +307,18 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recordings/{user_recordings_id}:
+
     patch:
       tags:
-      - Recording Requests
+      - Recordings
       summary: Update the status of a recording, for example to update how much time the user has watched.
       operationId: putRecordingRequest
       parameters:
         - in: path
-          name: recording_request_id
-          description: The id of the recording request
-          type: string
+          name: user_recordings_id
+          description: The id of the user recordings
+          schema:
+            type: string
           example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
       requestBody:
         required: true
@@ -366,7 +388,7 @@ paths:
                         attributes:
                           type: array
                           items:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/StreamEntity.yml#StreamEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/StreamEntity.yml#/StreamEntity"
         '400':
           description: Standard error response
           content:
@@ -428,7 +450,7 @@ paths:
                     type:
                       type: string
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
       responses:
         '200':
@@ -449,7 +471,7 @@ paths:
                         type: string
                         example: '{"user_id":1,"epg_id":749,"continuous":0}'
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
         '400':
           description: Standard error response
@@ -534,7 +556,7 @@ paths:
                           description: The id of the entity being referenced
                           example: '{"user_id":1,"epg_id":749,"continuous":0}'
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#UserRecordingEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
                         relationships:
                           type: object
                           properties:
@@ -588,7 +610,7 @@ paths:
                                       type: string
                                       description: "The thumbnail url"
                                 data:
-                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/EPGEntity.yml#EPGEntity"
+                                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/EPGEntity.yml#/EPGEntity"
 
         '400':
           description: Standard error response
