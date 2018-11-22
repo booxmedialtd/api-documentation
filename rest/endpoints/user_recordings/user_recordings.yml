@@ -284,6 +284,38 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/user_recordings/{user_recordings_id}:
+    patch:
+      tags:
+      - Recording Requests
+      summary: Update the status of a recording, for example to update how much time the user has watched.
+      operationId: putRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
+            example:
+              op: "replace"
+              path: "/data/0/attributes/watched_time_seconds"
+              value: 923
+              from: null
+
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recordings/{user_recordings_id}/streams:
@@ -353,8 +385,10 @@ paths:
     patch:
       tags:
       - Recordings
-      summary: Update one or more attributes of an existing entity
-      description: This can be used, for example, to reset the amount of time that a recording has been watched.
+      summary: (Deprecated) Update one or more attributes of an existing entity
+      description: >-
+        This can be used, for example, to reset the amount of time that a recording has been watched.
+        Deprecated in favour of PATCH /user/{user_id}/user_recordings/{user_recordings_id}
       operationId: modifyRecordings
       parameters:
         - in: path
