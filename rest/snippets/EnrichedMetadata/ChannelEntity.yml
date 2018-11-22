@@ -14,7 +14,7 @@ ChannelEntity:
     content_flags:
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
     display_order_weight:
       type: integer
       example: 10
