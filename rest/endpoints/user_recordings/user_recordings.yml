@@ -48,12 +48,10 @@ paths:
           name: filter
           required: false
           description: >
-            Only the following filters are supported: [future]
             Example usage:  /user/{user_id}/user_recordings?filter[status]=WAITING
-            Note: We do not support filtering on all of the statuses and only allow the client to specify that it
-            wants only requests which have not been recorded (or failed).
           schema:
             type: string
+          enum: [NEW,WAITING,RECORDING,FAILED,FAILED_PERMANENTLY,COMPLETE]
       responses:
         '200':
           description: "Successful response"
@@ -337,6 +335,23 @@ paths:
           description: |
             The resource was updated successfully, no response body is needed
 
+    delete:
+      tags:
+      - Recordings
+      summary: Delete a recording
+      operationId: deleteUserRecording
+      parameters:
+        - in: path
+          name: user_recordings_id
+          description: The id of the recording
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
