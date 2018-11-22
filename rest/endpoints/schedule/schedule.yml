@@ -79,7 +79,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -143,7 +143,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "3173335a-810b-4b53-b009-122a169f9920"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
         '400':
           description: Standard error response
           content:
@@ -227,7 +227,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -304,7 +304,7 @@ paths:
                             description: "The id of the entity being referenced"
                             example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#BroadcastSlotEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
           '400':
             description: Standard error response
             content:

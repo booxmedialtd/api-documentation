@@ -93,7 +93,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
 
         '400':
           description: Standard error response
@@ -156,7 +156,7 @@ paths:
                         description: "The id of the entity being referenced"
                         example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
                       attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#SeriesEntity"
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
@@ -172,7 +172,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "e00adc12-6fcb-4176-832f-45a0b84aa908"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeasonEntity.yml#SeasonEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeasonEntity.yml#/SeasonEntity"
         '400':
           description: Standard error response
           content:
@@ -244,7 +244,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
         '400':
           description: Standard error response
           content:

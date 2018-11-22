@@ -62,7 +62,7 @@ paths:
                         attributes:
                           type: array
                           items:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/StreamEntity.yml#StreamEntity"
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/StreamEntity.yml#/StreamEntity"
         '400':
           description: Standard error response
           content:

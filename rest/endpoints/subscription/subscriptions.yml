@@ -57,4 +57,4 @@ paths:
                       description: "The id of the entity being referenced"
                       example: "89e3a147-2ff6-448f-959f-a6200434259d"
                     attributes:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Subscription/ProductEntity.yml#ProductEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Subscription/ProductEntity.yml#/ProductEntity"

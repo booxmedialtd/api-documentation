@@ -27,9 +27,9 @@ ChannelEntity:
       type: object
       properties:
         live_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
         npvr_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#ChannelServicePermissionsSnippet"
+          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
     dvb:
       type: array
       description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."

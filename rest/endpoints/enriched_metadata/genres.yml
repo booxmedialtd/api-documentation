@@ -90,7 +90,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "cc96d60f-8dc3-4a00-9d1f-761fe4933d8a"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
         '400':
           description: Standard error response
           content:
