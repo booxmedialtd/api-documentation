@@ -43,30 +43,30 @@ UserRecordingRequestEntity:
     relationships:
       type: array
       items:
-        anyOf:
+        oneOf:
         - type: object
           required:
           - id
           - type
           properties:
-          id:
-            type: string
-            description: The identifier of the entity
-            example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
-          type:
-            type: string
-            description: The type of entity being included in the response body
-            example: "Program"
+            id:
+              type: string
+              description: The identifier of the entity
+              example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
+            type:
+              type: string
+              description: The type of entity being included in the response body
+              example: "Program"
         - type: object
           required:
           - id
           - type
           properties:
-          id:
-            type: string
-            description: The identifier of the entity
-            example: abdf8785-cb23-445b-946f-69e8770500a1
-          type:
-            type: string
-            description: The type of entity being included in the response body
-            example: "RecordingTag"
+            id:
+              type: string
+              description: The identifier of the entity
+              example: abdf8785-cb23-445b-946f-69e8770500a1
+            type:
+              type: string
+              description: The type of entity being included in the response body
+              example: "RecordingTag"

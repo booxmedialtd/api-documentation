@@ -88,20 +88,6 @@ paths:
                             The id of the request entity
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
-                  included:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          example: "BroadcastSlot"
-                          description: The type of the entity that is being included.  It will always be [BroadcastSlot] in this endpoint.
-                        id:
-                          type: string
-                          example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-                        attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/BroadcastSlotEntity.yml#BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
@@ -117,6 +103,69 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------
 
   /user_recording_requests/{recording_request_id}:
+    get:
+      tags:
+      - Recording Requests
+      summary: Obtain details of a particular user recording request
+      operationId: getRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          type: string
+          example: d9db7aca-bc54-410f-af0d-a286adc0911f
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: Program
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "d9db7aca-bc54-410f-af0d-a286adc0911f"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+                  included:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "Program"
+                            description: The type of the entity that is being included.
+                          id:
+                            type: string
+                            example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                      - type: object
+                        properties:
+                          type:
+                            type: string
+                            example: "RecordingTag"
+                            description: The type of the entity that is being included.
+                          id:
+                            type: string
+                            example: abdf8785-cb23-445b-946f-69e8770500a1
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingTagEntity.yml#UserRecordingTagEntity"
+
     patch:
       tags:
       - Recording Requests
