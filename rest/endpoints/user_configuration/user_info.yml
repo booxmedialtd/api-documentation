@@ -46,7 +46,7 @@ paths:
         - in: path
           name: user_id
           required: true
-          description: The user identity (please do not use an email address to identify the user)
+          description: The user identity.  Note that this endpoint is unique in that it accepts legacy user identity (email addresses) as a user_id.
           schema:
             type: string
       responses:
