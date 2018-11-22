@@ -130,7 +130,7 @@ paths:
                     properties:
                       type:
                         type: string
-                        example: Program
+                        example: UserRecordingRequest
                       id:
                         type: string
                         description: "The id of the entity being referenced"
