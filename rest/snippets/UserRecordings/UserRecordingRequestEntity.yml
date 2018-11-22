@@ -34,8 +34,9 @@ UserRecordingRequestEntity:
 
     recording_location:
       type: string
-      example: "CLOUD"
-      description: "Where the user wants to make the recording, either of these options are accepted [CLOUD|LOCAL|FOREIGN]"
+      example: "cloud"
+      description: "Where the user wants to make the recording, either of these options are accepted [cloud|stb|foreign]"
+      enum: [cloud,stb,foreign]
 
     requested_at_timestamp:
       type: integer
