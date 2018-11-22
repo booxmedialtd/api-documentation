@@ -1,9 +1,0 @@
-UserRecordingTagEntity:
-  type: "object"
-  required:
-  - human_friendly
-  properties:
-    human_friendly:
-      type: string
-      example: "Title includes 'simpsons' and Genre is 'Comedy'"
-      description: "The human readable description of the rule.  "

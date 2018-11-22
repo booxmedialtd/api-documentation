@@ -10,10 +10,6 @@ tags:
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
-- name: "User Recording Tags"
-  description: >-
-    In the future content will be tagged.  The system will record content for a user that is tagged up with whatever the user indicates they are interested in.
-    Currently the "tagging" process is mocked up by looking exclusively at the program title.  This endpoint structure is unlikely to change when the system is improved.
 servers:
 - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
@@ -151,18 +147,18 @@ paths:
                             type: string
                             example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
                           attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#ProgramEntity"
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
                       - type: object
                         properties:
                           type:
                             type: string
-                            example: "RecordingTag"
+                            example: "ClassificationTag"
                             description: The type of the entity that is being included.
                           id:
                             type: string
                             example: abdf8785-cb23-445b-946f-69e8770500a1
                           attributes:
-                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingTagEntity.yml#UserRecordingTagEntity"
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
 
     patch:
       tags:

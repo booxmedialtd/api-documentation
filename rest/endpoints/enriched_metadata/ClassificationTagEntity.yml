@@ -1,0 +1,29 @@
+ClassificationTagEntity:
+  type: "object"
+  required:
+  - human_friendly
+  properties:
+    matching_rules:
+      type: array
+      items:
+        type: object
+        required:
+        - key
+        - operator
+        - value
+        properties:
+          key:
+            type: string
+            description: The metadata key to compare against, expressed in the format "Entity.attribute_name"
+            example: "Genre.name"
+          operator:
+            type: string
+            example: "eq"
+            enum: [eq,neq,gt,lt,gte,lte,contains]
+          value:
+            type: string
+            example: "Comedy"
+    human_friendly:
+      type: string
+      example: "Title includes 'simpsons' and Genre is 'Comedy'"
+      description: "The human readable description of the rule.  "
