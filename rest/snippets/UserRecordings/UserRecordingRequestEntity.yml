@@ -76,4 +76,4 @@ UserRecordingRequestEntity:
             type:
               type: string
               description: The type of entity being included in the response body
-              example: "RecordingTag"
+              example: "ClassificationTag"
