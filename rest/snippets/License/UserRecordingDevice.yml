@@ -1,0 +1,16 @@
+UserRecordingDevice:
+  type: object
+  properties:
+    type:
+      type: string
+      description: What type of device this is
+      enum: [cloud,stb,foreign]
+      example: cloud
+    quota_megabytes:
+      type: integer
+      description: How many megabytes the user is allowed to record on this device
+      example: 2048
+    quota_used:
+      type: integer
+      description: How many megabytes of their quota the user has filled
+      example: 640

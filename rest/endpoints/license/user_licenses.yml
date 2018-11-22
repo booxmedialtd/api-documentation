@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  description: >
+    This endpoint provides metadata about User Licenses
+  version: 1.0.0
+  title: User Licenses
+tags:
+  - name: User Recording
+    description: |
+      User recording
+servers:
+  - url: 'https://demo.aminocom.com/api/license/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# RECORDING DEVICES
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /users/{user_id}/recording_devices:
+    get:
+      tags:
+      - User Recording
+      summary: "Fetch a list of recording devices that are available to the user"
+      description: >-
+        Note that the responsibility of managing recording devices is the responsibility of the Licensing component of the AminoTV platform.
+        This endpoint is listed in the recording section for convenience, but may be more logically placed in the licensing section.
+      operationId: getRecordingDevices
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recordings for
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingDevice
+                        id:
+                          type: string
+                          example: e61c98db-9b36-4a3a-af86-ac7c4ccb960c
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserRecordingDevice.yml#/UserRecordingDevice"

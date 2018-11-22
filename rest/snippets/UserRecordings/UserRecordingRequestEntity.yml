@@ -3,15 +3,20 @@ UserRecordingRequestEntity:
   required:
   - original_broadcast_slot
   - recording_location
-  - requested_at_timestamp
   - multiple_recording
-  - status
   properties:
 
     original_broadcast_slot:
         type: object
+        required:
+        - title
         description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
         properties:
+          epg_id:
+            type: integer
+            example: 1337
+            description: >
+              Support for this field will be dropped when we migrate to using recording tags.
           channel_id:
             type: string
             example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
@@ -25,12 +30,16 @@ UserRecordingRequestEntity:
     record_series_of_episodes:
       type: boolean
       example: true
-      description: "This will be 'true' for recording series, or other situations where more than one user recording is expected to be made"
+      description: >
+        This will be 'true' for recording series, or other situations where more than one user recording is expected to be made.
+        If the field is omitted from a POST request it will default to `false`
 
     maximum_episodes_to_record:
       type: integer
       example: 10
-      description: "How many episodes of the program to record."
+      description: >
+        How many episodes of the program to record.
+        If the field is omitted from a POST request it will default to 0
 
     recording_location:
       type: string
@@ -41,12 +50,17 @@ UserRecordingRequestEntity:
     requested_at_timestamp:
       type: integer
       example: 1541685487
-      description: "The timestamp at which the request was made"
+      description: >
+        The timestamp at which the request was made.
+        This field cannot be supplied in POST or PATCH requests
 
     status:
       type: string
-      description: "One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE]"
+      description: >
+        One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE].
+        This field cannot be supplied in POST requests, but may be altered with PATCH
       example: WAITING
+      enum: [NEW,RECORDING,RECORDING_FAILED,FAILED_PERMANENTLY,WAITING,COMPLETE]
 
     relationships:
       type: array
