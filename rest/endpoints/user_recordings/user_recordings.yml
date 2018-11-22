@@ -94,6 +94,52 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+    post:
+      tags:
+      - Recording Requests
+      summary: Request that a new recording is made
+      operationId: createRecordingRequest
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to schedule the recording for.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingRequest
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "c74e8b26-079c-4d01-95a2-da8fb6139179"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+
 
 # ---------------------------------------------------------------------------------------------------------------------------------
 
