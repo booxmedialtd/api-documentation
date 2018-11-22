@@ -8,12 +8,19 @@ UserRecordingRequestEntity:
   - status
   properties:
 
-    legacy_program_id:
-      type: integer
-      example: 101
-      description: >-
-        While we migrate to the new recording system you will need to use this id in the frontend to refer to the recording request.
-        See documentation in Confluence for details.
+    original_broadcast_slot:
+        type: object
+        description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
+        properties:
+          channel_id:
+            type: string
+            example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+          time_start:
+            type: integer
+            example: 1516798894
+          title:
+            type: string
+            example: "Die Hard"
 
     record_series_of_episodes:
       type: boolean
