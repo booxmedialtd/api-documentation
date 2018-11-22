@@ -41,25 +41,32 @@ UserRecordingRequestEntity:
       example: WAITING
 
     relationships:
-      type: object
-      required:
-      - BroadcastSlot
-      properties:
-        BroadcastSlot:
-          type: object
+      type: array
+      items:
+        oneOf:
+        - type: object
           required:
-          - data
+          - id
+          - type
           properties:
-            data:
-              type: object
-              required:
-              - id
-              - type
-              properties:
-                id:
-                  type: string
-                  example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-                type:
-                  type: string
-                  example: "BroadcastSlot"
-
+          id:
+            type: string
+            description: The identifier of the entity
+            example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
+          type:
+            type: string
+            description: The type of entity being included in the response body
+            example: "Program"
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+          id:
+            type: string
+            description: The identifier of the entity
+            example: abdf8785-cb23-445b-946f-69e8770500a1
+          type:
+            type: string
+            description: The type of entity being included in the response body
+            example: "RecordingTag"
