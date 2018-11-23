@@ -10,9 +10,6 @@ tags:
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
-- name: User Recording Devices
-  description: >-
-    Recording devices are places where a user may record to.
 - name: Legacy support
   description:
     These endpoints should be used with caution as they are used to support legacy use cases and are deprecated.
