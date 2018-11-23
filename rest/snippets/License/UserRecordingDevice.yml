@@ -6,6 +6,11 @@ UserRecordingDevice:
       description: What type of device this is
       enum: [cloud,stb,foreign]
       example: cloud
+    physical_device_id:
+      type: string
+      description: >
+        A unique identifier for the device.  This field will be null when the device type is either cloud or foreign
+      example: null
     quota_megabytes:
       type: integer
       description: How many megabytes the user is allowed to record on this device
