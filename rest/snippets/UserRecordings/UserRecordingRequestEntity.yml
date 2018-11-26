@@ -41,6 +41,14 @@ UserRecordingRequestEntity:
           description: >
             How many episodes of the program to record.
             If the field is omitted from a POST request it will default to 0
+        matching_method:
+          type: string
+          enum: [title,series_id]
+          example: "title"
+          description: >
+            What method of matching this recording was requested with.
+            In the future "tagging" will become an option.
+            If the field is omitted from a POST request it will default to "title"
         series_id:
           type: string
           example: "d13h4rd"
