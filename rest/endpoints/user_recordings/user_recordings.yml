@@ -258,7 +258,17 @@ paths:
           schema:
             type: string
           example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-
+        - in: query
+          name: delete_future_occurances
+          description: >
+            If the particular recording is part of a series then setting this parameter to "true" will cause
+            all future occurances of the series to not be deleted.  In other words setting this parameter to
+            "true" cancels the request for the whole series, not just the single episode.
+            If this parameter is omitted it will default to "false"
+          schema:
+            type: string
+            enum: [true,false]
+          example: "true"
       responses:
         '204':
           description: |

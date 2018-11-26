@@ -11,11 +11,11 @@ UserRecordingDevice:
       description: >
         A unique identifier for the device.  This field will be null when the device type is either cloud or foreign
       example: null
-    quota_megabytes:
+    quota_hours:
       type: integer
-      description: How many megabytes the user is allowed to record on this device
+      description:  How many hours of content the user is allowed to record on this device.
       example: 2048
-    quota_used:
+    hours_used:
       type: integer
-      description: How many megabytes of their quota the user has filled
+      description: How many hours of their quota the user has filled
       example: 640

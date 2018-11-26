@@ -3,7 +3,6 @@ UserRecordingRequestEntity:
   required:
   - original_broadcast_slot
   - recording_location
-  - multiple_recording
   properties:
 
     original_broadcast_slot:
@@ -27,19 +26,27 @@ UserRecordingRequestEntity:
             type: string
             example: "Die Hard"
 
-    record_series_of_episodes:
-      type: boolean
-      example: true
-      description: >
-        This will be 'true' for recording series, or other situations where more than one user recording is expected to be made.
-        If the field is omitted from a POST request it will default to `false`
-
-    maximum_episodes_to_record:
-      type: integer
-      example: 10
-      description: >
-        How many episodes of the program to record.
-        If the field is omitted from a POST request it will default to 0
+    serial_recording:
+      type: object
+      properties:
+        record_series_of_episodes:
+          type: boolean
+          example: true
+          description: >
+            This will be 'true' for recording series, or other situations where more than one user recording is expected to be made.
+            If the field is omitted from a POST request it will default to `false`
+        maximum_episodes_to_record:
+          type: integer
+          example: 10
+          description: >
+            How many episodes of the program to record.
+            If the field is omitted from a POST request it will default to 0
+        series_id:
+          type: string
+          example: "d13h4rd"
+          description: >
+            If the request is for a series to be recorded then this will be its identifier.
+            If the field is omitted from a POST request it will default to null.
 
     recording_location:
       type: string
