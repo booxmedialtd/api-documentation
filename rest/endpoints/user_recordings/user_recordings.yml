@@ -7,6 +7,9 @@ tags:
   description: >-
     Recording requests are requests for us to record a specific program.
     They will be replaced with the new tag based recording system in due course.
+- name: Recording Slots
+  description: >-
+    Recording slots are Broadcast Slots that are intended to be recorded
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
@@ -26,12 +29,110 @@ security:
 paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /recording_slots/{recording_slot_id}:
+
+   delete:
+      tags:
+      - Recording Slots
+      summary: Prevent a particular recording slot from being recorded
+      operationId: deleteUserRecordingRequest
+      parameters:
+        - in: path
+          name: recording_slot_id
+          description: The id of the recording slot request
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+        - in: query
+          name: delete_series
+          description: >
+            If the particular recording is part of a series then setting this parameter to "true" will cause
+            all future occurances of the series to not be deleted.  In other words setting this parameter to
+            "true" cancels the request for the whole series, not just the single episode.
+            If this parameter is omitted it will default to "false"
+            If all of the recording slots for a recording request are deleted then the recording request should
+            be marked as COMPLETE.
+          schema:
+            type: string
+            enum: [true,false]
+          example: "true"
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /users/{user_id}/user_recording_requests/relationships/recording_slots:
+    get:
+      summary: Return a list of recording slots for a user
+      tags:
+      - Recording Slots
+      operationId: indexRecordingSlots
+      parameters:
+      - in: path
+        name: user_id
+        description: The user id to obtain recordings for
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: filter
+        required: false
+        description: >
+          How many seconds in the future to look for slots.
+          By default this is 3600
+          Example usage:  /user/{user_id}/user_recordings?filter[window_seconds]=3600
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: RecordingSlot
+                        id:
+                          type: string
+                          example: ddbfa001-1de3-4210-bd3f-183e771db48d
+                          description: >-
+                            The id of the request entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingSlotEntity.yml#/RecordingSlotEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recording_requests/:
     get:
       tags:
       - Recording Requests
-      summary: Get an index of user recording request entities
+      summary: Get an index of user recording request entities.  Requests are sorted by date ascending.
       operationId: indexRecordingRequests
       parameters:
         - in: path
@@ -44,7 +145,8 @@ paths:
           name: page_number
           required: false
           description: >
-            The page number (100 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
+            The page number (100 results per page) of results to retrieve.
+            If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
           schema:
             type: integer
         - in: query
@@ -194,7 +296,18 @@ paths:
                   included:
                     type: array
                     items:
-                      oneOf:
+                      anyOf:
+                        - type: object
+                          properties:
+                            type:
+                              type: string
+                              example: "RecordingSlot"
+                              description: The type of the entity that is being included.
+                            id:
+                              type: string
+                              example: ddbfa001-1de3-4210-bd3f-183e771db48d
+                            attributes:
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/RecordingSlotEntity.yml#/RecordingSlotEntity"
                         - type: object
                           properties:
                             type:
@@ -246,34 +359,6 @@ paths:
         204:
           description: |
             The resource was updated successfully, no response body is needed
-
-    delete:
-      tags:
-      - Recording Requests
-      summary: Cancel a request to record something
-      operationId: deleteUserRecordingRequest
-      parameters:
-        - in: path
-          name: recording_request_id
-          description: The id of the recording request
-          schema:
-            type: string
-          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-        - in: query
-          name: delete_future_occurances
-          description: >
-            If the particular recording is part of a series then setting this parameter to "true" will cause
-            all future occurances of the series to not be deleted.  In other words setting this parameter to
-            "true" cancels the request for the whole series, not just the single episode.
-            If this parameter is omitted it will default to "false"
-          schema:
-            type: string
-            enum: [true,false]
-          example: "true"
-      responses:
-        '204':
-          description: |
-            The resource was deleted successfully
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------

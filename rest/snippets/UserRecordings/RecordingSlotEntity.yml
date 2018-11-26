@@ -1,0 +1,23 @@
+RecordingSlotEntity:
+  type: object
+  properties:
+    original_broadcast_slot:
+        type: object
+        required:
+        - title
+        description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
+        properties:
+          epg_id:
+            type: integer
+            example: 1337
+            description: >
+              Support for this field will be dropped when we migrate to using recording tags.
+          channel_id:
+            type: string
+            example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+          time_start:
+            type: integer
+            example: 1516798894
+          title:
+            type: string
+            example: "Die Hard"

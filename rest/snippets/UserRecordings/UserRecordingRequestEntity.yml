@@ -5,27 +5,6 @@ UserRecordingRequestEntity:
   - recording_location
   properties:
 
-    original_broadcast_slot:
-        type: object
-        required:
-        - title
-        description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
-        properties:
-          epg_id:
-            type: integer
-            example: 1337
-            description: >
-              Support for this field will be dropped when we migrate to using recording tags.
-          channel_id:
-            type: string
-            example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
-          time_start:
-            type: integer
-            example: 1516798894
-          title:
-            type: string
-            example: "Die Hard"
-
     serial_recording:
       type: object
       properties:
@@ -59,7 +38,9 @@ UserRecordingRequestEntity:
     recording_location:
       type: string
       example: "cloud"
-      description: "Where the user wants to make the recording, either of these options are accepted [cloud|stb|foreign]"
+      description: >
+        Where the user wants to make the recording, either of these options are accepted [cloud|stb|foreign]
+        By default this is "cloud"
       enum: [cloud,stb,foreign]
 
     requested_at_timestamp:
@@ -68,7 +49,6 @@ UserRecordingRequestEntity:
       description: >
         The timestamp at which the request was made.
         This field cannot be supplied in POST or PATCH requests
-
     status:
       type: string
       description: >
@@ -80,7 +60,20 @@ UserRecordingRequestEntity:
     relationships:
       type: array
       items:
-        oneOf:
+        anyOf:
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The identifier of the entity
+              example: 7032c511-5ff6-42c9-932a-018d342f33f2
+            type:
+              type: string
+              description: There may be many different RecordingSlot entities, only one is shown in the model
+              example: "RecordingSlot"
         - type: object
           required:
           - id
@@ -92,7 +85,7 @@ UserRecordingRequestEntity:
               example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
             type:
               type: string
-              description: The type of entity being included in the response body
+              description: This is the original program that the request was made on.
               example: "Program"
         - type: object
           required:
@@ -105,5 +98,5 @@ UserRecordingRequestEntity:
               example: abdf8785-cb23-445b-946f-69e8770500a1
             type:
               type: string
-              description: The type of entity being included in the response body
+              description: You should not expect ClassificationTag to be related if a Program is related to the request.
               example: "ClassificationTag"
