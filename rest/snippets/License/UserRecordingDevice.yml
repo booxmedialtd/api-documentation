@@ -19,3 +19,7 @@ UserRecordingDevice:
       type: integer
       description: How many hours of their quota the user has filled
       example: 640
+    max_concurrent_recordings:
+      type: integer
+      description: How many concurrent recordings this device is able to make (and the user is entitled to make)
+      example: 3
