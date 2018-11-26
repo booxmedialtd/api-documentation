@@ -107,20 +107,22 @@ paths:
 
 # ------------------------------------------------------------------------
 
-/users/{user_id}:
+  /users/{user_id}:
     get:
       tags:
       - Users
       summary: >-
         Get the details for a particular user.
-        Note:  A non-admin user MAY ONLY receive information about themself, not any other user
+        Note  A non-admin user MAY ONLY receive information about themself, not any other user.
+        There is duplication with the non-management API endpoint returning the exact same data
+        because our authentication system does not easily allow for RBAC.
       operationId: getUser
       parameters:
         - in: query
           name: included
           required: false
           description: >-
-            See http://jsonapi.org/format/#fetching-includes
+            See "http://jsonapi.org/format/#fetching-includes"
             By default nothing is included.  We support a limited set of relationships for
             inclusion, other relationships need to be called as separate endpoints.
           schema:
@@ -202,7 +204,6 @@ paths:
 # ------------------------------------------------------------------------
 
   /users/{user_id}/relationships/market_segments:
-
     put:
       tags:
       - Market Segmentation

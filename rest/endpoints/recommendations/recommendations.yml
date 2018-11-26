@@ -86,7 +86,7 @@ paths:
   /recommendation/popular_recordings:
     get:
       tags:
-      - "Recommendations"   
+      - "Recommendations"
       description: >-
         Returns a list of content that is recommended based on it being recorded by a lot of people.
         This endpoint will *always* include the Program entity
@@ -95,7 +95,9 @@ paths:
         - name: bucket
           in: query
           description: >-
-            The bucket of results to fetch, allowable values are [daily|weekly].  
+            The bucket of results to fetch, allowable values are [daily|weekly].
+            "Daily" recordings means starting from 4am of today till 4am next day (1 day of data)
+            "Weekly" recordings means starting from 4am of tomorrow morning and going forward one week (1 week of data)
             Default is "weekly" if we use asynchronous workers, otherwise daily
           required: false
           schema:
@@ -131,8 +133,8 @@ paths:
                   included:
                     type: array
                     description: "This endpoint will *always* include the Program entity"
-                    items:                      
-                      type: object                        
+                    items:
+                      type: object
                       properties:
                         type:
                           type: string
@@ -142,7 +144,7 @@ paths:
                           type: string
                           example: "f4f414a8-e29f-4a77-a352-a011b934bb9c"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"                      
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
         '400':
           description: Standard error response
           content:
