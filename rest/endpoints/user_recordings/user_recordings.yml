@@ -117,8 +117,9 @@ paths:
               original_broadcast_slot:
                 epg_id: 1337
                 title: "Die Hard"
-              recording_location: stb
-              multiple_recording: true
+              serial_recording:
+                recording_location: stb
+                multiple_recording: true
 
 
       responses:
