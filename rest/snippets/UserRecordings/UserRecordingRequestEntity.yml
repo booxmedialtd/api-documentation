@@ -54,8 +54,14 @@ UserRecordingRequestEntity:
       description: >
         One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE].
         This field cannot be supplied in POST requests, but may be altered with PATCH
-      example: WAITING
+      example: RECORDING_FAILED
       enum: [NEW,RECORDING,RECORDING_FAILED,FAILED_PERMANENTLY,WAITING,COMPLETE]
+
+    status_reason:
+      type: string
+      description: >
+        When the status of the request changes this field should be updated with the reason for the change
+      example: "Out of disk space"
 
     relationships:
       type: array
