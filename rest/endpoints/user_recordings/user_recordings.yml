@@ -400,6 +400,8 @@ paths:
             to a whole day rather than using the time of the request).
             Only a single value may be supplied.
             This response must be privately cached until midnight of the day it was first made.
+            Example:  If you make this request at 09:23 am on 28th November with "expiring=3" then you should expect three whole days - 29th, 30th, and 1st Dec.
+            This is because we round the start of the window to midnight of the day that the request was made, and then include three days.
           schema:
             type: string
       responses:
