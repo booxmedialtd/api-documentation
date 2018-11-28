@@ -23,6 +23,54 @@ paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /genres:
+    get:
+      tags:
+      - Genres
+      summary: Get an index of genres
+      operationId: indexGenres
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: Genre
+                        id:
+                          type: string
+                          example: cc96d60f-8dc3-4a00-9d1f-761fe4933d8a
+                          description: >-
+                            The id of the genre entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/GenreEntity.yml#/GenreEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   /genres/{genre_id}/programs:
     get:
       summary: "Get list of programs for a genre."
