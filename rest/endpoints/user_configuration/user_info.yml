@@ -24,7 +24,7 @@ paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}:
+  /users/{user_id_or_email}:
     get:
       tags:
       - Users
@@ -38,13 +38,13 @@ paths:
           required: false
           description: >-
             See http://jsonapi.org/format/#fetching-includes
-            By default nothing is included.  We support a limited set of relationships for 
+            By default nothing is included.  We support a limited set of relationships for
             inclusion, other relationships need to be called as separate endpoints.
           schema:
             type: integer
             format: int64
         - in: path
-          name: user_id
+          name: user_id_or_email
           required: true
           description: The user identity.  Note that this endpoint is unique in that it accepts legacy user identity (email addresses) as a user_id.
           schema:
