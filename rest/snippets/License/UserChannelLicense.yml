@@ -7,10 +7,10 @@ UserChannelLicense:
       description: "The id of the channel to which this value object is attached"
     permissions_granted:
       type: object
-      properties:
-        required:
+      required:
         - services_enabled
         - trickplay_enabled
+      properties:
         services_enabled:
           type: array
           description: >-
