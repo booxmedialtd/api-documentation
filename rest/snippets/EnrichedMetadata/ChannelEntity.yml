@@ -13,6 +13,10 @@ ChannelEntity:
       type: string
       example: "YLE TV1"
       description: "The short name of the channel to show in listings"
+    logical_channel_number:
+      type: integer
+      example: 1
+      description: A numeric channel number that is easy for the user to enter on their remote control
     media_type:
       type: string
       example: "mixed"
