@@ -29,7 +29,7 @@ paths:
   /user/{user_id}/relationships/channel_licenses:
     get:
       summary: |
-        Get an index of the licenses that a user has for channels        
+        Get an index of the licenses that a user has for channels
       tags:
       - Channels
       operationId: "GetUserChannelLicenses"
@@ -44,6 +44,8 @@ paths:
       responses:
         '200':
           description: "Successful response"
+          headers:
+            cache-control: "public, max-age=900"
           content:
             application/json:
               schema:
@@ -101,7 +103,7 @@ paths:
       responses:
          '201':
             description: |
-              Successful response.          
+              Successful response.
             content:
               text/plain:
                 schema:
