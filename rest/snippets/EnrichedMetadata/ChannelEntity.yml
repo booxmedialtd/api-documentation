@@ -2,15 +2,23 @@ ChannelEntity:
   type: object
   required:
       - name
+      - media_type
       - content_flags
       - display_order_weight
       - images
+      - availability_window
       - services_available
   properties:
     name:
       type: string
       example: "YLE TV1"
       description: "The short name of the channel to show in listings"
+    media_type:
+      type: string
+      example: "mixed"
+      enum: [mixed,audio]
+      description: >-
+        What sort of media is being broadcast.  This can be mixed (audio and video) or just audio (radio stations).
     content_flags:
       type: array
       items:
@@ -23,56 +31,108 @@ ChannelEntity:
       type: array
       items:
         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
-    services_available:
+    availability_window:
       type: object
       properties:
-        live_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
-        npvr_service:
-          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelServicePermissionsSnippet.yml#/ChannelServicePermissionsSnippet"
-    dvb:
-      type: array
-      description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
-      items:
-        type: object
+        time_limited_event:
+          type: boolean
+          example: false
+          description: >-
+            This will be true if this channel is dedicated to a particular event, such as a Royal Wedding
+            Default: false
+        not_before_timestamp:
+          type: integer
+          example: 1543503445
+          description: >-
+            The Unix epoch timestamp that the channel is available from
+            Default: 0
+        not_after_timestamp:
+          type: integer
+          example: 1577750400
+          description: >-
+            The Unix epoch timestamp that the channel is available until
+            Default: 4102444799
+    services_available:
+      type: object
+      description: All of the keys are optional.  If a key is missing you may assume all of the values it would contain are "false"
+      properties:
         required:
-        - transmission_type
-        - virtual_channel_number
-        - triplet
-        properties:
-          operator_name:
+        - services_enabled
+        - trickplay_enabled
+        services_enabled:
+          type: array
+          description: >-
+            An array of the service types that are available for this channel.
+            Services may be one of [live,npvr,lpvr,catchup,startover]
+          items:
             type: string
-            example: "Blue Lake Communications Oy"
-            description: (optional) The name of the operator providing this service
-          transmission_type:
+            example: "npvr"
+            enum: [live,npvr,lpvr,catchup,startover]
+        trickplay_enabled:
+          type: array
+          description: >-
+            An array of services that trickplay is enabled for.
+            If a service does not appear in this array then trickplay is disabled for that service.
+            Trickplay allows the user to pause, rewind, and fast-forward.
+            Live channels cannot be fast-forwarded.  Trickplay allows the user to pause live television.
+            Rewinding live television is treated as "startover service".
+          items:
             type: string
-            description: >-
-              DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
-            example: "C"
-          virtual_channel_number:
-            type: integer
-            example: 30
-            description: Formerly known as a 'logical_channel_number' (see "https://en.wikipedia.org/wiki/Virtual_channel")
-          triplet:
+            example: "npvr"
+            enum: [live,npvr,lpvr,catchup,startover]
+    delivery_network:
+      type: object
+      required:
+      - transport_network
+      properties:
+        transport_network:
+          type: string
+          example: DVB
+          enum: [DVB,IPTV,OTT]
+          description: What transport network this channel is carried over
+        dvb:
+          type: array
+          description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
+          items:
             type: object
             required:
-            - original_network_id
-            - transport_stream
-            - service_id
+            - transmission_type
+            - virtual_channel_number
+            - triplet
             properties:
-              original_network_id:
-                type: integer
-                description: >-
-                  An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
-                  Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
-                  Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
-                example: 42249
-              transport_stream_id:
-                type: integer
-                example: 122
-              service_id:
+              operator_name:
                 type: string
-                example: 1553
+                example: "Blue Lake Communications Oy"
+                description: (optional) The name of the operator providing this service
+              transmission_type:
+                type: string
+                description: >-
+                  DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
+                example: "C"
+              virtual_channel_number:
+                type: integer
+                example: 30
+                description: Formerly known as a 'logical_channel_number' (see "https://en.wikipedia.org/wiki/Virtual_channel")
+              triplet:
+                type: object
+                required:
+                - original_network_id
+                - transport_stream
+                - service_id
+                properties:
+                  original_network_id:
+                    type: integer
+                    description: >-
+                      An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
+                      Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
+                      Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
+                    example: 42249
+                  transport_stream_id:
+                    type: integer
+                    example: 122
+                  service_id:
+                    type: string
+                    example: 1553
 
     relationships:
       type: array
