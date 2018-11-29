@@ -18,7 +18,7 @@ UserChannelLicense:
             Services may be one of [live,npvr,lpvr,catchup,startover]
           items:
             type: string
-            example: "npvr"
+            example: ["live","npvr","catchup"]
             enum: [live,npvr,lpvr,catchup,startover]
         trickplay_enabled:
           type: array
@@ -30,5 +30,5 @@ UserChannelLicense:
             Rewinding live television is treated as "startover service".
           items:
             type: string
-            example: "npvr"
+            example: ["npvr"]
             enum: [live,npvr,lpvr,catchup,startover]
