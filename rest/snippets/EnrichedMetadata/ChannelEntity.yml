@@ -63,10 +63,10 @@ ChannelEntity:
         These services are for the *channel* as a whole.  Each user needs to have their own license in order to make use
         of these services.  In other words, this list of services determines whether it is possible to grant a license to
         the user and does not confer these abilities on any particular user.
-      properties:
-        required:
+      required:
         - services_enabled
         - trickplay_enabled
+      properties:
         services_enabled:
           type: array
           description: >-
