@@ -58,7 +58,11 @@ ChannelEntity:
             Default: 4102444799
     services_available:
       type: object
-      description: All of the keys are optional.  If a key is missing you may assume all of the values it would contain are "false"
+      description: >-
+        All of the keys are optional.  If a key is missing you may assume all of the values it would contain are "false"
+        These services are for the *channel* as a whole.  Each user needs to have their own license in order to make use
+        of these services.  In other words, this list of services determines whether it is possible to grant a license to
+        the user and does not confer these abilities on any particular user.
       properties:
         required:
         - services_enabled

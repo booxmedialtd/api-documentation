@@ -82,6 +82,8 @@ paths:
       responses:
         '200':
           description: "Successful response"
+          headers:
+            cache-control: "public, max-age=900"
           content:
             application/json:
               schema:

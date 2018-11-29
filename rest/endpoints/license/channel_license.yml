@@ -45,7 +45,7 @@ paths:
         '200':
           description: "Successful response"
           headers:
-            cache-control: "public, max-age=900"
+            cache-control: "private, max-age=600"
           content:
             application/json:
               schema:
@@ -115,7 +115,7 @@ paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /user/{user_id}/relationships/channel_licenses/{channel_license_id}:
+  /channel_licenses/{channel_license_id}:
     delete:
       summary: |
           Remove a channel license from a user.
@@ -139,7 +139,7 @@ paths:
       responses:
         '204':
           description: |
-            The user session was deleted successfully
+            The user license was deleted successfully
 
         '400':
           description: Standard error response

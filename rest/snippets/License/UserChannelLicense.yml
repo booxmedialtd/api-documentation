@@ -8,29 +8,27 @@ UserChannelLicense:
     permissions_granted:
       type: object
       properties:
-        live_service:
-          type: object
-          properties:
-            fast_forward_available:
-              type: boolean
-              example: True
-              description: "If this key is absent you can assume that its value is false"
-            rewind_startover_available:
-              type: boolean
-              example: True
-              description: "If this key is absent you can assume that its value is false"
-            pause_available:
-              type: boolean
-              example: True
-              description: "If this key is absent you can assume that its value is false"
-        pvr_service:
-          type: object
-          properties:
-            may_record_npvr:
-              type: boolean
-              example: True
-              description: This will be set true if the user is permitted to make cloud recordings
-            may_record_local:
-              type: boolean
-              example: false
-              description: This will be set true if the user is allowed to record locally on their master STB
+        required:
+        - services_enabled
+        - trickplay_enabled
+        services_enabled:
+          type: array
+          description: >-
+            An array of the service types that the user is entitled to for this channel
+            Services may be one of [live,npvr,lpvr,catchup,startover]
+          items:
+            type: string
+            example: "npvr"
+            enum: [live,npvr,lpvr,catchup,startover]
+        trickplay_enabled:
+          type: array
+          description: >-
+            An array of services that the user is allowed to use trickplay for on this channel.
+            If a service does not appear in this array then trickplay is disabled for that service.
+            Trickplay allows the user to pause, rewind, and fast-forward.
+            Live channels cannot be fast-forwarded.  Trickplay allows the user to pause live television.
+            Rewinding live television is treated as "startover service".
+          items:
+            type: string
+            example: "npvr"
+            enum: [live,npvr,lpvr,catchup,startover]
