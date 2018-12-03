@@ -2,38 +2,55 @@ UserRecordingEntity:
     type: "object"
     required:
     - watched_time_seconds
-    - continuous
-    - auto_delete
-    - explicit
+    - automated_maintenance
+    - content_flags
     - favourite
     - expires_at_timestamp
     properties:
+
       watched_time_seconds:
         type: integer
         format: int64
         description: "This maps onto the playback_duration field and stores the last point that a user has watched (if you restart from the beginning and stop it will overwrite the current value)."
-      continuous:
-        type: integer
-        example: 0
-      auto_delete:
-        type: boolean
-      explicit:
-        type: boolean
+
+      automated_maintenance:
+        type: object
+        required:
+        - auto_delete
+        properties:
+          auto_delete:
+            type: boolean
+            description: Whether the recording should be considered for automatic deletion by maintenance scripts
+          expires_at_timestamp:
+            type: integer
+            format: int64
+            description: >-
+              The unix epoch timestamp at which the recording expires and will no longer be available
+              This key may be omitted if the "auto_delete" flag is false
+          is_about_to_expire:
+            type: boolean
+            example: true
+            description: >-
+              This flag indicates that the recording is going to be deleted soon.
+              The middleware will calculate this based on the channel expiry and the individual content expiry.
+              This key may be omitted if the "auto_delete" flag is false
+
+      content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+
       favourite:
         type: boolean
         example: true
-      expires_at_timestamp:
-        type: integer
-        format: int64
-        description: "The unix epoch timestamp at which the recording expires and will no longer be available"
-      is_about_to_expire:
-        type: boolean
-        example: true
-        description: This flag indicates that the recording is going to be deleted soon.  The middleware will calculate this based on the channel expiry and the individual content expiry.
+        description: >-
+          Whether the user to whom this recording belongs has marked it as one of their favourites
+
       recording_duration_seconds:
         type: integer
         example: 2400
         description: The integer number of seconds that the recording lasts for or null if the recording has not yet been made.  This is not the same as the BroadcastSlot duration or the Program duration but is the length of what was actually recorded.
+
       images:
         type: array
         description: >-
@@ -42,6 +59,7 @@ UserRecordingEntity:
           Note that this field is optional and might not be present.
         items:
           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
+
       original_broadcast_slot:
         type: object
         description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
@@ -55,6 +73,8 @@ UserRecordingEntity:
           title:
             type: string
             example: "Die Hard"
+            description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.
+
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."
@@ -83,7 +103,7 @@ UserRecordingEntity:
             properties:
               data:
                 type: object
-                description: The relationship between Episode and Program is one-to-one so this is an object, not an array
+                description: Which program was recorded
                 required:
                 - id
                 - type
@@ -94,3 +114,22 @@ UserRecordingEntity:
                   type:
                     type: string
                     example: "Program"
+
+          recording_request:
+            type: object
+            required:
+            - data
+            properties:
+              data:
+                type: object
+                description: The recording request that caused this recording to be created
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "23290f7e-567f-487f-b64e-323b0f4a6054"
+                  type:
+                    type: string
+                    example: "RecordingRequest"

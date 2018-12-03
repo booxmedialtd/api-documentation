@@ -13,6 +13,7 @@ UserRecordingRequestEntity:
           example: true
           description: >
             This will be 'true' for recording series, or other situations where more than one user recording is expected to be made.
+            This replaces the "continuous" field in the legacy API.
             If the field is omitted from a POST request it will default to `false`
         maximum_episodes_to_record:
           type: integer
@@ -20,28 +21,6 @@ UserRecordingRequestEntity:
           description: >
             How many episodes of the program to record.
             If the field is omitted from a POST request it will default to 0
-        matching_method:
-          type: string
-          enum: [title,series_id]
-          example: "title"
-          description: >
-            What method of matching this recording was requested with.
-            In the future "tagging" will become an option.
-            If the field is omitted from a POST request it will default to "title"
-        series_id:
-          type: string
-          example: "d13h4rd"
-          description: >
-            If the request is for a series to be recorded then this will be its identifier.
-            If the field is omitted from a POST request it will default to null.
-
-    recording_location:
-      type: string
-      example: "cloud"
-      description: >
-        Where the user wants to make the recording, either of these options are accepted [cloud|stb|foreign]
-        By default this is "cloud"
-      enum: [cloud,stb,foreign]
 
     requested_at_timestamp:
       type: integer
@@ -49,19 +28,6 @@ UserRecordingRequestEntity:
       description: >
         The timestamp at which the request was made.
         This field cannot be supplied in POST or PATCH requests
-    status:
-      type: string
-      description: >
-        One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE].
-        This field cannot be supplied in POST requests, but may be altered with PATCH
-      example: RECORDING_FAILED
-      enum: [NEW,RECORDING,RECORDING_FAILED,FAILED_PERMANENTLY,WAITING,COMPLETE]
-
-    status_reason:
-      type: string
-      description: >
-        When the status of the request changes this field should be updated with the reason for the change
-      example: "Out of disk space"
 
     relationships:
       type: array
@@ -75,11 +41,11 @@ UserRecordingRequestEntity:
             id:
               type: string
               description: The identifier of the entity
-              example: 7032c511-5ff6-42c9-932a-018d342f33f2
+              example: d28558a8-588b-47e6-ac85-2bf653757c81
             type:
               type: string
-              description: There may be many different RecordingSlot entities, only one is shown in the model
-              example: "RecordingSlot"
+              description: This points to which of the user's licensed devices the recording must be made.
+              example: "UserRecordingDevice"
         - type: object
           required:
           - id
@@ -88,11 +54,11 @@ UserRecordingRequestEntity:
             id:
               type: string
               description: The identifier of the entity
-              example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
+              example: 7032c511-5ff6-42c9-932a-018d342f33f2
             type:
               type: string
-              description: This is the original program that the request was made on.
-              example: "Program"
+              description: There may be many different RecordingSlot entities, only one is shown in the model
+              example: "RecordingSlot"
         - type: object
           required:
           - id

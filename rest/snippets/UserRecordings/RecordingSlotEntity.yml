@@ -2,22 +2,45 @@ RecordingSlotEntity:
   type: object
   properties:
     original_broadcast_slot:
-        type: object
-        required:
-        - title
-        description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
-        properties:
-          epg_id:
-            type: integer
-            example: 1337
-            description: >
-              Support for this field will be dropped when we migrate to using recording tags.
-          channel_id:
-            type: string
-            example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
-          time_start:
-            type: integer
-            example: 1516798894
-          title:
-            type: string
-            example: "Die Hard"
+      type: object
+      required:
+      - title
+      description: "We store this as a value object in this entity rather than relating to the BroadcastSlot because the remote entity is not guaranteed to be immutable"
+      properties:
+        broadcast_slot_id:
+          type: integer
+          example: 1337
+          description: >
+            Support for this field will be dropped when we migrate to using recording tags.
+            This field should point to an EPG entry until we deploy BroadcastSlot fully.
+        channel_id:
+          type: string
+          example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+        start_timestamp:
+          type: integer
+          example: 1516798894
+          description: The Unix epoch timestamp at which to start recording
+        duration_seconds:
+          type: integer
+          example: 7920
+        content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+        title:
+          type: string
+          example: "Die Hard"
+          description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.
+    status:
+      type: string
+      description: >
+        One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE].
+        This field cannot be supplied in POST requests, but may be altered with PATCH
+      example: RECORDING_FAILED
+      enum: [NEW,RECORDING,RECORDING_FAILED,FAILED_PERMANENTLY,WAITING,COMPLETE]
+
+    status_reason:
+      type: string
+      description: >
+        When the status of the request changes this field should be updated with the reason for the change
+      example: "Out of disk space"

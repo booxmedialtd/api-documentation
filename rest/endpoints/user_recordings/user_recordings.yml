@@ -29,6 +29,9 @@ security:
 paths:
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# RECORDING SLOTS
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   /recording_slots/{recording_slot_id}:
 
    delete:
@@ -60,6 +63,34 @@ paths:
         '204':
           description: |
             The resource was deleted successfully
+
+    patch:
+      tags:
+      - Recording Slots
+      summary: Update the status of a recording slot.  Note that only the status field is acceptable to patch.
+      operationId: putRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          schema:
+            type: string
+          example: 24369947-8d46-4453-bdc2-9e1d88c220ff
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
+            example:
+              op: "replace"
+              path: "/data/0/attributes/status"
+              value: "RECORDING_FAILED"
+              from: null
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   /users/{user_id}/user_recording_requests/relationships/recording_slots:
@@ -126,6 +157,8 @@ paths:
 
 
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# RECORDING REQUESTS
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user/{user_id}/user_recording_requests/:
@@ -312,17 +345,6 @@ paths:
                           properties:
                             type:
                               type: string
-                              example: "Program"
-                              description: The type of the entity that is being included.
-                            id:
-                              type: string
-                              example: ad600a15-bddf-44d8-b1a2-5ae9b3b311da
-                            attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
-                        - type: object
-                          properties:
-                            type:
-                              type: string
                               example: "ClassificationTag"
                               description: The type of the entity that is being included.
                             id:
@@ -330,35 +352,6 @@ paths:
                               example: abdf8785-cb23-445b-946f-69e8770500a1
                             attributes:
                                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
-
-
-    patch:
-      tags:
-      - Recording Requests
-      summary: Update the status of a recording.  Note that only the status field is acceptable to patch.
-      operationId: putRecordingRequest
-      parameters:
-        - in: path
-          name: recording_request_id
-          description: The id of the recording request
-          schema:
-            type: string
-          example: 24369947-8d46-4453-bdc2-9e1d88c220ff
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
-            example:
-              op: "replace"
-              path: "/data/0/attributes/status"
-              value: "RECORDING_FAILED"
-              from: null
-      responses:
-        204:
-          description: |
-            The resource was updated successfully, no response body is needed
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -414,6 +407,13 @@ paths:
                 required:
                 - data
                 properties:
+                  links:
+                    type: object
+                    properties:
+                      play:
+                        type: string
+                        example: https://demo.com/api/channel/38/stream/103/play?userEmail=boox6%40cloudpvr.nl&service=example&startover=false&stream_type=hls&service=example
+                        description: Where to find information about playing this recording
                   data:
                     type: array
                     items:
@@ -436,18 +436,40 @@ paths:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
                     items:
-                      type: object
-                      description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                      properties:
-                        type:
-                          type: string
-                          example: "Program"
-                          description: The type of the entity that is being included.  It will always be [Program] in this endpoint.
-                        id:
-                          type: string
-                          example: "d0de0088-3141-439e-8455-839bdb8f6cec"
-                        attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                      anyOf:
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example: "Program"
+                            description: The type of the entity that is being included.
+                          id:
+                            type: string
+                            example: "d0de0088-3141-439e-8455-839bdb8f6cec"
+                          attributes:
+                              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example: "RecordingRequest"
+                            description: The type of the entity that is being included.
+                          id:
+                            type: string
+                            example: "b63c666c-2a84-4f2d-a006-97f236912c77"
+                      - type: object
+                        description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
+                        properties:
+                          type:
+                            type: string
+                            example: "UserRecordingDevice"
+                            description: The type of the entity that is being included.
+                          id:
+                            type: string
+                            example: "d28558a8-588b-47e6-ac85-2bf653757c81"
+
         '400':
           description: Standard error response
           content:
