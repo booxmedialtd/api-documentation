@@ -358,7 +358,7 @@ paths:
                                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
     delete:
       tags:
-      - Recordings
+      - Recording Requests
       summary: Delete a recording request.  As a side effect all of the recording slots will also be deleted.
       operationId: deleteUserRecordingRequest
       parameters:
