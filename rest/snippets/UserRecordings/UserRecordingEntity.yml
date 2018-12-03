@@ -75,6 +75,67 @@ UserRecordingEntity:
             example: "Die Hard"
             description: This is a multi-lingual field and will contain the title of the Program in all of the languages supported for this field.
 
+      recording_location:
+        type: object
+        required:
+        - device_type
+        properties:
+          device_type:
+            type: string
+            description: >-
+              What type of device the recording was made on, only the values [cloud,stb,foreign] are acceptable
+              The key "foreign" is reserved for situations where a third party is responsible for recording.
+            enum: [cloud,stb,foreign]
+            example: stb
+          foreign_reference:
+            type: string
+            description: >-
+              The identifier in a third party recording system for the recording
+              This field should be omitted if Amino is responsible for the recording, that is when device_type is either "cloud" or "stb"
+            example: "abc123"
+          device_id:
+            type: string
+            description: >-
+              A unique identifier for the device that made the recording.
+              This field may be omitted when the device type is "cloud" or "foreign"
+            example: 25-1234567
+          created_at_timestamp:
+            type: integer
+            description: >-
+              The Unix epoch timestamp that the recording was created.  Note that for the case of foreign recordings this field
+              should contain the timestamp at which we were notified about the recoding completion if the actual file time
+              is not available.
+          file_properties:
+            type: object
+            description: This field may be omitted when the device type is "foreign"
+            required:
+            - resource_location
+            properties:
+              file_size_megabytes:
+                type: integer
+                description:  The approximate size of the file, in megabytes.
+                example: 648
+              resource_location:
+                type: string
+                description: This will be a fully qualified path and filename, including the scheme
+                example: >-
+                  file://host/path
+              recording_container:
+                type: string
+                description: >-
+                  The container format of the file (http://en.wikipedia.org/wiki/Digital_container_format)
+                example: mp4
+              recording_video_codec:
+                type: string
+                description: >-
+                  The codec that the file is encoded with (https://en.wikipedia.org/wiki/Codec)
+                example: h.264
+              recording_audio_codec:
+                type: string
+                description: >-
+                  The codec that the file is encoded with (https://en.wikipedia.org/wiki/Codec)
+                example: mp3
+
       relationships:
         type: object
         description: "This key MUST ONLY be included if Program data is being included as a compound document."
