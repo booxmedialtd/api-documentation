@@ -93,15 +93,16 @@ paths:
             The resource was updated successfully, no response body is needed
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  /users/{user_id}/user_recording_requests/relationships/recording_slots:
+
+  /{device_id}/recording_slots:
     get:
-      summary: Return a list of recording slots for a user
+      summary: Return a list of recording slots that a device needs to make
       tags:
       - Recording Slots
       operationId: indexRecordingSlots
       parameters:
       - in: path
-        name: user_id
+        name: device_id
         description: The user id to obtain recordings for
         required: true
         schema:
@@ -285,7 +286,6 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
 
-
 # ---------------------------------------------------------------------------------------------------------------------------------
 
   /user_recording_requests/{recording_request_id}:
@@ -352,11 +352,67 @@ paths:
                               example: abdf8785-cb23-445b-946f-69e8770500a1
                             attributes:
                                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
+    delete:
+      tags:
+      - Recordings
+      summary: Delete a recording request.  As a side effect all of the recording slots will also be deleted.
+      operationId: deleteUserRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
 
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 #  USER RECORDINGS
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_recordings/:
+    post:
+      tags:
+      - Recordings
+      summary: Create a new user recording
+      operationId: postUserRecording
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingRequest
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "c74e8b26-079c-4d01-95a2-da8fb6139179"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
   /user/{user_id}/user_recordings/:
     get:
