@@ -250,12 +250,16 @@ paths:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
             example:
-              original_broadcast_slot:
-                epg_id: 1337
-                title: "Die Hard"
               serial_recording:
-                recording_location: stb
-                multiple_recording: true
+                record_series_of_episodes: true
+                maximum_episodes_to_record: 10
+                expire_timestamp: 1543839142
+              relationships:
+                - classification_tag:
+                    matching_rules:
+                      key: Program.title
+                      operator: eq
+                      value: Die Hard
 
 
       responses:

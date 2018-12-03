@@ -1,7 +1,7 @@
 ClassificationTagEntity:
   type: "object"
   required:
-  - human_friendly
+  - matching_rules
   properties:
     matching_rules:
       type: array

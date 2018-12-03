@@ -1,7 +1,7 @@
 UserRecordingRequestEntity:
   type: object
   required:
-  - original_broadcast_slot
+  - serial_recording
   - recording_location
   properties:
 
@@ -21,6 +21,11 @@ UserRecordingRequestEntity:
           description: >
             How many episodes of the program to record.
             If the field is omitted from a POST request it will default to 0
+        expire_timestamp:
+          type: integer
+          example: 1543839142
+          description: >-
+            The Unix timestamp after which no further recordings must be made for this request
 
     requested_at_timestamp:
       type: integer
