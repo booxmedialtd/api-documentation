@@ -1,0 +1,17 @@
+RecordingGroup:
+  type: object
+  required:
+  - name
+  properties:
+    name:
+      type: string
+      description: This is a user supplied name for the recording group
+      example: "The Die Hard franchise"
+    number_of_recordings:
+      type: integer
+      example: 0
+      description: >-
+        An approximate count of how many recordings are present in the recording group.
+        Note that the API may denormalize this data and aims for eventual consistency which is
+        why it is an approximate count.
+        This field must be omitted in POST or PATCH requests

@@ -13,6 +13,9 @@ tags:
 - name: Recordings
   description: >-
     Recordings are programs that the user has asked to be recorded and which have been marked by the media backend as having been completed
+- name: Recording Groups
+  description: >-
+    Recording groups are arbitrary ways for users to group recordings.
 - name: Legacy support
   description:
     These endpoints should be used with caution as they are used to support legacy use cases and are deprecated.
@@ -598,6 +601,142 @@ paths:
             type: string
             enum: [true,false]
           example: "true"
+
+      responses:
+        '204':
+          description: |
+            The resource was deleted successfully
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+#  RECORDING GROUPS
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/recording_groups:
+    get:
+      tags:
+      - Recording Groups
+      summary: List the recording groups for a user
+      operationId: getRecordingGroups
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to obtain recording groups for
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: RecordingGroup
+                        id:
+                          type: string
+                          example: f29d916d-de2f-481f-908d-3229ea106935
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
+
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+    post:
+      tags:
+      - Recording Groups
+      summary: Create a new recording group for a particular user
+      operationId: createRecordingGroup
+      parameters:
+        - in: path
+          name: user_id
+          description: The user id to create the recording group for
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
+            example:
+              name: "The Die Hard franchise"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: RecordingGroup
+                        id:
+                          type: string
+                          example: f29d916d-de2f-481f-908d-3229ea106935
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
+
+  /recording_groups/{recording_group_id}/relationships/user_recordings/:
+
+    get:
+      tags:
+      - Recording Groups
+      summary: Get a list of recordings that are in a recording group
+      operationId: deleteRecordingGroup
+      parameters:
+        - in: path
+          name: recording_group_id
+          description: The id of the recording group
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+
+  /recording_groups/{recording_group_id}:
+
+    delete:
+      tags:
+      - Recording Groups
+      summary: Delete a recording group
+      operationId: deleteRecoringGroup
+      parameters:
+        - in: path
+          name: recording_group_id
+          description: The id of the recording group
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
 
       responses:
         '204':
