@@ -34,7 +34,7 @@ paths:
 
   /recording_slots/{recording_slot_id}:
 
-   delete:
+    delete:
       tags:
       - Recording Slots
       summary: Prevent a particular recording slot from being recorded
@@ -189,7 +189,7 @@ paths:
             Example usage:  /user/{user_id}/user_recordings?filter[status]=WAITING
           schema:
             type: string
-          enum: [NEW,WAITING,RECORDING,FAILED,FAILED_PERMANENTLY,COMPLETE]
+            enum: ["NEW","WAITING","RECORDING","FAILED","FAILED_PERMANENTLY","COMPLETE"]
       responses:
         '200':
           description: "Successful response"
@@ -340,7 +340,7 @@ paths:
                               type: string
                               example: ddbfa001-1de3-4210-bd3f-183e771db48d
                             attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/RecordingSlotEntity.yml#/RecordingSlotEntity"
+                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingSlotEntity.yml#/RecordingSlotEntity"
                         - type: object
                           properties:
                             type:
