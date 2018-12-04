@@ -661,52 +661,6 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-    post:
-      tags:
-      - Recording Groups
-      summary: Create a new recording group for a particular user
-      operationId: createRecordingGroup
-      parameters:
-        - in: path
-          name: user_id
-          description: The user id to create the recording group for
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
-            example:
-              name: "The Die Hard franchise"
-      responses:
-        201:
-          description: "Successful response"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                required:
-                - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: RecordingGroup
-                        id:
-                          type: string
-                          example: f29d916d-de2f-481f-908d-3229ea106935
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
 
   /recording_groups/{recording_group_id}/relationships/user_recordings/:
 
@@ -722,26 +676,6 @@ paths:
           schema:
             type: string
           example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-
-  /recording_groups/{recording_group_id}:
-
-    delete:
-      tags:
-      - Recording Groups
-      summary: Delete a recording group
-      operationId: deleteRecoringGroup
-      parameters:
-        - in: path
-          name: recording_group_id
-          description: The id of the recording group
-          schema:
-            type: string
-          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-
-      responses:
-        '204':
-          description: |
-            The resource was deleted successfully
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
