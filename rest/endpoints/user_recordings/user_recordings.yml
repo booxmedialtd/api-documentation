@@ -233,6 +233,8 @@ paths:
                       key: Program.title
                       operator: eq
                       value: Die Hard
+                - user_recording_device:
+                    type: cloud
 
 
       responses:
