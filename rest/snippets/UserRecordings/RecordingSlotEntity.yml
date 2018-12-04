@@ -1,16 +1,20 @@
 RecordingSlotEntity:
   type: object
   properties:
+
     channel_id:
       type: string
       example: 8baec70c-135d-43bb-8f96-7c4b13937f1a
+
     start_timestamp:
       type: integer
       example: 1516798894
       description: The Unix epoch timestamp at which to start recording
+
     duration_seconds:
       type: integer
       example: 7920
+
     status:
       type: string
       description: >

@@ -540,21 +540,31 @@ paths:
 #  RECORDING GROUPS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/recording_groups:
+  /users/{user_id}/user_recording_requests/classification_tags:
     get:
       tags:
-      - Recording Groups
-      summary: List the recording groups for a user
-      operationId: getRecordingGroups
+        - Recording Groups
+      summary: Get a list of tags that have been created for recording requests
+      operationId: getClassificationTagsForRecordingRequest
       parameters:
         - in: path
           name: user_id
-          description: The user id to obtain recording groups for
-          required: true
+          description: The user id
           schema:
             type: string
+          example: 34d8a79d-d54a-4229-b560-572a65113e23
+        - in: query
+          name: filter
+          required: false
+          description: >
+            By default this is true
+            Example usage:  /user/{user_id}/user_recordings?filter[RecordingRequest.record_series_of_episodes]=true
+          schema:
+            type: boolean
+            enum: [true,false]
+          example: true
       responses:
-        200:
+        '200':
           description: "Successful response"
           content:
             application/json:
@@ -573,39 +583,56 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: RecordingGroup
+                          example: ClassificationTag
                         id:
                           type: string
-                          example: f29d916d-de2f-481f-908d-3229ea106935
+                          example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
+                          description: >-
+                            The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroup.yml#/RecordingGroup"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
 
-        '400':
-          description: Standard error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-
-  /recording_groups/{recording_group_id}/relationships/user_recordings/:
-
+  /classification_tags/{classification_tag_id}/user_recordings:
     get:
       tags:
       - Recording Groups
       summary: Get a list of recordings that are in a recording group
-      operationId: deleteRecordingGroup
+      operationId: getRecordingsInGroup
       parameters:
         - in: path
-          name: recording_group_id
-          description: The id of the recording group
+          name: classification_tag_id
+          description: The id of the classification tag
           schema:
             type: string
-          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+          example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecording
+                        id:
+                          type: string
+                          example: d88a87f7-c636-4bcd-83b7-33e782480754
+                          description: >-
+                            The id of the request entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
