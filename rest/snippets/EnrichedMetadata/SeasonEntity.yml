@@ -9,6 +9,9 @@ SeasonEntity:
       release_year:
         type: integer
         example: 1994
+      season_number:
+        type: integer
+        example: 1
       descriptions:
         type: object
         properties:
