@@ -37,36 +37,6 @@ paths:
 
   /recording_slots/{recording_slot_id}:
 
-    delete:
-      tags:
-      - Recording Slots
-      summary: Prevent a particular recording slot from being recorded
-      operationId: deleteUserRecordingRequest
-      parameters:
-        - in: path
-          name: recording_slot_id
-          description: The id of the recording slot request
-          schema:
-            type: string
-          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-        - in: query
-          name: delete_series
-          description: >
-            If the particular recording is part of a series then setting this parameter to "true" will cause
-            all future occurances of the series to not be deleted.  In other words setting this parameter to
-            "true" cancels the request for the whole series, not just the single episode.
-            If this parameter is omitted it will default to "false"
-            If all of the recording slots for a recording request are deleted then the recording request should
-            be marked as COMPLETE.
-          schema:
-            type: string
-            enum: [true,false]
-          example: "true"
-      responses:
-        '204':
-          description: |
-            The resource was deleted successfully
-
     patch:
       tags:
       - Recording Slots
@@ -380,46 +350,6 @@ paths:
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 #  USER RECORDINGS
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  /user_recordings/:
-    post:
-      tags:
-      - Recordings
-      summary: Create a new user recording
-      operationId: postUserRecording
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
-      responses:
-        201:
-          description: "Successful response"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                required:
-                - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: UserRecordingRequest
-                        id:
-                          type: string
-                          description: "The id of the entity that was created"
-                          example: "c74e8b26-079c-4d01-95a2-da8fb6139179"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
   /user/{user_id}/user_recordings/:
     get:
