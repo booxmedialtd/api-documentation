@@ -40,6 +40,7 @@ paths:
   /broadcast_slots:
     get:
       summary: Get an index of BroadcastSlots
+      description:  Note that we do not support including related resources in the index view.
       tags:
       - BroadcastSlots
       operationId: GetBroadcastSlotsIndex
@@ -53,6 +54,14 @@ paths:
             If the requested language is not available then the system will return translations in order of the system defined preferences
           schema:
             type: string
+        - in: query
+          name: days_to_return
+          required: false
+          description: >-
+            How many days of data to return in the response.
+            Only [1,7,14] are acceptable values, using any other value will result in a 400 error being returned.
+            Default: 7
+          enum: [1,7,14]
       responses:
         200:
           description: "Successful response"
@@ -80,7 +89,8 @@ paths:
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
-        '400':
+
+        400:
           description: Standard error response
           content:
             application/json:

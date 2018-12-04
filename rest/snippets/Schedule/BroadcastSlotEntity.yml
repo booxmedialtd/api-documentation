@@ -44,7 +44,6 @@ BroadcastSlotEntity:
                 example: fi
                 description: The ISO 639-1 two letter code for a subitle language that is available
 
-
     program:
       type: object
       required:
@@ -62,3 +61,32 @@ BroadcastSlotEntity:
           type: array
           items:
             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+
+    relationships:
+      type: array
+      items:
+        anyOf:
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: 1d92c7ee-56b4-499a-b0bb-eb0efa92b24e
+              type:
+                type: string
+                example: Channel
+                description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: 530a08c0-3fd7-4d0d-b799-712ed9c07573
+              type:
+                type: string
+                example: Program
+                description: The type of the entity being included
