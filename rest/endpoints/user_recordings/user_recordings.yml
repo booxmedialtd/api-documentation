@@ -404,11 +404,27 @@ paths:
                 properties:
                   links:
                     type: object
+                    required:
+                    - play
                     properties:
                       play:
                         type: string
                         example: https://demo.com/api/channel/38/stream/103/play?userEmail=boox6%40cloudpvr.nl&service=example&startover=false&stream_type=hls&service=example
                         description: Where to find information about playing this recording
+                      cancel_recording:
+                        type: string
+                        example:
+                        description: >-
+                          Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
+                          Calling this endpoint with the DELETE method will cause the recording to be cancelled.
+                          Where to find information about playing this recording
+                      cancel_continuous_recording:
+                        type: string
+                        example:
+                        description: >-
+                          Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
+                          Calling this endpoint with the DELETE method will cause the recording to be cancelled and no future episodes will be recorded.
+                          Where to find information about playing this recording
                   data:
                     type: array
                     items:
