@@ -413,14 +413,14 @@ paths:
                         description: Where to find information about playing this recording
                       cancel_recording:
                         type: string
-                        example:
+                        example:  https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
                         description: >-
                           Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
                           Calling this endpoint with the DELETE method will cause the recording to be cancelled.
                           Where to find information about playing this recording
                       cancel_continuous_recording:
                         type: string
-                        example:
+                        example: https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
                         description: >-
                           Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
                           Calling this endpoint with the DELETE method will cause the recording to be cancelled and no future episodes will be recorded.
