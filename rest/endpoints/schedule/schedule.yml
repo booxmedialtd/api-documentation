@@ -61,7 +61,17 @@ paths:
             How many days of data to return in the response.
             Only [1,7,14] are acceptable values, using any other value will result in a 400 error being returned.
             Default: 7
-          enum: [1,7,14]
+          schema:
+            type: integer
+            enum: [1,7,14]
+        - in: query
+          name: filter
+          required: false
+          schema:
+            type: string
+          description: >-
+            See https://jsonapi.org/recommendations/#filtering
+            This endpoint only supports filtering on Channel and accepts a csv list of channels to include.
       responses:
         200:
           description: "Successful response"
