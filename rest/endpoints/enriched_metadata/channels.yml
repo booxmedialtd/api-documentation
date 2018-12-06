@@ -91,6 +91,17 @@ paths:
                 required:
                 - data
                 properties:
+                  links:
+                    type: object
+                    required:
+                    - play
+                    properties:
+                      play:
+                        type: string
+                        example: https://demo.com/api/channel/38/stream/103/play?userEmail=boox6%40cloudpvr.nl&service=example&startover=false&stream_type=hls
+                        description: >-
+                          The url to call in order to play the channel.
+                          Note that this is a streams entity that needs to be further interpreted in order to play the channel
                   data:
                     type: array
                     items:
