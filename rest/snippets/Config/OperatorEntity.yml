@@ -1,0 +1,7 @@
+OperatorEntity:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "BooxTV"
+      description: The name of the operator

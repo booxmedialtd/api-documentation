@@ -180,3 +180,15 @@ ChannelEntity:
                 type: string
                 example: Program
                 description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "503b0c49-b5ac-485d-9dab-44d82e6c483c"
+              type:
+                type: string
+                example: Operator
+                description: The type of the entity being included
