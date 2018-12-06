@@ -76,7 +76,7 @@ paths:
       parameters:
       - in: path
         name: device_id
-        description: The user id to obtain recordings for
+        description: The CDSN of the device to obtain recordings for.
         required: true
         schema:
           type: string
