@@ -69,7 +69,7 @@ paths:
             required: false
             description: >-
               Please see http://jsonapi.org/recommendations/#filtering
-              The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year|program.external_program_information.external_program_id|program.external_program_information.provider]
+              The following are attributes to filter on: [program.title|program.description|content_rating.adult|genre.name|program.release_year|program.external_program_information.external_program_id|program.external_program_information.provider]
             schema:
               type: string
 
