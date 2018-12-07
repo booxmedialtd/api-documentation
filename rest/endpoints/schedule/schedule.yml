@@ -78,7 +78,7 @@ paths:
             type: string
           description: >-
             See https://jsonapi.org/recommendations/#filtering
-            This endpoint only supports filtering on [channel.id|operator.id] and supports multiple values through csv.
+            This endpoint only supports filtering on [channel.id|operator.id|genre.id] and supports multiple values through csv.
       responses:
         200:
           description: "Successful response"
