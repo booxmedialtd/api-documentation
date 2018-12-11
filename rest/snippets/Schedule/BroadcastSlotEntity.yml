@@ -44,6 +44,65 @@ BroadcastSlotEntity:
                 example: fi
                 description: The ISO 639-1 two letter code for a subitle language that is available
 
+    services_available:
+      type: object
+      description: >-
+        This key should only be present in order to override the channel settings.
+        If it is omitted then you may assume the channel settings apply.
+      required:
+        - services_enabled
+        - trickplay_enabled
+      properties:
+        services_enabled:
+          type: array
+          description: >-
+            An array of the service types that are available for this channel.
+            Services may be one of [live,npvr,lpvr,catchup,startover]
+          items:
+            type: string
+            example: ["live","npvr","catchup"]
+            enum: [live,npvr,lpvr,catchup,startover]
+        trickplay_enabled:
+          type: array
+          description: >-
+            An array of services that trickplay is enabled for.
+            If a service does not appear in this array then trickplay is disabled for that service.
+            Trickplay allows the user to pause, rewind, and fast-forward.
+            Live channels cannot be fast-forwarded.  Trickplay allows the user to pause live television.
+            Rewinding live television is treated as "startover service".
+          items:
+            type: string
+            example: ["npvr","catchup"]
+            enum: [live,npvr,lpvr,catchup,startover]
+        startover_service_type:
+          type: string
+          example: "timeshift"
+          enum: ["timeshift","window"]
+          description: >-
+            This optional key should not be present if startover service is not enabled.
+            What sort of startover service is enabled.
+            If "timeshift" returned: client don't need to switch to 0 position because live point is shifted and play will always start at beginning of shifted live point.
+            If "DVR Window" returned: client may need to switch to 0 position of the playlist should it be required on the client requirement.
+
+    geo_availability:
+      type: object
+      description: >-
+        This key should only be present in order to override the channel settings.
+        If it is omitted then you may assume the channel settings apply.
+      properties:
+        geo_restricted:
+          type: boolean
+          description: If this flag is "false" then this channel is available in all regions
+          example: true
+          enum: [true,false]
+        enabled_country_codes_iso3166_alpha2:
+          type: array
+          description: An array of country codes where this channel is allowed to be played
+          items:
+            type: string
+            example: fi
+            description: An ISO-3166 Alpha2 country code
+
     program:
       type: object
       required:

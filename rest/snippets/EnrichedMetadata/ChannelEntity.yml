@@ -56,6 +56,22 @@ ChannelEntity:
           description: >-
             The Unix epoch timestamp that the channel is available until
             Default: 4102444799
+    geo_availability:
+      type: object
+      properties:
+        geo_restricted:
+          type: boolean
+          description: If this flag is "false" then this channel is available in all regions
+          example: true
+          enum: [true,false]
+        enabled_country_codes_iso3166_alpha2:
+          type: array
+          description: An array of country codes where this channel is allowed to be played
+          items:
+            type: string
+            example: fi
+            description: An ISO-3166 Alpha2 country code
+
     services_available:
       type: object
       description: >-
