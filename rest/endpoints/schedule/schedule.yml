@@ -16,12 +16,6 @@ tags:
     We store information about the time slot as well as a title for the slot.
     Note: The title of a BroadcastSlot does not have to be the same as the title of the Program in that slot.
     In English a schedule is understood to be a list or a plan and so we avoid using that word for a single item.
-- name: Programs
-  description: >-
-    A program is something that can be shown.
-    It could be a television show (like "Friends") or a movie (like "Die Hard") that appears on a Channel at a given time in a BroadcastSlot.
-    It could equally be a VOD item that can be played on demand.
-    The entity "Program" is a hook into the metadata system and does not include any information about when (or how) the thing can be played.  It's just information about what can be played.
 servers:
 - url: 'https://demo.aminocom.com/api/metadata/v1/'
 components:
@@ -78,7 +72,7 @@ paths:
             type: string
           description: >-
             See https://jsonapi.org/recommendations/#filtering
-            This endpoint only supports filtering on [channel.id|operator.id|genre.id] and supports multiple values through csv.
+            This endpoint only supports filtering on [channel.id|operator.id|genre.id|channel.transport_network] and supports multiple values through csv.
             It is compulsory to include at least the channel.id filter.  A wildcard of "*" indicates that all channels must be included.
       responses:
         200:
