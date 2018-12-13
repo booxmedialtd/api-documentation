@@ -15,3 +15,11 @@ RecordingGroup:
         Note that the API may denormalize this data and aims for eventual consistency which is
         why it is an approximate count.
         This field must be omitted in POST or PATCH requests
+    images:
+      description: >-
+        An image associated directly with the recording group will have the type "thumbnail".
+        If there is not an image directly associated with the recording group then the image from
+        the first recording should be used.  This image will have the type "program_thumbnail"
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
