@@ -91,7 +91,7 @@ ChannelEntity:
           items:
             type: string
             example: ["live","npvr","catchup"]
-            enum: [live,npvr,lpvr,catchup,startover]
+            enum: [live,npvr,catchup,startover]
         trickplay_enabled:
           type: array
           description: >-
@@ -103,7 +103,7 @@ ChannelEntity:
           items:
             type: string
             example: ["npvr","catchup"]
-            enum: [live,npvr,lpvr,catchup,startover]
+            enum: [live,npvr,catchup,startover]
         startover_service_type:
           type: string
           example: "timeshift"

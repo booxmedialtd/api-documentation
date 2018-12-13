@@ -19,7 +19,7 @@ UserChannelLicense:
           items:
             type: string
             example: ["live","npvr","catchup"]
-            enum: [live,npvr,lpvr,catchup,startover]
+            enum: [live,npvr,catchup,startover]
         trickplay_enabled:
           type: array
           description: >-
@@ -31,4 +31,4 @@ UserChannelLicense:
           items:
             type: string
             example: ["npvr"]
-            enum: [live,npvr,lpvr,catchup,startover]
+            enum: [live,npvr,catchup,startover]
