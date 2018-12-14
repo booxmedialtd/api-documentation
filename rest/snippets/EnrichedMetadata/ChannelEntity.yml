@@ -17,6 +17,12 @@ ChannelEntity:
       type: integer
       example: 1
       description: A numeric channel number that is easy for the user to enter on their remote control
+    is_demo_channel:
+      type: boolean
+      example: false
+      enum: [true,false]
+      description: >-
+        A channel may be marked as a "demo" channel in which case it should only be available to demo users.
     media_type:
       type: string
       example: "mixed"
@@ -43,6 +49,7 @@ ChannelEntity:
           example: false
           description: >-
             This will be true if this channel is dedicated to a particular event, such as a Royal Wedding
+            It is used to assist the client with display logic, and a value of "false" does not indicate that the timestamps defining the window should be ignored.
             Default: false
         not_before_timestamp:
           type: integer
