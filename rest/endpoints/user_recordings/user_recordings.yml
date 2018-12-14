@@ -572,8 +572,8 @@ paths:
           name: filter
           required: false
           description: >
-            By default this is true
-            Example usage:  /user/{user_id}/user_recordings?filter[RecordingRequest.record_series_of_episodes]=true
+            We support filtering on title and series.id.  Multiple words in the title may be provided by separating them with commas.
+            For example:  ?filter[title]=Die,Hard   or ?filter[series.id]=7c9df110-0546-44de-8ef9-d93254eeb502
           schema:
             type: boolean
             enum: [true,false]
