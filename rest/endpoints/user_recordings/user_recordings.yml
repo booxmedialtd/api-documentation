@@ -380,7 +380,7 @@ paths:
           name: filter
           required: false
           description: >
-            Only the following filters are supported: [expiring]
+            Only the following filters are supported: [expiring|recording.title]
             Example usage:  /user/{user_id}/user_recordings?filter[expiring]=X
             The value supplied is the number of days in the future that determines whether a record should be included in the result set.
             Only the following values are accepted [today|3|7|30] and if an invalid value is given a 400 error will be returned.
@@ -572,8 +572,9 @@ paths:
           name: filter
           required: false
           description: >
-            We support filtering on title and series.id.  Multiple words in the title may be provided by separating them with commas.
-            For example:  ?filter[title]=Die,Hard   or ?filter[series.id]=7c9df110-0546-44de-8ef9-d93254eeb502
+            We support filtering on the value of the tag that was used to create the recording group.  See the client guide for more detail.
+            For example to find all recording groups that have the words "Die Hard" in the tag value you would use a filter like this:
+            ?filter[classification_tag.value]=Die,Hard
           schema:
             type: boolean
             enum: [true,false]

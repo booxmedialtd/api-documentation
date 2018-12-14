@@ -26,4 +26,4 @@ ClassificationTagEntity:
     human_friendly:
       type: string
       example: "Title includes 'simpsons' and Genre is 'Comedy'"
-      description: "The human readable description of the rule.  "
+      description: "The human readable description of the rule."
