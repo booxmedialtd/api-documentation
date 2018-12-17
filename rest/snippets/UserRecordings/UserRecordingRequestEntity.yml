@@ -19,6 +19,7 @@ UserRecordingRequestEntity:
           example: 1543839142
           description: >-
             The Unix timestamp after which no further recordings must be made for this request
+            If the field is omitted from a POST request it will default to a value corresponding to "two years from now"
 
     requested_at_timestamp:
       type: integer
