@@ -26,4 +26,8 @@ ClassificationTagEntity:
     human_friendly:
       type: string
       example: "Title includes 'simpsons' and Genre is 'Comedy'"
-      description: "The human readable description of the rule."
+      description: >-
+        The human readable description of the rule.  Multi-lingual support is enabled for this field.  The API will store
+        multiple versions of this field, one for each language.  It will return the language that the client marks as
+        acceptable in the request headers.  It will default onto the system configured default if the client does not
+        indicate which language is acceptable and the "lang" parameter is omitted (where supported).
