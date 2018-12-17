@@ -224,7 +224,6 @@ paths:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
             example:
               serial_recording:
-                record_series_of_episodes: true
                 maximum_episodes_to_record: 10
                 expire_timestamp: 1543839142
               relationships:
