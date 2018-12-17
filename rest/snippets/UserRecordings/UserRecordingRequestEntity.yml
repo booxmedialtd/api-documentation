@@ -8,13 +8,6 @@ UserRecordingRequestEntity:
     serial_recording:
       type: object
       properties:
-        record_series_of_episodes:
-          type: boolean
-          example: true
-          description: >
-            This will be 'true' for recording series, or other situations where more than one user recording is expected to be made.
-            This replaces the "continuous" field in the legacy API.
-            If the field is omitted from a POST request it will default to `false`
         maximum_episodes_to_record:
           type: integer
           example: 10
