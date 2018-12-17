@@ -510,12 +510,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
-            example:
-              op: "replace"
-              path: "/data/0/attributes/watched_time_seconds"
-              value: 923
-              from: null
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
       responses:
         204:
