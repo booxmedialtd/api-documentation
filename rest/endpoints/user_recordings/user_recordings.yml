@@ -609,7 +609,7 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
 
-  /classification_tags/{classification_tag_id}/user_recordings:
+  /users/{user_id}/classification_tags/{classification_tag_id}/user_recordings:
     get:
       tags:
       - Recording Groups
@@ -622,6 +622,12 @@ paths:
           schema:
             type: string
           example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
+        - in: path
+          name: user_id
+          description: The user id
+          schema:
+            type: string
+          example: 34d8a79d-d54a-4229-b560-572a65113e23
       responses:
         '200':
           description: "Successful response"
