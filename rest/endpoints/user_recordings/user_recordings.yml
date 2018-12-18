@@ -388,6 +388,15 @@ paths:
             receive recordings that expire later on the 10th December, as well as recordings from 11th, 12th, and 13th.
           schema:
             type: string
+        - in: query
+          name: language
+          required: false
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If the requested language is not available then the system will return translations in order of the system defined preferences
+          schema:
+            type: string
       responses:
         '200':
           description: "Successful response"
@@ -563,16 +572,14 @@ paths:
             type: string
           example: 34d8a79d-d54a-4229-b560-572a65113e23
         - in: query
-          name: filter
-          required: false
-          description: >
-            We support filtering on the value of the tag that was used to create the recording group.  See the client guide for more detail.
-            For example to find all recording groups that have the words "Die Hard" in the tag value you would use a filter like this:
-            ?filter[classification_tag.value]=Die,Hard
-          schema:
-            type: boolean
-            enum: [true,false]
-          example: true
+            name: language
+            required: false
+            description: >-
+              The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+              If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+              If the requested language is not available then the system will return translations in order of the system defined preferences
+            schema:
+              type: string
       responses:
         '200':
           description: "Successful response"

@@ -23,7 +23,7 @@ ClassificationTagEntity:
           value:
             type: string
             example: "Comedy"
-    human_friendly:
+    human_friendly_description:
       type: string
       example: "Title includes 'simpsons' and Genre is 'Comedy'"
       description: >-
