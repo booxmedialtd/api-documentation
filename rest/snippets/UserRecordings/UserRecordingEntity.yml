@@ -46,10 +46,11 @@ UserRecordingEntity:
         description: >-
           Whether the user to whom this recording belongs has marked it as one of their favourites
 
-      recording_duration_seconds:
-        type: integer
-        example: 2400
-        description: The integer number of seconds that the recording lasts for or null if the recording has not yet been made.  This is not the same as the BroadcastSlot duration or the Program duration but is the length of what was actually recorded.
+      has_been_recorded:
+        type: boolean
+        example: true
+        enum: [true,false]
+        description: This will be set to "true" once the recording has been completed.  If it is "false" then the recording has been scheduled but has not finished.
 
       images:
         type: array
