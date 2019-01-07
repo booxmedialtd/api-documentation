@@ -600,7 +600,7 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: ClassificationTag
+                          example: RecordingGroup
                         id:
                           type: string
                           example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
