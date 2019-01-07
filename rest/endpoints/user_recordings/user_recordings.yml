@@ -558,12 +558,12 @@ paths:
 #  RECORDING GROUPS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/user_recording_requests/classification_tags:
+  /users/{user_id}/recording_groups:
     get:
       tags:
         - Recording Groups
-      summary: Get a list of tags that have been created for recording requests
-      operationId: getClassificationTagsForRecordingRequest
+      summary: Get a list of recording groups for a user
+      operationId: getRecordingGroups
       parameters:
         - in: path
           name: user_id
@@ -607,9 +607,9 @@ paths:
                           description: >-
                             The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingGroupEntity.yml#/UserRecordingGroupEntity"
 
-  /users/{user_id}/classification_tags/{classification_tag_id}/user_recordings:
+  /users/{user_id}/recording_groups/{recording_group_id}/user_recordings:
     get:
       tags:
       - Recording Groups
@@ -617,8 +617,8 @@ paths:
       operationId: getRecordingsInGroup
       parameters:
         - in: path
-          name: classification_tag_id
-          description: The id of the classification tag
+          name: recording_group_id
+          description: The id of the recording group
           schema:
             type: string
           example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
