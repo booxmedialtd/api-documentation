@@ -7,6 +7,10 @@ RecordingGroupEntity:
       type: string
       description: This is a human readable description for the group, based on the tag used to create the group
       example: "Simpsons"
+    approximate_number_of_recordings:
+      type: integer
+      description: >-
+        A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
     images:
       description: >-
         An image associated directly with the recording group will have the type "thumbnail".
