@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: >-
-    Some customers provide hundreds of channels to their subscribers. 
+    Some customers provide hundreds of channels to their subscribers.
     To make it easier for subscriber to manage and navigate channels, we need to provide an intuitive way for subscribers to create different channel lists.
   version: "1.0.0"
   title: "User specified favourite channel lists"
@@ -30,7 +30,7 @@ paths:
       - Favourite Channel List Collection
       summary: An index of all of the favourite channel lists for a specific user
       operationId: indexUserFavouriteChannelList
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
@@ -77,7 +77,7 @@ paths:
       - Favourite Channel List Collection
       summary: Create a new favourite channel list
       operationId: createFavouriteChannelList
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
@@ -145,14 +145,14 @@ paths:
       responses:
         '204':
           description: |
-            The resource was deleted successfully              
+            The resource was deleted successfully
 
     put:
       tags:
       - Favourite Channel List Resource
       summary: Update a favourite channel list
       operationId: updateFavouriteChannelList
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
@@ -172,7 +172,7 @@ paths:
           application/json:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
-      responses:        
+      responses:
         204:
           description: |
             The resource was updated successfully, no response body is needed
@@ -187,14 +187,14 @@ paths:
         A list of ALL the channels that a user has marked as favourite in ANY list.
         Note that the primary data object contains Resource Identifier Objects and NOT Resource Objects.
       operationId: indexChannelListContents
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-       
+
       responses:
         200:
           description: "Successful response"
@@ -219,7 +219,7 @@ paths:
                         id:
                           type: string
                           description: "The id of the entity being referenced"
-                          example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"                        
+                          example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
 
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
@@ -227,10 +227,10 @@ paths:
       tags:
       - Favourite Channel List Relationships
       summary: >-
-        An index of all of the channels that a list contains.  
+        An index of all of the channels that a list contains.
         Note that the `relationships` key will be absent because this endpoint does not support the `included` parameter
       operationId: indexChannelListContents
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
@@ -269,13 +269,11 @@ paths:
                           type: string
                           description: "The id of the entity being referenced"
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelEntity.yml#/ChannelEntity"
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels/{channel_id}:
-    
+
     delete:
       summary: |
         Remove a channel from a favourite list
@@ -312,7 +310,7 @@ paths:
       - Favourite Channel List Relationships
       summary: Add a channel into a favourite list
       operationId: createFavouriteChannelListItem
-      parameters:        
+      parameters:
         - in: path
           name: user_id
           required: true
@@ -330,7 +328,7 @@ paths:
           required: true
           description: The identity of the channel
           schema:
-            type: string      
+            type: string
       responses:
         201:
           description: |
