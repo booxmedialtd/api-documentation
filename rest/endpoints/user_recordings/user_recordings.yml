@@ -564,8 +564,16 @@ paths:
         content:
           application/json:
             schema:
-              type:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BulkDeleteRequestEntity.yml#/BulkDeleteRequestEntity"
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: BulkDeleteRequestEntity
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BulkDeleteRequestEntity.yml#/BulkDeleteRequestEntity"
       responses:
         201:
           description: "Successful response"
