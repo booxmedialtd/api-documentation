@@ -333,7 +333,7 @@ paths:
     delete:
       tags:
       - Recording Requests
-      summary: Delete a recording request.  As a side effect all of the recording slots will also be deleted.
+      summary: Delete a recording request.  This will result in all future (incomplete) recordings being deleted, but existing recordings will remain.
       operationId: deleteUserRecordingRequest
       parameters:
         - in: path
@@ -379,7 +379,7 @@ paths:
           name: filter
           required: false
           description: >
-            Only the following filters are supported: [expiring|classification_tag.value]
+            Only the following filters are supported: [favourite|expiring|classification_tag.value]
             Example usage:  /user/{user_id}/user_recordings?filter[expiring]=X
             The value supplied is the number of days in the future that determines whether a record should be included in the result set.
             Only the following values are accepted [today|3|7|30] and if an invalid value is given a 400 error will be returned.
@@ -411,6 +411,7 @@ paths:
                     type: object
                     required:
                     - play
+                    - cancel_recording
                     properties:
                       play:
                         type: string
@@ -418,18 +419,15 @@ paths:
                         description: Where to find information about playing this recording
                       cancel_recording:
                         type: string
-                        example:  https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
+                        example:  https://demo.com/api/recordings/v1/user_recording/10c35c20-5c75-4c2d-ad79-bc10385b89f3
                         description: >-
-                          Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
-                          Calling this endpoint with the DELETE method will cause the recording to be cancelled.
-                          Where to find information about playing this recording
+                          Calling this endpoint with the DELETE method will cause the specific recording to be cancelled.
                       cancel_continuous_recording:
                         type: string
                         example: https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
                         description: >-
-                          Either cancel_recording or cancel_continuous_recording will be present as links (not both) depending on whether this recording is part of a continuous recording or not.
                           Calling this endpoint with the DELETE method will cause the recording to be cancelled and no future episodes will be recorded.
-                          Where to find information about playing this recording
+                          This key will not be present if the recording is not part of a series.
                   data:
                     type: array
                     items:
@@ -529,7 +527,10 @@ paths:
     delete:
       tags:
       - Recordings
-      summary: Delete a recording
+      summary: Delete an existing recording or cancel a specific scheduled recording
+      description: >-
+        Use this endpoint to cancel a scheduled recording.  To cancel a series of scheduled recordings you should delete the recording request.
+        If you use this endpoint on an existing recording then the recording is deleted.
       operationId: deleteUserRecording
       parameters:
         - in: path
@@ -538,31 +539,71 @@ paths:
           schema:
             type: string
           example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
-        - in: query
-          name: delete_future_occurances
-          description: >
-            If the particular recording is part of a series then setting this parameter to "true" will cause
-            all future occurances of the series to not be deleted.  In other words setting this parameter to
-            "true" cancels the request for the whole series, not just the single episode.
-            If this parameter is omitted it will default to "false"
-          schema:
-            type: string
-            enum: [true,false]
-          example: "true"
-
       responses:
         '204':
           description: |
             The resource was deleted successfully
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_recordings/bulk_delete_request:
+    post:
+      tags:
+      - Recordings
+      summary: Create a deletion request that specifies a number of records that need to be deleted
+      operationId: postDeletionRequest
+      parameters:
+        - in: path
+          name: user_id
+          description: The id of the user
+          schema:
+            type: string
+          example: cdf5b4f7-236c-4a3c-b848-9223ed816a0c
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BulkDeleteRequestEntity.yml#/BulkDeleteRequestEntity"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserRecordingRequest
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "c74e8b26-079c-4d01-95a2-da8fb6139179"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 #  RECORDING GROUPS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/recording_groups:
+  /users/{user_id}/user_recordings/:
     get:
       tags:
         - Recording Groups
-      summary: Get a list of recording groups for a user
+      summary: Returns a list of recording groups for the user
       operationId: getRecordingGroups
       parameters:
         - in: path

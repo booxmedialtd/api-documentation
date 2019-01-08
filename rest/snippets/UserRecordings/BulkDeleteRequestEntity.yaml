@@ -1,0 +1,15 @@
+BulkDeleteRequestEntity:
+  type: object
+  properties:
+    items_to_delete:
+      type: array
+      items:
+        type: object
+        required:
+        - recording_id
+        properties:
+          recording_id:
+            type: string
+            description: >-
+              The identity of the user recording you want to delete.
+              This is presented as part of the entity rather than a relationship to make the request easier for the client to build
