@@ -590,9 +590,9 @@ paths:
                         id:
                           type: string
                           description: "The id of the entity that was created"
-                          example: "c74e8b26-079c-4d01-95a2-da8fb6139179"
+                          example: "a78b7d04-9821-4311-b375-3a5a29e00317"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingRequestEntity.yml#/UserRecordingRequestEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BulkDeleteRequestEntity.yml#/BulkDeleteRequestEntity"
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
