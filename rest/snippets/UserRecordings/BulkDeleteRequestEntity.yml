@@ -1,7 +1,9 @@
 BulkDeleteRequestEntity:
   type: object
+  required:
+  - recordings_to_delete
   properties:
-    items_to_delete:
+    recordings_to_delete:
       type: array
       items:
         type: object
