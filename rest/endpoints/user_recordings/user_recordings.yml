@@ -54,12 +54,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingSlotEntity.yml#/RecordingSlotEntity"
             example:
-              op: "replace"
-              path: "/data/0/attributes/status"
-              value: "RECORDING_FAILED"
-              from: null
+              status: "RECORDING_FAILED"
       responses:
         204:
           description: |
@@ -69,7 +66,7 @@ paths:
 
   /{device_id}/recording_slots:
     get:
-      summary: Return a list of recording slots that a device needs to make
+      summary: Return a list of recording slots that a device needs to make.
       tags:
       - Recording Slots
       operationId: indexRecordingSlots
@@ -379,13 +376,15 @@ paths:
           name: filter
           required: false
           description: >
-            Only the following filters are supported: [favourite|expiring|classification_tag.value]
+            Only the following filters are supported: [deleted|favourite|expiring]
             Example usage:  /user/{user_id}/user_recordings?filter[expiring]=X
             The value supplied is the number of days in the future that determines whether a record should be included in the result set.
             Only the following values are accepted [today|3|7|30] and if an invalid value is given a 400 error will be returned.
             We include all records from "now" up until the specified number of days after midnight "today".
             For example, if you make a request for three days of data to this endpoint at 10:08 on December 10th you should expect to
             receive recordings that expire later on the 10th December, as well as recordings from 11th, 12th, and 13th.
+            The "deleted" filter is expected to be used only by recording devices.  The API will return a list of recordings that the device should remove from its
+            storage as the user has requested that they be deleted.
           schema:
             type: string
         - in: query
@@ -409,25 +408,32 @@ paths:
                 properties:
                   links:
                     type: object
-                    required:
-                    - play
-                    - cancel_recording
                     properties:
                       play:
                         type: string
                         example: https://demo.com/api/channel/38/stream/103/play?userEmail=boox6%40cloudpvr.nl&service=example&startover=false&stream_type=hls&service=example
-                        description: Where to find information about playing this recording
+                        description: >-
+                          Where to find information about playing this recording
+                          This key will only appear if the recording has completed
                       cancel_recording:
                         type: string
                         example:  https://demo.com/api/recordings/v1/user_recording/10c35c20-5c75-4c2d-ad79-bc10385b89f3
                         description: >-
                           Calling this endpoint with the DELETE method will cause the specific recording to be cancelled.
+                          This key will only be present if the recording is "incoming" (scheduled for the future)
                       cancel_continuous_recording:
                         type: string
                         example: https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
                         description: >-
                           Calling this endpoint with the DELETE method will cause the recording to be cancelled and no future episodes will be recorded.
-                          This key will not be present if the recording is not part of a series.
+                          This key will only be present if the recording is "incoming" (scheduled for the future) and is part of a series.
+                      delete_recording:
+                        type: string
+                        example: https://demo.com/api/recordings/v1/user_recording/10c35c20-5c75-4c2d-ad79-bc10385b89f3
+                        description: >-
+                          This key will only appear if the recording has been completed.  Calling this endpoint will result in the particular
+                          recording being deleted.  Note that it is not a bulk delete of all related continuous recordings.
+
                   data:
                     type: array
                     items:
@@ -441,9 +447,7 @@ paths:
                           example: UserRecording
                         id:
                           type: string
-                          example: '{"user_id":1,"epg_id":749,"continuous":0}'
-                          description: >-
-                            The example gets parsed to display like an object.  The id of the recording itself.  This is a JSON string at the moment because we are using a composite primary key to model this entity identity.  In the near future this will become a standard UUID.
+                          example: '1e9ef53e-582d-40cb-ac91-cb26c5bc3e02'
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
                   included:
@@ -611,7 +615,7 @@ paths:
     get:
       tags:
         - Recording Groups
-      summary: Returns a list of recording groups for the user
+      summary: Returns a list of recording groups for the user.  This will be every tag that is associated with any of their recordings.
       operationId: getRecordingGroups
       parameters:
         - in: path
@@ -662,7 +666,7 @@ paths:
     get:
       tags:
       - Recording Groups
-      summary: Get a list of recordings that are in a recording group
+      summary: Get a list of recordings that are in a recording group defined by the selected tag
       operationId: getRecordingsInGroup
       parameters:
         - in: path

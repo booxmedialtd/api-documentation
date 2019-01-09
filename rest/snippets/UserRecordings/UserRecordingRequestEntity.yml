@@ -1,7 +1,5 @@
 UserRecordingRequestEntity:
   type: object
-  required:
-  - recording_location
   properties:
 
     serial_recording:

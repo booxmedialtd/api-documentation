@@ -18,9 +18,8 @@ RecordingSlotEntity:
     status:
       type: string
       description: >
-        One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE | DELETED].
+        One of [NEW | RECORDING | RECORDING_FAILED | FAILED_PERMANENTLY | WAITING | COMPLETE].
         This field cannot be supplied in POST requests, but may be altered with PATCH
-        If the API returns a status of DELETED it implies that the device must delete the item from its storage.
       example: RECORDING_FAILED
       enum: [NEW,RECORDING,RECORDING_FAILED,FAILED_PERMANENTLY,WAITING,COMPLETE]
 
