@@ -1,0 +1,43 @@
+RecordingTagEntity:
+  type: "object"
+  required:
+  - matching_rules
+  - human_friendly_description
+  - images
+  properties:
+    matching_rules:
+      type: array
+      items:
+        type: object
+        required:
+        - key
+        - operator
+        - value
+        properties:
+          key:
+            type: string
+            description: The metadata key to compare against, expressed in the format "Entity.attribute_name"
+            example: "Genre.name"
+          operator:
+            type: string
+            example: "eq"
+            enum: [eq,neq,gt,lt,gte,lte,contains]
+          value:
+            type: string
+            example: "Comedy"
+    human_friendly_description:
+      type: string
+      example: "Title includes 'simpsons' and Genre is 'Comedy'"
+      description: >-
+        The human readable description of the rule.  Multi-lingual support is enabled for this field.  The API will store
+        multiple versions of this field, one for each language.  It will return the language that the client marks as
+        acceptable in the request headers.  It will default onto the system configured default if the client does not
+        indicate which language is acceptable and the "lang" parameter is omitted (where supported).
+    images:
+      description: >-
+        An image associated directly with the recording group will have the type "thumbnail".
+        If there is not an image directly associated with the recording group then the image from
+        the first recording should be used.  This image will have the type "program_thumbnail"
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"

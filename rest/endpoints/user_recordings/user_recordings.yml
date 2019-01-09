@@ -607,7 +607,7 @@ paths:
 #  RECORDING GROUPS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/user_recordings/:
+  /users/{user_id}/user_recordings/recording_tags:
     get:
       tags:
         - Recording Groups
@@ -656,9 +656,9 @@ paths:
                           description: >-
                             The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingGroupEntity.yml#/UserRecordingGroupEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingTagEntity.yml#/RecordingTagEntity"
 
-  /users/{user_id}/recording_groups/{recording_group_id}/user_recordings:
+  /recording_tags/{recording_tag_id}/recordings:
     get:
       tags:
       - Recording Groups
@@ -666,17 +666,11 @@ paths:
       operationId: getRecordingsInGroup
       parameters:
         - in: path
-          name: recording_group_id
-          description: The id of the recording group
+          name: recording_tag_id
+          description: The id of the recording tag
           schema:
             type: string
           example: ad0e718f-d1dc-4e67-81f9-8ff9a09490cd
-        - in: path
-          name: user_id
-          description: The user id
-          schema:
-            type: string
-          example: 34d8a79d-d54a-4229-b560-572a65113e23
       responses:
         '200':
           description: "Successful response"
@@ -705,6 +699,7 @@ paths:
                             The id of the request entity
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
+  }
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------

@@ -52,7 +52,7 @@
           type: string
           example: "fi"
           description: The ISO 2 letter code of the country in which production occurred
-      external_program_information:
+      metadata_provider_program_information:
         type: array
         items:
           type: object
