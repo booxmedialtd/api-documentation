@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Packages"
+tags:
+- name: Channel Packages
+  description: >-
+    Packages allow us to group channel licenses together so that we can sell them as a bundle to users.
+servers:
+- url: 'https://demo.aminocom.com/api/packages/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Channel packages
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /channel_packages:
+    get:
+      summary: Return a list of packages that are on the system
+      tags:
+      - Channel Packages
+      operationId: indexChannelPackages
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: ChannelPackage
+                        id:
+                          type: string
+                          example: 96461f85-c94b-46ee-afeb-4c1a9cd3de83
+                          description: >-
+                            The id of the request entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Package/PackageEntity.yml#/PackageEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/channel_packages:
+    get:
+      summary: Return a list of packages that a user is associated with.
+      tags:
+      - Channel Packages
+      operationId: indexChannelPackagesForUser
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: ChannelPackage
+                        id:
+                          type: string
+                          example: 4f391267-88a4-4911-856a-6529d6fddbe1
+                          description: >-
+                            The id of the request entity
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Package/PackageEntity.yml#/PackageEntity"
+        '400':
+          description: Standard error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"

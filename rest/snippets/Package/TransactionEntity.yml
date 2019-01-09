@@ -1,0 +1,169 @@
+TransactionEntity:
+  type: object
+  properties:
+    initiated_at_timestamp:
+      type: integer
+      description: The Unix epoch timestamp that the transaction was started at
+      example: 1547047997
+    last_updated_timestamp:
+      type: integer
+      description: The Unix epoch timestamp at which the last update to the status of the transaction was made
+      example: 1547049025
+    taxable_amount_received:
+      type: array
+      items:
+        type: object
+        properties:
+          country_codes_iso3166_alpha2:
+            type: string
+            description: "The price to users whose IP address is in this country"
+            example: "fi"
+          currency_code_iso4217:
+            type: string
+            description: The ISO-4217 currency code
+            example: "EUR"
+          currency_symbol:
+            type: string
+            description: What symbol to display currency amounts in.  Requires UTF-8 to be accepted by the client.
+            example: €
+          currency_position:
+            type: string
+            enum: [before,after]
+            description: Whether the currency symbol is placed in front of or behind the value
+            example: "before"
+          currency_precision:
+            type: integer
+            description: How many digits of precision to show in the currency
+            example: 2
+          numeric_price:
+            type: integer
+            description: The number that must be displayed as the price
+    tax:
+      type: array
+      items:
+        type: object
+        properties:
+          country_codes_iso3166_alpha2:
+            type: string
+            description: "The price to users whose IP address is in this country"
+            example: "fi"
+          currency_code_iso4217:
+            type: string
+            description: The ISO-4217 currency code
+            example: "EUR"
+          currency_symbol:
+            type: string
+            description: What symbol to display currency amounts in.  Requires UTF-8 to be accepted by the client.
+            example: €
+          currency_position:
+            type: string
+            enum: [before,after]
+            description: Whether the currency symbol is placed in front of or behind the value
+            example: "before"
+          currency_precision:
+            type: integer
+            description: How many digits of precision to show in the currency
+            example: 2
+          numeric_price:
+            type: integer
+            description: The number that must be displayed as the price
+    discount_applied:
+      type: array
+      items:
+        type: object
+        properties:
+          country_codes_iso3166_alpha2:
+            type: string
+            description: "The price to users whose IP address is in this country"
+            example: "fi"
+          currency_code_iso4217:
+            type: string
+            description: The ISO-4217 currency code
+            example: "EUR"
+          currency_symbol:
+            type: string
+            description: What symbol to display currency amounts in.  Requires UTF-8 to be accepted by the client.
+            example: €
+          currency_position:
+            type: string
+            enum: [before,after]
+            description: Whether the currency symbol is placed in front of or behind the value
+            example: "before"
+          currency_precision:
+            type: integer
+            description: How many digits of precision to show in the currency
+            example: 2
+          numeric_price:
+            type: integer
+            description: The number that must be displayed as the price
+    price:
+      type: array
+      items:
+        type: object
+        properties:
+          country_codes_iso3166_alpha2:
+            type: string
+            description: "The price to users whose IP address is in this country"
+            example: "fi"
+          currency_code_iso4217:
+            type: string
+            description: The ISO-4217 currency code
+            example: "EUR"
+          currency_symbol:
+            type: string
+            description: What symbol to display currency amounts in.  Requires UTF-8 to be accepted by the client.
+            example: €
+          currency_position:
+            type: string
+            enum: [before,after]
+            description: Whether the currency symbol is placed in front of or behind the value
+            example: "before"
+          currency_precision:
+            type: integer
+            description: How many digits of precision to show in the currency
+            example: 2
+          numeric_price:
+            type: integer
+            description: The number that must be displayed as the price
+    relationships:
+      type: array
+      items:
+        anyOf:
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The identifier of the entity
+              example: 3a54796d-fd4d-4d79-83b2-159aa0e5cbbd
+            type:
+              type: string
+              description: A record of a credit card payment
+              example: "CreditCardPaymentRecord"
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The identifier of the entity
+              example: e6d120ff-c41c-4aad-8ddf-ea893066b610
+            type:
+              type: string
+              description: Not currently supported
+              example: "SomeOtherPaymentTypeRecord"
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The identifier of the entity
+              example: c2618273-ad22-41ac-892b-895e85b89d5d
+            type:
+              type: string
+              example: User

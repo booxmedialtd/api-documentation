@@ -1,0 +1,59 @@
+ProductEntity:
+  type: object
+  description: A product is something that can be sold and relates to a package (and possiblt more than one package)
+  properties:
+    name:
+      type: string
+      example: "Spring special - big movie bundle"
+      description: What must be displayed to the user in the store
+    price:
+      type: array
+      items:
+        type: object
+        properties:
+          country_codes_iso3166_alpha2:
+            type: string
+            description: "The price to users whose IP address is in this country"
+            example: "fi"
+          currency_code_iso4217:
+            type: string
+            description: The ISO-4217 currency code
+            example: "EUR"
+          currency_symbol:
+            type: string
+            description: What symbol to display currency amounts in.  Requires UTF-8 to be accepted by the client.
+            example: €
+          currency_position:
+            type: string
+            enum: [before,after]
+            description: Whether the currency symbol is placed in front of or behind the value
+            example: "before"
+          currency_precision:
+            type: integer
+            description: How many digits of precision to show in the currency
+            example: 2
+          numeric_price:
+            type: integer
+            description: The number that must be displayed as the price
+            example: 9.99
+    availability_window:
+      type: object
+      required:
+      - start_timestamp
+      - end_timestamp
+      properties:
+        manually_disabled:
+          type: boolean
+          enum: [true,false]
+          description: >-
+            If this is "true" then the package must not be displayed, regardless of the other availability settings
+          example: false
+        start_timestamp:
+          type: integer
+          description: The Unix epoch timestamp that the product should be displayed in the store from
+          example: 1547047955
+        end_timestamp:
+          type: integer
+          description: The Unix epoch timestamp after which the product must not be displayed from
+          example: 1561248000
+

@@ -1,0 +1,50 @@
+PackageEntity:
+  type: object
+  description: A package is a logical grouping of several channel licenses
+  required:
+    -
+  properties:
+    name:
+      type: string
+      description: A human readable display name for the PackageEntity
+      example: "Movie Megabundle"
+    description:
+      type: string
+      description: A longer description for the PackageEntity
+      example: "This package includes a number of premium movie channels"
+    validity_window:
+      type: object
+      description: This determines when licenses associated with this package should be applied to a user related to the package
+      properties:
+        manually_disabled:
+          type: boolean
+          enum: [true,false]
+          description: >-
+            If this is "true" then the package cannot confer any valid licenses, regardless of other availability window settings
+            If it is omitted the value defaults to "false"
+          example: false
+        start_timestamp:
+          type: integer
+          description: The Unix epoch timestamp after which the package is valid
+          example: 1547047955
+        end_timestamp:
+          type: integer
+          description: The Unix epoch timestamp after which the package cannot confer any licenses
+          example: 1561248000
+  relationships:
+    type: array
+    items:
+      anyOf:
+      - type: object
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            description: The identifier of the entity
+            example: d28558a8-588b-47e6-ac85-2bf653757c81
+          type:
+            type: string
+            description: Multiple licenses will be associated with each package
+            example: "UserChannelLicense"

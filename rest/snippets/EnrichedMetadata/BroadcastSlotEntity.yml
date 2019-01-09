@@ -14,3 +14,6 @@ BroadcastSlotEntity:
         type: string
         example: "Elokuva: Die Hard"
         description: "Storing the title of the broadcast slot allows the customer to amend the metadata title in a flexible manner"
+      teaser:
+        type: string
+        example: "An NYPD officer tries to save his wife and several others taken hostage by German terrorists during a Christmas party at the Nakatomi Plaza in Los Angeles."
