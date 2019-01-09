@@ -699,7 +699,7 @@ paths:
                             The id of the request entity
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
-  }
+
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
