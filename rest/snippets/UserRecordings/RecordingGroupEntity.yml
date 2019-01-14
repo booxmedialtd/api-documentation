@@ -33,5 +33,4 @@ RecordingGroupEntity:
               example: abdf8785-cb23-445b-946f-69e8770500a1
             type:
               type: string
-              description: You should not expect ClassificationTag to be related if a Program is related to the request.
-              example: "ClassificationTag"
+              example: "RecordingTag"
