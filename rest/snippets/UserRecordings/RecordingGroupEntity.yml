@@ -18,19 +18,19 @@ RecordingGroupEntity:
         the first recording should be used.  This image will have the type "program_thumbnail"
       type: array
       items:
-        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
+        $ref: "https://raw.githubusercontent.com/:ffbooxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
     relationships:
       type: array
       items:
         type: object
-          required:
-          - id
-          - type
-          properties:
-            id:
-              type: string
-              description: The identifier of the entity
-              example: abdf8785-cb23-445b-946f-69e8770500a1
-            type:
-              type: string
-              example: "RecordingTag"
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            description: The identifier of the entity
+            example: abdf8785-cb23-445b-946f-69e8770500a1
+          type:
+            type: string
+            example: "RecordingTag"
