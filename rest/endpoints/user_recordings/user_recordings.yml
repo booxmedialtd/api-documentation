@@ -611,7 +611,7 @@ paths:
 #  RECORDING GROUPS
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/user_recordings/recording_tags:
+  /users/{user_id}/user_recordings/recording_groups:
     get:
       tags:
         - Recording Groups
@@ -660,9 +660,9 @@ paths:
                           description: >-
                             The id of the request entity
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingTagEntity.yml#/RecordingTagEntity"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
 
-  /recording_tags/{recording_tag_id}/recordings:
+  /recording_groups/{recording_group_id}/recordings:
     get:
       tags:
       - Recording Groups
@@ -670,7 +670,7 @@ paths:
       operationId: getRecordingsInGroup
       parameters:
         - in: path
-          name: recording_tag_id
+          name: recording_group_id
           description: The id of the recording tag
           schema:
             type: string
