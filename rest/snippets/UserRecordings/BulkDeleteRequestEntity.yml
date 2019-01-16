@@ -16,10 +16,3 @@ BulkDeleteRequestEntity:
             description: >-
               The identity of the user recording you want to delete.
               This is presented as part of the entity rather than a relationship to make the request easier for the client to build
-          most_recent_recordings_to_retain:
-            type: integer
-            example: 10
-            description: >-
-              How many of the most recent recordings should be retained.  Using this parameter lets a user specify that they want to
-              delete all recordings, except the last 10 (for example.)
-              If this parameter is omitted it defaults to 0.
