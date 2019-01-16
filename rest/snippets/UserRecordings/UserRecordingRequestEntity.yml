@@ -9,8 +9,15 @@ UserRecordingRequestEntity:
           type: integer
           example: 10
           description: >
-            How many episodes of the program to record.
-            If the field is omitted from a POST request it will default to 0
+            How many episodes of the program to record.  This caps the total number of episodes to be recorded.
+            If the field is omitted from a POST request it will default to -1 which indicates that "no limit" is applied
+        maximum_episodes_to_retain:
+          type: integer
+          example: 10
+          description: >-
+            This specifies the maximum number of episodes that will be retained.  If a new recording is made
+            that causes the number of recordings to exceed this limit then the oldest recording is deleted.
+            This value may be set to -1 to indicate that an infinite number of recordings may be kept.
         expire_timestamp:
           type: integer
           example: 1543839142
