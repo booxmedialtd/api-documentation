@@ -400,6 +400,8 @@ paths:
             type: integer
         - in: query
           name: filter
+          schema:
+            type: string
           required: false
           description: >
             Only the following filters are supported: [deleted|favourite|expiring]
@@ -411,27 +413,27 @@ paths:
             receive recordings that expire later on the 10th December, as well as recordings from 11th, 12th, and 13th.
             The "deleted" filter is expected to be used only by recording devices.  The API will return a list of recordings that the device should remove from its
             storage as the user has requested that they be deleted.
-          schema:
-            type: string
         - in: query
           name: search
           required: false
-          description: >-
+          schema:
+            type: string
+          description: >
             The search parameter follows the same formatting as filter, in that square brackets are used in the parameter to indicate keys of an array.
+            For example: To find recordings with the title "Die Hard", /user/{user_id}/user_recordings?filter[title]=Die,Hard
             Multiple words may be separated with commas, but they may appear in any order in the field being searched on.  The words are treated logically
-            as "OR", which means that if one (or more) of them appear in the field then it will be considered a match.
+            as "AND", which means that if all of them appear in the field (in any order) then it will be considered a match.
             You may search on the following fields: [title|Program.description].  Note that searching on Program.description requires joining data across
             a component boundary and so is expensive.
-            For example: To find recordings with the title "Die Hard", /user/{user_id}/user_recordings?filter[title]=Die,Hard
         - in: query
           name: language
+          schema:
+            type: string
           required: false
           description: >-
             The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
             If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
             If the requested language is not available then the system will return translations in order of the system defined preferences
-          schema:
-            type: string
       responses:
         '200':
           description: "Successful response"
