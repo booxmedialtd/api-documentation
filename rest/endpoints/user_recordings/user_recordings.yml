@@ -421,7 +421,7 @@ paths:
           description: >
             The search parameter follows the same formatting as filter, in that square brackets are used in the parameter to indicate keys of an array.
             For example: To find recordings with the title "Die Hard", /user/{user_id}/user_recordings?filter[title]=Die,Hard
-            Multiple words may be separated with commas, but they may appear in any order in the field being searched on.  The words are treated logically
+            Multiple words may be separated with commas, and they must appear in the field in the order presented in the CSV.  The words are treated logically
             as "AND", which means that if all of them appear in the field (in any order) then it will be considered a match.
             You may search on the following fields: [title|Program.description].  Note that searching on Program.description requires joining data across
             a component boundary and so is expensive.
