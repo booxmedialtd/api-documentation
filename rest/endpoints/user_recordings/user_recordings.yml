@@ -62,6 +62,28 @@ paths:
           description: |
             The resource was updated successfully, no response body is needed
 
+    delete:
+      tags:
+      - Recording Slots
+      summary: Tell the API to delete a slot (see description for details)
+      description: >-
+        We expect this to only be called by recording devices.  Once a recording device has successfully removed the file relating to a recording
+        it should call this endpoint to cause the API to delete the row.  The API should respond with a "400 Bad Request" error if this endpoint
+        is called on a recording that is not in the soft-deleted state.  In other words, this API can only be used on recordings that the user has
+        selected to be deleted.
+      operationId: putRecordingRequest
+      parameters:
+        - in: path
+          name: recording_request_id
+          description: The id of the recording request
+          schema:
+            type: string
+          example: 24369947-8d46-4453-bdc2-9e1d88c220ff
+      responses:
+        204:
+          description: |
+            The resource was deleted successfully, no response body is needed
+
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /{device_id}/recording_slots:
@@ -81,9 +103,13 @@ paths:
         name: filter
         required: false
         description: >
-          How many seconds in the future to look for slots.
-          By default this is 3600
+          The following fields are valid to be filtered on:  [window_seconds | status].
+          The window_seconds paramter specifies how many seconds in the future to look for slots.  By default this is 3600
           Example usage:  /user/{user_id}/user_recordings?filter[window_seconds]=3600
+          The status parameter can be used to show only records that are in DELETED state.  This should be used by recording
+          devices to determine what recordings they should delete from their local storage.  We do not support filtering on
+          other states and the API will return "400 Bad Request" if the client attempts to use a different status to filter on.
+          Example: usage: /user/{user_id}/user_recordings?filter[status]=DELETED
         schema:
           type: string
       responses:
@@ -387,6 +413,16 @@ paths:
             storage as the user has requested that they be deleted.
           schema:
             type: string
+        - in: query
+          name: search
+          required: false
+          description: >-
+            The search parameter follows the same formatting as filter, in that square brackets are used in the parameter to indicate keys of an array.
+            Multiple words may be separated with commas, but they may appear in any order in the field being searched on.  The words are treated logically
+            as "OR", which means that if one (or more) of them appear in the field then it will be considered a match.
+            You may search on the following fields: [title|Program.description].  Note that searching on Program.description requires joining data across
+            a component boundary and so is expensive.
+            For example: To find recordings with the title "Die Hard", /user/{user_id}/user_recordings?filter[title]=Die,Hard
         - in: query
           name: language
           required: false
