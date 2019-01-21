@@ -1,0 +1,17 @@
+Error:
+  type: object
+  required:
+  - error
+  properties:
+    error:
+      type: object
+      required:
+      - code
+      - text
+      properties:
+        code:
+          type: integer
+          example: 0
+        text:
+          type: string
+          example: PUSHNOTIFY - An error has occurred
