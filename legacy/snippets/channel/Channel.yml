@@ -22,8 +22,6 @@ Channel:
   - dvbChannels
   - liveservice
   - recordingService
-  - catchupService
-  - fastForward
   properties:
     id:
       type: string
