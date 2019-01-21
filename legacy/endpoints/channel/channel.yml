@@ -1,0 +1,219 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Channel (Legacy)"
+  description: >-
+    A Channel is a source of content in the form of stream or signal, which can be watched / listened on a multimedia device.
+    A Channel is distinct from VOD in that a Channel is a live stream.
+    A Channel may be either Premium (requiring a Subscription) or free (otherwise).
+tags:
+- name: Channel
+servers:
+- url: 'https://boox.fi/api'
+paths:
+
+  /v3.1/channels:
+    get:
+      summary: Return a list of channels that are not user specific
+      description: >-
+        This endpoint can be publicly cached as it does not have any user specific information.  The device
+        is encouraged to respect the cache-control headers in order to comply with our API development guidelines.
+      tags:
+      - Channel
+      operationId: indexGeneralChannels
+      parameters:
+      - in: query
+        name: service
+        description: The service to which the user belongs
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - channels
+                properties:
+                  channels:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        href:
+                          type: string
+                          example: "/channels/1"
+                        title:
+                          type: string
+                          example: Infokanava
+                        description:
+                          type: string
+                          example: ""
+                        thumbnails:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              url:
+                                type: string
+                                example: https://example.com/graphics/thumbnails/channel/matkatv/Infokanava_60x60.png
+                              width:
+                                type: integer
+                              height:
+                                type: integer
+                        services:
+                          type: object
+                          properties:
+                            live:
+                              type: object
+                              properties:
+                                enabled:
+                                  type: boolean
+                                  example: 1
+                                sources:
+                                  type: object
+                                  required:
+                                  - ott
+                                  - dvb
+                                  properties:
+                                    ott:
+                                      type: object
+                                      properties:
+                                        lcn:
+                                          type: integer
+                                          example: 801
+                                          streams:
+                                            type: array
+                                            items:
+                                              type: object
+                                              required:
+                                              - id
+                                              - codec_info
+                                              - protection
+                                              - streaming_protocol
+                                              - transport_protocol
+                                              - url
+                                              properties:
+                                                id:
+                                                  type: integer
+                                                  example: 11
+                                                codec_info:
+                                                  type: string
+                                                  example: application/x-rtsp
+                                                protection:
+                                                  type: string
+                                                  example: none
+                                                streaming_protocol:
+                                                  type: string
+                                                  example: hls
+                                                transport_protocol:
+                                                  type: string
+                                                  example: rtsp
+                                                url:
+                                                  type: string
+                                                  example: https://booxmedia.local/api/channel/17/stream/11/play?service=dnaclient
+
+
+                                    dvb:
+                                      type: object
+                                      properties:
+                                        triplets:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              type:
+                                                type: string
+                                                example: C
+                                              onid:
+                                                type: string
+                                                example: "42249"
+                                              tsid:
+                                                type: string
+                                                example: "122"
+                                              sid:
+                                                type: string
+                                                example: "1"
+                                              quality:
+                                                type: string
+                                                example: "SD"
+                                              lcn:
+                                                type: integer
+                                                example: 99
+                        products:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - id
+                            - title
+                            - thumbnailUrl
+                            - type
+                            - externalProductID
+                            - isPremium
+                            - recurring
+                            - price
+                            - currency
+                            - licenseDuration
+                            - promo
+                            - supportedDevices
+                            properties:
+                              id:
+                                type: string
+                                example: "1003"
+                              title:
+                                type: string
+                                example: Tuotekehitys_testi
+                              thumbnailUrl:
+                                type: string
+                                example: ""
+                              type:
+                                type: string
+                                example: "CHANNEL_GROUP"
+                              externalProductID:
+                                type: string
+                                example: ""
+                              isPremium:
+                                type: string
+                                example: "1"
+                              recurring:
+                                type: string
+                                example: "0"
+                              price:
+                                type: string
+                                example: "0.0000"
+                              currency:
+                                type: string
+                                example: ""
+                              licenseDuration:
+                                type: string
+                                example: "51840000"
+                              promo:
+                                type: string
+                                example: null
+                              supportedDevices:
+                                type: string
+                                example: null
+                        recording:
+                          type: object
+                          required:
+                          - enabled
+                          properties:
+                            enabled:
+                              type: boolean
+                              example: 0
+                        catchup:
+                          type: object
+                          required:
+                          - enabled
+                          properties:
+                            enabled:
+                              type: boolean
+                              example: 0
+

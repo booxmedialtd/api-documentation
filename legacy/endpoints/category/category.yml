@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: "1.0.0"
-  title: "User recording"
+  title: "Category (Legacy)"
 tags:
 - name: Category
   description: >-
@@ -77,3 +77,4 @@ paths:
                             categoryType:
                               type: string
                               example: booxtv_featured
+                              enum: ["booxtv_featured", "booxtv_normal"]
