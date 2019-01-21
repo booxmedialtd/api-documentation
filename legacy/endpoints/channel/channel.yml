@@ -12,6 +12,10 @@ servers:
 - url: 'https://boox.fi/api'
 paths:
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# v3.1
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   /v3.1/channels:
     get:
       summary: Return a publicly cacheable list of channels that are not user specific
@@ -35,3 +39,113 @@ paths:
             application/json:
               schema:
                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel31General.yml#/Channel31General"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# v2
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_email}/channel:
+    get:
+      summary: Return privately cacheable user specific channel information
+      description: >-
+        The client is strongly encouraged to cache this endpoint locally in order to comply with our API development guidelines.
+      tags:
+      - Channel
+      operationId: indexUserSpecificChannels
+      parameters:
+        - in: path
+          name: user_email
+          description: The email address of the user
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: service
+          description: The service to which the user belongs
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: include
+          description: >-
+            Comma-separated values of related data to include in listing.
+            Options "product", "categories", "liveservice", "recordingservice", "catchupservice", "epg", "dvbchannel", "fastForward" and "none".
+            Defaults to ["product", "categories", "liveservice", "recordingservice", "catchupservice", "fastForward"]
+          required: false
+          schema:
+            type: string
+            enum: ["product", "categories", "liveservice", "recordingservice", "catchupservice", "epg", "dvbchannel", "fastForward", "none"]
+        - in: query
+          name: lang
+          description: Choose the output language as defined in Server language API '<domain>/api/server/lang'.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: >-
+            Sorting order of the listing. Defaults to added_time__asc. The parameter is divided into two parts: first specifying the field, and the second, specifying the order.
+            These two fields are concatenated by "__". Options in field value are "title", "start_time", "end_time", "added_time", "updated_time","rank". Options in order are "asc" and "desc".
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: stream_protection
+          description: >-
+            Filters channels according to the specified values. A comma separated list can also be passed.
+            Its possible values are 'all', 'none', 'verimatrix' and 'vualto'.
+            If the param is not passed then all the channels other than protection set to 'verimatrix' and also those channels
+            which don't have any protection applied returned by the API. In case of 'all' no filter is applied.
+          required: false
+          schema:
+            type: string
+            enum: ['all', 'none', 'verimatrix', 'vualto']
+        - in: query
+          name: media_type
+          description: >-
+            A filter to fetch channels whether they are video or audio-only (e.g. radio) channels.
+            Use-case: When client apps. need to show video only, audio only or both type of channels in some UI (e.g. STB, mobile or web),
+            they should provide this input parameter to API. And can differentiate among channels by checking value of "mediaType" JSON output key
+            Defaults to "video"
+          required: false
+          schema:
+            type: string
+            enum: ['audio', 'video']
+        - in: query
+          name: output
+          description: >-
+            Choose amount of details to show for channel. Options are "minimal", "normal", "full" and "favorite".
+            Default: "full"
+          required: false
+          schema:
+            type: string
+            enum: ["minimal", "normal", "full"]
+        - in: query
+          name: favorite
+          description: >-
+            Filter channels based on whether the channel is marked favorite by the user or not. Possible values are "true" and "false"
+          required: false
+          schema:
+            type: string
+            enum: [true, false]
+        - in: query
+          name: pg
+          description: >-
+            Page number if the results have more items than ipp.  Default: 0
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: ipp
+          description: >-
+            Maximum number of result items per page. Default: 1000
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel2UserSpecific.yml#/Channel2UserSpecific"

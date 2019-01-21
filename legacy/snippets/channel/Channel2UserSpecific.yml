@@ -1,0 +1,359 @@
+Channel2UserSpecific:
+  type: object
+  required:
+  - resultSet
+  - channelList
+  properties:
+    channelList:
+      type: object
+      required:
+      - description
+      - channels
+      properties:
+        description:
+          type: string
+          example: List of channels available for viewing
+        channels:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "17"
+              title:
+                type: string
+                example: "Yle TV1"
+              isUserAuthorized:
+                type: boolean
+                example: false
+              mediaType:
+                type: string
+                example: video
+                enum: [video, audio]
+              liveThumbnailUrl:
+                type: string
+                example: http://217.63.90.132/thumbnail/1.jpg
+              thumbnailUrl:
+                type: string
+                example: https://boox.fi/graphics/thumbnails/channel/channel_tv1.png
+              detailUrl:
+                type: string
+                example: https://boox.fi/api/user/user1%40domain.com/channel/17?service=service1
+              detailHtmlUrl:
+                type: string
+                example: https://boox.fi/ui/user/user1%40domain.com/channel/17?service=service1&ssid=510134ce622749.69270902&usid=&options=buy
+              description:
+                type: string
+                example: ""
+              isEvent:
+                type: boolean
+                example: false
+              startTime:
+                type: string
+                example: ""
+              endTime:
+                type: string
+                example: ""
+              favorite:
+                type: boolean
+                example: false
+              rank:
+                type: integer
+                example: 0
+              stream_protection:
+                type: array
+                items:
+                  type: string
+                  example: "none"
+              labels:
+                type: array
+                items:
+                  type: integer
+                  example: 0
+              categories:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - title
+                  - thumbnailUrl
+                  - detailUrl
+                  - detailHtmlUrl
+                  - type
+                  - hybrisId
+                  - isPremium
+                  - recurring
+                  - price
+                  - currency
+                  - duration
+                  - promo
+                  - isUserAuthorized
+                  - visible
+                  - programCount
+                  - seasonCount
+                  - channelCount
+                  - iphoneProductId
+                  - ipadProductId
+                  properties:
+                    id:
+                      type: integer
+                      example: 24
+                    title:
+                      type: string
+                      example: "Yle Total"
+                    thumbnailUrl:
+                      type: string
+                      example: ""
+                    detailUrl:
+                      type: string
+                      example: <domain>/api/user/qasim100%40dna.fi/product/24?service=dnaclient
+                    detailHtmlUrl:
+                      type: string
+                      example: <domain>/ui/user/qasim100%40dna.fi/product/24?ssid=55c82cd53961d3.49121436&usid=55c82e8ae09a60.24192760&service=dnaclient&options=buy
+                    type:
+                      type: string
+                      example: CHANNEL_GROUP
+                    hybrisId:
+                      type: string
+                      example: "VCP00001"
+                    isPremium:
+                      type: boolean
+                      example: true
+                    recurring:
+                      type: boolean
+                      example: false
+                    price:
+                      type: integer
+                      example: 0
+                    currency:
+                      type: string
+                      example: "EUR"
+                    duration:
+                      type: integer
+                      example: 933120000
+                    promo:
+                      type: boolean
+                      example: false
+                    isUserAuthorized:
+                      type: boolean
+                      example: false
+                    visible:
+                      type: boolean
+                      example: true
+                    programCount:
+                      type: integer
+                      example: 0
+                    seasonCount:
+                      type: integer
+                      example: 0
+                    channelCount:
+                      type: integer
+                      example: 4
+                    iphoneProductId:
+                      type: string
+                      example: ""
+                    ipadProductId:
+                      type: string
+                      example: ""
+              epg:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - categories
+                  - category
+                  - channelId
+                  - description
+                  - duration
+                  - programUid
+                  - startTime
+                  - subCategory
+                  - thumbnailUrl
+                  - title
+                  - verticalSize
+                  - aspectRatio
+                  properties:
+                    categories:
+                      type: array
+                      items:
+                        type: string
+                        example: "Elokuvat"
+                    category:
+                      type: string
+                      example: "Elokuvat"
+                    channelId:
+                      type: integer
+                      example: 17
+                    description:
+                      type: string
+                      example: >-
+                        (S) (Suomi 1960, 98\\'). O: Edvin Laine. N: Liisa Nevalainen, Elsa Turakainen, Elina Salo, Hilkka Helinä, Martti Romppainen. Vuosisadan vaihteeseen sijoittuva elokuva pikkukaupungin tyttökoulun kommelluksista.\nhttp://www.imdb.com/title/tt0054313/
+                    duration:
+                      type: integer
+                      example: 6000
+                    programUid:
+                      type: string
+                      example: "8438-17-2059-10-2014"
+                    startTime:
+                      type: string
+                      example: Thu, 13 Mar 2014 13:05:00 +0200
+                    subCategory:
+                      type: string
+                      example: ""
+                    thumbnailUrl:
+                      type: string
+                      example: ""
+                    title:
+                      type: string
+                      example: Skandaali tyttökoulussa (S)
+                    verticalSize:
+                      type: integer
+                      example: 1080
+                    aspectRatio:
+                      type: string
+                      example: "16:9"
+              dvbChannels:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - type
+                  - onid
+                  - tsid
+                  - sid
+                  - frequency
+                  - modulation
+                  - symbolRate
+                  - polarization
+                  - numLNB
+                  - quality
+                  properties:
+                    type:
+                      type: string
+                      example: C
+                    onid:
+                      type: string
+                      example: "15"
+                    tsid:
+                      type: string
+                      example: "3"
+                    sid:
+                      type: string
+                      example: "17"
+                    frequency:
+                      type: string
+                      example: "16200"
+                    modulation:
+                      type: string
+                      example: "128"
+                    symbolRate:
+                      type: string
+                      example: "6900"
+                    polarization:
+                      type: string
+                      example: "0"
+                    numLNB:
+                      type: string
+                      example: "0"
+                    quality:
+                      type: string
+                      example: "SD"
+              liveservice:
+                type: object
+                required:
+                - commercial
+                - services
+                - startOver
+                properties:
+                  commercial:
+                    type: boolean
+                    example: false
+                  services:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - stream
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                        stream:
+                          type: object
+                          required:
+                          - bitrate
+                          - type
+                          - protocol
+                          - streamUrl
+                          properties:
+                            bitrate:
+                              type: string
+                              example: "600"
+                            type:
+                              type: string
+                              example: "video/mp4"
+                            protocol:
+                              type: string
+                              example: "http"
+                            streamUrl:
+                              type: string
+                              example: https://boox.fi/api/user/user1%40domain.com/channel/17/stream/1/play?service=service1
+                  startOver:
+                    type: object
+                    required:
+                    - enabled
+                    - fastForward
+                    - isUserAuthorized
+                    - type
+                    properties:
+                      enabled:
+                        type: boolean
+                        example: true
+                      fastForward:
+                        type: boolean
+                        example: false
+                      isUserAuthorized:
+                        type: boolean
+                        example: true
+                      type:
+                        type: string
+                        example: "time_shift"
+              recordingService:
+                type: object
+                required:
+                - commercial
+                properties:
+                  commercial:
+                    type: boolean
+                    example: true
+              catchupService:
+                type: object
+                required:
+                - isCommercial
+                - isBlacklisted
+                properties:
+                  isCommercial:
+                    type: boolean
+                    example: true
+                  isBlacklisted:
+                    type: boolean
+                    example: false
+              fastForward:
+                type: object
+                required:
+                - fastForwardPvr
+                - fastForwardCatchup
+                - fastForwardStartOver
+                properties:
+                  fastForwardPvr:
+                    type: boolean
+                    example: true
+                  fastForwardCatchup:
+                    type: boolean
+                    example: false
+                  fastForwardStartOver:
+                    type: boolean
+                    example: true
