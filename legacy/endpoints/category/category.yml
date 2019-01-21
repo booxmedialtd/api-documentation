@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "User recording"
+tags:
+- name: Category
+  description: >-
+    Categories describe ways in which content can be grouped.  They can be used, for example, to define a genre or to group content by popularity.
+servers:
+- url: 'https://boox.fi/api'
+paths:
+
+  /category:
+    get:
+      summary: Return a list of categories
+      tags:
+      - Category
+      operationId: indexCategory
+      parameters:
+      - in: query
+        name: service
+        description: The service to which the user belongs
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: lang
+        required: false
+        description: >-
+          Language of category captions. Defaults to “en”.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - categoryList
+                properties:
+                  categoryList:
+                    type: object
+                    required:
+                    - title
+                    - categories
+                    properties:
+                      title:
+                        type: string
+                        example: "Category List"
+                        description: This will always be 'Category List' for this endpoint
+                      categories:
+                        type: array
+                        items:
+                          type: object
+                          required:
+                          - title
+                          - source
+                          - thumbnailUrl
+                          - epgUrl
+                          - categoryType
+                          properties:
+                            title:
+                              type: string
+                              example: Top 20 of today
+                            source:
+                              type: string
+                              example: "Boox TV"
+                            thumbnailUrl:
+                              type: string
+                              example: ""
+                            epgUrl:
+                              type: string
+                              example: http:\/\/localhost\/api\/epg?service=betaserver&st=Tue%2C+05+May+2015+15%3A00%3A00+%2B0500&et=Wed%2C+06+May+2015+15%3A00%3A00+%2B0500&sort=rec_count__desc&ipp=20
+                              description: A fully qualified url that points to the EPG query that will display this category of items
+                            categoryType:
+                              type: string
+                              example: booxtv_featured
