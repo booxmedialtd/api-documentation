@@ -8,6 +8,7 @@ info:
     A Channel may be either Premium (requiring a Subscription) or free (otherwise).
 tags:
 - name: Channel
+- name: Favourite Channel
 servers:
 - url: 'https://boox.fi/api'
 paths:
@@ -149,3 +150,55 @@ paths:
             application/json:
               schema:
                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel2UserSpecific.yml#/Channel2UserSpecific"
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# v2
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_email}/channel/{channel_id}/tag:
+    put:
+      summary: Mark or unmark a channel as favorite
+      tags:
+      - Favourite Channel
+      operationId: updateFavouriteChannel
+      parameters:
+        - in: path
+          name: user_email
+          description: The email address of the user
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: channel_id
+          description: The id of the channel
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: service
+          description: The service to which the user belongs
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - favorite
+              properties:
+                favorite:
+                  type: string
+                  example: "true"
+                  enum: ["true", "false"]
+            example:
+              favorite: "true"
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel.yml#/Channel"
