@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "User management - BSS integration"
+  description: >-
+    These endpoints provide our legacy user management suite.
+tags:
+- name: User Account
+- name: User Alias
+- name: Service Status
+- name: Player minutes
+- name: Set top box
+servers:
+- url: 'https://boox.fi/api/management'
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# User account
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /user:
+    post:
+      summary: This API is used to add a new user account.
+      description: >-
+        This API is used to add a new user account.  The following rules apply:
+        (1) Email address or customer-id should not belong to any customer that is not in DELETED state; otherwise API will return an error.
+        (2) If the user with that email exists in DELETED state and his grace period is not expired, his previous registration state is restored.
+        (3) A new user is created in UNREGISTERED state.
+      tags:
+      - User Account
+      operationId: createUser
+      parameters:
+      - in: query
+        name: service
+        description: The service to which the user belongs
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: email
+        description: The email address of the user
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: cid
+        description: Customer identifier
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: purchase_pin
+        description: Purchase PIN code.  Should be 4 numbers long
+        required: true
+        schema:
+          type: integer
+      - in: query
+        name: dob
+        description: User date of birth in yyyy-mm-dd format.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: |
+            Successful response.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 200 to indicate success.
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/general/Error.yml#/Error"
+              examples:
+                Bar:
+                  value:
+                    code: 2000
+                    text: Bar
+                Foo:
+                  value:
+                    code: 4000
+                    text: Foo!
+
+
+Bug in swagger -https://github.com/swagger-api/swagger-ui/issues/2651
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# User alias
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Service status
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Player minutes
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Set top box
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
