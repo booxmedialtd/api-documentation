@@ -13,41 +13,15 @@ servers:
 - url: 'https://boox.fi/api'
 paths:
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# v3.1
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  /v3.1/channels:
-    get:
-      summary: Return a publicly cacheable list of channels that are not user specific
-      description: >-
-        This endpoint can be publicly cached as it does not have any user specific information.  The device
-        is encouraged to respect the cache-control headers in order to comply with our API development guidelines.
-      tags:
-      - Channel
-      operationId: indexGeneralChannels
-      parameters:
-      - in: query
-        name: service
-        description: The service to which the user belongs
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: "Successful response"
-          content:
-            application/json:
-              schema:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel31General.yml#/Channel31General"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # v2
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
   /user/{user_email}/channel:
     get:
-      summary: Return privately cacheable user specific channel information
+      summary: Returns an index of privately cacheable user specific channel information
       description: >-
         The client is strongly encouraged to cache this endpoint locally in order to comply with our API development guidelines.
       tags:
