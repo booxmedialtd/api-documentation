@@ -82,13 +82,13 @@ paths:
                   value:
                     code: 2000
                     text: Bar
+                    description: Bug in swagger -https://github.com/swagger-api/swagger-ui/issues/2651
                 Foo:
                   value:
                     code: 4000
                     text: Foo!
 
 
-Bug in swagger -https://github.com/swagger-api/swagger-ui/issues/2651
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
