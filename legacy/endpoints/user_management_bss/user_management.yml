@@ -254,8 +254,6 @@ paths:
                 mac:
                   type: string
                   description: Ethernet interface MAC address
-            example:
-              favorite: "true"
       responses:
         '200':
           description: "Successful response"

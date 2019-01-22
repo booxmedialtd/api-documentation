@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "EPG"
+tags:
+- name: Electronic Program Guide
+servers:
+- url: 'https://boox.fi/api'
+paths:
+
+  /v3/epg:
+    get:
+      summary: This endpoint returns list of channels along with the programs of each channel.
+      description: >-
+        This endpoint returns list of channels along with the programs of each channel.
+        Listing contains blacklisted and non blacklisted channels and programs.
+        A blacklisted channel is a channel whose programs can't be recorded.
+        A blacklisted program is a program which can't be recorded. Services provided by channels (liveTV, recording, catchup)
+        and at program level (recording, catchup) are part of API. User can include or exclude provided
+        properties from API using the 'field' param. User specific information is also included like
+        user has marked a channel or program as favorite or not.
+      tags:
+      - Electronic Program Guide
+      operationId: indexGuide
+      parameters:
+      - in: query
+        name: service_token
+        description: A token should be passed for service authentication.
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fields
+        description: >-
+          Dot notated list of fields in the response, e.g "id,thumbnails.url,epg.title" If 'fields'
+          param is not passed in query string, API returns all the values.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: pg
+        description: Page number if the results have more items than ipp. Default = 0
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: ipp
+        description: Maximum number of result items per page. Default = 1000
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: st
+        description: >-
+          Date and time from where to start the EPG information.
+          If param is not passed then st will be current date - 7 days.
+          st will be in Unix timestamp format.
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: et
+        description: >-
+            Date and time where to end EPG information.
+            If et is not specified then et will be current date+ 14 days.
+            If st is passed in query string the et will be st+14 days.
+            et will be in Unix timestamp format.
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: ch
+        description: >-
+            Date and time where to end EPG information.
+            If et is not specified then et will be current date+ 14 days.
+            If st is passed in query string the et will be st+14 days.
+            et will be in Unix timestamp format.
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: keyword
+        description: Search for a specific keyword.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: search_from
+        description: >-
+          Searches for keyword in defined categories.
+        required: false
+        schema:
+          type: string
+          enum: [all_programs, coming_programs, catchup_programs, all_channels, subscribed_channels, not_subscribed_channels]
+      - in: query
+        name: search_in
+        description: >-
+          Searches for keyword in defined fields.
+        required: false
+        schema:
+          type: string
+          enum: [title, description, category]
+      - in: query
+        name: sort
+        description: Sort the results.  Default values are ch_name__asc and pg_title__asc
+        required: false
+        schema:
+          type: string
+          enum: [ch_id__asc, ch_id__desc, ch_name__asc, ch_name__desc, pg_title__asc, pg_title__desc, pub_date__asc, pub_date__desc, rec_count__asc, rec_count__desc]
+      - in: query
+        name: stream_protection
+        description: >-
+          Filters EPG according to the specified stream protected channels.
+          A comma separated list can also be passed.
+          If the param is not passed then all the channels other than protection set to 'verimatrix' returned by the API.
+          In case of 'all' no filter is applied.
+        required: false
+        schema:
+          type: string
+          enum: [all, none, verimatrix, vualto]
+      - in: query
+        name: network
+        description: >-
+          Filters Epg items according to the network specified.
+          Comma separated values can be passed.
+          If "all" param is passed then no filter will be applied.
+          Default value is ott.
+        required: false
+        schema:
+          type: string
+          enum: ['all', 'ott', 'dvb', 'iptv']
+      - in: query
+        name: lang
+        description: Choose the output language as defined in Server language API '<domain>/api/server/lang'. Defaults to 'en-US'.
+        required: false
+        schema:
+          type: string
+
