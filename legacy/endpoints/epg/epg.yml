@@ -135,4 +135,249 @@ paths:
         required: false
         schema:
           type: string
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - resultSet
+                - channels
+                properties:
+                  resultSet:
+                    type: object
+                    required:
+                    - totalItems
+                    - totalPages
+                    - itemsPerPage
+                    - currentPage
+                    - offset
+                    properties:
+                      totalItems:
+                        type: integer
+                        example: 2
+                      totalPages:
+                        type: integer
+                        example: 1
+                      itemsPerPage:
+                        type: integer
+                        example: 1000
+                      currentPage:
+                        type: integer
+                        example: 0
+                      offset:
+                        type: integer
+                        example: 0
+                  channels:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - title
+                      - networkType
+                      - logos
+                      - services
+                      - programs
+                      properties:
+                        id:
+                          type: string
+                          example: "155"
+                        title:
+                          type: string
+                          example: "Yle"
+                        networkType:
+                          type: array
+                          items:
+                            type: string
+                            example: ["ott", "dvb"]
+                        logos:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - url
+                            - width
+                            - height
+                            properties:
+                              url:
+                                type: string
+                                example: http://some.domain.com/files/images/file.jpg
+                              width:
+                                type: integer
+                                example: 640
+                              height:
+                                type: integer
+                                example: 480
+                        services:
+                          type: object
+                          properties:
+                            liveTV:
+                              type: object
+                              required:
+                              - isProvisioned
+                              - isCommercial
+                              - streamProtection
+                              properties:
+                                isProvisioned:
+                                  type: boolean
+                                  example: false
+                                isCommercial:
+                                  type: boolean
+                                  example: false
+                                streamProtection:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: ["verimatrix", "vualto", "none"]
+                            recording:
+                              type: object
+                              required:
+                              - isProvisioned
+                              - isBlacklisted
+                              - isCommercial
+                              properties:
+                                isProvisioned:
+                                  type: boolean
+                                  example: false
+                                isBlacklisted:
+                                  type: boolean
+                                  example: false
+                                isCommercial:
+                                  type: boolean
+                                  example: false
+                            catchup:
+                              type: object
+                              required:
+                              - isProvisioned
+                              - isBlacklisted
+                              - isCommercial
+                              properties:
+                                isProvisioned:
+                                  type: boolean
+                                  example: false
+                                isBlacklisted:
+                                  type: boolean
+                                  example: false
+                                isCommercial:
+                                  type: boolean
+                                  example: false
+                            programs:
+                              type: array
+                              items:
+                                type: object
+                                required:
+                                - categories
+                                - title
+                                - startTime
+                                - duration
+                                - showId
+                                - programUId
+                                - dvbInformation
+                                - thumbnails
+                                - parentalRating
+                                - services
+                                - external_program_information
+                                properties:
+                                  categories:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: ["Movies", "Action"]
+                                  title:
+                                    type: string
+                                    example: "Die Hard"
+                                  description:
+                                    type: string
+                                    example: "An NYPD officer tries to save his wife and several others taken hostage by German terrorists during a Christmas party at the Nakatomi Plaza in Los Angeles."
+                                  duration:
+                                    type: integer
+                                    description: The duration of the program in seconds
+                                    example: 7920
+                                  startTime:
+                                    type: integer
+                                    description: The Unix epoch timestamp that the program starts at
+                                    example: 1454715746
+                                  showId:
+                                    type: string
+                                    example: 1-series
+                                  programUId:
+                                    type: string
+                                    example: 8438-155-780-51-2012
+                                  dvbInformation:
+                                    type: object
+                                    required:
+                                    - cat_id
+                                    - sub_cat_id
+                                    - description
+                                    properties:
+                                      cat_id:
+                                        type: integer
+                                        example: 1
+                                      sub_cat_id:
+                                        type: integer
+                                        example: 0
+                                      description:
+                                        type: integer
+                                        example: ""
+                                  thumbnails:
+                                    type: array
+                                    items:
+                                      type: object
+                                      required:
+                                      - url
+                                      - width
+                                      - height
+                                      properties:
+                                        url:
+                                          type: string
+                                          example: http://some.domain.com/files/images/file.jpg
+                                        width:
+                                          type: integer
+                                          example: 640
+                                        height:
+                                          type: integer
+                                          example: 480
+                                  services:
+                                    type: object
+                                    required:
+                                    - recording
+                                    - catchup
+                                    properties:
+                                      recording:
+                                        type: object
+                                        required:
+                                        - isBlacklisted
+                                        properties:
+                                          isBlacklisted:
+                                            type: boolean
+                                            example: false
+                                      catchup:
+                                        type: object
+                                        properties:
+                                          isBlacklisted:
+                                            type: boolean
+                                            example: false
+                                          isAvailable:
+                                            type: boolean
+                                            example: true
+                                          availabilityEnd:
+                                            type: integer
+                                            example: 0
+                                  external_program_information:
+                                    type: object
+                                    properties:
+                                      provider:
+                                        type: string
+                                        example: ERICSSON
+                                      external_program_id:
+                                        type: string
+                                        example: 5271885
+                                      external_showing_id:
+                                        type: string
+                                        example: 724693092
+
+
 
