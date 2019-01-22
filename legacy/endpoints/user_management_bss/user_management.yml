@@ -265,21 +265,27 @@ paths:
           content:
             application/json:
               schema:
-                id:
-                  type: string
-                  example: "123"
-                serialNo:
-                  type: string
-                  example: "DNA-STB00001"
-                user:
-                  type: object
-                  required:
-                  - id
-                  - email
-                  properties:
-                    id:
-                      type: string
-                      example: "10001"
-                    email:
-                      type: string
-                      example: "boox10@booxtv.fi"
+                type: object
+                required:
+                - id
+                - serialNo
+                - user
+                properties:
+                  id:
+                    type: string
+                    example: "123"
+                  serialNo:
+                    type: string
+                    example: "DNA-STB00001"
+                  user:
+                    type: object
+                    required:
+                    - id
+                    - email
+                    properties:
+                      id:
+                        type: string
+                        example: "10001"
+                      email:
+                        type: string
+                        example: "boox10@booxtv.fi"
