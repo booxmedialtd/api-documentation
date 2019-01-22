@@ -6,9 +6,6 @@ info:
     These endpoints provide our legacy user management suite.
 tags:
 - name: User Account
-- name: User Alias
-- name: Service Status
-- name: Player minutes
 - name: Set top box
 servers:
 - url: 'https://boox.fi/api/management'
