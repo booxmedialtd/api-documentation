@@ -81,12 +81,14 @@ paths:
                 Bar:
                   value:
                     code: 2000
-                    text: Bar
+                    text: The swagger UI does not properly implement the Swagger spec, therefore these (correctly specified) examples do not show
                     description: Bug in swagger -https://github.com/swagger-api/swagger-ui/issues/2651
                 Foo:
                   value:
                     code: 4000
-                    text: Foo!
+                    text: The swagger UI does not properly implement the Swagger spec, therefore these (correctly specified) examples do not show
+
+
     put:
       summary: This API is used to suspend or activate a user account. It can also be used to change the email or customer-id of an existing account.
       description: >-
@@ -157,6 +159,52 @@ paths:
                   Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
                   rely on the HTTP status code being 200 to indicate success.
 
+    delete:
+      summary: Deletes a particular entity. If deletion is successful, the browser will be redirected to the 'admin' page.
+      description: >-
+        This method is used to delete a user account. The actual data is not deleted till a grace period has expired. Following rules apply:
+        (1) User should not be in DELETED state
+        (2) Current registration state is stored in previous state and current state is changed to 'DELETED'
+      tags:
+      - User Account
+      operationId: deleteUser
+      parameters:
+      - in: path
+        name: email
+        description: The current email address of the user (change it in the query string)
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: service
+        description: The service to which the user belongs
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: suspend
+        description: String 'true'
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: stamp
+        description: Unix timestamp to be appended with email address
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: |
+            Successful response.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 200 to indicate success.
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User alias
