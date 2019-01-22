@@ -35,7 +35,7 @@ paths:
         required: true
         schema:
           type: string
-      - in: query
+      - in: path
         name: email
         description: The email address of the user
         required: true
@@ -87,8 +87,75 @@ paths:
                   value:
                     code: 4000
                     text: Foo!
-
-
+    put:
+      summary: This API is used to suspend or activate a user account. It can also be used to change the email or customer-id of an existing account.
+      description: >-
+        Following rules apply:
+        (1) A user in DELETED state is not updated.
+        (2) User email can be updated to an email whose registration_state is 'DELETED'. In this case the existing user will be removed from DB completely along with its related data and then email is updated to existing user's email.
+        (3) "cid" parameters should not belong to any existing user, even if the user in in DELETED state
+        (4) If a user is suspended, his state is changed to DISABLED
+        (5) If a DISABLED user is activated and grace period has not expired, then previous registration state is restored, otherwise his state is changed to UNREGISTERED
+        In other cases, if a user is activated, his state changed to REGISTERED.
+      tags:
+      - User Account
+      operationId: editUser
+      parameters:
+      - in: path
+        name: email
+        description: The current email address of the user (change it in the query string)
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: service
+        description: The service to which the user belongs
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: email
+        description: The new email address of the user (specify the current email in the path)
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: cid
+        description: Customer identifier
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: purchase_pin
+        description: Purchase PIN code.  Should be 4 numbers long
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: purchase_pin
+        description: Purchase PIN code.  Should be 4 numbers long
+        required: true
+        schema:
+          type: integer
+      - in: query
+        name: action
+        description: SUSPEND or ACTIVATE keywords. Defaults to no value
+        required: true
+        schema:
+          type: string
+          enum: ["SUSPEND", "ACTIVATE"]
+      responses:
+        '200':
+          description: |
+            Successful response.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 200 to indicate success.
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
