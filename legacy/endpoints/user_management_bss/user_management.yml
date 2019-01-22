@@ -224,3 +224,62 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Set top box
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /stb/link_user:
+    post:
+      summary: After the user has bought a STB this API need to be called. This API link or grant ownership of a STB to a user.
+      tags:
+      - Set top box
+      operationId: createRelationshipFromUserToSTB
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - serial_no
+              - email
+              properties:
+                serial_no:
+                  type: string
+                  description: The serial number of the the STB.  This is printed on the STB and its packaging.
+                  example: 25-1234567
+                email:
+                  type: string
+                  description: The email address used to identify the user
+                  example: boox10@booxtv.fi
+                # Public keys are removed in code: booxmedia/src/interface/protected/modules/management/controllers/StbController.php:83
+                chipset_id:
+                  type: string
+                  description: STB device chipset number/ID.  Please ask Amino how to calculate this.
+                  example: BCM72604UB
+                mac:
+                  type: string
+                  description: Ethernet interface MAC address
+            example:
+              favorite: "true"
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                id:
+                  type: string
+                  example: "123"
+                serialNo:
+                  type: string
+                  example: "DNA-STB00001"
+                user:
+                  type: object
+                  required:
+                  - id
+                  - email
+                  properties:
+                    id:
+                      type: string
+                      example: "10001"
+                    email:
+                      type: string
+                      example: "boox10@booxtv.fi"
