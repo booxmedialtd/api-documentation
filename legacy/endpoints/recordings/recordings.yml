@@ -32,7 +32,7 @@ paths:
         "recordings" array will always return at least 2 streams even if the recording only has one.
         This is due to legacy WBox compatibility which always gets the second stream from the recording.
       tags:
-      - Electronic Program Guide
+      - Individual recordings
       operationId: indexGuide
       parameters:
       - in: query
