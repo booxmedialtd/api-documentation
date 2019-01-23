@@ -26,8 +26,9 @@ RecordingResult:
       example: ""
     categories:
       type: array
-      items: string
-      example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
+      items:
+        type: string
+        example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
     channelId:
       type: string
       example: "17"

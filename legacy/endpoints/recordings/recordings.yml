@@ -194,8 +194,176 @@ paths:
                         type: array
                         items:
                           anyOf:
-                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingResult.yml#/RecordingResult"
-                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingGroup.yml#/RecordingGroup"
+                          - type: object
+                            required:
+                            - category
+                            - subCategory
+                            - categories
+                            - channelId
+                            - programUid
+                            - showId
+                            - programInstanceMetadataId
+                            - programCrId
+                            - startTime
+                            - continuous
+                            - autoDelete
+                            - favorite
+                            - description
+                            - duration
+                            - playbackDuration
+                            - thumbnailUrl
+                            properties:
+                              category:
+                                type: string
+                                example: Show/Game show
+                              subCategory:
+                                type: string
+                                example: ""
+                              categories:
+                                type: array
+                                items: string
+                                example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
+                              channelId:
+                                type: string
+                                example: "17"
+                              programUid:
+                                type: string
+                                example: "20111119184517"
+                              showId:
+                                type: string
+                                example: "1-series"
+                                description: this key is null if nPVRShowInfo parameter is not enabled and series_id, program_id are null
+                              programInstanceMetadataId:
+                                type: string
+                                example: "647843303"
+                                description: This key is is null if metadata module is not enabled
+                              programCrId:
+                                type: string
+                                example: "192867475"
+                                description: This key is is null if metadata module is not enabled
+                              startTime:
+                                type: string
+                                example: "Sat, 19 Nov 2011 16:45:33 +0200"
+                              continuous:
+                                type: boolean
+                                example: true
+                              autoDelete:
+                                type: boolean
+                                example: true
+                              favorite:
+                                type: boolean
+                                example: false
+                              description:
+                                type: string
+                                example: >-
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut risus et mi rutrum aliquet.
+                                  Praesent feugiat condimentum arcu sit amet gravida. Proin vitae sapien lorem. Sed tortor mauris,
+                                  pellentesque non dui in, lobortis cursus lorem. Ut porta, ante aliquet lacinia ultricies, massa
+                                  dolor mattis diam, ultricies fermentum ex orci vel tellus. Ut et volutpat sapien.
+                              duration:
+                                type: integer
+                                example: 3055,
+                              playbackDuration:
+                                type: integer
+                                example: 1258,
+                              thumbnailUrl:
+                                type: string
+                                example: ""
+                              recordings:
+                                type: array
+                                items:
+                                  type: object
+                                  required:
+                                  - stream
+                                  - recorded_duration
+                                  - status
+                                  - recording_id
+                                  properties:
+                                    stream:
+                                      type: object
+                                      required:
+                                      - bitrate
+                                      - type
+                                      - protocol
+                                      - streamUrl
+                                      properties:
+                                        bitrate:
+                                          type: integer
+                                          example: 256
+                                        type:
+                                          type: string
+                                          example: video/mp4
+                                        protocol:
+                                          type: string
+                                          example: http
+                                        streamUrl:
+                                          type: string
+                                          example: http://media-host/yle1-20111119_1845-2985-622a89739e1dd6e9158e61dab5c14d35?email=waqqas%40test.com&usid=4eca4ff14ed867.60829558
+                                    recorded_duration:
+                                      type: integer
+                                      example: 525
+                                    status:
+                                      type: string
+                                      example: "SCHEDULED"
+                                    recording_id:
+                                      type: integer
+                                      example: 1234
+                          - type: object
+                            required:
+                            - id
+                            - title
+                            - programsCount
+                            - latestPrograms
+                            properties:
+                              id:
+                                type: string
+                                example: "1"
+                              title:
+                                type: string
+                                example: "30 Rock"
+                              programsCount:
+                                type: integer
+                                example: 4
+                              latestPrograms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    programUid:
+                                      type: string
+                                      example: 8438-161-126-02-2014
+                                    title:
+                                      type: string
+                                      example: "30 Rock"
+                                    description:
+                                      type: string
+                                      example: >-
+                                        (S) The Girlie Showssa on tapahtunut merkittäviä muutoksia,
+                                        joten Lizillä on täysi työ saada kaikki toimimaan yhteistyössä.
+                                        Tracy saa erikoisesta käytöksestään huolimatta kaiken järjestykseen.
+                                        (30 Rock, komedia, 1. kausi, USA, 2006)
+                                    startTime:
+                                      type: integer
+                                      example: 1445522181
+                                    duration:
+                                      type: integer
+                                      example: 1800
+                                    channelInfo:
+                                      type: object
+                                      required:
+                                      - channelId
+                                      - channelName
+                                      - thumbnailUrl`
+                                      properties:
+                                        channelId:
+                                          type: integer
+                                          example: 123
+                                        channelName:
+                                          type: string
+                                          example: American Dad!
+                                        thumbnailUrl:
+                                          type: string
+                                          example: https://m.media-amazon.com/images/M/MV5BNDRkOWIyOTUtMjg5YS00OTJjLTgwNGYtMjgxMTA0NWQ2NGI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg
 
 
 
