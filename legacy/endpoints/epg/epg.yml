@@ -140,4 +140,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/epg/EPGitem.yml#/EPG"
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/epg/EPGitem.yml#/EPGitem"
