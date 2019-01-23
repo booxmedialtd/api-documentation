@@ -45,13 +45,13 @@ paths:
         description: Page number if the results have more items than ipp. Default = 0
         required: false
         schema:
-          type: string
+          type: integer
       - in: query
         name: ipp
         description: Maximum number of result items per page. Default = 1000
         required: false
         schema:
-          type: string
+          type: integer
       - in: query
         name: st
         description: >-
@@ -73,14 +73,10 @@ paths:
           type: integer
       - in: query
         name: ch
-        description: >-
-            Date and time where to end EPG information.
-            If et is not specified then et will be current date+ 14 days.
-            If st is passed in query string the et will be st+14 days.
-            et will be in Unix timestamp format.
+        description: List of channel IDs, separated by comma. Defaults of all channels
         required: false
         schema:
-          type: integer
+          type: string
       - in: query
         name: keyword
         description: Search for a specific keyword.

@@ -1,4 +1,4 @@
-EPGitem
+EPGitem:
   type: object
     required:
     - resultSet
