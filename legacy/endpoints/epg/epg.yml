@@ -2,11 +2,11 @@ openapi: 3.0.0
 info:
   version: "1.0.0"
   title: "EPG"
+  description: >-
+    In the legacy API you combine the general (publicly cacheable) response from the v3 EPG endpoint with the user specific
+    (privately cacheable) response from the v2 Channel endpoint.
 tags:
 - name: Electronic Program Guide
-description: >
-  In the legacy API you combine the general (publicly cacheable) response from the v3 EPG endpoint with the user specific
-  (privately cacheable) response from the v2 Channel endpoint.
 servers:
 - url: 'https://boox.fi/api'
 paths:
@@ -140,4 +140,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/epg/EPGitem.yml#/EPGitem"
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/epg/EPGitem.yml#/EPG"
