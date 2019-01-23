@@ -211,7 +211,7 @@ paths:
 # Catchup
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /user/{user_id}/recording/group:
+  /user/{user_id}/recording/catchup:
     get:
       summary: Gets an index of programs available for catchup
       tags:
@@ -357,8 +357,9 @@ paths:
                                   example: ""
                                 categories:
                                   type: array
-                                  items: string
-                                  example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
+                                  items:
+                                    type: string
+                                    example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
                                 channelId:
                                   type: string
                                   example: "17"
