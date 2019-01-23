@@ -1,5 +1,10 @@
 RecordingGroup:
   type: object
+  required:
+  - id
+  - title
+  - programsCount
+  - latestPrograms
   properties:
     id:
       type: string

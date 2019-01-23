@@ -195,7 +195,7 @@ paths:
                         items:
                           anyOf:
                           - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingResult.yml#/RecordingResult"
-                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingResult.yml#/RecordingGroup"
+                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingGroup.yml#/RecordingGroup"
 
 
 
