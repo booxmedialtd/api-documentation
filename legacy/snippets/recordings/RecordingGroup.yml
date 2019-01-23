@@ -1,0 +1,52 @@
+RecordingGroup:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "1"
+    title:
+      type: string
+      example: "30 Rock"
+    programsCount:
+      type: integer
+      example: 4
+    latestPrograms:
+      type: array
+      items:
+        type: object
+        properties:
+          programUid:
+            type: string
+            example: 8438-161-126-02-2014
+          title:
+            type: string
+            example: "30 Rock"
+          description:
+            type: string
+            example: >-
+              (S) The Girlie Showssa on tapahtunut merkittäviä muutoksia,
+              joten Lizillä on täysi työ saada kaikki toimimaan yhteistyössä.
+              Tracy saa erikoisesta käytöksestään huolimatta kaiken järjestykseen.
+              (30 Rock, komedia, 1. kausi, USA, 2006)
+          startTime:
+            type: integer
+            example: 1445522181
+          duration:
+            type: integer
+            example: 1800
+          channelInfo:
+            type: object
+            required:
+            - channelId
+            - channelName
+            - thumbnailUrl`
+            properties:
+              channelId:
+                type: integer
+                example: 123
+              channelName:
+                type: string
+                example: American Dad!
+              thumbnailUrl:
+                type: string
+                example: https://m.media-amazon.com/images/M/MV5BNDRkOWIyOTUtMjg5YS00OTJjLTgwNGYtMjgxMTA0NWQ2NGI3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg

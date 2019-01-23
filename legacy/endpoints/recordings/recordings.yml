@@ -41,7 +41,7 @@ paths:
         required: true
         schema:
           type: string
-      - in: query
+      - in: path
         name: user_id
         description: The email address of the user
         required: true
@@ -113,6 +113,92 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Groups
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/recording/group:
+    get:
+      summary: Shows list of recording groups and single programs that don't belong to any groups from the server
+      description: >-
+        Shows list of recording groups and single programs that don't belong to any groups from the server with following information:
+        Recording group meta info: title of the group, count of programs in each group, metadata of the latest episode in the group
+        (e.g. broadcast time, channel). There will be a field called 'type' with values SYSTEMGROUP to know that it is a group of
+        recordings with same title
+        Non-grouped programs: all metadata of single recordings
+        Both the system-defined recording groups and single programs are the one which user has marked for himself. This will allow to
+        share the same group name with other users, while each user will only see groups and programs, which he has already recorded
+        The list of groups and single programs will be shown in alphabetical order
+      tags:
+      - Recording Groups
+      operationId: indexGuide
+      parameters:
+      - in: query
+        name: service_token
+        description: Service to which the user belongs.
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: user_id
+        description: The email address of the user
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: pg
+        description: Page number if the results have more items than ipp. Default = 0
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: ipp
+        description: Maximum number of result items per page. Default = 1000
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - groupedAndSingleProgramsList
+                properties:
+                  groupedAndSingleProgramsList:
+                    type: object
+                    required:
+                    - resultSet
+                    - groupsAndPrograms
+                    properties:
+                      resultSet:
+                        type: object
+                        required:
+                        - totalItems
+                        - totalPages
+                        - itemsPerPage
+                        - currentPage
+                        properties:
+                          totalItems:
+                            type: integer
+                            example: 4611
+                          totalPages:
+                            type: integer
+                            example: 47
+                          itemsPerPage:
+                            type: integer
+                            example: 100
+                          currentPage:
+                            type: integer
+                            example: 0
+                      groupsAndPrograms:
+                        type: array
+                        items:
+                          anyOf:
+                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingResult.yml#/RecordingResult"
+                          - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/recordings/RecordingResult.yml#/RecordingGroup"
+
+
+
 
 
 
