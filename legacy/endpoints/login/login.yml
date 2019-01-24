@@ -3,8 +3,10 @@ info:
   version: "1.0.0"
   title: "Logging in a user"
   description: >-
-    These endpoints help you to authenticate a user
+    These endpoints help you to authenticate a user.
+    Our whitelabel clients will handle this for you, please refer to https://confluence.aminocom.com/display/MAPI/Authentication
 tags:
+- name: Service Authentication
 - name: User Authentication
 servers:
 - url: 'https://boox.fi'
@@ -14,8 +16,8 @@ paths:
     post:
       summary: Service login
       tags:
-      - User Authentication
-      operationId: loginUser
+      - Service Authentication
+      operationId: loginService
       requestBody:
         required: true
         content:
@@ -28,4 +30,51 @@ paths:
                 authParams:
                   type: string
                   description: Digest authentication
-                  example: authParams=Digest+realm%3D%22service%22%2Cqop%3D%22auth%22%2Cnonce%3D%123456788912234566abcde%22%2Copaque%3D%123abcdefghi123abcdef1234abcde%22&uri=https%3A%2F%2Fcustomer.domain%2Fapi%2Fuser%2Fguest%2Flogin&requestMethod=GET&serviceUser=mobileclient
+                  example: Digest+realm%3D%22service%22%2Cqop%3D%22auth%22%2Cnonce%3D%123456788912234566abcde%22%2Copaque%3D%123abcdefghi123abcdef1234abcde%22&uri=https%3A%2F%2Fcustomer.domain%2Fapi%2Fuser%2Fguest%2Flogin&requestMethod=GET&serviceUser=mobileclient
+
+  /api/user/{user_id}/login:
+    post:
+      summary: User login
+      tags:
+      - User Authentication
+      operationId: loginUser
+      parameters:
+        - in: header
+          name: Authorization
+          description: Digest authentication
+          example: Digest realm="user",qop="auth",nonce="1234567890-abcdefghij",opaque="1234567890abcdefghij",uri="https://customer.domain/api/user/{user_email}/login",nc="1",cnonce="12345",username="{user_email}",response="1234567890abcdefghij"'
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userStat:
+                    type: object
+                    properties:
+                      maxAllowedSession:
+                        type: integer
+                        example: 1000
+                      currentSession:
+                        type: integer
+                        example: 1
+                      migrated:
+                        type: boolean
+                        example: false
+                      configuration:
+                        type: integer
+                        example: 1
+                      emailSubscription:
+                        type: object
+                        properties:
+                          all:
+                            type: string
+                            example: email
+                      premiumUser:
+                        type: boolean
+                        example: false
+                      streamingOver3G:
+                        type: boolean
+                        example: true
