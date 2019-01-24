@@ -31,6 +31,22 @@ paths:
                   type: string
                   description: Digest authentication
                   example: Digest+realm%3D%22service%22%2Cqop%3D%22auth%22%2Cnonce%3D%123456788912234566abcde%22%2Copaque%3D%123abcdefghi123abcdef1234abcde%22&uri=https%3A%2F%2Fcustomer.domain%2Fapi%2Fuser%2Fguest%2Flogin&requestMethod=GET&serviceUser=mobileclient
+      responses:
+        '200':
+          description: |
+            Successful response.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather rely on the HTTP status code
 
   /api/user/{user_id}/login:
     post:
