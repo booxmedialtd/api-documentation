@@ -7,25 +7,15 @@ info:
 tags:
 - name: User Authentication
 servers:
-- url: 'https://boox.fi/api'
+- url: 'https://boox.fi'
 paths:
 
-  /user/{user_email}/login:
+  /auth/service:
     post:
-      summary: This method logs a user in and returns a cookie containing a "usid" value
-      description: >-
-        The "usid" in the cookie can be used to authenticate users against legacy endpoints.
-        REST endpoints require you to use a token supplied in the header.
+      summary: Service login
       tags:
       - User Authentication
       operationId: loginUser
-      parameters:
-      - in: path
-        name: user_email
-        description: The email addressed used to identify the user
-        required: true
-        schema:
-          type: string
       requestBody:
         required: true
         content:
@@ -33,24 +23,12 @@ paths:
             schema:
               type: object
               required:
-              - ver
-              - device_id
-              - platform
-              - os_ver
-              - service
+              - authParams
               properties:
                 ver:
                   type: string
                   description: Version of the BooxTV application
-                device_id:
+                authParams:
                   type: string
-                  description: Unique identifier for the devices
-                  example: boox10@booxtv.fi
-                # Public keys are removed in code: booxmedia/src/interface/protected/modules/management/controllers/StbController.php:83
-                chipset_id:
-                  type: string
-                  description: STB device chipset number/ID.  Please ask Amino how to calculate this.
-                  example: BCM72604UB
-                mac:
-                  type: string
-                  description: Ethernet interface MAC address
+                  description: Digest authentication
+                  example: authParams=Digest+realm%3D%22service%22%2Cqop%3D%22auth%22%2Cnonce%3D%123456788912234566abcde%22%2Copaque%3D%123abcdefghi123abcdef1234abcde%22&uri=https%3A%2F%2Fcustomer.domain%2Fapi%2Fuser%2Fguest%2Flogin&requestMethod=GET&serviceUser=mobileclient
