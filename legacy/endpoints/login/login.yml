@@ -25,9 +25,6 @@ paths:
               required:
               - authParams
               properties:
-                ver:
-                  type: string
-                  description: Version of the BooxTV application
                 authParams:
                   type: string
                   description: Digest authentication
