@@ -5,7 +5,6 @@ info:
 tags:
 - name: Individual recordings
 - name: Recording Groups
-- name: Playhead control
 - name: Catchup
 servers:
 - url: 'https://boox.fi/api'
