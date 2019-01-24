@@ -1,0 +1,139 @@
+RecordingGroupIndexResponse:
+  type: object
+  properties:
+    programsList:
+      type: object
+      properties:
+        resultSet:
+          type: object
+          properties:
+            resultSet:
+              type: object
+              properties:
+                totalItems:
+                  type: integer
+                  example: 14
+                totalPages:
+                  type: integer
+                  example: 14
+                itemsPerPage:
+                  type: integer
+                  example: 1
+                currentPage:
+                  type: integer
+                  example: 0
+                offset:
+                  type: integer
+                  example: 0
+        programs:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+                example: ""
+              subCategory:
+                type: string
+                example: ""
+              categories:
+                type: array
+                items:
+                  type: string
+                  example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
+              channelId:
+                type: integer
+                example: 49
+              title:
+                type: string
+                example: "Esittelyssä: Pieniäpotilaita"
+              programUid:
+                type: string
+                example: 8438-155-385-18-2015
+              startTime:
+                type: string
+                example: Wed, 06 May 2015 00:00:00 +0300
+              continuous:
+                type: boolean
+                example: false
+              autoDelete:
+                type: boolean
+                example: false
+              favorite:
+                type: boolean
+                example: false
+              description:
+                type: string
+                example: >-
+                  Ensikurkistus mahtisuvun kartanoon. 5-osaisessa sarjassa edesmenneen tuottajan Aaron Spellingin
+                  leski Candy Spelling esittelee suvun hulppeaa kartanoa aikeissa itse muuttaa. Amerikkalainen lifestylesarja
+              duration:
+                type: integer
+                example: 3600
+              playbackDuration:
+                type: integer
+                example: 0
+              thumbnailUrl:
+                type: string
+                example: http:\/\/demo.booxmedia.com\/api\/recording\/viewthumbnail\/id\/945555\/service\/dnaclient
+              channelInfo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: RECORDED
+                    stream:
+                      type: object
+                      properties:
+                        bitrate:
+                          type: integer
+                          example: 320
+                        type:
+                          type: string
+                          example: video/mp4
+                        protocol:
+                          type: string
+                          example: http
+                        streamUrl:
+                          type: string
+                          example: http://domain/api/user/<emailaddress>/recording/244061?service=dnaclient
+                        downloadUrl:
+                          type: string
+                          example: http://domain/api/user/<emailaddress>/recording/244061?service=dnaclient&download=true
+                        hlsUrl:
+                          type: string
+                          example: http://domain/api/user/<emailaddress>/recording/244061?service=dnaclient&hls=true
+              recordings:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - status
+                  - stream
+                  properties:
+                    status:
+                      type: string
+                      example: "RECORDED"
+                    stream:
+                      type: object
+                      properties:
+                        bitrate:
+                          type: integer
+                          example: 256
+                        type:
+                          type: string
+                          example: "video\/mp4"
+                        protocol:
+                          type: string
+                          example: http
+                        streamUrl:
+                          type: string
+                          example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient
+                        downloadUrl:
+                          type: string
+                          example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient\/download\/true
+                        hlsUrl:
+                          type: string
+                          example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient\/hls\/true

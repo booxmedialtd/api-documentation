@@ -1,0 +1,177 @@
+CatchupResponse:
+  type: object
+  required:
+  - resultSet
+  - programList
+  properties:
+    resultSet:
+      type: object
+      properties:
+        resultSet:
+          type: object
+          properties:
+            totalItems:
+              type: integer
+              example: 14
+            totalPages:
+              type: integer
+              example: 14
+            itemsPerPage:
+              type: integer
+              example: 1
+            currentPage:
+              type: integer
+              example: 0
+            offset:
+              type: integer
+              example: 0
+        programList:
+          type: object
+          properties:
+            description:
+              type: string
+              example: Catchup Listing
+            language:
+              type: string
+              example: fi-FI
+            pubDate:
+              type: string
+              example: Tue, 19 May 2015 09:35:44 +0300
+            programs:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    example: Show/Game show
+                  subCategory:
+                    type: string
+                    example: ""
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                      example: ["Sarjat", "Asiaohjelmat", "Show/Game show", "Viihde"]
+                  channelId:
+                    type: string
+                    example: "17"
+                  isUserAuthorized:
+                    type: boolean
+                    example: false
+                  title:
+                    type: string
+                    example: Spelling-suvun kartano myynniss\u00e4
+                  programUid:
+                    type: string
+                    example: 8438-155-385-18-2015
+                  startTime:
+                    type: string
+                    example: Wed, 06 May 2015 00:00:00 +0300
+                  continuous:
+                    type: boolean
+                    example: false
+                  autoDelete:
+                    type: boolean
+                    example: false
+                  favorite:
+                    type: boolean
+                    example: false
+                  description:
+                    type: string
+                    example: >-
+                      Ensikurkistus mahtisuvun kartanoon. 5-osaisessa sarjassa edesmenneen tuottajan Aaron Spellingin
+                      leski Candy Spelling esittelee suvun hulppeaa kartanoa aikeissa itse muuttaa. Amerikkalainen lifestylesarja
+                  duration:
+                    type: integer
+                    example: 3600
+                  playbackDuration:
+                    type: integer
+                    example: 0
+                  availabilityStart:
+                    type: string
+                    example: Fri, 01 May 2015 00:00:00 +0300
+                  availabilityEnd:
+                    type: string
+                    example: Sun, 10 May 2015 00:00:00 +0300
+                  thumbnailUrl:
+                    type: string
+                    example: http:\/\/demo.booxmedia.com\/api\/recording\/viewthumbnail\/id\/945555\/service\/dnaclient
+                  recordable:
+                    type: string
+                    example: "true"
+                    enum: ["true", "false"]
+                  fastForward:
+                    type: object
+                    required:
+                    - pvr
+                    - catchup
+                    properties:
+                      pvr:
+                        type: boolean
+                        example: true
+                      catchup:
+                        type: boolean
+                        example: true
+                  user:
+                    type: object
+                    required:
+                    - recording
+                    properties:
+                      recording:
+                        type: object
+                        required:
+                        - isAvailable
+                        - isContinuous
+                        - isAutoDelete
+                        - playbackDuration
+                        - isFavorite
+                        properaties:
+                          isAvailable:
+                            type: boolean
+                            example: false
+                          isContinuous:
+                            type: boolean
+                            example: false
+                          isAutoDelete:
+                            type: boolean
+                            example: false
+                          playbackDuration:
+                            type: integer
+                            example: 0
+                          isFavorite:
+                            type: boolean
+                            example: false
+                  recordings:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - status
+                      - stream
+                      properties:
+                        status:
+                          type: string
+                          example: "RECORDED"
+                        stream:
+                          type: object
+                          properties:
+                            bitrate:
+                              type: integer
+                              example: 256
+                            type:
+                              type: string
+                              example: "video\/mp4"
+                            protocol:
+                              type: string
+                              example: http
+                            streamUrl:
+                              type: string
+                              example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient
+                            downloadUrl:
+                              type: string
+                              example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient\/download\/true
+                            hlsUrl:
+                              type: string
+                              example: http:\/\/demo.booxmedia.com\/api\/recording\/view\/id\/945555\/service\/dnaclient\/hls\/true
+
