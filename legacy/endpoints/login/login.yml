@@ -43,6 +43,8 @@ paths:
         name: Authorization
         description: Digest authentication
         example: Digest realm="user",qop="auth",nonce="1234567890-abcdefghij",opaque="1234567890abcdefghij",uri="https://customer.domain/api/user/{user_email}/login",nc="1",cnonce="12345",username="{user_email}",response="1234567890abcdefghij"'
+        schema:
+          type: string
       responses:
         '200':
           description: "Successful response"
