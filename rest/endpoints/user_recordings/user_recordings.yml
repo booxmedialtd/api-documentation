@@ -728,14 +728,6 @@ paths:
             The page number (500 results per page) of results to retrieve.  If this parameter is ommitted then it is assumed to be 1 (not zero based, 1 means the first page)
           schema:
             type: integer
-        - in: query
-          name: sort
-          required: false
-          description: >-
-            Please see http://jsonapi.org/format/#fetching-sorting
-            The following are attributes to sort on: [program.title|program.release_year]
-          schema:
-            type: string
       responses:
         '200':
           description: "Successful response"
