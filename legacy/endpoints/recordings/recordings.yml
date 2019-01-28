@@ -34,12 +34,6 @@ paths:
       - Individual recordings
       operationId: indexGuide
       parameters:
-      - in: query
-        name: service_token
-        description: Service to which the user belongs.
-        required: true
-        schema:
-          type: string
       - in: path
         name: user_id
         description: The email address of the user
@@ -130,12 +124,6 @@ paths:
       - Recording Groups
       operationId: indexGroupsAndPrograms
       parameters:
-      - in: query
-        name: service_token
-        description: Service to which the user belongs.
-        required: true
-        schema:
-          type: string
       - in: path
         name: user_id
         description: The email address of the user
@@ -210,13 +198,6 @@ paths:
       tags:
       - Recording Groups
       operationId: indexProgramsInGroup
-      parameters:
-      - in: query
-        name: service_token
-        description: Service to which the user belongs.
-        required: true
-        schema:
-          type: string
       - in: path
         name: user_id
         description: The email address of the user
@@ -268,12 +249,6 @@ paths:
       - Catchup
       operationId: indexCatchup
       parameters:
-      - in: query
-        name: service_token
-        description: Service to which the user belongs.
-        required: true
-        schema:
-          type: string
       - in: path
         name: user_id
         description: The email address of the user
