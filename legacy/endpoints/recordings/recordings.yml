@@ -142,13 +142,13 @@ paths:
         required: true
         schema:
           type: string
-      - in: query
+      - in: path
         name: pg
         description: Page number if the results have more items than ipp. Default = 0
         required: false
         schema:
           type: integer
-      - in: query
+      - in: path
         name: ipp
         description: Maximum number of result items per page. Default = 1000
         required: false
