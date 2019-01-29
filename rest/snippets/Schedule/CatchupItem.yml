@@ -1,0 +1,99 @@
+CatchupItem:
+  type: object
+  required:
+  - available_until_timestamp
+  - program_duration_seconds
+  - audio_language_iso639_1
+  - program
+  properties:
+    available_until_timestamp:
+      type: integer
+      example: 1548756332
+      description: >-
+        Catchup is only available for a set window.
+        This timestamp is the point after which the catchup item will no longer be available
+    program_duration_seconds:
+      type: integer
+      example: 2100
+      description: The duration (in seconds) of the program sans adverts.  See the broadcast slot item for more detail.
+    commercial_break_duration_seconds:
+      type: integer
+      example: 120
+      description: How much time is devoted to adverts.   See the broadcast slot item for more detail.
+    audio_language_iso639_1:
+      type: integer
+      example: fi
+      description: The ISO 639-1 two letter code for the language that the audio is in
+    subtitle_languages:
+      type: array
+      items:
+        type: object
+        properties:
+          language_iso639_1:
+            type: string
+            example: fi
+            description: The ISO 639-1 two letter code for a subitle language that is available
+    geo_availability:
+      type: object
+      description: >-
+        This key should only be present in order to override the channel settings.
+        If it is omitted then you may assume the channel settings apply.
+      properties:
+        geo_restricted:
+          type: boolean
+          description: If this flag is "false" then this channel is available in all regions
+          example: true
+          enum: [true,false]
+        enabled_country_codes_iso3166_alpha2:
+          type: array
+          description: An array of country codes where this channel is allowed to be played
+          items:
+            type: string
+            example: fi
+            description: An ISO-3166 Alpha2 country code
+    program:
+      type: object
+      description: A denormalized copy of the program information.  This is derived from the broadcast slot.
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          example: "Movie: Die Hard"
+          description: "This may be different from the Program title, to allow broadcasters flexibility, for example to add prefixes"
+        images:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
+        content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+    relationships:
+      type: array
+      items:
+        anyOf:
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: 1d92c7ee-56b4-499a-b0bb-eb0efa92b24e
+              type:
+                type: string
+                example: Channel
+                description: The type of the entity being included
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: 530a08c0-3fd7-4d0d-b799-712ed9c07573
+              type:
+                type: string
+                example: Program
+                description: The type of the entity being included
