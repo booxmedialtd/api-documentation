@@ -41,11 +41,11 @@ paths:
           required: true
           schema:
             type: string
+            enum: [channel.id, series.id, program.title]
           description: >-
             See https://jsonapi.org/recommendations/#filtering
             This endpoint only supports filtering on [channel.id|series.id|program.title] and supports multiple values through csv.
             It is compulsory to include at least the channel.id filter.  A wildcard of "*" indicates that all channels must be included.
-          enum: [channel.id, series.id, program.title]
       responses:
         200:
           description: "Successful response"
