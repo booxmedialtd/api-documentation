@@ -592,7 +592,12 @@ paths:
     post:
       tags:
       - Recordings
-      summary: Create a deletion request that specifies a number of records that need to be deleted
+      summary: Create a deletion request that specifies a number of records that need to be deleted.  Only 50 recordings should be included per request
+      description: >-
+        Create a deletion request that specifies a number of records that need to be deleted.
+        Only 50 recordings should be included per request and higher amounts should be made as simultaneous asynchronous calls.
+        We expect the client to limit the UI to allow the user to delete a maximum of 250 records at a time (5 simultaneous calls)
+        This is designed to keep our response times within our target.
       operationId: postDeletionRequest
       parameters:
         - in: path
