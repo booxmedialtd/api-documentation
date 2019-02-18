@@ -103,3 +103,55 @@ paths:
 # Recordings
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /user/{user_id}/recording/{recording_id}:
+    get:
+      summary: This API is used to provide a playable/streamable URI for a live channel which can be utilized to stream the video.
+      description: >-
+        The URL to play the content is in "streamUrl" field of Channel->LiveService->Services->Stream object.
+        The server will redirect to media server using HTTP 302 code.
+        The server can return 403 code if the user is not authorized to view the content.
+        The details of the error will be in an Error object, which can be displayed to the user.
+        For AJAX requests, the server will return HTTP code 200 with Redirect object.
+      tags:
+      - Recordings
+      operationId: legacyPlayRecording
+      parameters:
+      - in: path
+        name: user_id
+        description: The email address of the user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: recording_id
+        description: The id of the recording to play
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: service
+        description: The service that the user belongs to
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: stream_type
+        description: Enforces stream format for auth type MOD SEC.
+        required: false
+        schema:
+          type: string
+          enum: ["hls","mss","dash"]
+      - in: query
+        name: program_uid
+        description: program uid of Epg
+        required: false
+        schema:
+          type: string
+      responses:
+        '302':
+          description: "A successful response will be a redirect with no body"
+          headers:
+            Location:
+              schema:
+                type: string
+              description: The url that points to the playlist the client should load
