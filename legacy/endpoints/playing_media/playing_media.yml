@@ -89,7 +89,7 @@ paths:
                     type: object
                     required:
                     - code
-                    -text
+                    - text
                     properties:
                       code:
                         type: integer
