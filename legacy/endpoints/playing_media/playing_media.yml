@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Playing media (legacy)"
+tags:
+- name: Linear TV
+- name: Recordings
+servers:
+- url: 'https://boox.fi/api'
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Linear TV
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /user/{user_id}/channel/{channel_id}/stream/{stream_id}/play:
+    get:
+      summary: This API is used to provide a playable/streamable URI for a live channel which can be utilized to stream the video.
+      description: >-
+        The URL to play the content is in "streamUrl" field of Channel->LiveService->Services->Stream object.
+        The server will redirect to media server using HTTP 302 code.
+        The server can return 403 code if the user is not authorized to view the content.
+        The details of the error will be in an Error object, which can be displayed to the user.
+        For AJAX requests, the server will return HTTP code 200 with Redirect object.
+      tags:
+      - Linear TV
+      operationId: legacyPlayChannel
+      parameters:
+      - in: path
+        name: user_id
+        description: The email address of the user
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: channel_id
+        description: The channel id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: stream_id
+        description: The channel id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startover
+        description: Enable startover for current program
+        required: false
+        schema:
+          type: string
+          enum: ["true","false"]
+      - in: query
+        name: stream_type
+        description: Enforces stream format for Stream Protection MOD SEC
+        required: false
+        schema:
+          type: string
+          enum: ["hls","mss","dash"]
+      - in: query
+        name: program_uid
+        description: Works only when startover is set to true. Plays the Program from the begining.
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: network
+        required: false
+        schema:
+          type: string
+          enum: ["all","ott","dvb","iptv"]
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/playing_media/PlayMediaResponse.yml#/PlayMediaResponse"
+        '403':
+          description: "The user is not authorized to view the content"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - error
+                properties:
+                  error:
+                    type: object
+                    required:
+                    - code
+                    -text
+                    properties:
+                      code:
+                        type: integer
+                        example: 311
+                      text:
+                        type: string
+                        example: "You do not have a valid license to view this content"
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Recordings
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

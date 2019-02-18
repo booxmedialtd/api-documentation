@@ -1,0 +1,35 @@
+PlayMediaResponse:
+  type: object
+  required:
+  - redirect
+  properties:
+    redirect:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          example: https:\/\/mse01.tv.delta.nl\/premium\/26a44e94ffac9706da6df5ee1e1c28ae0164a1f0b807456cdcbc386a4fa637fa\/3309e7f53a4cb89fd1a6ce196932635570ff4e5e5c97746cd0318c432a4dfb54\/56d9746f\/recs\/live\/3\/3.isml\/playlist.m3u8?time_shift=0
+          description: The url where the player should retrieve the playlist from
+    drm:
+      type: object
+      description: This key will only be present if the stream is protected with DRM
+      required:
+      - streamingMode
+      - encryptedMode
+      - token
+      - laUrl
+      properties:
+        streamingMode:
+          type: string
+          example: "mss"
+        encryptionMode:
+          type: string
+          example: "playready"
+        token:
+          type: string
+          example: delta|2016-03-04T11:04:21Z|GXxhIbViZyEE3AbG81MDT7ti5qNHb3CnvsDC5U2XIlU6+LF1A3v3OEF38ato4xJ8f8m6oGY6e3ijrKk44kvk77O6LoECHw+8Efz95u+sPwDdmEpcpTdEEakO2hpzY8zBa5RaIgpJ\/M\/sh6d+eY6laQ==|68a0a5efd60a8cac7a14bd385a1b504a39272e6d
+        laUrl:
+          type: string
+          example: https:\/\/playready-license.drm.technology\/rightsmanager.asmx
