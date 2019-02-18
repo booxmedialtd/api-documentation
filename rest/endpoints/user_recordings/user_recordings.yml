@@ -444,34 +444,6 @@ paths:
                 required:
                 - data
                 properties:
-                  links:
-                    type: object
-                    properties:
-                      play:
-                        type: string
-                        example: https://demo.com/api/channel/38/stream/103/play?userEmail=boox6%40cloudpvr.nl&service=example&startover=false&stream_type=hls&service=example
-                        description: >-
-                          Where to find information about playing this recording
-                          This key will only appear if the recording has completed
-                      cancel_recording:
-                        type: string
-                        example:  https://demo.com/api/recordings/v1/user_recording/10c35c20-5c75-4c2d-ad79-bc10385b89f3
-                        description: >-
-                          Calling this endpoint with the DELETE method will cause the specific recording to be cancelled.
-                          This key will only be present if the recording is "incoming" (scheduled for the future)
-                      cancel_continuous_recording:
-                        type: string
-                        example: https://demo.com/api/recordings/v1/user_recording_requests/b63c666c-2a84-4f2d-a006-97f236912c77
-                        description: >-
-                          Calling this endpoint with the DELETE method will cause the recording to be cancelled and no future episodes will be recorded.
-                          This key will only be present if the recording is "incoming" (scheduled for the future) and is part of a series.
-                      delete_recording:
-                        type: string
-                        example: https://demo.com/api/recordings/v1/user_recording/10c35c20-5c75-4c2d-ad79-bc10385b89f3
-                        description: >-
-                          This key will only appear if the recording has been completed.  Calling this endpoint will result in the particular
-                          recording being deleted.  Note that it is not a bulk delete of all related continuous recordings.
-
                   data:
                     type: array
                     items:
