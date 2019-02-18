@@ -198,30 +198,31 @@ paths:
       tags:
       - Recording Groups
       operationId: indexProgramsInGroup
-      - in: path
-        name: user_id
-        description: The email address of the user
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: recording_group_id
-        description: The id of the recording group for which programs to list
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: pg
-        description: Page number if the results have more items than ipp. Default = 0
-        required: false
-        schema:
-          type: integer
-      - in: query
-        name: ipp
-        description: Maximum number of result items per page. Default = 1000
-        required: false
-        schema:
-          type: integer
+      parameters:
+        - in: path
+          name: user_id
+          description: The email address of the user
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: recording_group_id
+          description: The id of the recording group for which programs to list
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: pg
+          description: Page number if the results have more items than ipp. Default = 0
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: ipp
+          description: Maximum number of result items per page. Default = 1000
+          required: false
+          schema:
+            type: integer
       responses:
         '200':
           description: "Successful response"
