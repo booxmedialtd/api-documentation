@@ -16,4 +16,4 @@ Channel2UserSpecific:
         channels:
           type: array
           items:
-            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel.yml#/Channel
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel.yml#/Channel"
