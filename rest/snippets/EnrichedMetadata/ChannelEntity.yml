@@ -23,6 +23,12 @@ ChannelEntity:
       enum: [true,false]
       description: >-
         A channel may be marked as a "demo" channel in which case it should only be available to demo users.
+    is_local_channel:
+      type: boolean
+      example: false
+      enum: [true,false]
+      description: >-
+        Please see https://confluence.aminocom.com/display/MAPI/Local+channels
     media_type:
       type: string
       example: "mixed"
