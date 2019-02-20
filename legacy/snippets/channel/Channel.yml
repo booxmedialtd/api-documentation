@@ -4,6 +4,7 @@ Channel:
   - id
   - title
   - isUserAuthorized
+  - isLocal
   - mediaType
   - liveThumbnailUrl
   - thumbnailUrl
@@ -32,6 +33,11 @@ Channel:
     isUserAuthorized:
       type: boolean
       example: false
+    isLocal:
+      type: boolean
+      example: false
+      description: >-
+        Please see https://confluence.aminocom.com/display/MAPI/Local+channels
     mediaType:
       type: string
       example: video
