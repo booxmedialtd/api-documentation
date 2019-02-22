@@ -71,7 +71,6 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
 
-
     post:
       tags:
       - Media Play Sessions
@@ -120,6 +119,25 @@ paths:
                         example: "6b6bf3e1-555b-45cb-b5d3-63a2ff7be9e3 "
                       attributes:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
+        403:
+          description: User tried to start session but already has too many
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 56071904
+                  code: df1e80a
+                  title: Too many sessions
+                  details: >-
+                    You have tried to open a new playback session but you are already at the maximum allowable limit.  You need to stop playing content
+                    on another device in order to watch on this one.
+
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -161,6 +179,25 @@ paths:
         204:
           description: |
             The resource was updated successfully, no response body is needed
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: User not permitted
+                  details: >-
+                    You are trying to access something that belongs to another user account.  If you are seeing this error it is most likely
+                    a problem with your client and you should not attempt to retry the operation.  Please rather contact the support desk for
+                    assistance.
 
     delete:
       tags:
@@ -184,3 +221,22 @@ paths:
         '204':
           description: |
             Successful response code indicates that the resource was deleted and no response body is being returned.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: User not permitted
+                  details: >-
+                    You are trying to access something that belongs to another user account.  If you are seeing this error it is most likely
+                    a problem with your client and you should not attempt to retry the operation.  Please rather contact the support desk for
+                    assistance.
