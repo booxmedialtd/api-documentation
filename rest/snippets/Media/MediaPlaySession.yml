@@ -7,12 +7,12 @@ MediaPlaySession:
       type: string
       description: This can be one of [live|npvr|catchup|startover|vod]
       enum:
-      - live 
+      - live
       - npvr
       - catchup
       - startover
       - vod
-    ip_address:
+    ip4_address:
       type: string
       description: The ip address of the client that created this session
     user_agent:
