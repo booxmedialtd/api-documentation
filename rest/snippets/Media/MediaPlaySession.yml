@@ -15,10 +15,11 @@ MediaPlaySession:
     ip4_address:
       type: string
       description: The ip address of the client that created this session
-    user_agent:
+    device_type:
       type: string
+      enum: ["stb","mobile","browser"]
       description: >-
-        The user agent of the client that created this session.  This should be included when listing the media sessions for the user so that they can
+        The type of device of the client that created this session.  This should be included when listing the media sessions for the user so that they can
         identify which devices they are thought to be connected with.
     play_started_timestamp:
       type: integer
