@@ -49,7 +49,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: start_date_yyyymmdd:
+          name: start_date_yyyymmdd
           required: false
           example: 20190623
           description: >-
@@ -74,7 +74,8 @@ paths:
           description: >-
             See https://jsonapi.org/recommendations/#filtering
             This endpoint only supports filtering on [channel.id|program.genre.id] and supports multiple values through csv.
-            It is compulsory to include at least the channel.id filter.
+            It is compulsory to include at least the channel.id filter.  A maximum of 50 channels may be requested and
+            spcifying more than this will result in the API returning a "400 Bad Request" error.
       responses:
         200:
           description: "Successful response"
