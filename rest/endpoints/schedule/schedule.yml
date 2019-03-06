@@ -49,8 +49,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: start_date
+          name: start_date_yyyymmdd:
           required: false
+          example: 20190623
           description: >-
             You will receive a window of EPG data that begins with this date and extends for the number of days supplied in the "days_to_return"
             parameter.  Note that the API will return results starting from 00:00:01 on this date and we do not support specifying time
