@@ -30,10 +30,15 @@ BroadcastSlotEntity:
           type: integer
           example: 120
           description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
-        audio_language_iso639_1:
-          type: integer
-          example: fi
-          description: The ISO 639-1 two letter code for the language that the audio is in
+        broadcast_languages:
+          type: array
+          items:
+            type: object
+            properties:
+              audio_language_iso639_1:
+                type: integer
+                example: fi
+                description: The ISO 639-1 two letter code for the language that the audio is in
         subtitle_languages:
           type: array
           items:
@@ -95,13 +100,13 @@ BroadcastSlotEntity:
           description: If this flag is "false" then this channel is available in all regions
           example: true
           enum: [true,false]
-        enabled_country_codes_iso3166_alpha2:
+        enabled_country_codes_iso369_2:
           type: array
           description: An array of country codes where this channel is allowed to be played
           items:
             type: string
-            example: fi
-            description: An ISO-3166 Alpha2 country code
+            example: fin
+            description: An ISO-369-2 Alpha3 country code
 
     program:
       type: object

@@ -72,7 +72,7 @@ paths:
             type: string
           description: >-
             See https://jsonapi.org/recommendations/#filtering
-            This endpoint only supports filtering on [channel.id|operator.id|genre.id|channel.transport_network] and supports multiple values through csv.
+            This endpoint only supports filtering on [channel.id|program.genre.id] and supports multiple values through csv.
             It is compulsory to include at least the channel.id filter.  A wildcard of "*" indicates that all channels must be included.
       responses:
         200:

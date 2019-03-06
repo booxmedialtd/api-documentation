@@ -76,7 +76,7 @@ paths:
           required: false
           description: >-
             Please see http://jsonapi.org/recommendations/#filtering
-            The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year|operator.id]
+            The following are attributes to filter on: [content_rating.adult|genre.name|program.release_year]
           schema:
             type: string
       responses:
