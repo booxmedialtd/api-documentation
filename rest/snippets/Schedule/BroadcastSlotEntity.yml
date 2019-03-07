@@ -35,19 +35,19 @@ BroadcastSlotEntity:
           items:
             type: object
             properties:
-              audio_language_iso639_1:
+              audio_language_iso639_2:
                 type: integer
-                example: fi
-                description: The ISO 639-1 two letter code for the language that the audio is in
+                example: fin
+                description: The ISO 639-2 three letter code for the language that the audio is in
         subtitle_languages:
           type: array
           items:
             type: object
             properties:
-              language_iso639_1:
-                type: string
-                example: fi
-                description: The ISO 639-1 two letter code for a subitle language that is available
+              language_iso639_2:
+                type: stringoh th
+                example: fin
+                description: The ISO 639-2 three letter code for a subitle language that is available
 
     services_available:
       type: object
