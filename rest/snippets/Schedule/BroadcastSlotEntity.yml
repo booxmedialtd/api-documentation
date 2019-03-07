@@ -79,15 +79,6 @@ BroadcastSlotEntity:
             type: string
             example: ["npvr","catchup"]
             enum: [live,npvr,lpvr,catchup,startover]
-        startover_service_type:
-          type: string
-          example: "timeshift"
-          enum: ["timeshift","window"]
-          description: >-
-            This optional key should not be present if startover service is not enabled.
-            What sort of startover service is enabled.
-            If "timeshift" returned: client don't need to switch to 0 position because live point is shifted and play will always start at beginning of shifted live point.
-            If "DVR Window" returned: client may need to switch to 0 position of the playlist should it be required on the client requirement.
 
     geo_availability:
       type: object
