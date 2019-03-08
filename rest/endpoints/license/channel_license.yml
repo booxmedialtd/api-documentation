@@ -93,13 +93,12 @@ paths:
               items:
                 type: object
                 properties:
-                  id:
-                    type: string
-                    description: "The id of the entity being referenced"
-                    example: "bab838b3-def8-4bff-87ed-66e663134f50"
                   type:
                     type: string
                     example: UserChannelLicense
+                  properties:
+                    attributes:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
       responses:
          '201':
             description: |
