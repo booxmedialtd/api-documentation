@@ -3,7 +3,7 @@ info:
   description: >
     This endpoint provides metadata about Channel Licenses.
   version: 1.0.0
-  title: Channel metadata
+  title: Channel licensing
 tags:
   - name: Channels
     description: |
