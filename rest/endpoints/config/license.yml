@@ -33,7 +33,7 @@ paths:
       summary: >-
         Return a list of available packages.
       tags:
-        License Packages
+      - License Packages
       operationId: listLicensePackages
       responses:
         '200':
@@ -67,7 +67,7 @@ paths:
       summary: >-
         Return a list of license templates that are associated with a license package
       tags:
-        License Packages
+      - License Packages
       operationId: listLicenseTemplatesForPackage
       responses:
         '200':
