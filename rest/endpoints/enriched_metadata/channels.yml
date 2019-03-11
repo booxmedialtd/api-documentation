@@ -153,18 +153,6 @@ paths:
                               example: "8958c820-1757-4f58-96d6-6e365729224c"
                             attributes:
                                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/GenreEntity.yml#/GenreEntity"
-                        - type: object
-                          description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
-                          properties:
-                            type:
-                              type: string
-                              example: "Operator"
-                              description: The type of the entity that is being included.
-                            id:
-                              type: string
-                              example: "503b0c49-b5ac-485d-9dab-44d82e6c483c"
-                            attributes:
-                                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/OperatorEntity.yml#/OperatorEntity"
         '400':
           description: Standard error response
           content:
