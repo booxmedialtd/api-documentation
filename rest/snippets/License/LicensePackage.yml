@@ -15,8 +15,10 @@ LicensePackage:
           example: 1520784677
           description: >-
             The package is only able to be used to add licenses to users after this unix timestamp.
+            Note that the package may be removed from users outside of the avilability window.
         available_until_timestamp:
           type: integer
           example: 1552320677
           description: >-
             The package is only able to be used to add licenses to users until this unix timestamp.
+            Note that the package may be removed from users outside of the avilability window.

@@ -62,7 +62,7 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/LicensePackage.yml#/LicensePackage"
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  /license_packages/relationships/license_template:
+  /license_packages/relationships/license_templates:
     get:
       summary: >-
         Return a list of license templates that are associated with a license package
@@ -94,7 +94,7 @@ paths:
                           type: string
                           example: LicenseTemplate
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/LicenseTemplate.yml#/LicenseTemplate"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
