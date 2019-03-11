@@ -45,7 +45,7 @@ BroadcastSlotEntity:
             type: object
             properties:
               language_iso639_2:
-                type: stringoh th
+                type: string
                 example: fin
                 description: The ISO 639-2 three letter code for a subitle language that is available
 
