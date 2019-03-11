@@ -78,13 +78,13 @@ BroadcastSlotEntity:
           description: If this flag is "false" then this channel is available in all regions
           example: true
           enum: [true,false]
-        enabled_country_codes_iso369_2:
+        enabled_country_codes_iso3166_1_alpha2:
           type: array
           description: An array of country codes where this channel is allowed to be played
           items:
             type: string
-            example: fin
-            description: An ISO-369-2 Alpha3 country code
+            example: fi
+            description: An ISO-3166-1 Alpha2 country code
 
     program:
       type: object
