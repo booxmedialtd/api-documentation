@@ -1,0 +1,22 @@
+LicensePackage:
+  type: object
+  required:
+  - name
+  properties:
+    name:
+      type: string
+      description: A human friendly name for the LicensePackage
+      example: "Sports"
+    availability:
+      type: object
+      properties:
+        available_after_timestamp:
+          type: integer
+          example: 1520784677
+          description: >-
+            The package is only able to be used to add licenses to users after this unix timestamp.
+        available_until_timestamp:
+          type: integer
+          example: 1552320677
+          description: >-
+            The package is only able to be used to add licenses to users until this unix timestamp.

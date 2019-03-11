@@ -3,7 +3,7 @@ info:
   description: >
     This endpoint provides metadata about Channel Licenses.
   version: 1.0.0
-  title: Channel metadata
+  title: Channel licensing
 tags:
   - name: Channels
     description: |
@@ -12,6 +12,8 @@ tags:
       One Channel can be related to many BroadcastSlots which are placeholders in which a Program can be displayed.
       Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
       Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
+  - name: License Packages
+      A license package is a grouping of LicenseTemplates
 servers:
   - url: 'https://demo.aminocom.com/api/license/v1/'
 components:
@@ -23,6 +25,75 @@ components:
 security:
   - bearerAuth: []         # use the same name as above
 paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /license_packages:
+    get:
+      summary: >-
+        Return a list of available packages.
+      tags:
+        License Packages
+      operationId: listLicensePackages
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        id:
+                          type: string
+                          example: "2e4087f0-e17a-4ac9-a2ac-b6cbef5f9d35"
+                        type:
+                          type: string
+                          example: LicensePackage
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/LicensePackage.yml#/LicensePackage"
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /license_packages/relationships/license_template:
+    get:
+      summary: >-
+        Return a list of license templates that are associated with a license package
+      tags:
+        License Packages
+      operationId: listLicenseTemplatesForPackage
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        id:
+                          type: string
+                          example: "9f463a6a-303d-4e42-89a3-b8610fadf663"
+                        type:
+                          type: string
+                          example: LicenseTemplate
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/LicenseTemplate.yml#/LicenseTemplate"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
