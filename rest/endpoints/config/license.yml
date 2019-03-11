@@ -13,6 +13,7 @@ tags:
       Channels have a lifetime which we refer to as "visibility".  Outside of this window the channel may not be watched.
       Although conceptually we could create a channel that holds a single program (for example a live event) this is not done in practice.
   - name: License Packages
+    description:
       A license package is a grouping of LicenseTemplates
 servers:
   - url: 'https://demo.aminocom.com/api/license/v1/'
