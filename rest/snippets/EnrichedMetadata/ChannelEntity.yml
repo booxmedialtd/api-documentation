@@ -13,9 +13,23 @@ ChannelEntity:
       type: string
       example: "YLE TV1"
       description: "The short name of the channel to show in listings"
-    logical_channel_number:
-      type: integer
-      example: 1
+    logical_channel_numbers:
+      type: array
+      items:
+        type: object
+        required:
+        - transport_network
+        - logical_channel_number
+        properties:
+          transport_network:
+            type: string
+            example: dvb-t
+            description: A channel can be allocated a different lcn for each network
+            enum: ["dvb-t","dvb-c","ott","iptv"]
+          logical_channel_number:
+            type: integer
+            example: 1
+            description: The LCN for the transport network
       description: A numeric channel number that is easy for the user to enter on their remote control
     is_demo_channel:
       type: boolean
