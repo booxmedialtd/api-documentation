@@ -21,6 +21,11 @@ MediaPlaySession:
       description: >-
         The type of device of the client that created this session.  This should be included when listing the media sessions for the user so that they can
         identify which devices they are thought to be connected with.
+    device_identifier:
+      type: string
+      example: "Home STB"
+      description: >-
+        A human friendly description of the device, to help the user determine which devices are playing and be able to shut them down.
     play_started_timestamp:
       type: integer
       description: The integer Unix timestamp that playback was started
