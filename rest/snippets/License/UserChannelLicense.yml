@@ -20,15 +20,6 @@ UserChannelLicense:
             type: string
             example: ["live","npvr","catchup"]
             enum: [live,npvr,catchup,startover]
-        startover_service_type:
-          type: string
-          example: "timeshift"
-          enum: ["timeshift","window"]
-          description: >-
-            This optional key should not be present if startover service is not enabled.
-            What sort of startover service is enabled.
-            If "timeshift" returned: client don't need to switch to 0 position because live point is shifted and play will always start at beginning of shifted live point.
-            If "DVR Window" returned: client may need to switch to 0 position of the playlist should it be required on the client requirement.
         trickplay_enabled:
           type: array
           description: >-
@@ -41,3 +32,9 @@ UserChannelLicense:
             type: string
             example: ["npvr"]
             enum: [live,npvr,catchup,startover]
+        template_id:
+          type: string
+          description: >-
+            This optional key will be present if the license was created from a template.  This allows
+            it to be deleted if the license package is revoked from the user.
+          example: 532d9129-6f15-4d7b-90dd-ad9f859790a5

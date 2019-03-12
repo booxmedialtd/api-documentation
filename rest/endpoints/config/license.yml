@@ -97,6 +97,72 @@ paths:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /user/{user_id}/relationships/license_packages/{license_package_id}:
+    post:
+      summary: |
+        Grant a license package to a user.  As a side-effect of creating this relationship a user license will be created for each of the templates associated
+        with the package.
+      tags:
+      - Channels
+      operationId: grantPackageToUser
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+        - in: path
+          name: license_package_id
+          required: true
+          description: "The id of the package to grant to the user"
+          schema:
+            type: string
+      responses:
+         '201':
+            description: |
+              Successful response.
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: CREATED
+                  description: |
+                    Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                    rely on the HTTP status code being 201 to indicate success.
+    delete:
+      summary: |
+        Revoke a license package from a user.  As a side-effect of deleting this relationship all of the user licenses that match the templates
+        associated with the package will be deleted.
+      tags:
+      - Channels
+      operationId: revokePackageFromUser
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+        - in: path
+          name: license_package_id
+          required: true
+          description: "The id of the package to revoke from the user"
+          schema:
+            type: string
+      responses:
+         '200':
+            description: |
+              Successful response.
+            content:
+              text/plain:
+                schema:
+                  type: string
+                  example: OK
+                  description: |
+                    Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                    rely on the HTTP status code being 200 to indicate success.
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------but i
 
   /user/{user_id}/relationships/channel_licenses:
     post:
@@ -172,4 +238,3 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-
