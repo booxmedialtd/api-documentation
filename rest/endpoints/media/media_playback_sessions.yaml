@@ -169,12 +169,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/PatchDocument.yml#/PatchDocument"
-            example:
-              op: "replace"
-              path: "/data/0/attributes/last_updated_timestamp"
-              value: 1542644294
-              from: null
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
       responses:
         204:
           description: |
