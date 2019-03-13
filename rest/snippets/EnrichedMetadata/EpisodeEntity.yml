@@ -9,6 +9,10 @@
     episode_title:
       type: string
       example: 'The one where Ross is fine'
+    season_number:
+        type: integer
+        example: 1
+        description: A denormalized value for the season that this episode belongs to.
     images:
       type: array
       items:
@@ -35,3 +39,20 @@
                 type:
                   type: string
                   example: "Program"
+        season:
+          type: object
+          required:
+          - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: "ccee5ff4-89db-4104-868c-5e05103778c7"
+                type:
+                  type: string
+                  example: "Season"
