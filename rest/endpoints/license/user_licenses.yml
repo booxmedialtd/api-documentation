@@ -70,48 +70,6 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/License/UserChannelLicense.yml#/UserChannelLicense"
 
-    post:
-      summary: |
-        Add a new channel license to a user
-      tags:
-      - Channels
-      operationId: addUserChannelLicenses
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: "The user identifier"
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: "The id of the entity being referenced"
-                    example: "bab838b3-def8-4bff-87ed-66e663134f50"
-                  type:
-                    type: string
-                    example: UserChannelLicense
-      responses:
-         '201':
-            description: |
-              Successful response.
-            content:
-              text/plain:
-                schema:
-                  type: string
-                  example: CREATED
-                  description: |
-                    Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                    rely on the HTTP status code being 201 to indicate success.
-
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # RECORDING DEVICES
