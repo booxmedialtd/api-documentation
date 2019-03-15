@@ -112,48 +112,6 @@ paths:
                     Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
                     rely on the HTTP status code being 201 to indicate success.
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  /channel_licenses/{channel_license_id}:
-    delete:
-      summary: |
-          Remove a channel license from a user.
-      tags:
-      - Channels
-      operationId: "DeleteUserChannelLicenses"
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: "The user identifier"
-          schema:
-            type: string
-        - in: path
-          name: channel_license_id
-          required: true
-          description: "The identifier of the channel license"
-          schema:
-            type: string
-
-      responses:
-        '204':
-          description: |
-            The user license was deleted successfully
-
-        '400':
-          description: Standard error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-
-
-
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # RECORDING DEVICES
