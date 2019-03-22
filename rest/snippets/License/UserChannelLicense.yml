@@ -20,18 +20,6 @@ UserChannelLicense:
             type: string
             example: ["live","npvr","catchup"]
             enum: [live,npvr,catchup,startover]
-        trickplay_enabled:
-          type: array
-          description: >-
-            An array of services that the user is allowed to use trickplay for on this channel.
-            If a service does not appear in this array then trickplay is disabled for that service.
-            Trickplay allows the user to pause, rewind, and fast-forward.
-            Live channels cannot be fast-forwarded.  Trickplay allows the user to pause live television.
-            Rewinding live television is treated as "startover service".
-          items:
-            type: string
-            example: ["npvr"]
-            enum: [live,npvr,catchup,startover]
         template_id:
           type: string
           description: >-
