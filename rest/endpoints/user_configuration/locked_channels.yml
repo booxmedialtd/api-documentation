@@ -26,7 +26,7 @@ paths:
     get:
       tags:
       - Channel locking
-      summary: Set channel locking on or off
+      summary: Get the current channel locking status
       operationId: setChannelLock
       parameters:
         - in: path
@@ -61,7 +61,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "da00a320-2bae-49af-9687-298ed3f01361"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/MarketSegment.yml#/MarketSegment"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserChannelLockingConfiguration.yml#/UserChannelLockingConfiguration"
 
     put:
       tags:
