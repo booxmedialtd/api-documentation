@@ -55,3 +55,71 @@ paths:
                           example: "77273018-6fa1-4a0b-ac5f-64eee62c1d7d"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/NetworkPermission.yml#/NetworkPermission"
+
+    post:
+      tags:
+      - Network permissions
+      summary: Create a new Network permissions.
+      operationId: createNetworkPermission
+      requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/NetworkPermission.yml#/NetworkPermission"
+      responses:
+        '201':
+          description: |
+            Successful response.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: CREATED
+                description: |
+                  Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
+                  rely on the HTTP status code being 201 to indicate success.
+
+# ------------------------------------------------------------------------------------------------------------------------------------
+
+  /network_permissions/{network_permission_id}:
+    delete:
+      tags:
+      - Network permissions
+      summary: Delete an index of Network permissions.
+      operationId: deleteNetworkPermissions
+      parameters:
+        - in: path
+          name: network_permission_id
+          required: true
+          description: The identity of the network permission to delete
+          schema:
+            type: string
+      responses:
+        204:
+          description: |
+            The resource was deleted successfully, no response body is needed
+
+
+    put:
+      tags:
+      - Network permissions
+      summary: Update an index of Network permissions.
+      operationId: updateNetworkPermissions
+      parameters:
+        - in: path
+          name: network_permission_id
+          required: true
+          description: The identity of the network permission to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/NetworkPermission.yml#/NetworkPermission"
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
