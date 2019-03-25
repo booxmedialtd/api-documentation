@@ -23,6 +23,46 @@ paths:
 # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/channel_lock:
+    get:
+      tags:
+      - Channel locking
+      summary: Set channel locking on or off
+      operationId: setChannelLock
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserChannelLockingConfiguration
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "da00a320-2bae-49af-9687-298ed3f01361"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/MarketSegment.yml#/MarketSegment"
+
     put:
       tags:
       - Channel locking
@@ -40,31 +80,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                data:
-                  type: object
-                  required:
-                    - session_channel_lock_status
-                    - pin_code
-                  properties:
-                    account_channel_lock_status:
-                      type: boolean
-                      description: >-
-                        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking on the account as a whole
-                        If this field is omitted then no change will be made to the account.
-                      example: true
-                      enum: [true,false]
-                    session_channel_lock_status:
-                      type: boolean
-                      description: >-
-                        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
-                        client that the call is made from.
-                      example: true
-                      enum: [true,false]
-                    pin_code:
-                      type: string
-                      description: The user client must supply the correct current PIN code in order for the change to take effect.
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserChannelLockingConfiguration.yml#/UserChannelLockingConfiguration"
       responses:
         204:
           description: |

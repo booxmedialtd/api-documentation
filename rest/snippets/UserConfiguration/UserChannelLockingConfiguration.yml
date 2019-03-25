@@ -1,0 +1,28 @@
+UserChannelLockingConfiguration:
+  type: object
+  properties:
+    type: object
+    properties:
+      data:
+        type: object
+        required:
+          - session_channel_lock_status
+          - pin_code
+        properties:
+          account_channel_lock_status:
+            type: boolean
+            description: >-
+              Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking on the account as a whole
+              If this field is omitted then no change will be made to the account.
+            example: true
+            enum: [true,false]
+          session_channel_lock_status:
+            type: boolean
+            description: >-
+              Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
+              client that the call is made from.
+            example: true
+            enum: [true,false]
+          pin_code:
+            type: string
+            description: The user client must supply the correct current PIN code in order for the change to take effect.
