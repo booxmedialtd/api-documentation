@@ -1,0 +1,28 @@
+NetworkPermission:
+  type: object
+  required:
+  - services_enabled
+  properties:
+    ip4_cidr_block:
+      type: string
+      example: 10.2.3.41/24
+      description: >-
+        The CIDR notation for an ip4 address range.  See https://www.mediawiki.org/wiki/Help:Range_blocks
+        If the ip4 block is specified then there should not be an ip6 block specified as well.
+        It is mandatory that at least one of the block specifications is not null.
+    ip6_cidr_block:
+      type: string
+      example: 10.2.3.41/24
+      description: >-
+        The CIDR notation for an ip6 address range.  See https://www.mediawiki.org/wiki/Help:Range_blocks/IPv6
+        If the ip4 block is specified then there should not be an ip6 block specified as well.
+        It is mandatory that at least one of the block specifications is not null.
+    services_enabled:
+      type: array
+      description: >-
+        An array of the service types that are allowed on the specified network block
+        Services may be one of [live,npvr,lpvr,catchup,startover]
+      items:
+        type: string
+        example: ["live","npvr","catchup"]
+        enum: [live,npvr,catchup,startover]
