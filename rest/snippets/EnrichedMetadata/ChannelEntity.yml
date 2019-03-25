@@ -29,6 +29,12 @@ ChannelEntity:
       enum: [true,false]
       description: >-
         Please see https://confluence.aminocom.com/display/MAPI/Local+channels
+    allowed_devices:
+      type: array
+      items:
+        type: string
+        example: stb
+        enum: [stb,mobile,browser]
     media_type:
       type: string
       example: "mixed"
