@@ -1,7 +1,6 @@
 UserChannelLockingConfiguration:
   type: object
   required:
-    - session_channel_lock_status
     - pin_code
   properties:
     account_channel_lock_status:
@@ -15,7 +14,7 @@ UserChannelLockingConfiguration:
       type: boolean
       description: >-
         Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
-        client that the call is made from.
+        client that the call is made from.  This field will be omitted when the API responds to a GET request.
       example: true
       enum: [true,false]
     pin_code:
