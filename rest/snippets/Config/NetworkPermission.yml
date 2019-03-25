@@ -12,7 +12,7 @@ NetworkPermission:
         It is mandatory that at least one of the block specifications is not null.
     ip6_cidr_block:
       type: string
-      example: 10.2.3.41/24
+      example: 2001:db8::/43
       description: >-
         The CIDR notation for an ip6 address range.  See https://www.mediawiki.org/wiki/Help:Range_blocks/IPv6
         If the ip4 block is specified then there should not be an ip6 block specified as well.
