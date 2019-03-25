@@ -27,7 +27,7 @@ paths:
       tags:
       - Channel locking
       summary: Get the current channel locking status
-      operationId: setChannelLock
+      operationId: getChannelLock
       parameters:
         - in: path
           name: user_id
