@@ -6,7 +6,6 @@ info:
   title: "Channel locking"
 tags:
 - name: Channel locking
-- name: Session privilege
 - name: PIN code management
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
@@ -36,37 +35,40 @@ paths:
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    required:
-                      - session_channel_lock_status
-                      - pin_code
-                    properties:
-                      account_channel_lock_status:
-                        type: boolean
-                        description: >-
-                          Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking on the account as a whole
-                          If this field is omitted then no change will be made to the account.
-                        example: true
-                        enum: [true,false]
-                      session_channel_lock_status:
-                        type: boolean
-                        description: >-
-                          Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
-                          client that the call is made from.
-                        example: true
-                        enum: [true,false]
-                      pin_code:
-                        type: string
-                        description: The user client must supply the correct current PIN code in order for the change to take effect.
-
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  required:
+                    - session_channel_lock_status
+                    - pin_code
+                  properties:
+                    account_channel_lock_status:
+                      type: boolean
+                      description: >-
+                        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking on the account as a whole
+                        If this field is omitted then no change will be made to the account.
+                      example: true
+                      enum: [true,false]
+                    session_channel_lock_status:
+                      type: boolean
+                      description: >-
+                        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
+                        client that the call is made from.
+                      example: true
+                      enum: [true,false]
+                    pin_code:
+                      type: string
+                      description: The user client must supply the correct current PIN code in order for the change to take effect.
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
 
 
 
@@ -85,23 +87,27 @@ paths:
           description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
           schema:
             type: string
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    required:
-                      - new_pin_code
-                      - current_pin_code
-                    properties:
-                      new_pin_code:
-                        type: string
-                        description: PIN code that conforms to the deployment requirements for a PIN code
-                        example: 1234
-                      current_pin_code:
-                        type: string
-                        description: The current PIN code.  If the user has not set their own code they should use the default PIN code.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  required:
+                    - new_pin_code
+                    - current_pin_code
+                  properties:
+                    new_pin_code:
+                      type: string
+                      description: PIN code that conforms to the deployment requirements for a PIN code
+                      example: 1234
+                    current_pin_code:
+                      type: string
+                      description: The current PIN code.  If the user has not set their own code they should use the default PIN code.
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
