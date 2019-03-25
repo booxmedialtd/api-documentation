@@ -59,7 +59,7 @@ paths:
     post:
       tags:
       - Network permissions
-      summary: Create a new Network permissions.
+      summary: Create a new Network permission.
       operationId: createNetworkPermission
       requestBody:
           required: true
@@ -86,7 +86,7 @@ paths:
     delete:
       tags:
       - Network permissions
-      summary: Delete an index of Network permissions.
+      summary: Delete a Network permission
       operationId: deleteNetworkPermissions
       parameters:
         - in: path
@@ -104,7 +104,7 @@ paths:
     put:
       tags:
       - Network permissions
-      summary: Update an index of Network permissions.
+      summary: Update a Network permission
       operationId: updateNetworkPermissions
       parameters:
         - in: path
