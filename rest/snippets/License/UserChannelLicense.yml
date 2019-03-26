@@ -35,7 +35,7 @@ UserChannelLicense:
                     type: integer
                     example: 1553604416
                     description: The beginning of the window for which this license makes this service available.
-                  available_from_timestamp:
+                  available_until_timestamp:
                     type: integer
                     example: 1553690816
                     description: The beginning of the window for which this license makes this service available.
