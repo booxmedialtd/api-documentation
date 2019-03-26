@@ -23,7 +23,7 @@ UserChannelLicense:
             properties:
               service_type:
                 type: string
-                example: ["live","npvr","catchup"]
+                example: "live"
                 enum: [live,npvr,catchup,startover]
               availability_window:
                 type: object
