@@ -45,7 +45,7 @@ paths:
         '200':
           description: "Successful response"
           headers:
-            cache-control: "private, max-age=600, must-revalidate"
+            cache-control: "private, max-age=300, must-revalidate"
           content:
             application/json:
               schema:
