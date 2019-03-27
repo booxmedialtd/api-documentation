@@ -17,28 +17,12 @@ UserChannelLicense:
             An array of the service types that the user is entitled to for this channel
             Services may be one of [live,npvr,lpvr,catchup,startover]
           items:
-            type: object
-            required:
-            - service_type
-            properties:
-              service_type:
-                type: string
-                example: "live"
-                enum: [live,npvr,catchup,startover]
-              availability_window:
-                type: object
-                required:
-                - available_from_timestamp
-                - available_until_timestamp
-                properties:
-                  available_from_timestamp:
-                    type: integer
-                    example: 1553604416
-                    description: The beginning of the window for which this license makes this service available.
-                  available_until_timestamp:
-                    type: integer
-                    example: 1553690816
-                    description: The beginning of the window for which this license makes this service available.
+            type: array
+            items:
+              type: string
+              example: "live"
+              enum: [live,npvr,catchup,startover]
+
         template_id:
           type: string
           description: >-
