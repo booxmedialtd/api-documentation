@@ -55,10 +55,87 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: FavouriteChannelList
+                          example: UserProfile
                         id:
                           type: string
                           description: "The id of the entity being referenced"
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+
+
+    post:
+      tags:
+      - User profiles
+      summary: Create a new user profile
+      operationId: createUserProfile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to create a profile for
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserProfile
+                        id:
+                          type: string
+                          description: "The id of the entity that was created"
+                          example: "dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/user_profiles/{user_profile_id}:
+    get:
+      tags:
+      - User profiles
+      summary: >-
+        An index of the user profiles for an account.
+      description: >-
+        As a side effect of calling this endpoint all recordings, settings, and other information regarding the profile will also be deleted.
+      operationId: deleteUserProfile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The specific identity of the user profile
+          schema:
+            type: string
+      responses:
+          204:
+            description: |
+              The resource was deleted successfully, no response body is needed
