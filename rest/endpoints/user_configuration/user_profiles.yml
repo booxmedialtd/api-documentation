@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  description: >-
+    We allow several user profiles per account.  This allows creating profiles for children that are blocked from adult content,
+    and also allows certain preferences to be kept separate between different members of the household.
+  version: "1.0.0"
+  title: "User specified favourite channel lists"
+tags:
+- name: User profiles
+servers:
+- url: 'https://demo.aminocom.com/api/users/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/user_profiles:
+    get:
+      tags:
+      - User profiles
+      summary: An index of the user profiles for an account
+      operationId: indexUserProfiles
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: FavouriteChannelList
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"

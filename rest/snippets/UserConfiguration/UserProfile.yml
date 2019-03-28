@@ -1,0 +1,11 @@
+UserProfile:
+  type: object
+  properties:
+    nickname:
+      type: string
+      example: Dad
+      description: A nickname for the profile to help the account-holder identify who it belongs to
+    is_child_profile:
+      type: boolean
+      example: false
+      description: If this flag is set to "true" then the profile will be blocked from viewing adult content
