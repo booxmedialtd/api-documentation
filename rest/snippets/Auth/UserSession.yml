@@ -1,9 +1,9 @@
 UserSession:
   type: object
   properties:
-    login_timestamp:       
+    login_timestamp:
       type: integer
-      example: 1538126476 
+      example: 1538126476
       description: The Unix epoch timestamp of when the session was created
     jwt_token:
       type: string

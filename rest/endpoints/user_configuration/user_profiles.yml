@@ -7,6 +7,7 @@ info:
   title: "User Profiles"
 tags:
 - name: User profiles
+- name: User session
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -18,6 +19,34 @@ components:
 security:
 - bearerAuth: []         # use the same name as above
 paths:
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/session:
+    put:
+      tags:
+      - User session
+      summary: Update the user session.
+      operationId: updateUserSession
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile_user_id:
+                  type: string
+                  example: bf28db51-3002-4b7b@customer.domain
+                  description: >-
+                    The user id of the profile.  This user id will be used in all calls to the API that usually specify the username in the user table
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 

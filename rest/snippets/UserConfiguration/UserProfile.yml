@@ -1,10 +1,19 @@
 UserProfile:
   type: object
+  required:
+  - nickname
+  - is_child_profile
   properties:
     nickname:
       type: string
       example: Dad
       description: A nickname for the profile to help the account-holder identify who it belongs to
+    user_id:
+      type: string
+      example: bf28db51-3002-4b7b@customer.domain
+      description: >-
+        A system generated random user name.  The client should not POST this field when creating a profile.
+        The client will supply this username when calling the API.
     is_child_profile:
       type: boolean
       example: false
