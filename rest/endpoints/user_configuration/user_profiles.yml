@@ -4,7 +4,7 @@ info:
     We allow several user profiles per account.  This allows creating profiles for children that are blocked from adult content,
     and also allows certain preferences to be kept separate between different members of the household.
   version: "1.0.0"
-  title: "User specified favourite channel lists"
+  title: "User Profiles"
 tags:
 - name: User profiles
 servers:
