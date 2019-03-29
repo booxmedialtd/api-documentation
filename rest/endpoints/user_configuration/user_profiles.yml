@@ -7,7 +7,7 @@ info:
   title: "User Profiles"
 tags:
 - name: User profiles
-- name: User session
+- name: Authentication token
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -22,12 +22,12 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/session:
-    put:
+  /users/{user_id}/profile/{profile_id}/token:
+    post:
       tags:
-      - User session
-      summary: Update the user session.
-      operationId: updateUserSession
+      - Authentication token
+      summary: Get a token that has the profile identity in it
+      operationId: getProfileAuthToken
       parameters:
         - in: path
           name: user_id
@@ -35,18 +35,46 @@ paths:
           description: The identity of the user.
           schema:
             type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                profile_user_id:
-                  type: string
-                  example: bf28db51-3002-4b7b@customer.domain
-                  description: >-
-                    The user id of the profile.  This user id will be used in all calls to the API that usually specify the username in the user table
+        - in: path
+          name: profile_id
+          required: true
+          description: The identity of the profile that the user wants to use.
+          schema:
+            type: string
+      responses:
+        '201':
+          description: |
+            Successful response.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "Session cookie"
+          content:
+            text/plain:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserSession
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/UserSession.yml#/UserSession"
+
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
