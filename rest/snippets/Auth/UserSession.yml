@@ -7,7 +7,7 @@ UserSession:
       description: The Unix epoch timestamp of when the session was created
     jwt_token:
       type: string
-      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTUzODEyNjk3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJ0eXBlIjoiYWNjZXNzIiwic3RiX3NlcmlhbF9ubyI6IjYxNTUwMDI2NjE2MiJ9.u61r1X5l--cbCZYPufcv5DXoFgKbzmjEVxwEr0dIwZ4
+      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTUzODEyNjk3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJwcm9maWxlX2lkIjoiNmM3Zjk0YWYtYjYwMy00ZjM5LTgzODQtZjEyMjI2ZWE5ZDRjNmM3Zjk0YWYtYjYwMy00ZjM5LTgzODQtZjEyMjI2ZWE5ZDRjIiwidHlwZSI6ImFjY2VzcyIsInN0Yl9zZXJpYWxfbm8iOiI2MTU1MDAyNjYxNjIifQ.RW6NdDE_kGgkOVKqodeT1fDdxU7Slaf551rp5ctBcFc
       description: This token can be presented to authenticate the user.
     refresh_token:
       type: string
