@@ -7,3 +7,7 @@ GenreEntity:
     parent_genre:
       type: string
       example: Comedy
+    images:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
