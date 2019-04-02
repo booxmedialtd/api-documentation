@@ -74,6 +74,23 @@ paths:
                           example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/UserSession.yml#/UserSession"
+        403:
+          description: Profile does not belong to account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 9c336eed
+                  code: ec8e9588
+                  title: Profile does not belong to account
+                  details: >-
+                    You have tried to access a profile that does not belong to your user account.
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -175,7 +192,7 @@ paths:
       tags:
       - User profiles
       summary: >-
-        An index of the user profiles for an account.
+        Remove a user profile from an account.
       description: >-
         As a side effect of calling this endpoint all recordings, settings, and other information regarding the profile will also be deleted.
       operationId: deleteUserProfile
