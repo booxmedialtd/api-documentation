@@ -152,7 +152,7 @@ paths:
             type: string
       requestBody:
         required: true
-        content:
+        content:asdasda
           application/json:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
@@ -213,3 +213,56 @@ paths:
           204:
             description: |
               The resource was deleted successfully, no response body is needed
+
+    put:
+      tags:
+      - User profiles
+      summary: >-
+        Update a user profile
+      operationId: updateUserProfile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The specific identity of the user profile
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:asdasda
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: string
+                          example: UserProfile
+                        id:
+                          type: string
+                          description: "The id of the entity that was updated"
+                          example: "dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
