@@ -203,7 +203,7 @@ paths:
 
 # ------------------------------------------------------------------------
 
-  /users/{user_id}/relationships/market_segments:
+  /management/users/{user_id}/relationships/market_segments:
     put:
       tags:
       - Market Segmentation
