@@ -5,9 +5,7 @@ info:
   version: 1.0.0
   title: Authentication
 tags:
-- name: User Session
-  description: >-
-    Endpoints relating to the user session.  These are used to log in and out.
+- name: User Authentication
 servers:
 - url: 'https://demo.aminocom.com/api/auth/v1/'
 components:
@@ -23,14 +21,14 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /users/{user_id}/session/:
+  /users/{user_id}/access_token:
     post:
       summary: |
-        Create a user session ("login") in the middleware and receive a session cookie in return.
-        Please look at the model of the request body to see all of the types of credentials supported.
+        Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
+        the API is stateless and the access token needs to be presented with every call.
       tags:
-      - User Session
-      operationId: createUserSession
+      - User Authentication
+      operationId: createAccessToken
       parameters:
         - in: path
           name: user_id
@@ -51,9 +49,10 @@ paths:
               properties:
                 authentication_mechanism:
                   type: string
-                  example: JWT
-                  description: Any of the (case-insensitive) strings [JWT|password]
-                credentials:                  
+                  example: jwt
+                  description: Any of the (case-insensitive) strings [jwt|password|outh2]
+                  enum: [jwt|password|outh2]
+                credentials:
                   type: object
                   required:
                   - token
@@ -62,16 +61,11 @@ paths:
                       type: string
                       description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
                       example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
-                    
+
       responses:
         '201':
           description: |
             Successful response.
-          headers:
-            Set-Cookie:
-              schema:
-                type: string
-              description: "Session cookie"
           content:
             text/plain:
               schema:
@@ -89,14 +83,14 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: UserSession
+                          example: AccessToken
                         id:
                           type: string
                           description: "The id of the entity being referenced"
                           example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/UserSession.yml#/UserSession"
-                
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AccessToken.yml#/AccessToken"
+
 
         '400':
           description: Standard error response
@@ -110,12 +104,15 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}/access_token/{access_token_id}:
     delete:
       summary: |
-        Delete a user session in the middleware ("logout")
+        Invalidate an access token (and its associated refresh token)
       tags:
-      - User Session
-      operationId: deleteUserSession
+      - User Authentication
+      operationId: deleteAccessToken
       parameters:
         - in: path
           name: user_id
@@ -123,7 +120,12 @@ paths:
           description: The user identity (please do not use an email address to identify the user)
           schema:
             type: string
-
+        - in: path
+          name: access_token_id
+          required: true
+          description: The id of the access token to revoke
+          schema:
+            type: string
 
       responses:
         '204':
