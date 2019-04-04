@@ -67,24 +67,6 @@ BroadcastSlotEntity:
             type: string
             example: ["live","npvr","catchup"]
             enum: [live,npvr,lpvr,catchup,startover]
-    geo_availability:
-      type: object
-      description: >-
-        This key should only be present in order to override the channel settings.
-        If it is omitted then you may assume the channel settings apply.
-      properties:
-        geo_restricted:
-          type: boolean
-          description: If this flag is "false" then this channel is available in all regions
-          example: true
-          enum: [true,false]
-        enabled_country_codes_iso3166_1_alpha2:
-          type: array
-          description: An array of country codes where this channel is allowed to be played
-          items:
-            type: string
-            example: fi
-            description: An ISO-3166-1 Alpha2 country code
 
     program:
       type: object
