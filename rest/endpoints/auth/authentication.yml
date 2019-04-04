@@ -50,17 +50,34 @@ paths:
                 authentication_mechanism:
                   type: string
                   example: jwt
-                  description: Any of the (case-insensitive) strings [jwt|password|outh2]
-                  enum: [jwt|password|outh2]
+                  description: Any of the (case-insensitive) strings [entone|password|token]
+                  enum: [entone|password|token]
                 credentials:
                   type: object
-                  required:
-                  - token
                   properties:
-                    token:
+                    entone_token:
                       type: string
-                      description: A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                      description: >-
+                        A valid (see documentation for validity rules) JWT token that minimally has the user identity as the "sub" claim.
+                        This key will be supplied only if the authentication_mechanism is "entone"
                       example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                    username:
+                      type: string
+                      description: >-
+                        The username of the account to log in as
+                        This key will be supplied only if the authentication_mechanism is "password"
+                      example: user53@customer.domain
+                    password:
+                      type: string
+                      description: >-
+                        The plaintext password of the user.  Note: The API should not return a 301 redirect to "https" if the client attempts to make a non-encrypted "http" connection.
+                        This key will be supplied only if the authentication_mechanism is "password"
+                      example: letmeinplz
+                    access_token:
+                      type: string
+                      description:
+                        An access token that AminoAPI can present to a third party identity provider, for example an OAuth2 server
+                        This key will be supplied only if the authentication_mechanism is "token"
 
       responses:
         '201':
