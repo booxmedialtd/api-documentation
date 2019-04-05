@@ -50,7 +50,7 @@ paths:
                 authentication_mechanism:
                   type: string
                   example: jwt
-                  description: Any of the (case-insensitive) strings [entone|password|token]
+                  description: Any of the (case-insensitive) strings [entone|password|token|refresh]
                   enum: [entone|password|token]
                 credentials:
                   type: object
@@ -75,9 +75,14 @@ paths:
                       example: letmeinplz
                     access_token:
                       type: string
-                      description:
+                      description: >-
                         An access token that AminoAPI can present to a third party identity provider, for example an OAuth2 server
                         This key will be supplied only if the authentication_mechanism is "token"
+                    refresh_token:
+                      type: string
+                      description: >-
+                        The refresh token that was issued at the same time as an access token.
+
 
       responses:
         '201':
