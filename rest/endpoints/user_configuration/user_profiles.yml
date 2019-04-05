@@ -152,7 +152,7 @@ paths:
             type: string
       requestBody:
         required: true
-        content:asdasda
+        content:
           application/json:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
@@ -235,7 +235,7 @@ paths:
             type: string
       requestBody:
         required: true
-        content:asdasda
+        content:
           application/json:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"

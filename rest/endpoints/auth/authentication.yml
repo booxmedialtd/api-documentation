@@ -83,6 +83,8 @@ paths:
         '201':
           description: |
             Successful response.
+          headers:
+            cache-control: "no-cache, no-store, must-revalidate"
           content:
             text/plain:
               schema:
