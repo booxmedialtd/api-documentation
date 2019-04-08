@@ -73,7 +73,7 @@ paths:
                         The plaintext password of the user.  Note: The API should not return a 301 redirect to "https" if the client attempts to make a non-encrypted "http" connection.
                         This key will be supplied only if the authentication_mechanism is "password"
                       example: letmeinplz
-                    access_token:
+                    third_party_access_token:
                       type: string
                       description: >-
                         An access token that AminoAPI can present to a third party identity provider, for example an OAuth2 server
