@@ -5,7 +5,7 @@ info:
   version: 1.0.0
   title: Authentication
 tags:
-- name: User Authentication
+- name: Account Authentication
 servers:
 - url: 'https://demo.aminocom.com/api/auth/v1/'
 components:
@@ -21,13 +21,13 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /users/{user_id}/access_token:
+  /access_tokens:
     post:
       summary: |
         Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
         the API is stateless and the access token needs to be presented with every call.
       tags:
-      - User Authentication
+      - Account Authentication
       operationId: createAccessToken
       parameters:
         - in: path
@@ -136,7 +136,7 @@ paths:
         Invalidate an access token (and its associated refresh token).  You must supply the access token as authentication to this endpoint.
         The API will verify that the jti of the supplied access token matches the access_token_id you want to delete.
       tags:
-      - User Authentication
+      - Account Authentication
       operationId: deleteAccessToken
       parameters:
         - in: path

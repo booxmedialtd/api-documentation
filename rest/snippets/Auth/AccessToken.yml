@@ -6,6 +6,13 @@ AccessToken:
   - refresh_token
   - refresh_token_expiry_rfc822
   properties:
+    user_id:
+      type: string
+      example: 666b6fa0-f1ef-4633-b5af-10934872e2f1
+      description: >-
+        The user_id that this token is valid for.  Note that this information is contained within the JWT but we
+        specifically do not want the client to rely on using the JWT claims for anything as these are subject to
+        change without notice.  Therefore we denormalize this information to the access token entity.
     jwt:
       type: string
       example: jp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiw...
