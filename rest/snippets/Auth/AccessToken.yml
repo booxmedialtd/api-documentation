@@ -6,13 +6,6 @@ AccessToken:
   - refresh_token
   - refresh_token_expiry_rfc822
   properties:
-    user_id:
-      type: string
-      example: 666b6fa0-f1ef-4633-b5af-10934872e2f1
-      description: >-
-        The user_id that this token is valid for.  Note that this information is contained within the JWT but we
-        specifically do not want the client to rely on using the JWT claims for anything as these are subject to
-        change without notice.  Therefore we denormalize this information to the access token entity.
     jwt:
       type: string
       example: jp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiw...
@@ -31,3 +24,20 @@ AccessToken:
       description: >-
         The time at which the refresh token expires.
         After this time the client will need to authenticate again in order to obtain a new access token.
+  relationships:
+    type: array
+    items:
+      anyOf:
+      - type: object
+        required:
+        - id
+        - type
+        properties:
+          id:
+            type: string
+            description: The identifier of the entity
+            example: 666b6fa0-f1ef-4633-b5af-10934872e2f1
+          type:
+            type: string
+            description: The name of the entity type
+            example: "USer"
