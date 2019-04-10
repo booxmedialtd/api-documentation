@@ -20,3 +20,12 @@ UserChannelLockingConfiguration:
     pin_code:
       type: string
       description: The user client must supply the correct current PIN code in order for the change to take effect.
+    locked_channels:
+      type: array
+      description: An array of channels that are currently locked
+      items:
+        type:
+          channel_id:
+            type: string
+            example: 3bdb869c-4781-46f8-b00b-1a780664a7ab
+            description: The id of a channel that is locked
