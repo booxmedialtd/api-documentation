@@ -1,7 +1,8 @@
 UserChannelLockingConfiguration:
   type: object
   required:
-    - pin_code
+    - account_channel_lock_status
+    - session_channel_lock_status
   properties:
     account_channel_lock_status:
       type: boolean
