@@ -19,16 +19,16 @@ UserChannelLockingConfiguration:
       example: true
       enum: [true,false]
     pin_code:
-      type: string
+      type: integer
       description: >-
         The user client must supply the correct current PIN code in order for the change to take effect.
         This field will not be emitted from the API.
       example: 1234
     new_pin_code:
-      type: string
+      type: integer
       description: >-
         This field should only be supplied in PUT requests when the user wants to change the PIN code.
-        There is currently no rule documented for the format (alpha/numeric/both)
+        The PIN code must be numeric, otherwise a "400 Bad Request" response will be returned.
         This field will not be emitted from the API.
       example: 1234
     locked_channels:

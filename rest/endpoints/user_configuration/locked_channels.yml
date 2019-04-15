@@ -22,7 +22,7 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/channel_lock:
+  /users/{user_id}/channel_lock_configuration:
     get:
       tags:
       - Channel locking
