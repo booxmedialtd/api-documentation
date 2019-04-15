@@ -20,7 +20,17 @@ UserChannelLockingConfiguration:
       enum: [true,false]
     pin_code:
       type: string
-      description: The user client must supply the correct current PIN code in order for the change to take effect.
+      description: >-
+        The user client must supply the correct current PIN code in order for the change to take effect.
+        This field will not be emitted from the API.
+      example: 1234
+    new_pin_code:
+      type: string
+      description: >-
+        This field should only be supplied in PUT requests when the user wants to change the PIN code.
+        There is currently no rule documented for the format (alpha/numeric/both)
+        This field will not be emitted from the API.
+      example: 1234
     locked_channels:
       type: array
       description: An array of channels that are currently locked
