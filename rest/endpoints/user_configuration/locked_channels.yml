@@ -6,7 +6,6 @@ info:
   title: "Channel locking"
 tags:
 - name: Channel locking
-- name: PIN code management
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -65,10 +64,15 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserChannelLockingConfiguration.yml#/UserChannelLockingConfiguration"
 
-    put:
+    patch:
       tags:
       - Channel locking
       summary: Set channel locking on or off
+      description:
+        The "pin_code" field is used for the API server to help the client verify that the PIN entered matches the one stored for the account.
+        The "new_pin_code" field should only be present if the client is trying to change the stored PIN for the account.
+        The API will not track session locking status (this is entirely for the client) but will verify that the supplied PIN code is correct when the client requests
+        this to be changed.
       operationId: setChannelLock
       parameters:
         - in: path
