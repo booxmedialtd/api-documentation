@@ -666,6 +666,12 @@ paths:
                 required:
                 - data
                 properties:
+                  links:
+                    type: object
+                    properties:
+                      resume_last_playback:
+                        type: string
+                        description: A link that the user can visit in order to resume playback of the last recording at the point where they left off
                   data:
                     type: array
                     items:
