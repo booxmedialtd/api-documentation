@@ -7,15 +7,19 @@ RecordingGroupEntity:
       type: string
       description: This is a human readable description for the group, based on the tag used to create the group
       example: "Simpsons"
+    description:
+      type: string
+      description: A human readable description of the group
+      example: American comedy programs
     approximate_number_of_recordings:
       type: integer
       description: >-
         A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
       example: 10
-    duration_minutes:
+    duration_seconds:
       type: integer
       description: >-
-        The integer number of minutes that are used up by all the programs in this group.
+        The integer number of seconds that are used up by all the programs in this group.
       example: 5302
     images:
       description: >-
@@ -54,15 +58,28 @@ RecordingGroupEntity:
     relationships:
       type: array
       items:
-        type: object
-        required:
-        - id
-        - type
-        properties:
-          id:
-            type: string
-            description: The identifier of the entity
-            example: abdf8785-cb23-445b-946f-69e8770500a1
-          type:
-            type: string
-            example: "RecordingTag"
+        anyOf:
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                description: The identifier of the entity
+                example: abdf8785-cb23-445b-946f-69e8770500a1
+              type:
+                type: string
+                example: "RecordingTag"
+          - type: object
+            required:
+            - id
+            - type
+            properties:
+              id:
+                type: string
+                example: "cceb69ef-f339-446f-b947-60b738ffdb8e"
+              type:
+                type: string
+                example: Recording
+                description: The type of the entity being included
