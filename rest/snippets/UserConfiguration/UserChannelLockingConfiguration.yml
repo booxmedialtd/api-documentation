@@ -1,16 +1,8 @@
 UserChannelLockingConfiguration:
   type: object
   required:
-    - account_channel_lock_status
-    - session_channel_lock_status
+    - locked_channels
   properties:
-    account_channel_lock_status:
-      type: boolean
-      description: >-
-        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking on the account as a whole
-        If this field is omitted then no change will be made to the account.
-      example: true
-      enum: [true,false]
     session_channel_lock_status:
       type: boolean
       description: >-
@@ -33,7 +25,7 @@ UserChannelLockingConfiguration:
       example: 1234
     locked_channels:
       type: array
-      description: An array of channels that are currently locked
+      description: An array of channels that are currently locked.
       items:
         type: string
         example: 3bdb869c-4781-46f8-b00b-1a780664a7ab
