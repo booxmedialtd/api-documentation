@@ -114,3 +114,44 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
+
+    patch:
+      tags:
+      - Users
+      summary: Make changes to the user object.  Note that not all fields may be PATCHed by the user.
+      operationId: updateUserProfile
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/UserEntity.yml#/UserEntity"
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 9303f876
+                  code: f223db3
+                  title: PIN code incorrect
+                  details: >-
+                    The PIN code that you supplied does not match the one we have stored for the account.
