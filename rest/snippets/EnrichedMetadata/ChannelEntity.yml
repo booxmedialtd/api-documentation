@@ -123,59 +123,61 @@ ChannelEntity:
             type: string
             example: ["npvr","catchup"]
             enum: [live,npvr,catchup,startover]
-    delivery_network:
-      type: object
-      required:
-      - transport_network
-      properties:
-        transport_network:
-          type: string
-          example: DVB
-          enum: [DVB,IPTV,OTT]
-          description: What transport network this channel is carried over
-        dvb:
-          type: array
-          description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
-          items:
-            type: object
-            required:
-            - transmission_type
-            - virtual_channel_number
-            - triplet
-            properties:
-              operator_name:
-                type: string
-                example: "Blue Lake Communications Oy"
-                description: (optional) The name of the operator providing this service
-              transmission_type:
-                type: string
-                description: >-
-                  DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
-                example: "C"
-              virtual_channel_number:
-                type: integer
-                example: 30
-                description: Formerly known as a 'logical_channel_number' (see "https://en.wikipedia.org/wiki/Virtual_channel")
-              triplet:
-                type: object
-                required:
-                - original_network_id
-                - transport_stream
-                - service_id
-                properties:
-                  original_network_id:
-                    type: integer
-                    description: >-
-                      An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
-                      Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
-                      Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
-                    example: 42249
-                  transport_stream_id:
-                    type: integer
-                    example: 122
-                  service_id:
-                    type: string
-                    example: 1553
+    delivery_networks:
+      type: array
+      items:
+        type: object
+        required:
+        - transport_network
+        properties:
+          transport_network:
+            type: string
+            example: DVB
+            enum: [DVB,IPTV,OTT]
+            description: What transport network this channel is carried over
+          dvb:
+            type: array
+            description: "This key must only be present if the channel is broadcast over DVB-x, for IPTV/OTT channels this key must be absent."
+            items:
+              type: object
+              required:
+              - transmission_type
+              - virtual_channel_number
+              - triplet
+              properties:
+                operator_name:
+                  type: string
+                  example: "Blue Lake Communications Oy"
+                  description: (optional) The name of the operator providing this service
+                transmission_type:
+                  type: string
+                  description: >-
+                    DVB systems distribute data using a variety of approaches.  See https://en.wikipedia.org/wiki/Digital_Video_Broadcasting for a complete list.
+                  example: "C"
+                virtual_channel_number:
+                  type: integer
+                  example: 30
+                  description: Formerly known as a 'logical_channel_number' (see "https://en.wikipedia.org/wiki/Virtual_channel")
+                triplet:
+                  type: object
+                  required:
+                  - original_network_id
+                  - transport_stream
+                  - service_id
+                  properties:
+                    original_network_id:
+                      type: integer
+                      description: >-
+                        An Original_Network_ID (ONID) is defined as the “unique identifier of a network”.
+                        Its main use is in the unique identification of a service through the path Original_Network_ID, Transport_Stream_ID.
+                        Originally linked to Network_IDs, ONIDs should mainly be used for network operators, broadcasters and content producers.
+                      example: 42249
+                    transport_stream_id:
+                      type: integer
+                      example: 122
+                    service_id:
+                      type: string
+                      example: 1553
 
     relationships:
       type: array
