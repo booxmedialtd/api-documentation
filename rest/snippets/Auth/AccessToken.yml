@@ -10,19 +10,21 @@ AccessToken:
       type: string
       example: jp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiw...
       description: A JWT token that must be presented to authenticate an API request
-    jwt_expiry_rfc822:
-      type: string
-      example: Fri, 04 Dec 2015 16:01:07 +0000
-      description: The RFC822 formatted time at which the JWT token will expire
+    jwt_expiry_timestamp:
+      type: integer
+      example: 1556277269
+      description: >-
+        The Unix epoch timestamp at which the jwt token expires.
+        If the JWT token is expired the client should authenticate again using a refresh token, if it has one that is still valid.
     refresh_token:
       type: string
       example: WkiUzKELZ49eM7oWxAQK_ZX...
       description: The client may present this in order to obtain a fresh access token
     refresh_token_expiry_rfc822:
-      type: string
-      example: Fri, 04 Dec 2015 16:01:07 +0000
+      type: integer
+      example: 1556882069
       description: >-
-        The time at which the refresh token expires.
+        The Unix epoch timestamp at which the refresh token expires
         After this time the client will need to authenticate again in order to obtain a new access token.
   relationships:
     type: array
