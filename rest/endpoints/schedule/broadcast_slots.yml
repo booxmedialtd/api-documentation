@@ -34,7 +34,7 @@ paths:
   /broadcast_slots:
     get:
       summary: Get an index of BroadcastSlots
-      description:  Note that we do not support including related resources in the index view.
+      description:  NOT YET AVAILABLE. We do not support including related resources in the index view.
       tags:
       - BroadcastSlots
       operationId: GetBroadcastSlotsIndex
