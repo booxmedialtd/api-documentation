@@ -275,7 +275,7 @@ paths:
   /programs/{program_id}/broadcast_slots:
     get:
       summary: Get an index of broadcast_slots in which the program appears
-      description:  Note that we do not support including related resources in the index view.
+      description:  NOT YET AVAILABLE. We do not support including related resources in the index view.
       tags:
       - BroadcastSlots
       operationId: GetBroadcastSlotsForProgram
