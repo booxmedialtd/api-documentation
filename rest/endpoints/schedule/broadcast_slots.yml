@@ -34,7 +34,9 @@ paths:
   /broadcast_slots:
     get:
       summary: Get an index of BroadcastSlots
-      description:  NOT YET AVAILABLE. We do not support including related resources in the index view.
+      description:  |
+        * ```Available since:``` NOT YET AVAILABLE
+        * We do not support including related resources in the index view.
       tags:
       - BroadcastSlots
       operationId: GetBroadcastSlotsIndex

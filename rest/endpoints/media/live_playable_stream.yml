@@ -23,7 +23,8 @@ paths:
       tags:
         - Stream
       summary: Returns a collection of Stream entities
-      description: Available since 2018-03 (BPLAT-4755)
+      description: |
+        * ```Available since:``` 2018-03 (BPLAT-4755)
       operationId: getChannelStreams
       parameters:
         - in: path

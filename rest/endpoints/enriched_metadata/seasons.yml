@@ -25,7 +25,8 @@ paths:
   /seasons/{season_id}:
     get:
       summary: Get an individual season
-      description: NOT YET AVAILABLE
+      description: |
+        * ```Available since:``` NOT YET AVAILABLE
       tags:
       - Seasons
       operationId: GetSeasonEntity
@@ -94,6 +95,8 @@ paths:
         Note:  This endpoint will *always* return included Programs and does not support the `include` parameter in order to comply with the
         JSON API spec requirment that If an endpoint supports the include parameter and a client supplies it, the server MUST NOT
         include unrequested resource objects in the included section of the compound document.
+      description: |
+        * ```Available since:``` NOT YET AVAILABLE
       tags:
       - "Seasons"
       operationId: "SeeSeasonEpisodes"
@@ -184,6 +187,8 @@ paths:
         Get list of the series that this season belongs to.  We would expect it to belong to a single series, but we're not going to bake this restriction into the response.
         See also the `/series/{series_id}/programs` endpoint that returns the direct relationships.  By combining the usage of these two endpoints the client is able to
         distinguish between series related to programs that don't have Seasons (like the News) and ones that do (like Friends)
+      description: |
+        * ```Available since:``` NOT YET AVAILABLE
       tags:
       - "Seasons"
       operationId: "SeeSeasonSeries"

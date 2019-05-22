@@ -28,7 +28,8 @@ paths:
       tags:
       - Genres
       summary: Get an index of genres
-      description: Available since 2019-06 (BPLAT-4173)
+      description: |
+        * ```Available since:``` 2019-06 (BPLAT-4173)
       operationId: indexGenres
       parameters:
       - in: query
