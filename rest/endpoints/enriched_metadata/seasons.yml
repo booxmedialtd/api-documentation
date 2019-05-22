@@ -25,6 +25,7 @@ paths:
   /seasons/{season_id}:
     get:
       summary: Get an individual season
+      description: NOT YET AVAILABLE
       tags:
       - Seasons
       operationId: GetSeasonEntity

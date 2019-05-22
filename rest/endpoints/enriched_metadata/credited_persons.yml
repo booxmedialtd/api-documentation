@@ -33,6 +33,7 @@ paths:
       summary: >-
         Get list of programs for a credited person.
         Note: This endpoint supports the `filter` parameter, please see http://jsonapi.org/recommendations/#filtering for syntax specification.
+      description: NOT YET AVAILABLE
       tags:
       - CreditedPerson
       operationId: SeeCreditedPersonPrograms
