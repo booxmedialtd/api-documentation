@@ -150,9 +150,9 @@ paths:
       - Media Play Sessions
       summary: Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
       description: >-
-        Available since 2019-06 (BPLAT-3223)
-        Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
-        The API server will reject a PATCH whose timestamp is signficantly different (3-5 seconds) from the server timestamp.
+        * Available since 2019-06 (BPLAT-3223)
+        * Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
+        * The API server will reject a PATCH whose timestamp is signficantly different (3-5 seconds) from the server timestamp.
       operationId: patchMediaPlaySession
       parameters:
         - in: path
