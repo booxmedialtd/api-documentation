@@ -29,6 +29,8 @@ paths:
     get:
       summary: |
         Get an index of the licenses that a user has for channels
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channels
       operationId: "GetUserChannelLicenses"
@@ -79,9 +81,10 @@ paths:
       tags:
       - User Recording
       summary: "Fetch a list of recording devices that are available to the user"
-      description: >-
-        Note that the responsibility of managing recording devices is the responsibility of the Licensing component of the AminoTV platform.
-        This endpoint is listed in the recording section for convenience, but may be more logically placed in the licensing section.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * Note that the responsibility of managing recording devices is the responsibility of the Licensing component of the AminoTV platform.
+        * This endpoint is listed in the recording section for convenience, but may be more logically placed in the licensing section.
       operationId: getRecordingDevices
       parameters:
         - in: path

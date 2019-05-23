@@ -24,6 +24,8 @@ paths:
 
   /users/{user_id}/profile/{profile_id}/token:
     post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Authentication token
       summary: Get a token that has the profile identity in it
@@ -97,6 +99,8 @@ paths:
 
   /users/{user_id}/user_profiles:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - User profiles
       summary: An index of the user profiles for an account
@@ -139,6 +143,8 @@ paths:
 
 
     post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - User profiles
       summary: Create a new user profile
@@ -193,8 +199,9 @@ paths:
       - User profiles
       summary: >-
         Remove a user profile from an account.
-      description: >-
-        As a side effect of calling this endpoint all recordings, settings, and other information regarding the profile will also be deleted.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * As a side effect of calling this endpoint all recordings, settings, and other information regarding the profile will also be deleted.
       operationId: deleteUserProfile
       parameters:
         - in: path
@@ -215,6 +222,8 @@ paths:
               The resource was deleted successfully, no response body is needed
 
     put:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - User profiles
       summary: >-

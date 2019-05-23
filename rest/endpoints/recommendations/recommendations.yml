@@ -30,8 +30,8 @@ paths:
       tags:
       - "User event"
       description: |
-        Contains information about an event relating to the user and a particular piece of media.  Events can include watching it to a
-        certain point, or marking it as a favourite (for example).
+        * **Available since:** NOT YET AVAILABLE
+        * Contains information about an event relating to the user and a particular piece of media.  Events can include watching it to a certain point, or marking it as a favourite (for example).
       operationId: sendUserEvent
       requestBody:
         required: true
@@ -87,9 +87,10 @@ paths:
     get:
       tags:
       - "Recommendations"
-      description: >-
-        Returns a list of content that is recommended based on it being recorded by a lot of people.
-        This endpoint will *always* include the Program entity
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * Returns a list of content that is recommended based on it being recorded by a lot of people.
+        * This endpoint will *always* include the Program entity
       operationId: getPopularRecordings
       parameters:
         - name: bucket
@@ -164,7 +165,8 @@ paths:
       tags:
       - "Recommendations"
       description: |
-        Returns a personal recommendation for the identified user based on their individual profile.
+        * **Available since:** NOT YET AVAILABLE
+        * Returns a personal recommendation for the identified user based on their individual profile.
       operationId: getPersonalRecommendation
       parameters:
         - name: user_id
@@ -260,7 +262,8 @@ paths:
       tags:
       - "Recommendations"
       description: |
-        Returns a recommendation from the specified genre
+        * **Available since:** NOT YET AVAILABLE
+        * Returns a recommendation from the specified genre
       operationId: getGenreRecommendation
       parameters:
         - name: genre_id

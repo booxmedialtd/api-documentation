@@ -16,6 +16,8 @@ paths:
   /user/{user_id}/products:
     get:
       summary: "Get an index of Products that a user is subscribed to"
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - "Subscriptions"
       operationId: "GetSubscriptionsIndex"

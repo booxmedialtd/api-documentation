@@ -26,6 +26,8 @@ paths:
 
   /users/{user_id}/relationships/market_segments:
     get:
+      description: |
+        * **Available since:** WHEN?
       tags:
       - Market Segmentation
       summary: >- 

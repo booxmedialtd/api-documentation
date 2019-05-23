@@ -25,6 +25,8 @@ paths:
   /channel_packages:
     get:
       summary: Return a list of packages that are on the system
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channel Packages
       operationId: indexChannelPackages
@@ -73,6 +75,8 @@ paths:
   /users/{user_id}/channel_packages:
     get:
       summary: Return a list of packages that a user is associated with.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channel Packages
       operationId: indexChannelPackagesForUser

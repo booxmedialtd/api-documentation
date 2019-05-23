@@ -26,6 +26,8 @@ paths:
 
   /users/{user_id_or_email}:
     get:
+      description: |
+        * **Available since:** WHEN?
       tags:
       - Users
       summary: >-
@@ -116,6 +118,8 @@ paths:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
 
     patch:
+      description: |
+        * **Available since:** WHEN?
       tags:
       - Users
       summary: Make changes to the user object.  Note that not all fields may be PATCHed by the user.

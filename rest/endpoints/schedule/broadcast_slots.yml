@@ -35,7 +35,7 @@ paths:
     get:
       summary: Get an index of BroadcastSlots
       description:  |
-        * ```Available since:``` NOT YET AVAILABLE
+        * **Available since:** NOT YET AVAILABLE
         * We do not support including related resources in the index view.
       tags:
       - BroadcastSlots

@@ -35,7 +35,7 @@ paths:
       - Media Play Sessions
       summary: An index of all of the MediaPlaySession entities associated with a user
       description: |
-        * ```Available since:``` 2019-06 (BPLAT-3223)
+        * **Available since:** 2019-06 (BPLAT-3223)
       operationId: indexMediaPlaySession
       parameters:
         - in: path
@@ -78,7 +78,7 @@ paths:
       - Media Play Sessions
       summary: Create a new MediaPlaySession for a User.  A well-behaved client will call this when the user starts watching a stream.
       description: |
-        * ```Available since:``` 2019-06 (BPLAT-3223)
+        * **Available since:** 2019-06 (BPLAT-3223)
       operationId: postMediaPlaySession
       parameters:
         - in: path
@@ -152,7 +152,7 @@ paths:
       - Media Play Sessions
       summary: Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
       description: |
-        * ```Available since:``` 2019-06 (BPLAT-3223)
+        * **Available since:** 2019-06 (BPLAT-3223)
         * Update the status of a MediaPlaySession.  Note that only the last_updated_timestamp field is acceptable to patch.
         * The API server will reject a PATCH whose timestamp is signficantly different (3-5 seconds) from the server timestamp.
       operationId: patchMediaPlaySession
@@ -204,7 +204,7 @@ paths:
       - Media Play Sessions
       summary: Delete a MediaPlaySession.  A well-behaved client will call this when the user stops watching a stream
       description: |
-        * ```Available since:``` 2019-06 (BPLAT-3223)
+        * **Available since:** 2019-06 (BPLAT-3223)
       operationId: deleteMediaPlaySession
       parameters:
         - in: path

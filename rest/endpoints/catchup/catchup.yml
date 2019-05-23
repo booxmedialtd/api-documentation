@@ -22,7 +22,9 @@ paths:
 
     get:
       summary: Get an index of Catchup items
-      description:  Note that we do not support including related resources in the index view.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * Note that we do not support including related resources in the index view.
       tags:
       - Catchup items
       operationId: GetCatchupItems

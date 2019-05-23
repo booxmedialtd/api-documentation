@@ -32,7 +32,7 @@ paths:
     get:
       summary: "Get an index of series, sorted by release_year in descending order (get the newest releases first)"
       description: | 
-        * ```Available since:``` 2019-06 (BPLAT-4173)
+        * **Available since:** 2019-06 (BPLAT-4173)
       tags:
       - Series
       operationId: GetSeriesIndex

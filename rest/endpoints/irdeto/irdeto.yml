@@ -14,9 +14,10 @@ paths:
   /user/{user_id}/device/{device_id}/entitlements:
     post:
       summary: "Entitle a set top box to watch DVB channels"
-      description: >-
-        The set top box will scan the frequency range and find the DVB triplets for the channels that it wants to entitle the user to.
-        It will call this Move API to request that Move call the Irdeto KMS and entitle the device"
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * The set top box will scan the frequency range and find the DVB triplets for the channels that it wants to entitle the user to.
+        * It will call this Move API to request that Move call the Irdeto KMS and entitle the device"
       tags:
       - "Irdeto"
       operationId: "createDeviceEntitlement"
@@ -52,7 +53,8 @@ paths:
 
     delete:
       summary: "Remove entitlement from set top box"
-      description: ""
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - "Irdeto"
       operationId: "createDeviceEntitlement"

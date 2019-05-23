@@ -30,6 +30,8 @@ paths:
     get:
       summary: |
         Get an index of the licenses that a user has for channels
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channels
       operationId: "GetUserChannelLicenses"

@@ -38,7 +38,7 @@ paths:
         Get an index of Channels.
         NOTE:  This endpoint will *always* include Genre and Product relationships and DOES NOT support the `included` parameter.
       description: |
-        * ```Available since:``` NOT YET AVAILABLE
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channels
       operationId: GetChannelIndex

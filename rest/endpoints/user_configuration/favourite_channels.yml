@@ -26,6 +26,8 @@ paths:
 
   /users/{user_id}/favourite_channel_lists:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Collection
       summary: An index of all of the favourite channel lists for a specific user
@@ -73,6 +75,8 @@ paths:
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
     post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Collection
       summary: Create a new favourite channel list
@@ -123,6 +127,8 @@ paths:
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
 
     delete:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       summary: |
         Delete a Favourite Channel List
       tags:
@@ -148,6 +154,8 @@ paths:
             The resource was deleted successfully
 
     put:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Resource
       summary: Update a favourite channel list
@@ -181,6 +189,8 @@ paths:
 
   /users/{user_id}/favourite_channel_lists/relationships/channels:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Relationships
       summary: >-
@@ -224,6 +234,8 @@ paths:
 
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Relationships
       summary: >-
@@ -275,6 +287,8 @@ paths:
   /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels/{channel_id}:
 
     delete:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       summary: |
         Remove a channel from a favourite list
       tags:
@@ -306,6 +320,8 @@ paths:
             The resource was deleted successfully
 
     post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Favourite Channel List Relationships
       summary: Add a channel into a favourite list

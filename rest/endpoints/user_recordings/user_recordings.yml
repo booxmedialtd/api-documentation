@@ -36,8 +36,9 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /recording_slots/{recording_slot_id}:
-
     patch:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recording Slots
       summary: Update the status of a recording slot.  Note that only the status field is acceptable to patch.
@@ -66,10 +67,9 @@ paths:
       tags:
       - Recording Slots
       summary: Tell the API to delete a slot (see description for details)
-      description: >-
-        We expect this to only be called by recording devices.  Once a recording device has successfully removed the file relating to a recording
-        it should call this endpoint to cause the API to delete the row.  The API should respond with a "400 Bad Request" error if this endpoint
-        is called on a recording that is not in the soft-deleted state.  In other words, this API can only be used on recordings that the user has
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * We expect this to only be called by recording devices.  Once a recording device has successfully removed the file relating to a recording, it should call this endpoint to cause the API to delete the row.  The API should respond with a "400 Bad Request" error if this endpoint is called on a recording that is not in the soft-deleted state.  In other words, this API can only be used on recordings that the user has
         selected to be deleted.
       operationId: putRecordingRequest
       parameters:
@@ -88,6 +88,8 @@ paths:
 
   /{device_id}/recording_slots:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       summary: Return a list of recording slots that a device needs to make.
       tags:
       - Recording Slots
@@ -160,6 +162,8 @@ paths:
 
   /user/{user_id}/user_recording_requests/:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recording Requests
       summary: Get an index of user recording request entities.  Requests are sorted by date ascending.
@@ -230,7 +234,9 @@ paths:
       tags:
       - Recording Requests
       summary: Request that a new recording is made
-      description: Note that the example given is minimal, please inspect the model for full details.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * Note that the example given is minimal, please inspect the model for full details.
       operationId: createRecordingRequest
       parameters:
         - in: path
@@ -291,6 +297,8 @@ paths:
 
   /user_recording_requests/{recording_request_id}:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recording Requests
       summary: Obtain details of a particular user recording request
@@ -354,6 +362,8 @@ paths:
                             attributes:
                                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ClassificationTagEntity.yml#/ClassificationTagEntity"
     delete:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recording Requests
       summary: Delete a recording request.  This will result in all future (incomplete) recordings being deleted, but existing recordings will remain.
@@ -380,9 +390,10 @@ paths:
       tags:
       - Recordings
       summary: Get an index of user recording entities
-      description:  >-
-        NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
-        The default sort order is by time of broadcast descending.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * NOTE:  This endpoint will *always* include [Program] relationships and DOES NOT support the `included` parameter.
+        * The default sort order is by time of broadcast descending.
       operationId: indexRecordings
       parameters:
         - in: path
@@ -518,6 +529,8 @@ paths:
   /user_recordings/{user_recordings_id}:
 
     patch:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recordings
       summary: Update the status of a recording, for example to update how much time the user has watched.
@@ -568,11 +581,11 @@ paths:
       tags:
       - Recordings
       summary: Create a deletion request that specifies a number of records that need to be deleted.  Only 50 recordings should be included per request
-      description: >-
-        Create a deletion request that specifies a number of records that need to be deleted.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * Create a deletion request that specifies a number of records that need to be deleted.
         Only 50 recordings should be included per request and higher amounts should be made as simultaneous asynchronous calls.
-        We expect the client to limit the UI to allow the user to delete a maximum of 250 records at a time (5 simultaneous calls)
-        This is designed to keep our response times within our target.
+        * We expect the client to limit the UI to allow the user to delete a maximum of 250 records at a time (5 simultaneous calls). This is designed to keep our response times within our target.
       operationId: postDeletionRequest
       parameters:
         - in: path
@@ -631,6 +644,8 @@ paths:
 
   /users/{user_id}/user_recordings/recording_groups:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
         - Recording Groups
       summary: Returns a list of recording groups for the user.  This will be every tag that is associated with any of their recordings.
@@ -696,6 +711,8 @@ paths:
 
   /recording_groups/{recording_group_id}/recordings:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Recording Groups
       summary: Get a list of recordings that are in a recording group defined by the selected tag
@@ -754,9 +771,10 @@ paths:
       tags:
       - Legacy support
       summary: (Deprecated) Update one or more attributes of an existing entity
-      description: >-
-        This can be used, for example, to reset the amount of time that a recording has been watched.
-        Deprecated in favour of PATCH /user/{user_id}/user_recordings/{user_recordings_id}
+      description: |
+        * **Available since:** WHEN?
+        * This can be used, for example, to reset the amount of time that a recording has been watched.
+        * Deprecated in favour of PATCH /user/{user_id}/user_recordings/{user_recordings_id}
       operationId: modifyRecordings
       parameters:
         - in: path
@@ -838,9 +856,10 @@ paths:
       tags:
       - Legacy support
       summary: This endpoint will be deprecated soon and it is not recommended to build new systems using it.
-      description: >-
-        This endpoint will be deprecated soon and it is not recommended to build new systems using it.
-        Note: Many of the keys in the recording entity are not mandatory and only the mandatory keys can be relied upon.
+      description: |
+        * **Available since:** WHEN?
+        * This endpoint will be deprecated soon and it is not recommended to build new systems using it.
+        * Note: Many of the keys in the recording entity are not mandatory and only the mandatory keys can be relied upon.
       operationId: "getStartedRecordings"
       parameters:
         - in: query

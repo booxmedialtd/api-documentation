@@ -44,7 +44,7 @@ paths:
           By default you should return this list sorted by release_year descending and force pagination (100 results per page).
           NOTE:  there is a Swagger limitation that includes the `series` relationship into the entities, ignore this for this endpoint
         description: |
-          * ```Available since:``` 2019-06 (BPLAT-4173)
+          * **Available since:** 2019-06 (BPLAT-4173)
         tags:
         - Programs
         operationId: GetProgramIndex
@@ -144,7 +144,7 @@ paths:
         Get a specific program.
         NOTE:  This endpoint will *always* include [Series|Episode|Season|Genre|CreditedPerson] relationships and DOES NOT support the `included` parameter.
       description: |
-        * ```Available since:``` 2019-06 (BPLAT-4173)
+        * **Available since:** 2019-06 (BPLAT-4173)
       tags:
       - Programs
       operationId: GetProgram
@@ -280,7 +280,7 @@ paths:
     get:
       summary: Get an index of broadcast_slots in which the program appears
       description:  |
-        * ```Available since:``` NOT YET AVAILABLE
+        * **Available since:** NOT YET AVAILABLE
         * We do not support including related resources in the index view.
       tags:
       - BroadcastSlots

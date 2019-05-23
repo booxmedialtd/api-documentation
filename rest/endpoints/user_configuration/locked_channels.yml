@@ -23,6 +23,8 @@ paths:
 
   /users/{user_id}/channel_lock_configuration:
     get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Channel locking
       summary: Get the current channel locking status
@@ -68,11 +70,11 @@ paths:
       tags:
       - Channel locking
       summary: Set channel locking on or off
-      description:
-        The "pin_code" field is used for the API server to help the client verify that the PIN entered matches the one stored for the account.
-        The "new_pin_code" field should only be present if the client is trying to change the stored PIN for the account.
-        The API will not track session locking status (this is entirely for the client) but will verify that the supplied PIN code is correct when the client requests
-        this to be changed.
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+        * The "pin_code" field is used for the API server to help the client verify that the PIN entered matches the one stored for the account.
+        * The "new_pin_code" field should only be present if the client is trying to change the stored PIN for the account.
+        * The API will not track session locking status (this is entirely for the client) but will verify that the supplied PIN code is correct when the client requests this to be changed.
       operationId: setChannelLock
       parameters:
         - in: path
