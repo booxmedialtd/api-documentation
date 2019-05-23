@@ -27,7 +27,7 @@ paths:
   /users/{user_id_or_email}:
     get:
       description: |
-        * **Available since:** WHEN?
+        * **Available since:** 2018-11 (BPLAT-5282)
       tags:
       - Users
       summary: >-
@@ -119,7 +119,7 @@ paths:
 
     patch:
       description: |
-        * **Available since:** WHEN?
+        * **Available since:** NOT YET AVAILABLE
       tags:
       - Users
       summary: Make changes to the user object.  Note that not all fields may be PATCHed by the user.

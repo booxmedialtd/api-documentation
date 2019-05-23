@@ -772,7 +772,7 @@ paths:
       - Legacy support
       summary: (Deprecated) Update one or more attributes of an existing entity
       description: |
-        * **Available since:** WHEN?
+        * **Available since:** NOT YET AVAILABLE
         * This can be used, for example, to reset the amount of time that a recording has been watched.
         * Deprecated in favour of PATCH /user/{user_id}/user_recordings/{user_recordings_id}
       operationId: modifyRecordings
@@ -857,7 +857,7 @@ paths:
       - Legacy support
       summary: This endpoint will be deprecated soon and it is not recommended to build new systems using it.
       description: |
-        * **Available since:** WHEN?
+        * **Available since:** 2018-02 (BPLAT-3647)
         * This endpoint will be deprecated soon and it is not recommended to build new systems using it.
         * Note: Many of the keys in the recording entity are not mandatory and only the mandatory keys can be relied upon.
       operationId: "getStartedRecordings"

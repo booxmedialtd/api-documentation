@@ -27,7 +27,7 @@ paths:
   /users/{user_id}/relationships/market_segments:
     get:
       description: |
-        * **Available since:** WHEN?
+        * **Available since:** 2018-11 (BPLAT-5282)
       tags:
       - Market Segmentation
       summary: >- 
