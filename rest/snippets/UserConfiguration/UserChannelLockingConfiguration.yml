@@ -3,13 +3,6 @@ UserChannelLockingConfiguration:
   required:
     - locked_channels
   properties:
-    session_channel_lock_status:
-      type: boolean
-      description: >-
-        Boolean flag to indicate whether the user wants to enable (true) or disable (false) channel locking for the session on the
-        client that the call is made from.  This field will be omitted when the API responds to a GET request.
-      example: true
-      enum: [true,false]
     locked_channels:
       type: array
       description: An array of channels that are currently locked.
