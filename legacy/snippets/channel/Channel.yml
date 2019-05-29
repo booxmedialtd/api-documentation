@@ -5,6 +5,7 @@ Channel:
   - title
   - isUserAuthorized
   - isLocal
+  - pause_live_tv
   - mediaType
   - liveThumbnailUrl
   - thumbnailUrl
@@ -38,6 +39,9 @@ Channel:
       example: false
       description: >-
         Please see https://confluence.aminocom.com/display/MAPI/Local+channels
+    pause_live_tv:
+      type: boolean
+      example: false
     mediaType:
       type: string
       example: video
