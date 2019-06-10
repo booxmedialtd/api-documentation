@@ -158,12 +158,6 @@ paths:
       operationId: patchMediaPlaySession
       parameters:
         - in: path
-          name: user_id
-          required: true
-          description: The identity of the user.  Please do not use an email address to identify the user.
-          schema:
-            type: string
-        - in: path
           name: media_play_session_id
           required: true
           description: The id of the media play session
@@ -207,12 +201,6 @@ paths:
         * **Available since:** 2019-06 (BPLAT-3223)
       operationId: deleteMediaPlaySession
       parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: The identity of the user.  Please do not use an email address to identify the user.
-          schema:
-            type: string
         - in: path
           name: media_play_session_id
           required: true
