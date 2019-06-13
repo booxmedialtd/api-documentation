@@ -96,3 +96,15 @@ paths:
                       streamingOver3G:
                         type: boolean
                         example: true
+                      accessToken:
+                        type: array
+                        items: {}
+                        example:
+                          - "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb20uYW1pbm9jb20iLCJhdWQiOiJjb20uYW1pbm9jb20iLCJ0eXBlIjoiYWNjZXNzIiwianRpIjoiNDFRazVpSzMzRyIsImlhdCI6MTU2MDQ0NTE0MiwibmJmIjoxNTYwNDQ1MTQyLCJleHAiOjE1NjA0NDg3NDIsImRhdGEiOnsidXNlcklkIjoiMiIsInVzZXJfZW1haWwiOiJhdXRoX3VzZXJAZW1haWwuY29tIn0sInN1YiI6IjIifQ.Ij5sAjR-hLeT9TPJHqDNe1nGQS_2iFBNYT5NWWWoP74"
+                          - 1560448742
+                      refreshToken:
+                        type: array
+                        items: {}
+                        example:
+                          - "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb20uYW1pbm9jb20iLCJhdWQiOiJjb20uYW1pbm9jb20iLCJ0eXBlIjoicmVmcmVzaCIsImp0aSI6Ik5GaGhRSno4QlgiLCJpYXQiOjE1NjA0NDUxNDIsIm5iZiI6MTU2MDQ0NTE0MiwiZXhwIjoxNTYzMDM3MTQyLCJkYXRhIjp7InVzZXJJZCI6IjIiLCJ1c2VyX2VtYWlsIjoiYXV0aF91c2VyQGVtYWlsLmNvbSJ9LCJzdWIiOiIyIn0.7NNRoYHWuLpBh6MOVFsMO-dIi-zyfCinqWR1ytuadac"
+                          - 1563037142
