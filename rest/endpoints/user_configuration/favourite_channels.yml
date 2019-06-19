@@ -43,7 +43,7 @@ paths:
           name: sort
           required: false
           description: >-
-            Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name].  The default sort order is by name ascending
+            Please see www.jsonapi.org/format/#fetching-sorting.  The following are attributes to sort on [name|-name].  The default sort order is by name ascending
           schema:
             type: string
 
@@ -356,4 +356,4 @@ paths:
                 example: CREATED
                 description: |
                   Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
+                  rely on the HTTP status code being 201 to indicate success.
