@@ -15,14 +15,6 @@ MediaPlaySession:
     ip4_address:
       type: string
       description: The ip address of the client that created this session
-    channel_id:
-      type: string
-      description: >-
-        This key will only be developed as part of the out-of-home restrictions and will not be implemented immediately.
-        This should only be supplied with a PATCH request and will not be emitted by the API in GET responses.
-        The id of the channel that is being watched.  The API will check the out-of-home network permissions for this channel against the network address
-        of the client.  If the client is not on an approved network the API will respond to a PATCH request with a "403 Forbidden" response because the
-        user is not allowed to operate the service outside of their home network.
     device_type:
       type: string
       enum: ["stb","mobile","browser"]
