@@ -51,6 +51,8 @@ paths:
   /api/user/{user_id}/login:
     post:
       summary: User login
+      description: >-
+        The logged user can call this API with cookie and get a token. Reference in https://confluence.aminocom.com/display/MAPI/Cookie-token+exchange
       tags:
       - User Authentication
       operationId: loginUser
