@@ -51,6 +51,9 @@ paths:
   /api/user/{user_id}/login:
     post:
       summary: User login
+      description: >-
+        The client uses this API to authenticate with the service and retrieve session parameters and access tokens used for authenticating with APIs.
+        A logged in client may call this API to retrieve tokens without supplying the authorization parameters, see https://confluence.aminocom.com/display/MAPI/Cookie-token+exchange
       tags:
       - User Authentication
       operationId: loginUser
