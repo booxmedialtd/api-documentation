@@ -3,6 +3,10 @@ UserChannelLockingConfiguration:
   required:
     - locked_channels
   properties:
+    lock_adult_channels:
+      type: boolean
+      description: Adult channels are locked.
+      example: true
     locked_channels:
       type: array
       description: An array of channels that are currently locked.
