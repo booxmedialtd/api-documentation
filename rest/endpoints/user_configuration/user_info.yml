@@ -119,7 +119,7 @@ paths:
 
     patch:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-07 (BPLAT-10994)
       tags:
       - Users
       summary: Make changes to the user object.  Note that not all fields may be PATCHed by the user.
