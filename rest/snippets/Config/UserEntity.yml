@@ -19,19 +19,19 @@ UserEntity:
         that is not available to normal users.
 
     pin_code:
-      type: integer
+      type: string
       description: >-
         This field will not ever be emitted from the API and should only be included in PATCH requests from the client.
         This field MUST be included in a PATCH request that sets the "new_pin_code"
         If this field does not match the stored PIN code when the user tries to PATCH the new_pin_code the API will respond with 403.
-      example: 1234
+      example: "1234"
     new_pin_code:
-      type: integer
+      type: string
       description: >-
         This field will not ever be emitted from the API  and should only be included in PATCH requests from the client.
         This field should only be supplied in PUT requests when the user wants to change the PIN code.
         The PIN code must be numeric, otherwise a "400 Bad Request" response will be returned.
-      example: 1234
+      example: "1234"
 
     name:
       type: object
