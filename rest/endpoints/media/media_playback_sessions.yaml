@@ -193,6 +193,23 @@ paths:
                   title: User not permitted
                   details: >-
                     You are trying to access something that belongs to another user account or you have exceeded session limit. Please contact the support desk for assistance.
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: Not found
+                  details: >-
+                    You are trying to access something that is not available for authenticated user.
         409:
           description: Conflict
           content:
