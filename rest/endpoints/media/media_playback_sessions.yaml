@@ -144,15 +144,16 @@ paths:
 
 
 # ------------------------------------------------------------------------------------------------------------------------
+  
   /users/{user_id}/media_play_sessions/{session_id}:
 
-  put:
+    put:
       tags:
       - Media Play Sessions
       summary: Update MediaPlaySession for a User. 
       description: |
         * **Available since:** 2019-07 (BPLAT-11252)
-      operationId: postMediaPlaySession
+      operationId: putMediaPlaySession
       parameters:
         - in: path
           name: user_id
@@ -209,7 +210,7 @@ paths:
                   code: 6b10ac9
                   title: Not found
                   details: >-
-                    You are trying to access something that is not available for authenticated user.
+                    You are trying to access something that is not available or is not visible for this user.
         409:
           description: Conflict
           content:
