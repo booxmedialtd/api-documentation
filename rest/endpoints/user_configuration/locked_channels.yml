@@ -24,7 +24,7 @@ paths:
   /users/{user_id}/channel_lock_configuration:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-07 (BPLAT-10999)
       tags:
       - Channel locking
       summary: Get the current channel locking status
