@@ -10,6 +10,11 @@ UserEntity:
       type: string
       example: "ABC123"
       description: The reference for this user in our customers business support system.
+    is_default_pin_code:
+      type: boolean
+      example: true
+      enum: [true,false]
+      description: Indicate that the user is using default pin code or not
     is_demo_user:
       type: boolean
       example: false
