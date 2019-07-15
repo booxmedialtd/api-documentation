@@ -145,7 +145,7 @@ paths:
 
 # ------------------------------------------------------------------------------------------------------------------------
   
-  /users/{user_id}/media_play_sessions/{session_id}:
+  /users/{user_id}/media_play_sessions/{media_play_session_id}:
 
     put:
       tags:
