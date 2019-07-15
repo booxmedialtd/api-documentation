@@ -144,6 +144,92 @@ paths:
 
 
 # ------------------------------------------------------------------------------------------------------------------------
+  
+  /users/{user_id}/media_play_sessions/{media_play_session_id}:
+
+    put:
+      tags:
+      - Media Play Sessions
+      summary: Create or update existing MediaPlaySession for a User. 
+      description: |
+        * **Available since:** 2019-07 (BPLAT-11252)
+      operationId: putMediaPlaySession
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string
+        - in: path
+          name: media_play_session_id
+          required: true
+          description: Session identifier.
+          schema:
+            type: string            
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/MediaPlaySession.yml#/MediaPlaySession"
+      responses:
+        201:
+          description: |
+            The resource was created or updated successfully, no response body is needed
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: User not permitted
+                  details: >-
+                    You are trying to access something that belongs to another user account or you have exceeded session limit. Please contact the support desk for assistance.
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: Not found
+                  details: >-
+                    You are trying to access something that is not available or is not visible for this user.
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: Conflicting session
+                  details: >-
+                    You are trying to update session with a different device type than what was used to create the original. Device type cannot be updated. Please contact the support desk for assistance.
+
+# ------------------------------------------------------------------------------------------------------------------------
 
   /media_play_sessions/{media_play_session_id}:
 
