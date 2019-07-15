@@ -150,7 +150,7 @@ paths:
     put:
       tags:
       - Media Play Sessions
-      summary: Update MediaPlaySession for a User. 
+      summary: Create or update existing MediaPlaySession for a User. 
       description: |
         * **Available since:** 2019-07 (BPLAT-11252)
       operationId: putMediaPlaySession
@@ -162,7 +162,7 @@ paths:
           schema:
             type: string
         - in: path
-          name: session_id
+          name: media_play_session_id
           required: true
           description: Session identifier.
           schema:
@@ -176,7 +176,7 @@ paths:
       responses:
         201:
           description: |
-            The resource was updated successfully, no response body is needed
+            The resource was created or updated successfully, no response body is needed
         403:
           description: Forbidden
           content:
