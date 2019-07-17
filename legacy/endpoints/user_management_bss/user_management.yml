@@ -131,6 +131,12 @@ paths:
         schema:
           type: integer
       - in: query
+        name: isResetPin
+        description: Flag to indicate whether channel lock pin code should be reset to default value or not.  Should be "true" or "false". Without this flag, the pin code will not be reset
+        required: false
+        schema:
+          type: string
+      - in: query
         name: purchase_pin
         description: Purchase PIN code.  Should be 4 numbers long
         required: true
