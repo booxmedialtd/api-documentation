@@ -71,9 +71,8 @@ paths:
       - Channel locking
       summary: Set channel locking on or off
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-07 (BPLAT-11000)
         * The "pin_code" field is used for the API server to help the client verify that the PIN entered matches the one stored for the account.
-        * The "new_pin_code" field should only be present if the client is trying to change the stored PIN for the account.
         * The API will not track session locking status (this is entirely for the client) but will verify that the supplied PIN code is correct when the client requests this to be changed.
       operationId: setChannelLock
       parameters:
@@ -94,8 +93,8 @@ paths:
           description: |
             The resource was updated successfully, no response body is needed
 
-        403:
-          description: Forbidden
+        401:
+          description: Unauthorized.
           content:
             application/json:
               schema:
