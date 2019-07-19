@@ -37,6 +37,13 @@ paths:
           required: true
           schema:
             type: string
+        - in: path
+          name: suggested_start_time
+          description: >-
+            The time used to suggest client when the stream will start
+          required: false
+          schema:
+            type: integer
       responses:
         '200':
           description: A collection of Stream entities
