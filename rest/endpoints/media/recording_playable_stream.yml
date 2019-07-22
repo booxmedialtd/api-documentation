@@ -37,7 +37,7 @@ paths:
           required: true
           schema:
             type: string
-        - in: path
+        - in: query
           name: suggested_start_time
           description: >-
             The time used to suggest client when the stream will start
