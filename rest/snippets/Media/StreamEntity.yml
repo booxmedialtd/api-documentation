@@ -21,7 +21,15 @@ StreamEntity:
         example: "fibre"
         description: >-
           Market segments are used to break up users into groups.  This key is used to suggest to the client that the particular
-          stream is better suited to the groups identified by this string.  
+          stream is better suited to the groups identified by this string.
+    suggested_start_time:
+      type: integer
+      items:
+        type: integer
+        example: 1000
+        description: >-
+          Suggested start time is getting from request param "suggested_start_time" which used to tell client when to start the stream.
+          It will be 0 by default.
     suggested_devices:
       type: array
       items:
