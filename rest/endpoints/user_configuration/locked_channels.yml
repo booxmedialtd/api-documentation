@@ -49,22 +49,20 @@ paths:
                 - data
                 properties:
                   data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: UserChannelLockingConfiguration
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "da00a320-2bae-49af-9687-298ed3f01361"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserChannelLockingConfiguration.yml#/UserChannelLockingConfiguration"
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: UserChannelLockingConfiguration
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "da00a320-2bae-49af-9687-298ed3f01361"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserChannelLockingConfiguration.yml#/UserChannelLockingConfiguration"
 
     patch:
       tags:
