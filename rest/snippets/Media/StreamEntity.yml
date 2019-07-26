@@ -82,3 +82,9 @@ StreamEntity:
           laUrl:
             type: string
             description: "This is an example of a free-form DRM key (see specification)"
+links:
+  type: object
+  properties:
+    play_next_catchup:
+      type: string
+      example: https://boox.fi/api/v1/recordings/1234/relationships/streams?autoplay=catchup&suggested_start_time=450
