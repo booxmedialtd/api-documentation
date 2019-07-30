@@ -44,6 +44,15 @@ paths:
           required: false
           schema:
             type: integer
+        - in: query
+            name: autoplay
+            description: >-
+              Supported context(s): catchup.
+              Usage: autoplay=catchup.
+              If provided, API response will return with links for next available stream URL.
+            required: false
+            schema:
+              type: string
       responses:
         '200':
           description: A collection of Stream entities
