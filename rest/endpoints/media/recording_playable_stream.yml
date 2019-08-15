@@ -98,7 +98,17 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-
+        '451':
+          description: Unavailable For Legal Reasons
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 servers:
   - url: 'https://demo.aminocom.com/api/recordings/v1/'
 components:
