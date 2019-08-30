@@ -73,4 +73,4 @@ in the Program Entity:
           type: array
           items:
             $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/snippets/EnrichedMetadata/ContentFlagValueObject.yml#ContentFlagValueObject"
-```
+``` 
