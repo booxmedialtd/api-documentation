@@ -18,3 +18,7 @@ UserProfile:
       type: boolean
       example: false
       description: If this flag is set to "true" then the profile will be blocked from viewing adult content
+    age_limit:
+      type: integer
+      example: 16
+      description: Age limit associated to the user profile.
