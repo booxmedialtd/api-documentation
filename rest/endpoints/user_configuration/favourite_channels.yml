@@ -27,7 +27,7 @@ paths:
   /users/{user_id}/favourite_channel_lists:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-06 (BPLAT-7801)
       tags:
       - Favourite Channel List Collection
       summary: An index of all of the favourite channel lists for a specific user
@@ -76,7 +76,7 @@ paths:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-06 (BPLAT-7800)
       tags:
       - Favourite Channel List Collection
       summary: Create a new favourite channel list
@@ -121,6 +121,23 @@ paths:
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+        403:
+          description: User tried to create more favourite channel list but exceeds the limit already
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 56071904
+                  code: df1e80a
+                  title: Action not permitted
+                  details: >-
+                    You have tried to create a favourite channel list but you are already at the maximum allowable limit.
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +145,7 @@ paths:
 
     delete:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-06 (BPLAT-7807)
       summary: |
         Delete a Favourite Channel List
       tags:
@@ -155,7 +172,7 @@ paths:
 
     put:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-06 (BPLAT-7802)
       tags:
       - Favourite Channel List Resource
       summary: Update a favourite channel list
@@ -321,7 +338,7 @@ paths:
 
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-06 (BPLAT-7805)
       tags:
       - Favourite Channel List Relationships
       summary: Add a channel into a favourite list
@@ -356,4 +373,4 @@ paths:
                 example: CREATED
                 description: |
                   Clients are advised NOT to use the body of the response to determine success or failure, but SHOULD rather
-                  rely on the HTTP status code being 201 to indicate success.
+                  rely on the HTTP status code being 201 to indicate success.
