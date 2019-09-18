@@ -121,6 +121,23 @@ paths:
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/FavouriteChannelList.yml#/FavouriteChannelList"
+        403:
+          description: User tried to create more favourite channel list but exceeds the limit already
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 56071904
+                  code: df1e80a
+                  title: Action not permitted
+                  details: >-
+                    You have tried to create a favourite channel list but you are already at the maximum allowable limit.
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
