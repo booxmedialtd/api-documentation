@@ -55,31 +55,31 @@ RecordingGroupEntity:
           description: >-
             The duration of the program in seconds
           example: 3120
-    relationships:
-      type: array
-      items:
-        anyOf:
-          - type: object
-            required:
-            - id
-            - type
-            properties:
-              id:
-                type: string
-                description: The identifier of the entity
-                example: abdf8785-cb23-445b-946f-69e8770500a1
-              type:
-                type: string
-                example: "RecordingTag"
-          - type: object
-            required:
-            - id
-            - type
-            properties:
-              id:
-                type: string
-                example: "cceb69ef-f339-446f-b947-60b738ffdb8e"
-              type:
-                type: string
-                example: Recording
-                description: The type of the entity being included
+  relationships:
+    type: array
+    items:
+      anyOf:
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The identifier of the entity
+              example: abdf8785-cb23-445b-946f-69e8770500a1
+            type:
+              type: string
+              example: "RecordingTag"
+        - type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              example: "cceb69ef-f339-446f-b947-60b738ffdb8e"
+            type:
+              type: string
+              example: Recording
+              description: The type of the entity being included
