@@ -1,13 +1,13 @@
 UserProfile:
   type: object
   required:
-  - nickname
+  - name
   - is_child_profile
   properties:
-    nickname:
+    name:
       type: string
       example: Dad
-      description: A nickname for the profile to help the account-holder identify who it belongs to
+      description: A name for the profile to help the account-holder identify who it belongs to
     user_id:
       type: string
       example: bf28db51-3002-4b7b@customer.domain
