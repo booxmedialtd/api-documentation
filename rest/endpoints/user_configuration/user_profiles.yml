@@ -223,13 +223,13 @@ paths:
             description: |
               The resource was deleted successfully, no response body is needed
 
-    put:
+    patch:
       description: |
         * **Available since:** NOT YET AVAILABLE
       tags:
       - User profiles
       summary: >-
-        Update a user profile
+        Update a user profile. Note that not all fields may be PATCHed
       operationId: updateUserProfile
       parameters:
         - in: path
@@ -249,33 +249,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfilePatchRequestBody"
       responses:
-        200:
-          description: "Successful response"
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+        404:
+          description: Not found
           content:
             application/json:
               schema:
-                type: "object"
-                required:
-                - data
+                type: object
                 properties:
-                  data:
+                  errors:
                     type: array
                     items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: UserProfile
-                        id:
-                          type: string
-                          description: "The id of the entity that was updated"
-                          example: "dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
-                        links:
-                          self: "https://demo.aminocom.com/api/users/v1/bf28db51-3002-4b7b@customer.domain/user_profiles/dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+                example:
+                  id: 607223e0
+                  code: 6b10ac9
+                  title: Not found
+                  details: >-
+                    You are trying to access something that is not available or is not visible for this user.
