@@ -1,8 +1,5 @@
 UserProfile:
   type: object
-  required:
-    - age_limit
-    - is_child_profile
   properties:
     name:
       type: string
