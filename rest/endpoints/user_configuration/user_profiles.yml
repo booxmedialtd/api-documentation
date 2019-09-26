@@ -69,13 +69,13 @@ paths:
                       properties:
                         type:
                           type: string
-                          example: UserSession
+                          example: AuthenticationTokens
                         id:
                           type: string
                           description: "The id of the entity being referenced"
                           example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/UserSession.yml#/UserSession"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AuthenticationTokens.yml#/AuthenticationTokens"
         403:
           description: Profile does not belong to account
           content:

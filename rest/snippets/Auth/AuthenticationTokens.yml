@@ -4,11 +4,23 @@ UserSession:
     login_timestamp:
       type: integer
       example: 1538126476
-      description: The Unix epoch timestamp of when the session was created
+      description: The Unix epoch timestamp of when the access token was created
+    user_id:
+      type: integer
+      example: 1234
+      description: Id of the user this token belongs to.
+    user_profile_id:
+      type: string
+      example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+      description: Id of the user profile that has been authenticated.
     access_token:
       type: string
       example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTUzODEyNjk3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJwcm9maWxlX2lkIjoiNmM3Zjk0YWYtYjYwMy00ZjM5LTgzODQtZjEyMjI2ZWE5ZDRjNmM3Zjk0YWYtYjYwMy00ZjM5LTgzODQtZjEyMjI2ZWE5ZDRjIiwidHlwZSI6ImFjY2VzcyIsInN0Yl9zZXJpYWxfbm8iOiI2MTU1MDAyNjYxNjIifQ.RW6NdDE_kGgkOVKqodeT1fDdxU7Slaf551rp5ctBcFc
       description: This token can be presented to authenticate the user.
+    expires_timestamp:
+      type: integer
+      example: 1538126476
+      description: The Unix epoch timestamp of when the access token expires
     refresh_token:
       type: string
       example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWlub01vdmUiLCJpYXQiOjE1Mzc1MjIxNzQsImV4cCI6MTU0NTk4OTM3OSwiYXVkIjoid3d3LmJvb3h0di5maSIsInN1YiI6ImV4YW1wbGVfdXNlckBlbWFpbGRvbWFpbi5jb20iLCJ0eXBlIjoicmVmcmVzaCJ9.9Pxzv0oGxjZmAIpZiH-aiue7LwAMcddPPHnaiOkpb-A
