@@ -100,7 +100,7 @@ paths:
   /users/{user_id}/user_profiles:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-09 BPLAT-11707
       tags:
       - User profiles
       summary: An index of the user profiles for an account
@@ -146,7 +146,7 @@ paths:
 
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-09 BPLAT-11708
       tags:
       - User profiles
       summary: Create a new user profile
