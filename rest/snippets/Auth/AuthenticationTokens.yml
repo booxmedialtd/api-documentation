@@ -1,4 +1,4 @@
-UserSession:
+AuthenticationTokens:
   type: object
   properties:
     login_timestamp:
