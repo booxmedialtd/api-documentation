@@ -230,13 +230,13 @@ paths:
             description: |
               The resource was deleted successfully, no response body is needed
 
-    put:
+    patch:
       description: |
         * **Available since:** NOT YET AVAILABLE
       tags:
       - User profiles
       summary: >-
-        Update a user profile
+        Update a user profile. Note that not all fields may be PATCHed
       operationId: updateUserProfile
       parameters:
         - in: path
@@ -256,18 +256,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfilePatchRequestBody.yml#/UserProfile"
       responses:
-        200:
-          description: "Successful response"
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+        404:
+          description: Not found
           content:
             application/json:
               schema:
-                type: "object"
-                required:
-                - data
+                type: object
                 properties:
-                  data:
+                  errors:
                     type: array
                     items:
                       type: object
