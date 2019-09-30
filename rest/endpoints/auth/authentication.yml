@@ -41,9 +41,9 @@ paths:
               properties:
                 grant_type:
                   type: string
-                  example: jwt
-                  description: Any of the (case-insensitive) strings [entone|password|token|refresh]
-                  enum: [entone|password|token|refresh]
+                  example: refresh_token
+                  description: Any of the (case-insensitive) strings [stb_pwless|refresh_token]
+                  enum: [stb_pwless|refresh_token]
                 credentials:
                   type: object
                   properties:
