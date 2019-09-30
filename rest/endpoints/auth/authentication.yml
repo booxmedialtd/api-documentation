@@ -42,7 +42,6 @@ paths:
                 grant_type:
                   type: string
                   example: refresh_token
-                  description: Any of the (case-insensitive) strings [refresh_token]
                   enum: [refresh_token]
                 credentials:
                   type: object
