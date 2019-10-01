@@ -48,9 +48,9 @@ paths:
                   properties:
                     refresh_token:
                       type: string
-                        description: >-
+                      description: >-
                           The refresh token that was issued at the same time as an access token.
-                        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
 
       responses:
         '201':
