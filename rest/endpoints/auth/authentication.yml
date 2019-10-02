@@ -26,6 +26,8 @@ paths:
       summary: |
         Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
         the API is stateless and the access token needs to be presented with every call.
+      description: |
+        * **Available since:** NOT AVAILABLE
       tags:
       - Account Authentication
       operationId: createAccessToken
@@ -103,6 +105,8 @@ paths:
       summary: |
         Invalidate an access token (and its associated refresh token).  You must supply the access token as authentication to this endpoint.
         The API will verify that the jti of the supplied access token matches the access_token_id you want to delete.
+      description: |
+        * **Available since:** NOT AVAILABLE
       tags:
       - Account Authentication
       operationId: deleteAccessToken
