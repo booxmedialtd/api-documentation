@@ -24,8 +24,7 @@ paths:
   /access_tokens:
     post:
       summary: |
-        Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
-        the API is stateless and the access token needs to be presented with every call.
+        Create an access token that can be used to authenticate to the API.  Note that there is no session involved.
       description: |
         * **Available since:** 2019-10 (BPLAT-11893)
       tags:
@@ -100,44 +99,44 @@ paths:
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /access_token/{access_token_id}:
-    delete:
-      summary: |
-        Invalidate an access token (and its associated refresh token).  You must supply the access token as authentication to this endpoint.
-        The API will verify that the jti of the supplied access token matches the access_token_id you want to delete.
-      description: |
-        * **Available since:** NOT AVAILABLE
-      tags:
-      - Account Authentication
-      operationId: deleteAccessToken
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: The user identity (please do not use an email address to identify the user)
-          schema:
-            type: string
-        - in: path
-          name: access_token_id
-          required: true
-          description: The id of the access token to revoke
-          schema:
-            type: string
-
-      responses:
-        '204':
-          description: |
-            The user session was deleted successfully
-
-        '400':
-          description: Standard error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+#  /access_token/{access_token_id}:
+#    delete:
+#      summary: |
+#        Invalidate an access token (and its associated refresh token).  You must supply the access token as authentication to this endpoint.
+#        The API will verify that the jti of the supplied access token matches the access_token_id you want to delete.
+#      description: |
+#        * **Available since:** NOT AVAILABLE
+#      tags:
+#      - Account Authentication
+#      operationId: deleteAccessToken
+#      parameters:
+#        - in: path
+#          name: user_id
+#          required: true
+#          description: The user identity (please do not use an email address to identify the user)
+#          schema:
+#            type: string
+#        - in: path
+#          name: access_token_id
+#          required: true
+#          description: The id of the access token to revoke
+#          schema:
+#            type: string
+#
+#      responses:
+#        '204':
+#          description: |
+#            The user session was deleted successfully
+#
+#        '400':
+#          description: Standard error response
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  errors:
+#                    type: array
+#                    items:
+#                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 
