@@ -25,8 +25,9 @@ paths:
     post:
       summary: |
         Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
-        the API is stateless and the access token needs to be presented with every call.|
-        * **Available since:** 2019-10 BPLAT-11893
+        the API is stateless and the access token needs to be presented with every call.
+      description: |
+        * **Available since:** 2019-10 (BPLAT-11893)
       tags:
       - Account Authentication
       operationId: createAccessToken
