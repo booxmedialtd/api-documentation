@@ -232,7 +232,7 @@ paths:
 
     patch:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-10 (BPLAT-11710)
       tags:
       - User profiles
       summary: >-
