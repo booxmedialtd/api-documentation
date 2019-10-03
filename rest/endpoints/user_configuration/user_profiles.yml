@@ -209,7 +209,7 @@ paths:
       summary: >-
         Remove a user profile from an account.
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-10 (BPLAT-11709)
         * As a side effect of calling this endpoint all recordings, settings, and other information regarding the profile will also be deleted.
       operationId: deleteUserProfile
       parameters:
