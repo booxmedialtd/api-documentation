@@ -25,9 +25,8 @@ paths:
     post:
       summary: |
         Create an access token that can be used to authenticate to the API.  Note that there is no session involved,
-        the API is stateless and the access token needs to be presented with every call.
-      description: |
-        * **Available since:** NOT AVAILABLE
+        the API is stateless and the access token needs to be presented with every call.|
+        * **Available since:** 2019-10 BPLAT-11893
       tags:
       - Account Authentication
       operationId: createAccessToken
@@ -83,7 +82,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AccessToken.yml#/AccessToken"
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AuthenticationTokens.yml#/AuthenticationTokens"
 
 
         '400':
