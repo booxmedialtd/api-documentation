@@ -104,6 +104,8 @@ paths:
       summary: |
         Invalidate an access token (and its associated refresh token).  You must supply the access token as authentication to this endpoint.
         The API will verify that the jti of the supplied access token matches the access_token_id you want to delete.
+      description: |
+        * **Available since:** NOT AVAILABLE
       tags:
       - Account Authentication
       operationId: deleteAccessToken
