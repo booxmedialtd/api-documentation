@@ -34,7 +34,8 @@ paths:
           required: false
           description: >-
             The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
-            If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            # TODO: If this is omitted the browser 'Accept-Language' will be used if it is available, and otherwise the system defined default.
+            If this is omitted the system defined default will be used.
             If the requested language is not available then the system will return translations in order of the system defined preferences
           schema:
             type: string
