@@ -25,7 +25,7 @@ paths:
   /users/{user_id}/profile/{profile_id}/token:
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-10 BPLAT-11711
       tags:
       - Authentication token
       summary: Get a token that has the profile identity in it
