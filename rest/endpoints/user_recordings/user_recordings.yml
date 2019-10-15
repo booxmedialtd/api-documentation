@@ -651,7 +651,7 @@ paths:
   /users/{user_id}/user_recordings/recording_groups:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-10 (BPLAT-10672)
       tags:
         - Recording Groups
       summary: Returns a list of recording groups for the user.  This will be every tag that is associated with any of their recordings.
