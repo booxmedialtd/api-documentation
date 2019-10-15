@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  version: "2.0.0"
+  title: "Profile recording"
+tags:
+- name: Recordings
+  description: >-
+    A recording represents a broadcast slot that the user wants to have recorded.
+    A Recording may or may not be available for viewing, depending of whether the broadcast slot has been successfully recorded.
+- name: Automated Recording Requests
+  description: >-
+    An Automated Recording Request represents a request by a user to automatically record specific broadcast slots for them as they become available.
+- name: Recording Groups
+  description: >-
+    Recording Groups is groups of Recordings available for viewing, typically a Series.
+servers:
+- url: 'https://demo.aminocom.com/api/recordings/v2/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+- bearerAuth: []         # use the same name as above
+paths:
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# RECORDINGS
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/recordings:
+    POST:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Recordings
+      operationId: createRecordedSlot
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/recordings/{recording_id}:
+    patch:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      tags:
+      - Recordings
+      summary: # TODO
+      operationId: updateRecordedSlot
+      # TODO
+
+    delete:
+      tags:
+      - Recordings
+      summary: # TODO
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      operationId: deleteRecordedSlot
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# AUTOMATED RECORDING REQUESTS
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/auto_recording_requests:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Automated Recording Requests
+      operationId: indexRecordingRequests
+      # TODO
+
+    post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Automated Recording Requests
+      operationId: createRecordingRequests
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/auto_recording_requests/{recording_request_id}:
+    patch:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Automated Recording Requests
+      operationId: updateRecordingRequests
+      # TODO
+
+    delete:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Automated Recording Requests
+      operationId: deleteRecordingRequests
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# RECORDING GROUPS
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/recordings/recording_groups:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Recording Groups
+      operationId: indexRecordingGroups
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/recordings/recording_groups/{recording_group_id}/recordings:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Recording Groups
+      operationId: indexRecordingGroupRecordings
+      # TODO
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/recordings/recording_groups/ungrouped/recordings:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Recording Groups
+      operationId: indexUngroupedRecordingGroupRecordings
+      # TODO
