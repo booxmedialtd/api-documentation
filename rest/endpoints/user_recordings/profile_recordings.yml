@@ -30,7 +30,7 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings:
-    POST:
+    post:
       description: |
         * **Available since:** NOT YET AVAILABLE
       summary: # TODO
@@ -58,6 +58,16 @@ paths:
       description: |
         * **Available since:** NOT YET AVAILABLE
       operationId: deleteRecordedSlot
+      # TODO
+
+  /user_profiles/{user_profile_id}/recordings/bulk_delete_recordings:
+    post:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      tags:
+        - Recordings
+      summary: # TODO
+      operationId: updateRecordedSlot
       # TODO
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
