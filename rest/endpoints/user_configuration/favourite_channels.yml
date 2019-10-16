@@ -170,7 +170,7 @@ paths:
           description: |
             The resource was deleted successfully
 
-    put:
+    patch:
       description: |
         * **Available since:** 2019-06 (BPLAT-7802)
       tags:
