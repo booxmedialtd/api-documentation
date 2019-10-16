@@ -12,7 +12,7 @@ tags:
     An Automated Recording Request represents a request by a user to automatically record specific broadcast slots for them as they become available.
 - name: Recording Groups
   description: >-
-    Recording Groups is groups of Recordings available for viewing, typically a Series.
+    Recording Groups are groups of Recordings available for viewing, typically a Series.
 servers:
 - url: 'https://demo.aminocom.com/api/recordings/v2/'
 components:
