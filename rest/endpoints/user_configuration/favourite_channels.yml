@@ -30,7 +30,7 @@ paths:
         * **Available since:** 2019-06 (BPLAT-7801)
       tags:
       - Favourite Channel List Collection
-      summary: An index of all of the favourite channel lists for a specific user
+      summary: An index of all of the favourite channel lists for a specific user profile
       operationId: indexUserFavouriteChannelList
       parameters:
         - in: path
