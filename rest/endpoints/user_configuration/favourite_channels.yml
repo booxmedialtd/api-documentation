@@ -24,7 +24,7 @@ paths:
 # -------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /users/{user_id}/favourite_channel_lists:
+  /user_profiles/{user_profile_id}/favourite_channel_lists:
     get:
       description: |
         * **Available since:** 2019-06 (BPLAT-7801)
@@ -34,9 +34,9 @@ paths:
       operationId: indexUserFavouriteChannelList
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: The identity of the user profile to fetch lists for.
           schema:
             type: string
         - in: query
@@ -83,9 +83,9 @@ paths:
       operationId: createFavouriteChannelList
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: ID of the user profile to create the new favourite channel list.
           schema:
             type: string
       requestBody:
@@ -141,7 +141,7 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}:
+  /user_profiles/{user_profile_id}/favourite_channel_lists/{favourite_channel_list_id}:
 
     delete:
       description: |
@@ -153,9 +153,9 @@ paths:
       operationId: deleteFavouriteChannelList
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The user identity (please do not use an email address to identify the user)
+          description: ID of the user profile to delete the favourite channel list.
           schema:
             type: string
         - in: path
@@ -179,9 +179,9 @@ paths:
       operationId: updateFavouriteChannelList
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: ID of the user profile to patch the favourite channel list.
           schema:
             type: string
         - in: path
@@ -204,7 +204,7 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/favourite_channel_lists/relationships/channels:
+  /user_profiles/{user_profile_id}/favourite_channel_lists/relationships/channels:
     get:
       description: |
         * **Available since:** NOT YET AVAILABLE
@@ -216,9 +216,9 @@ paths:
       operationId: indexChannelListContents
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: ID of the user profile.
           schema:
             type: string
 
@@ -249,7 +249,7 @@ paths:
                           example: "90729546-12e0-41eb-bc9e-ceb1b0d12076"
 
 
-  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
+  /user_profiles/{user_profile_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels:
     get:
       description: |
         * **Available since:** NOT YET AVAILABLE
@@ -261,9 +261,9 @@ paths:
       operationId: indexChannelListContents
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: ID of the user profile.
           schema:
             type: string
         - in: path
@@ -301,7 +301,7 @@ paths:
 
 # -------------------------------------------------------------------------------------------------------------------------------------
 
-  /users/{user_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels/{channel_id}:
+  /user_profiles/{user_profile_id}/favourite_channel_lists/{favourite_channel_list_id}/relationships/channels/{channel_id}:
 
     delete:
       description: |
@@ -313,9 +313,9 @@ paths:
       operationId: deleteFavouriteChannelItem
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The user identity (please do not use an email address to identify the user)
+          description: ID of the user profile.
           schema:
             type: string
         - in: path
@@ -345,9 +345,9 @@ paths:
       operationId: createFavouriteChannelListItem
       parameters:
         - in: path
-          name: user_id
+          name: user_profile_id
           required: true
-          description: The identity of the user to fetch lists for.  Please do not use an email address to identify the user.
+          description: ID of the user profile.
           schema:
             type: string
         - in: path
