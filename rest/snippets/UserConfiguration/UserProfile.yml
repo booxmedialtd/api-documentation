@@ -22,3 +22,10 @@ UserProfile:
       type: integer
       example: 16
       description: Age limit associated to the user profile.
+    is_default:
+      type: boolean
+      example: false
+      description: >-
+        If this flag is set to "true" then the profile will become the default profile.
+        Setting it to "false" will have no effect.
+        If you no longer want this profile to be the default profile, you will have to make another profile the default profile.
