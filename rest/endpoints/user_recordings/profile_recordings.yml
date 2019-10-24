@@ -121,12 +121,60 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2019-10 (BPLAT-12048)
+      summary: An index of all of the recording groups for a specific user profile
       tags:
         - Recording Groups
       operationId: indexRecordingGroups
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording groups for.
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: Page number if the results have more items than ipp. Default = 1
+          schema:
+            type: integer
+        - in: query
+          name: language
+          description: >-
+            Choose the output language as defined in Server language API '<domain>/api/server/lang'.
+            Default = First available language as configured globaly.
+          required: false
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: array
+                          example: RecordingGroup
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
