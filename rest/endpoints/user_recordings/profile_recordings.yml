@@ -142,8 +142,12 @@ paths:
         - in: query
           name: language
           description: >-
-            Choose the output language as defined in Server language API '<domain>/api/server/lang'.
-            Default = First available language as configured globaly.
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the system defined default will be used. If the requested language is not available
+            then the system will return translations in order of the system defined preferencesThe PK of the language
+            to use, which will be a 3 character ISO 639-2 string (e.g.: fin). If this is omitted the system defined
+            default will be used. If the requested language is not available then the system will return
+            translations in order of the system defined preferences
           required: false
           schema:
             type: string
