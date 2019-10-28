@@ -182,12 +182,57 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups/{recording_group_id}/recordings:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2019-10 (BPLAT-10674)
+      summary: An index of the recordings for a specific recording group
       tags:
         - Recording Groups
-      operationId: indexRecordingGroupRecordings
-      # TODO
+      operationId: getRecordingsForGroup
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording groups for.
+          schema:
+            type: string
+        - in: path
+          name: recording_group_id
+          required: true
+          description: The identity of the recording group to fetch recordings for.
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: Page number if the results have more items than ipp. Default = 1
+          schema:
+            type: integer
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - type
+                      - id
+                      properties:
+                        type:
+                          type: array
+                          example: Recording
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+                        attributes:
+                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
