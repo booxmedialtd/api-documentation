@@ -42,7 +42,7 @@ paths:
         summary: >
           Get an index of programs.
           By default you should return this list sorted by release_year descending and force pagination (100 results per page).
-          NOTE:  there is a Swagger limitation that includes the `series` relationship into the entities, ignore this for this endpoint
+          NOTE:  there is a Swagger limitation that includes the `series` relationship into the entities, ignore this for this endpoint. Filter by program.title|program.description is not supported now but later.
         description: |
           * **Available since:** 2019-06 (BPLAT-4173)
         tags:
@@ -78,7 +78,7 @@ paths:
             required: false
             description: >-
               Please see http://jsonapi.org/recommendations/#filtering
-              The following are attributes to filter on: [program.title|program.description|genre.id|series.id]
+              The following are attributes to filter on: [genre.id|series.id]
             schema:
               type: string
 
