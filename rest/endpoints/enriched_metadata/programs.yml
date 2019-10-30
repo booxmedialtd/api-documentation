@@ -164,16 +164,6 @@ paths:
             If the requested language is not available then the system will return translations in order of the system defined preferences
           schema:
             type: string
-        - in: query
-          name: included
-          required: false
-          description: >-
-            See "http://jsonapi.org/format/#fetching-includes"
-            By default nothing is included.  We support a limited set of relationships for
-            inclusion, other relationships need to be called as separate endpoints.
-          schema:
-            type: integer
-            format: int64
 
       responses:
         '200':
