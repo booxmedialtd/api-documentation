@@ -192,7 +192,7 @@ paths:
                         $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
                   included:
                     type: array
-                    description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
+                    description: "This key includes relationships of program"
                     items:
                       anyOf:
                       - type: object
