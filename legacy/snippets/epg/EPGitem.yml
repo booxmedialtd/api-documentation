@@ -224,6 +224,9 @@ EPGitem:
                             availabilityEnd:
                               type: integer
                               example: 0
+                    series_id:
+                      type: string
+                      example: "555aa5da-fc58-1111-877e-1da484030000"
                     external_program_information:
                       type: object
                       properties:
