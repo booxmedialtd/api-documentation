@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Playback Info"
+tags:
+  - name: Playback Info
+    description: >-
+      Holds playback information per asset. An asset can be a recording, catchup, VOD and so on.
+      This resource allows storing information like playback position and last viewed for such assets.
+servers:
+  - url: 'https://demo.aminocom.com/api/playback_info/v1/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # RECORDINGS
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/assets/{asset_type}/{asset_id}:
+    put:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Playback Info
+      operationId: putPlaybackInfo
+      # TODO
+
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: # TODO
+      tags:
+        - Playback Info
+      operationId: getPlaybackInfo
+      # TODO
+
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user_profiles/{user_profile_id}/assets/{asset_type}:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      tags:
+        - Playback Info
+      summary: # TODO
+      operationId: indexPlaybackInfo
+      # TODO
