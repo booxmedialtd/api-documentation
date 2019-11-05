@@ -206,6 +206,13 @@ paths:
           description: Page number if the results have more items than ipp. Default = 1
           schema:
             type: integer
+        - in: query
+          name: show_incoming
+          required: false
+          description: Wether to show only future recordings. Default = false
+          schema:
+            type: string
+            enum: [true, false]
       responses:
         200:
           description: "Successful response"
