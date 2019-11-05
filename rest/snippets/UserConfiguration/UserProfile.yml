@@ -11,7 +11,7 @@ UserProfile:
     user_id:
       type: string
       example: 42
-      description: The id of the user account for which the profile will be created
+      description: The id of the user account to which the profile belongs or will be created for in case of a POST
     is_child_profile:
       type: boolean
       example: false
