@@ -10,10 +10,8 @@ UserProfile:
       description: A name for the profile to help the account-holder identify who it belongs to
     user_id:
       type: string
-      example: 256
-      description: >-
-        A system generated random user name.  The client should not POST this field when creating a profile.
-        The client will supply this username when calling the API.
+      example: 42
+      description: The id of the user account for which the profile will be created
     is_child_profile:
       type: boolean
       example: false
