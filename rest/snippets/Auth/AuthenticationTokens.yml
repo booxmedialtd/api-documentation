@@ -6,8 +6,8 @@ AuthenticationTokens:
       example: 1538126476
       description: The Unix epoch timestamp of when the access token was created
     user_id:
-      type: integer
-      example: 1234
+      type: string
+      example: "1234"
       description: Id of the user this token belongs to.
     user_profile_id:
       type: string
