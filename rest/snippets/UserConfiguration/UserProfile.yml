@@ -10,7 +10,7 @@ UserProfile:
       description: A name for the profile to help the account-holder identify who it belongs to
     user_id:
       type: string
-      example: 5b56765e-fa7b-45d2-8dee-2869ec736cc9
+      example: 256
       description: >-
         A system generated random user name.  The client should not POST this field when creating a profile.
         The client will supply this username when calling the API.
