@@ -23,8 +23,8 @@ components:
       bearerFormat: JWT    # optional, arbitrary value for documentation purposes
 security:
 - bearerAuth: []         # use the same name as above
-paths:
 
+paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # RECORDINGS
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,12 +32,51 @@ paths:
   /user_profiles/{user_profile_id}/recordings:
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2019-11 (BPLAT-12079)
+      summary: Create a recording of a given broadcast slot for a given user profile
       tags:
         - Recordings
       operationId: createRecordedSlot
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to create recording groups for.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/CreateRecordingRequestEntity"
+
+      responses:
+        201:
+          description: "Successful response on created resource"
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+
+        403:
+          description: |
+            Recording was rejected. Possible reasons include:
+            - Requested broadcast slot is not recordable
+            - Requested channel is not recordable
+            - User lacks sufficient license to record requested broadcast slot
+            - User lacks sufficient storage space to record requested broadcast slot
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "403"
+                    code: "30302"
+                    title: "Forbidden"
+                    detail: "Broadcast slot with ID \"97e2dd12-01fd-11ea-b90b-a310cb9651f4\" is not recordable"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -121,7 +160,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups:
     get:
       description: |
-        * **Available since:** 2019-10 (BPLAT-12048)
+        * **Available since:** 2019-11 (BPLAT-12048)
       summary: An index of all of the recording groups for a specific user profile
       tags:
         - Recording Groups
@@ -182,7 +221,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups/{recording_group_id}/recordings:
     get:
       description: |
-        * **Available since:** 2019-10 (BPLAT-10674)
+        * **Available since:** 2019-11 (BPLAT-10674)
       summary: An index of the recordings for a specific recording group
       tags:
         - Recording Groups

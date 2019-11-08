@@ -1,0 +1,166 @@
+RecordingEntity:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+      properties:
+        type:
+          type: string
+          example: "Recording"
+          description: Resource type. Must be "Recording".
+        attributes:
+          type: object
+          required:
+            - is_favourite
+            - start_time
+            - duration
+          properties:
+            is_favourite:
+              type: boolean
+              example: true
+              description: True if the recording is marked favourite.
+            start_time:
+              type: integer
+              example: 1573141705
+              description: Scheduled start time of the related broadcast slot as a Unix timestamp
+            duration:
+              type: integer
+              example: 3600
+              description: Duration of the recording in seconds
+        relationships:
+          type: object
+          required:
+            - broadcast_slot
+            - auto_recording_request
+            - program
+            - series
+          properties:
+            broadcast_slot:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "BroadcastSlot"
+                      description: Resource type of the relationship, for this relationship it must be "BroadcastSlot".
+                    id:
+                      type: string
+                      example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
+                      description: The ID of the related resource, UUID.
+            auto_recording_request:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  nullable: true
+                  description: May be null if recording was not created as an automated recording.
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "AutoRecordingRequest"
+                      description: Resource type of the relationship, for this relationship it must be "AutoRecordingRequest".
+                    id:
+                      type: string
+                      example: "93533f68-71f9-41f0-832a-f3eab02cafb2"
+                      description: The ID of the related resource, UUID.
+            program:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Program"
+                      description: Resource type of the relationship, for this relationship it must be "Program".
+                    id:
+                      type: string
+                      example: "08941424-d864-4cc7-b66a-b0c9568494cf"
+                      description: The ID of the related resource, UUID.
+            series:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Series"
+                      description: Resource type of the relationship, for this relationship it must be "Series".
+                    id:
+                      type: string
+                      example: "7bb76a23-29de-49ba-a862-9d4e18fe1328"
+                      description: The ID of the related resource, UUID.
+
+CreateRecordingRequestEntity:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          example: "Recording"
+          description: Resource type of the resource to create. Must be "Recording".
+        attributes:
+          type: object
+          properties:
+            is_favourite:
+              type: boolean
+              example: true
+              description: True if the created recording is to be marked favourite.
+        relationships:
+          type: object
+          required:
+            - broadcast_slot
+          properties:
+            broadcast_slot:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "BroadcastSlot"
+                      description: Resource type of the relationship, for this relationship it must be "BroadcastSlot".
+                    id:
+                      type: string
+                      example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
+                      description: The ID of the related BroadcastSlot resource, UUID.
