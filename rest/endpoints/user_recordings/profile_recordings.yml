@@ -93,11 +93,26 @@ paths:
     delete:
       tags:
       - Recordings
-      summary: # TODO
+      summary: Delete one given recording for a given user profile.
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-11 (BPLAT-12081)
       operationId: deleteRecordedSlot
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to delete a recording for (UUID).
+          schema:
+            type: string
+        - in: path
+          name: recording_id
+          required: true
+          description: The identity of the recording to delete (UUID).
+          schema:
+            type: string
+      responses:
+        204:
+          description: The recording was successfully deleted. No response body returned.
 
   /user_profiles/{user_profile_id}/recordings/bulk_delete_recordings:
     post:
