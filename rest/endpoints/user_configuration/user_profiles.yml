@@ -7,7 +7,6 @@ info:
   title: "User Profiles"
 tags:
 - name: User profiles
-- name: Authentication token
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -18,83 +17,8 @@ components:
       bearerFormat: JWT    # optional, arbitrary value for documentation purposes
 security:
 - bearerAuth: []         # use the same name as above
+
 paths:
-
-# -------------------------------------------------------------------------------------------------------------------------------------
-
-  /users/{user_id}/profile/{profile_id}/token:
-    post:
-      description: |
-        * **Available since:** 2019-10 BPLAT-11711
-      tags:
-      - Authentication token
-      summary: Get a token that has the profile identity in it
-      operationId: getProfileAuthToken
-      parameters:
-        - in: path
-          name: user_id
-          required: true
-          description: The identity of the user.
-          schema:
-            type: string
-        - in: path
-          name: profile_id
-          required: true
-          description: The identity of the profile that the user wants to use.
-          schema:
-            type: string
-      responses:
-        '201':
-          description: |
-            Successful response.
-          headers:
-            Set-Cookie:
-              schema:
-                type: string
-              description: "Session cookie"
-          content:
-            text/plain:
-              schema:
-                type: "object"
-                required:
-                - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: AuthenticationTokens
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AuthenticationTokens.yml#/AuthenticationTokens"
-        403:
-          description: Profile does not belong to account
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
-                example:
-                  id: 9c336eed
-                  code: ec8e9588
-                  title: Profile does not belong to account
-                  details: >-
-                    You have tried to access a profile that does not belong to your user account.
-
-
 # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/user_profiles:

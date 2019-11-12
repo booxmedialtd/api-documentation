@@ -52,6 +52,10 @@ paths:
                       description: >-
                           The refresh token that was issued at the same time as an access token.
                       example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+                login_user_profile:
+                  type: string
+                  description: The ID of a user profile for which the user wishes to obtain access tokens. If omitted, the users default profile will be used.
+                  example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
 
       responses:
         '201':
@@ -67,22 +71,20 @@ paths:
                 - data
                 properties:
                   data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: AccessToken
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AuthenticationTokens.yml#/AuthenticationTokens"
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: AccessToken
+                      id:
+                        type: string
+                        description: "The id of the entity being referenced"
+                        example: "9bc6871e-ce26-4b8a-96f6-e6688599d938"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Auth/AuthenticationTokens.yml#/AuthenticationTokens"
 
 
         '400':
