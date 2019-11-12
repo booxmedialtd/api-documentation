@@ -83,12 +83,30 @@ paths:
   /user_profiles/{user_profile_id}/recordings/{recording_id}:
     patch:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-11 (BPLAT-12080)
       tags:
       - Recordings
-      summary: # TODO
+      summary: Update a recording of a given broadcast slot for a given user profile
       operationId: updateRecordedSlot
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to which the recording belongs.
+          schema:
+            type: string
+        - in: path
+          name: recording_id
+          required: true
+          description: The identity of the recording that will be updated.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/UpdateRecordingRequestEntity"
 
     delete:
       tags:
