@@ -7,6 +7,7 @@ RecordingEntity:
       type: object
       required:
         - type
+        - id
         - attributes
         - relationships
       properties:
@@ -14,6 +15,10 @@ RecordingEntity:
           type: string
           example: "Recording"
           description: Resource type. Must be "Recording".
+        id:
+          type: string
+          example: "dd89f23b-d177-4168-b02d-48426f023845"
+          description: The ID of the recording.
         attributes:
           type: object
           required:
