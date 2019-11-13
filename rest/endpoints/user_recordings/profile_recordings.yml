@@ -121,7 +121,7 @@ paths:
       tags:
         - Recordings
       summary: # TODO
-      operationId: updateRecordedSlot
+      operationId: bulkDeleteRecordedSlot
       # TODO
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
