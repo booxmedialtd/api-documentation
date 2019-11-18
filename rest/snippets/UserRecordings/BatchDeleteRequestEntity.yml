@@ -1,0 +1,23 @@
+BatchDeleteRequestEntity:
+  type: object
+  required:
+  - data
+  properties:
+    data:
+      type: array
+      items:
+        type: object
+        required:
+          - type
+          - id
+        properties:
+          type:
+            type: string
+            example: Recording
+            description: Must be Recording. Other types will be ignored.
+          id:
+            type: string
+            example: 180a8cbe-c954-409a-8f15-92582283a12b
+            description: >-
+              The identity of the user recording you want to delete.
+              This is presented as part of the entity rather than a relationship to make the request easier for the client to build
