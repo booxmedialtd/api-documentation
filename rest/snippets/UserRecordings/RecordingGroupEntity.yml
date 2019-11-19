@@ -19,8 +19,6 @@ RecordingGroupEntity:
     images:
       description: >-
         An image associated directly with the recording group will have the type "thumbnail".
-        If there is not an image directly associated with the recording group then the image from
-        the first recording should be used.  This image will have the type "program_thumbnail"
       type: array
       items:
         $ref: "https://raw.githubusercontent.com/:ffbooxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
