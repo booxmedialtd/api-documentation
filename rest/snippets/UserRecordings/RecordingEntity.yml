@@ -169,3 +169,25 @@ CreateRecordingRequestEntity:
                       type: string
                       example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
                       description: The ID of the related BroadcastSlot resource, UUID.
+
+UpdateRecordingRequestEntity:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          example: "Recording"
+          description: Resource type of the resource to update. Must be "Recording".
+        attributes:
+          type: object
+          properties:
+            is_favourite:
+              type: boolean
+              example: true
+              description: True if the created recording is to be marked favourite.
