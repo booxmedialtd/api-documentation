@@ -83,7 +83,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/{recording_id}:
     patch:
       description: |
-        * **Available since:** 2019-11 (BPLAT-12080)
+        * **Available since:** 2020-1 (BPLAT-12080)
       tags:
       - Recordings
       summary: Update a recording of a given broadcast slot for a given user profile
@@ -107,6 +107,39 @@ paths:
           application/json:
             schema:
               $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/UpdateRecordingRequestEntity"
+      responses:
+        200:
+          description: "Successful response on updated resource"
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "400"
+                    code: "10100"
+                    title: "Bad Request"
+                    detail: "- is_favourite must be a boolean"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "404"
+                    code: "30305"
+                    title: "Not found"
+                    detail: "Recording with id \"95b39b14-0aca-11ea-98df-bd321dcc0d5b\" cannot be found."
 
     delete:
       tags:
