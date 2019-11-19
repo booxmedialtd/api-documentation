@@ -16,11 +16,6 @@ RecordingGroupEntity:
       description: >-
         A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
       example: 10
-    duration_seconds:
-      type: integer
-      description: >-
-        The integer number of seconds that are used up by all the programs in this group.
-      example: 5302
     images:
       description: >-
         An image associated directly with the recording group will have the type "thumbnail".
@@ -29,32 +24,6 @@ RecordingGroupEntity:
       type: array
       items:
         $ref: "https://raw.githubusercontent.com/:ffbooxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
-    last_recording_watched:
-      type: object
-      required:
-      - current_playback_position_seconds
-      - broadcast_start_timestamp
-      - duration_minutes
-      properties:
-        recording_id:
-          type: string
-          description: The id of the recording that was last watched
-          example: 9524c089-cdcc-4345-b730-4526f912e0ed
-        current_playback_position_seconds:
-          type: integer
-          description: >-
-            How many seconds of the program has been watched
-          example: 519
-        broadcast_start_timestamp:
-          type: integer
-          description: >-
-            The unix epoch timestamp that the last program was broadcast on live television
-          example: 1556105188
-        duration_seconds:
-          type: integer
-          description: >-
-            The duration of the program in seconds
-          example: 3120
   relationships:
     type: array
     items:
