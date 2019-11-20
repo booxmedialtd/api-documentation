@@ -57,7 +57,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
 
         403:
           description: |
@@ -113,7 +118,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
         400:
           description: Bad Request
           content:
@@ -324,20 +334,11 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: array
-                          example: Recording
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingEntity.yml#/UserRecordingEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+                  included:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
