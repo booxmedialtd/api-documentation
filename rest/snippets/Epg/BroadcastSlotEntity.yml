@@ -12,7 +12,7 @@ BroadcastSlotEntity:
       description: Resource type. Must be "BroadcastSlot".
     id:
       type: string
-      example: "3d70615e-d1af-4352-b349-aa38330b7b28"
+      example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
       description: The ID of the broadcast slot.
     attributes:
       type: object

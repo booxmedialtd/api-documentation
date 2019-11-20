@@ -338,7 +338,7 @@ paths:
                   included:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
