@@ -346,8 +346,38 @@ paths:
     get:
       description: |
         * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+      summary: An index of the recordings for a ungrouped recording
       tags:
         - Recording Groups
       operationId: indexUngroupedRecordingGroupRecordings
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording groups for.
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: Page number if the results have more items than ipp. Default = 1
+          schema:
+            type: integer
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/UngroupedRecordingEntity"
+                  included:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
