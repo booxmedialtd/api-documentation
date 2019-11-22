@@ -82,20 +82,7 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: Series
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
 
         '400':
           description: Standard error response
@@ -145,20 +132,7 @@ paths:
                 - data
                 properties:
                   data:
-                    type: object
-                    required:
-                    - type
-                    - id
-                    properties:
-                      type:
-                        type: string
-                        example: Series
-                      id:
-                        type: string
-                        description: "The id of the entity being referenced"
-                        example: "f9df1401-9d25-48e0-b5d6-0745a86bd975"
-                      attributes:
-                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
                   included:
                     type: array
                     description: "This key MUST NOT be included if the `included` parameter is not used in the request URL"
