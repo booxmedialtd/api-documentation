@@ -1,52 +1,52 @@
 RecordingGroupEntity:
   type: object
-  required:
-  - name
-  properties:
-    name:
-      type: string
-      description: This is a human readable description for the group, based on the tag used to create the group
-      example: "Simpsons"
-    description:
-      type: string
-      description: A human readable description of the group
-      example: American comedy programs
-    approximate_number_of_recordings:
-      type: integer
-      description: >-
-        A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
-      example: 10
-    images:
-      description: >-
-        An image associated directly with the recording group will have the type "thumbnail".
-      type: array
-      items:
-        $ref: "https://raw.githubusercontent.com/:ffbooxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
-  relationships:
-    type: array
-    items:
-      anyOf:
-        - type: object
-          required:
-          - id
-          - type
-          properties:
-            id:
-              type: string
-              description: The identifier of the entity
-              example: abdf8785-cb23-445b-946f-69e8770500a1
-            type:
-              type: string
-              example: "RecordingTag"
-        - type: object
-          required:
-          - id
-          - type
-          properties:
-            id:
-              type: string
-              example: "cceb69ef-f339-446f-b947-60b738ffdb8e"
-            type:
-              type: string
-              example: Recording
-              description: The type of the entity being included
+    required:
+      - type
+      - id
+      - attributes
+    properties:
+      type:
+        type: array
+        example: RecordingGroup
+      id:
+        type: string
+        description: "The id of the entity being referenced"
+        example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+      attributes:
+        type: object
+        required:
+        - name
+        properties:
+          approximate_number_of_recordings:
+            type: integer
+            description: >-
+              A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
+            example: 10
+        relationships:
+          type: array
+          items:
+            anyOf:
+              - type: object
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    description: The identifier of the entity
+                    example: abdf8785-cb23-445b-946f-69e8770500a1
+                  type:
+                    type: string
+                    example: "RecordingTag"
+              - type: object
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: "cceb69ef-f339-446f-b947-60b738ffdb8e"
+                  type:
+                    type: string
+                    example: Recording
+                    description: The type of the entity being included

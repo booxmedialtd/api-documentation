@@ -277,20 +277,11 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: array
-                          example: RecordingGroup
-                        id:
-                          type: string
-                          description: "The id of the entity being referenced"
-                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
+                  included:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
