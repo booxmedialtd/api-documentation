@@ -376,7 +376,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/UngroupedRecordingEntity"
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
                   included:
                     type: array
                     items:
