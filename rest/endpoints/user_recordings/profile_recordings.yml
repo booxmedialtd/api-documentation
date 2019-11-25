@@ -30,6 +30,15 @@ paths:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings:
+    get:
+      description: |
+        * **Available since:** NOT YET AVAILABLE
+      summary: Search for recordings of a given user profile.
+      tags:
+        - Recordings
+      operationId: searchRecordedSlots
+      # TODO
+
     post:
       description: |
         * **Available since:** 2019-11 (BPLAT-12079)
