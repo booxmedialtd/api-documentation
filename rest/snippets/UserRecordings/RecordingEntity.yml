@@ -97,6 +97,8 @@ RecordingEntity:
           properties:
             data:
               type: object
+              nullable: true
+              description: May be null if recording does not belong to any series.
               required:
                 - type
                 - id
