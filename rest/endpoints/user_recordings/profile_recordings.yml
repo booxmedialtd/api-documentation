@@ -91,6 +91,19 @@ paths:
                     code: "30302"
                     title: "Forbidden"
                     detail: "Broadcast slot with ID \"97e2dd12-01fd-11ea-b90b-a310cb9651f4\" is not recordable"
+        409:
+          description: Recording was rejected because a recording already exists for the given user profile for the given program
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "409"
+                    code: "30307"
+                    title: "Recording already exists"
+                    detail: "Could not create recording because a recording for user profile \"c5a80fac-0f80-11ea-92e8-1988e85f4ee1\" for program with ID \"c5c4078e-0f80-11ea-9295-27992502e07a\" already exists"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
