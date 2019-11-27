@@ -217,7 +217,7 @@ paths:
         content:
           application/vnd.api+json; ext=bulk:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/BatchDeleteRequestEntity"
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/BatchDeleteRequestEntity.yml#/BatchDeleteRequestEntity"
       responses:
         204:
           description: The recordings were successfully deleted. No response body returned.
@@ -231,9 +231,9 @@ paths:
                 errors:
                   - id: "934dc960-a733-409f-a000-c112b64c8553"
                     status: "404"
-                    code: "30302"
+                    code: "30301"
                     title: "Not Found"
-                    detail: "Broadcast slot with ID \"97e2dd12-01fd-11ea-b90b-a310cb9651f4\" is not recordable"
+                    detail: "Broadcast slot for ID \"f826091a-1102-11ea-b8a0-35120745a64c,f826aa78-1102-11ea-98f1-d56eb8e1dafc,f827360a-1102-11ea-be52-39ecefb436af\" not found"
         400:
           description: |
             A requirement for the request was not met. None of the recordings should be deleted. Possible reasons include:
