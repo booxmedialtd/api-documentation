@@ -461,12 +461,14 @@ paths:
                             data:
                               type: "BroadcastSlot"
                               id: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
-                          auto_recording_request: null
+                          auto_recording_request: 
+                            data: null
                           program:
                             data:
                               type: "Program"
                               id: "08941424-d864-4cc7-b66a-b0c9568494cf"
-                          series: null
+                          series: 
+                            data: null
                   included:
                     type: array
                     items:
