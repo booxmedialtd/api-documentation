@@ -358,7 +358,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups/ungrouped/recordings:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2019-11 (BPLAT-12084)
       summary: An index of the recordings for a ungrouped recording
       tags:
         - Recording Groups
@@ -390,6 +390,22 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+                    example:
+                      - type: "Recording"
+                        id: "dd89f23b-d177-4168-b02d-48426f023845"
+                        attributes:
+                          is_favorite: true
+                        relatioships:
+                          broadcast_slot:
+                            data:
+                              type: "BroadcastSlot"
+                              id: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
+                          auto_recording_request: null
+                          program:
+                            data:
+                              type: "Program"
+                              id: "08941424-d864-4cc7-b66a-b0c9568494cf"
+                          series: null
                   included:
                     type: array
                     items:
