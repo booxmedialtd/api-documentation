@@ -117,7 +117,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/batch_delete_recordings:
     post:
       description: |
-        * **Available since:** 2019-11 (BPLAT-12082)
+        * **Available since:** 2020-01 (BPLAT-12082)
       tags:
         - Recordings
       summary: Delete all given recordings for the given profile, up to a maximum of 50 recordings.
