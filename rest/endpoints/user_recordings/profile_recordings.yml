@@ -358,7 +358,7 @@ paths:
   /user_profiles/{user_profile_id}/recordings/recording_groups/ungrouped/recordings:
     get:
       description: |
-        * **Available since:** 2019-11 (BPLAT-12084)
+        * **Available since:** 2020-01 (BPLAT-12084)
       summary: An index of the recordings for a ungrouped recording
       tags:
         - Recording Groups
