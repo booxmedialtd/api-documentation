@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: "2.0.0"
+  version: "4.0.0"
   title: "Profile recording"
 tags:
 - name: Recordings
@@ -14,7 +14,7 @@ tags:
   description: >-
     Recording Groups are groups of Recordings available for viewing, typically a Series.
 servers:
-- url: 'https://demo.aminocom.com/api/recordings/v2/'
+- url: 'https://demo.aminocom.com/api/recordings/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
