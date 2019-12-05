@@ -26,7 +26,7 @@ paths:
   /user_profiles/{user_profile_id}/assets/{asset_type}/{asset_id}:
     put:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2020-01 (BPLAT-12229)
       summary: Create/update a playback info of a given asset for a given user profile
       tags:
         - Playback Info
