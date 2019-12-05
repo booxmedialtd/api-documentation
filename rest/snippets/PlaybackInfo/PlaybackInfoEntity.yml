@@ -1,0 +1,55 @@
+PlaybackInfoEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    data:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          example: "PlaybackInfo"
+          description: Resource type. Must be "PlaybackInfo".
+        attributes:
+          type: object
+          required:
+            - user_id
+            - user_profile_id
+            - asset_type
+            - asset_id
+            - playback_position
+            - last_watched_at
+          properties:
+            user_id:
+              type: string
+              example: "1234"
+              description: The user identity.
+            user_profile_id:
+              type: string
+              example: "3ef272ce-ba4d-472a-94ce-733fc8f44c75"
+              description: The user profile identity.
+            asset_type:
+              type: string
+              example: "recording"
+              enum: ["recording", "catchup", "vod"]
+              description: The asset type.
+            asset_id:
+              type: string
+              example: "1224fb7a-4f61-4f34-8165-c4fae0ed00a1"
+              description: The asset identity.
+            group_id:
+              type: string
+              example: "925fea9c-21b9-4c3c-af26-99440efd47cb"
+              description: The asset group identity.
+            playback_position:
+              type: integer
+              example: 180
+              description: The playback position in seconds.
+            last_watched_at:
+              type: integer
+              example: 1575518104
+              description: The Unix epoch timestamp of the playback time.
