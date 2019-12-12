@@ -272,7 +272,7 @@ paths:
       description: |
         * **Available since:** 2020-1 (BPLAT-12400)
       tags:
-        - RecordedBroadcastSlots
+        - Recordings
       summary: Fetch all recorded broadcast slots for a given user profile
       operationId: recordedBroadcastSlots
       parameters:
