@@ -265,8 +265,59 @@ paths:
                      code: "30302"
                      title: "Internal Server Error"
                      detail: "Something went wrong while trying to delete the recordings."
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+  /user_profiles/{user_profile_id}/recorded_broadcast_slots:
+    get:
+      description: |
+        * **Available since:** 2020-1 (BPLAT-12400)
+      tags:
+        - RecordedBroadcastSlots
+      summary: Fetch all recorded broadcast slots for a given user profile
+      operationId: recordedBroadcastSlots
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to which the recordings belongs.
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - type
+                        - id
+                      properties:
+                        type:
+                          type: string
+                          example: BroadcastSlot
+                        id:
+                          type: string
+                          description: "The id of the entity being referenced"
+                          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+        403:
+          description: Client attempts to fetch the recordings of a un-authenticated user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # AUTOMATED RECORDING REQUESTS
