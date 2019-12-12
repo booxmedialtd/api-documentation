@@ -308,7 +308,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
         403:
-          description: If the client attempts to find information about a user other than the authenticated user
+          description: Client attempts to fetch the recordings of a un-authenticated user.
           content:
             application/json:
               schema:
