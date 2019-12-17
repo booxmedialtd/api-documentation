@@ -1,0 +1,29 @@
+PlaybackInfoRequestBodyEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    data:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          example: "PlaybackInfo"
+          description: Resource type. Must be "PlaybackInfo".
+        attributes:
+          type: object
+          required:
+            - playback_position
+          properties:
+            group_id:
+              type: string
+              example: "925fea9c-21b9-4c3c-af26-99440efd47cb"
+              description: The asset group identity.
+            playback_position:
+              type: integer
+              example: 180
+              description: The playback position in seconds.
