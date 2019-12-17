@@ -1,0 +1,25 @@
+UserRecordingsQuotaEntity:
+  data:
+    type: object
+    required:
+      - type
+      - id
+    properties:
+      type:
+        type: string
+        example: UserRecordingsQuota
+        id:
+          type: string
+          description: "The id of the entity being referenced"
+          example: "42"
+        attributes:
+          type: object
+          properties:
+            used_quota:
+              type: integer
+              description: "Total duration of quota used in seconds"
+              example: 100
+            total_quota:
+              type: integer
+              description: "Total recordable duration of quota in seconds"
+              example: 1000000
