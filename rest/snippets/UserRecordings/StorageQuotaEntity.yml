@@ -12,7 +12,7 @@ StorageQuotaEntity:
           type: string
           description: "The id of the entity being referenced"
           example: "42"
-        attributes:
+      attributes:
           type: object
           properties:
             used_quota:
