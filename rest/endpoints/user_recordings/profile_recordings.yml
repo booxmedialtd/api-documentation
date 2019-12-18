@@ -347,24 +347,6 @@ paths:
                   - data
                 properties:
                   $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingsQuotaEntity.yml#/UserRecordingsQuotaEntity"
-                  relationships:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        user:
-                          type: object
-                          properties:
-                            data:
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                  example: user
-                                id:
-                                  type: string
-                                  description: "The id of the entity being referenced"
-                                  example: "42"
         403:
           description: Client attempts to fetch the quota of an un-authenticated user.
           content:
