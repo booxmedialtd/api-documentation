@@ -26,12 +26,90 @@ paths:
   /user_profiles/{user_profile_id}/assets/{asset_type}/{asset_id}:
     put:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2020-01 (BPLAT-12229)
+      summary: Create/update a playback info of a given asset for a given user profile
       tags:
         - Playback Info
       operationId: putPlaybackInfo
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to create playback info.
+          schema:
+            type: string
+        - in: path
+          name: asset_type
+          required: true
+          description: The asset type of the playback info.
+          schema:
+            type: string
+            enum: ["recording", "catchup", "vod"]
+        - in: path
+          name: asset_id
+          required: true
+          description: The asset id of the playback info.
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../../snippets/PlaybackInfo/PlaybackInfoRequestBody.yml#/PlaybackInfoRequestBodyEntity"
+
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
+
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "400"
+                    code: "10100"
+                    title: "Bad Request"
+                    detail: "- Must have keys { \"data\" }"
+
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "400"
+                    code: "10100"
+                    title: "Bad Request"
+                    detail: "Invalid authorization token: Token not provided in header"
+
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "403"
+                    code: "51"
+                    title: "Forbidden"
+                    detail: "Authenticated user with Profile ID \"00000000-1111-2222-3333-444444444444\" not authorized to perform action"
 
     get:
       description: |
