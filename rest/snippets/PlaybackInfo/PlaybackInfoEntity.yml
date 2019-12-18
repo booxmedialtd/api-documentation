@@ -1,0 +1,45 @@
+PlaybackInfoEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    type:
+      type: string
+      example: "PlaybackInfo"
+      description: Resource type. Must be "PlaybackInfo".
+    id:
+      type: string
+      example: "4a7d0b30-aa6d-4730-823e-c1c27b446c05.recording.4a1e81ed-b3f0-452b-b567-db54e885bab7"
+      description: The ID of the playback info, composite of profile ID, asset type and asset ID.
+    attributes:
+      type: object
+      required:
+        - asset_type
+        - asset_id
+        - group_id
+        - playback_position
+        - last_watched_at
+      properties:
+        asset_type:
+          type: string
+          example: "recording"
+          description: The type of the playback asset. "recording", "catchup" or "vod"
+        asset_id:
+          type: string
+          example: "4a1e81ed-b3f0-452b-b567-db54e885bab7"
+          description: The id of the playback asset.
+        group_id:
+          type: string
+          nullable: true
+          example: "359f055a-b388-4c48-b4c5-4d1f9bea6160"
+          description: The group ID of the playback asset, can be null.
+        playback_position:
+          type: integer
+          example: 1234
+          description: Current playback position of the playback asset in seconds.
+        last_watched_at:
+          type: integer
+          example: 1576669166
+          description: Unix timestamp for when the playback info was last updated.
