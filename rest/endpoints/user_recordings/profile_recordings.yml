@@ -3,18 +3,18 @@ info:
   version: "4.0.0"
   title: "Profile recording"
 tags:
-- name: Recordings
-  description: >-
-    A recording represents a broadcast slot that the user wants to have recorded.
-    A Recording may or may not be available for viewing, depending of whether the broadcast slot has been successfully recorded.
-- name: Automated Recording Requests
-  description: >-
-    An Automated Recording Request represents a request by a user to automatically record specific broadcast slots for them as they become available.
-- name: Recording Groups
-  description: >-
-    Recording Groups are groups of Recordings available for viewing, typically a Series.
+  - name: Recordings
+    description: >-
+      A recording represents a broadcast slot that the user wants to have recorded.
+      A Recording may or may not be available for viewing, depending of whether the broadcast slot has been successfully recorded.
+  - name: Automated Recording Requests
+    description: >-
+      An Automated Recording Request represents a request by a user to automatically record specific broadcast slots for them as they become available.
+  - name: Recording Groups
+    description: >-
+      Recording Groups are groups of Recordings available for viewing, typically a Series.
 servers:
-- url: 'https://demo.aminocom.com/api/recordings/v4/'
+  - url: 'https://demo.aminocom.com/api/recordings/v4/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
@@ -22,12 +22,12 @@ components:
       scheme: bearer
       bearerFormat: JWT    # optional, arbitrary value for documentation purposes
 security:
-- bearerAuth: []         # use the same name as above
+  - bearerAuth: []         # use the same name as above
 
 paths:
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# RECORDINGS
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # RECORDINGS
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings:
     get:
@@ -105,14 +105,14 @@ paths:
                     title: "Recording already exists"
                     detail: "Could not create recording because a recording for user profile \"c5a80fac-0f80-11ea-92e8-1988e85f4ee1\" for program with ID \"c5c4078e-0f80-11ea-9295-27992502e07a\" already exists"
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings/{recording_id}:
     patch:
       description: |
         * **Available since:** 2020-1 (BPLAT-12080)
       tags:
-      - Recordings
+        - Recordings
       summary: Update a recording of a given broadcast slot for a given user profile
       operationId: updateRecordedSlot
       parameters:
@@ -175,7 +175,7 @@ paths:
 
     delete:
       tags:
-      - Recordings
+        - Recordings
       summary: Delete one given recording for a given user profile.
       description: |
         * **Available since:** 2019-11 (BPLAT-12081)
@@ -252,19 +252,19 @@ paths:
                     title: "Bad Request"
                     detail: "The number of recordings that is requested to be deleted exceeds the limit of 50"
         500:
-           description: |
-             Something went wrong while trying to delete the recordings. None of the recordings should be deleted.
-           content:
-             application/json:
-               schema:
-                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
-               example:
-                 errors:
-                   - id: "934dc960-a733-409f-a000-c112b64c8553"
-                     status: "500"
-                     code: "30302"
-                     title: "Internal Server Error"
-                     detail: "Something went wrong while trying to delete the recordings."
+          description: |
+            Something went wrong while trying to delete the recordings. None of the recordings should be deleted.
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "500"
+                    code: "30302"
+                    title: "Internal Server Error"
+                    detail: "Something went wrong while trying to delete the recordings."
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recorded_broadcast_slots:
@@ -319,9 +319,49 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# AUTOMATED RECORDING REQUESTS
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  /user/{user_id}/storage_quota:
+    get:
+      description: |
+        * **Available since:** 2020-1 (BPLAT-12326)
+      tags:
+        - Recordings
+      summary: Fetch used and total available recordings storage quota in seconds
+      operationId: storageQuota
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to which the quota belongs to.
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/StorageQuotaEntity.yml#/StorageQuotaEntity"
+        403:
+          description: Client attempts to fetch the quota of an un-authenticated user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
+
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # AUTOMATED RECORDING REQUESTS
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/auto_recording_requests:
     get:
@@ -342,7 +382,7 @@ paths:
       operationId: createRecordingRequests
       # TODO
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/auto_recording_requests/{recording_request_id}:
     patch:
@@ -363,9 +403,9 @@ paths:
       operationId: deleteRecordingRequests
       # TODO
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# RECORDING GROUPS
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # RECORDING GROUPS
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings/recording_groups:
     get:
@@ -406,7 +446,7 @@ paths:
               schema:
                 type: "object"
                 required:
-                - data
+                  - data
                 properties:
                   data:
                     type: array
@@ -417,7 +457,7 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings/recording_groups/{recording_group_id}/recordings:
     get:
@@ -454,7 +494,7 @@ paths:
               schema:
                 type: "object"
                 required:
-                - data
+                  - data
                 properties:
                   data:
                     type: array
@@ -465,7 +505,7 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/recordings/recording_groups/ungrouped/recordings:
     get:
@@ -512,13 +552,13 @@ paths:
                             data:
                               type: "BroadcastSlot"
                               id: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
-                          auto_recording_request: 
+                          auto_recording_request:
                             data: null
                           program:
                             data:
                               type: "Program"
                               id: "08941424-d864-4cc7-b66a-b0c9568494cf"
-                          series: 
+                          series:
                             data: null
                   included:
                     type: array
