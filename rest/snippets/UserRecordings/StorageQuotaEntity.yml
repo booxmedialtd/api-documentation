@@ -1,4 +1,4 @@
-UserRecordingsQuotaEntity:
+StorageQuotaEntity:
   data:
     type: object
     required:
@@ -7,7 +7,7 @@ UserRecordingsQuotaEntity:
     properties:
       type:
         type: string
-        example: UserRecordingsQuota
+        example: StorageQuota
         id:
           type: string
           description: "The id of the entity being referenced"
@@ -21,5 +21,5 @@ UserRecordingsQuotaEntity:
               example: 100
             total_quota:
               type: integer
-              description: "Total recordable duration of quota in seconds"
+              description: "Total storable duration of quota in seconds"
               example: 1000000

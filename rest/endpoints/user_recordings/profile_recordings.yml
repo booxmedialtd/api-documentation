@@ -321,14 +321,14 @@ paths:
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  /user/{user_id}/recordings_quota:
+  /user/{user_id}/storage_quota:
     get:
       description: |
         * **Available since:** 2020-1 (BPLAT-12326)
       tags:
         - Recordings
-      summary: Fetch used and total available recordings quota in seconds
-      operationId: userRecordingsQuota
+      summary: Fetch used and total available recordings storage quota in seconds
+      operationId: storageQuota
       parameters:
         - in: path
           name: user_id
@@ -346,7 +346,7 @@ paths:
                 required:
                   - data
                 properties:
-                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/UserRecordingsQuotaEntity.yml#/UserRecordingsQuotaEntity"
+                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/StorageQuotaEntity.yml#/StorageQuotaEntity"
         403:
           description: Client attempts to fetch the quota of an un-authenticated user.
           content:
