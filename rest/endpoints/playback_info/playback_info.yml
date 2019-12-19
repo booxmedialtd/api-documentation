@@ -113,12 +113,59 @@ paths:
 
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2020-01 (BPLAT-12230)
+      summary: Get the current playback info for one given asset
       tags:
         - Playback Info
       operationId: getPlaybackInfo
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to get the playback info for.
+          schema:
+            type: string
+        - in: path
+          name: asset_type
+          required: true
+          description: The asset type of the playback info.
+          schema:
+            type: string
+            enum: ["recording", "catchup", "vod"]
+        - in: path
+          name: asset_id
+          required: true
+          description: The asset id of the playback info.
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: "../../snippets/PlaybackInfo/PlaybackInfoEntity.yml#/PlaybackInfoEntity"
+
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "404"
+                    code: "30401"
+                    title: "Playback info not found"
+                    detail: 'Playback info for user profile "4a7d0b30-aa6d-4730-823e-c1c27b446c05", type "recording" and ID "4a1e81ed-b3f0-452b-b567-db54e885bab7" was not found'
+
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
