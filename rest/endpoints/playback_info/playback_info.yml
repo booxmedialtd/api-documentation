@@ -20,7 +20,7 @@ security:
 paths:
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  # RECORDINGS
+  # Playback Info
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/assets/{asset_type}/{asset_id}:
@@ -192,7 +192,7 @@ paths:
             enum: ["recording", "catchup", "vod"]
         - in: query
           name: filter
-          description: Filter by group_id. Allowed filter ex. filter[groupId]='12345'
+          description: Filter results see JSON API spec for instructions. Supported attributes for filtering - group_id
           schema:
             type: string
 
