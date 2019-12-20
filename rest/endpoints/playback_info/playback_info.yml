@@ -20,7 +20,7 @@ security:
 paths:
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  # RECORDINGS
+  # Playback Info
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /user_profiles/{user_profile_id}/assets/{asset_type}/{asset_id}:
@@ -172,9 +172,56 @@ paths:
   /user_profiles/{user_profile_id}/assets/{asset_type}:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2020-01 (BPLAT-12231)
       tags:
-        - Playback Info
-      summary: # TODO
-      operationId: indexPlaybackInfo
-      # TODO
+        - Playback Info Index
+      operationId: getPlaybackInfoIndex
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to get the playback info for.
+          schema:
+            type: string
+        - in: path
+          name: asset_type
+          required: true
+          description: The asset type of the playback info.
+          schema:
+            type: string
+            enum: ["recording", "catchup", "vod"]
+        - in: query
+          name: filter
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [group_id]
+          schema:
+            type: string
+
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/PlaybackInfo/PlaybackInfoEntity.yml#/PlaybackInfoEntity"
+
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "404"
+                    code: "30401"
+                    title: "Playback info not found"
+                    detail: 'Playback info for user profile "4a7d0b30-aa6d-4730-823e-c1c27b446c05", type "recording" and ID "4a1e81ed-b3f0-452b-b567-db54e885bab7" was not found'
