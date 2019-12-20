@@ -174,7 +174,7 @@ paths:
       description: |
         * **Available since:** 2020-01 (BPLAT-12231)
       tags:
-        - Playback Info Index
+        - Playback Info
       operationId: getPlaybackInfoIndex
       parameters:
         - in: path
