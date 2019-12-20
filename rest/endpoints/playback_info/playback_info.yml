@@ -192,7 +192,8 @@ paths:
             enum: ["recording", "catchup", "vod"]
         - in: query
           name: filter
-          description: Filter results see JSON API spec for instructions. Supported attributes for filtering - group_id
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [group_id]
           schema:
             type: string
 
