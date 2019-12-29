@@ -396,7 +396,7 @@ paths:
         - in: path
           name: period
           required: true
-          description: Period to list recordings from. Valid options include "today", "next_week"
+          description: Period to list recordings from. Valid options include 'today', 'next_week'
           schema:
             type: string
       responses:
