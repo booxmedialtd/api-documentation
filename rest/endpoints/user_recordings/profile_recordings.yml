@@ -390,7 +390,7 @@ paths:
       summary: Get most popular recordings
       tags:
         - Recordings
-      operationId: searchMostPopular
+      operationId: getMostPopularBroadcastSlots
       # TODO
       parameters:
         - in: path
