@@ -386,7 +386,7 @@ paths:
   /most_popular/{period}:
     get:
       description: |
-        * **Available since:** BPLAT-12223
+        * **Available since:** 2020-01 (BPLAT-12223)
       summary: Get most popular recordings
       tags:
         - Recordings
