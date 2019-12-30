@@ -381,7 +381,38 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /most_popular/{period}:
+    get:
+      description: |
+        * **Available since:** 2020-01 (BPLAT-12223)
+      summary: Get most popular recordings
+      tags:
+        - Recordings
+      operationId: getMostPopularBroadcastSlots
+      parameters:
+        - in: path
+          name: period
+          required: true
+          description: Period to list recordings from. Valid options include 'today', 'next_week'
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                      
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   # AUTOMATED RECORDING REQUESTS
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
