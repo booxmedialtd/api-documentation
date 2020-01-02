@@ -558,6 +558,13 @@ paths:
           description: Page number if the results have more items than ipp. Default = 1
           schema:
             type: integer
+        - in: query
+          name: filter
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [is_favourite]
+            Accepted values for the "is_favourite" filter: "true", "false", "1", "0"
+          schema:
+            type: string
       responses:
         200:
           description: "Successful response"
