@@ -32,12 +32,64 @@ paths:
   /user_profiles/{user_profile_id}/recordings:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** https://jira.aminocom.com/browse/BPLAT-12427
       summary: Search for recordings of a given user profile.
       tags:
         - Recordings
       operationId: searchRecordedSlots
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording groups for.
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: Page number if the results have more items than ipp. Default = 1
+          schema:
+            type: integer
+        - in: query
+          name: language
+          description: >-
+            The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
+            If this is omitted the system defined default will be used. If the requested language is not available
+            then the system will return translations in order of the system defined preferences
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: filter
+          description: >-
+            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [search]
+            Supports search by title keywords, when no search string provided, API returns all the recorded slots for the requested user_profile_id
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response on updated resource"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+        403:
+          description: Client attempts to fetch the recordings of a un-authenticated user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
 
     post:
       description: |
