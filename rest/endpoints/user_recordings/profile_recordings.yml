@@ -676,6 +676,7 @@ paths:
                         id: "dd89f23b-d177-4168-b02d-48426f023845"
                         attributes:
                           is_favorite: true
+                          is_stream_available: true
                         relatioships:
                           broadcast_slot:
                             data:
