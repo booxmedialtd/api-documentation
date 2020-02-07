@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  description: >-
+    This API allows users to change properties of their User, such as the user password.
+  version: "2.0.0"
+  title: "User Preferences"
+tags:
+  - name: User Preferences
+servers:
+  - url: 'https://demo.aminocom.com/api/users/v2/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+
+paths:
+  # -------------------------------------------------------------------------------------------------------------------------------------
+
+  /users/{user_id}:
+    patch:
+      description: |
+        * **Available since:** 2020-02 BPLAT-12511
+      tags:
+        - User Preferences
+      summary: Update a user account
+      operationId: updateUser
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserEntity.yml#/UserPatchRequestBody"
+      responses:
+        204:
+          description: Successful response, the user attributes were updated successfully as specified. No content returned.
+        404:
+          description: The user to be updated does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "27175c94-4987-11ea-bf0a-0b4d2657da40"
+                    status: "404"
+                    code: "30501"
+                    title: "Not found"
+                    detail: 'User with ID "4422" does not exist'
+        401:
+          description: The request was rejected.
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "063ca86c-4987-11ea-9f97-130e9fe21f9f"
+                    status: "401"
+                    code: "30502"
+                    title: "Unauthorized"
+                    detail: 'Password verification failed.'
