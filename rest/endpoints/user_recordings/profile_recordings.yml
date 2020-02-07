@@ -474,12 +474,38 @@ paths:
   /user_profiles/{user_profile_id}/auto_recording_requests:
     get:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2020-02 (BPLAT-12072)
+      summary: An index of all of the auto recording requests for a specific user profile
       tags:
         - Automated Recording Requests
       operationId: indexRecordingRequests
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording groups for.
+          schema:
+            type: string
+        - in: query
+          name: page_number
+          required: false
+          description: Page number if the results have more items than ipp. Default = 1
+          schema:
+            type: integer
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "../../snippets/UserRecordings/AutoRecordingRequestEntity.yml#/RecordingRequestEntity"
 
     post:
       description: |

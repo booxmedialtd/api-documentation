@@ -1,0 +1,54 @@
+RecordingRequestEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    type:
+      type: array
+      example: AutoRecordingRequest
+    id:
+      type: string
+      description: "The id of the entity being referenced"
+      example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+    attributes:
+      type: object
+      required:
+      - is_auto_delete
+      properties:
+        is_auto_delete:
+          type: boolean
+          example: true
+          description: Indicate whether old epsoides of the series wiil be deleted automatically.
+    relationships:
+      type: object
+      properties:
+        series:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              description: Type of the related resource, must be "Series"
+              example: "Series"
+            id:
+              type: string
+              description: The ID of the series resource
+              example: "abdf8785-cb23-445b-946f-69e8770500a1"
+        channel:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              description: Type of the related resource, must be "Channel"
+              example: "Channel"
+            id:
+              type: string
+              description: The ID of the Channel resource
+              example: "100"
