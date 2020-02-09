@@ -14,6 +14,59 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+  schemas:
+    grantType:
+      type: object
+      required:
+        - grant_type
+        - credentials
+      properties:
+        grant_type:
+          type: string
+          example: refresh_token
+          enum: [refresh_token|password]
+        login_user_profile:
+          type: string
+          description: The ID of a user profile for which the user wishes to obtain access tokens. If omitted, the users default profile will be used.
+          example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+    refreshTokenGrantType:
+      allOf:
+        - $ref: '#/components/schemas/grantType'
+        - type: object
+          properties:
+            grant_type:
+              type: string
+              example: refresh_token
+              enum: [refresh_token]
+            credentials:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  description: >-
+                      The refresh token that was issued at the same time as an access token.
+                  example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
+    passwordGrantType:
+      allOf:
+        - $ref: '#/components/schemas/grantType'
+        - type: object
+          properties:
+            grant_type:
+              type: string
+              example: password
+              enum: [password]
+            credentials:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: >-
+                    User name
+                password:
+                  type: string
+                  description: >-
+                    User password
+
 security:
 - bearerAuth: []         # use the same name as above
 paths:
@@ -35,27 +88,9 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-              - grant_type
-              - credentials
-              properties:
-                grant_type:
-                  type: string
-                  example: refresh_token
-                  enum: [refresh_token]
-                credentials:
-                  type: object
-                  properties:
-                    refresh_token:
-                      type: string
-                      description: >-
-                          The refresh token that was issued at the same time as an access token.
-                      example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJFbmFibGVTVEIiLCJpYXQiOjE1MzE4MzQyNDEsImV4cCI6MTU2MzM3MDI0MSwiYXVkIjoid3d3LmFtaW5vY29tLmNvbSIsInN1YiI6ImFuZHkuYmVha0BhbWlub2NvbS5jb20ifQ.jtTwO3YEyXmEf5XjjxUK8V_MPRvxdi7DN1eEBUyjfkE
-                login_user_profile:
-                  type: string
-                  description: The ID of a user profile for which the user wishes to obtain access tokens. If omitted, the users default profile will be used.
-                  example: "84eb61a9-75d4-42c7-8c15-84c3d7776227"
+              oneOf:
+                - $ref: '#/components/schemas/refreshTokenGrantType'
+                - $ref: '#/components/schemas/passwordGrantType'
 
       responses:
         '201':
