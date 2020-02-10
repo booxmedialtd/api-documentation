@@ -1,0 +1,52 @@
+UserEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    type:
+      type: string
+      example: "User"
+      description: Resource type. Must be "User".
+    id:
+      type: string
+      example: "4422"
+      description: The ID of the User, numeric.
+    attributes:
+      type: object
+      properties:
+        security:
+          type: object
+          description: Contains security related attribues, such as password and pin code
+
+UserPatchRequestBody:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    type:
+      type: string
+      example: "User"
+      description: Resource type. Must be "User".
+    id:
+      type: string
+      example: "4422"
+      description: The ID of the User, numeric.
+    attributes:
+      type: object
+      properties:
+        security:
+          type: object
+          description: Contains security related attribues, such as password and pin code
+          properties:
+            current_password:
+              type: string
+              example: "password1"
+              description: Current password of the user. Required when setting a new password.
+            new_password:
+              type: string
+              example: "password2"
+              description: New password. To be provided when the user wishes to change their password. When provided, requires current_password to be provided as well. Must not be blank.
