@@ -6,7 +6,7 @@ RecordingRequestEntity:
     - attributes
   properties:
     type:
-      type: array
+      type: string
       example: AutoRecordingRequest
     id:
       type: string
