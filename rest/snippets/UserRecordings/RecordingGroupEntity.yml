@@ -6,7 +6,7 @@ RecordingGroupEntity:
     - attributes
   properties:
     type:
-      type: array
+      type: string
       example: RecordingGroup
     id:
       type: string
