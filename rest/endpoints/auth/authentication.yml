@@ -25,7 +25,6 @@ components:
       properties:
         grant_type:
           type: string
-          example: refresh_token
           enum: [refresh_token|password]
         login_user_profile:
           type: string
@@ -38,7 +37,6 @@ components:
           properties:
             grant_type:
               type: string
-              example: "refresh_token"
               enum: [refresh_token]
             credentials:
               type: object
@@ -55,7 +53,6 @@ components:
           properties:
             grant_type:
               type: string
-              example: "password"
               enum: [password]
             credentials:
               type: object
