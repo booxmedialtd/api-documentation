@@ -32,6 +32,8 @@ components:
       allOf:
         - $ref: '#/components/schemas/grantType'
         - type: object
+          description: |
+            * **Available since:** 2019-10 (BPLAT-11893)
           properties:
             grant_type:
               type: string
