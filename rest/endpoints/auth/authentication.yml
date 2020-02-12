@@ -17,8 +17,6 @@ components:
   schemas:
     grantType:
       type: object
-      description: |
-        * **Available since:** 2020-02 (BPLAT-12506)
       required:
         - grant_type
         - credentials
@@ -50,6 +48,8 @@ components:
       allOf:
         - $ref: '#/components/schemas/grantType'
         - type: object
+          description: |
+            * **Available since:** 2020-02 (BPLAT-12506)
           properties:
             grant_type:
               type: string
