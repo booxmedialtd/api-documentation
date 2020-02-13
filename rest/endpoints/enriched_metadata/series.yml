@@ -66,7 +66,8 @@ paths:
           required: false
           description: >-
             Please see http://jsonapi.org/recommendations/#filtering
-            The following are attributes to filter on: [content_rating.adult|genre.name|Season.id]
+            The following are attributes to filter on: [content_rating.adult|genre.id|season.id]
+            When filtering on content_rating.adult only "true" will be treated as true.
           schema:
             type: string
       responses:
