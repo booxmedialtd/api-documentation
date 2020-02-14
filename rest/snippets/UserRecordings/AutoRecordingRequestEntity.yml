@@ -20,7 +20,7 @@ RecordingRequestEntity:
         is_auto_delete:
           type: boolean
           example: true
-          description: Indicate whether old epsoides of the series wiil be deleted automatically.
+          description: Indicate whether old epsoides of the series will be deleted automatically.
     relationships:
       type: object
       properties:
@@ -52,3 +52,20 @@ RecordingRequestEntity:
               type: string
               description: The ID of the Channel resource
               example: "100"
+
+PatchRecordingRequestEntity:
+  type: object
+  required:
+    - type
+    - attributes
+  properties:
+    type:
+      type: string
+      example: AutoRecordingRequest
+    attributes:
+      type: object
+      properties:
+        is_auto_delete:
+          type: boolean
+          example: true
+          description: Indicate whether old epsoides of the series will be deleted automatically.
