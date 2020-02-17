@@ -6,6 +6,11 @@ info:
   title: "User Preferences"
 tags:
   - name: User Preferences
+    description: >-
+      Allows changing attributes of the user, such as the user password.
+  - name: Password Reset
+    description: >-
+      Allows resetting a password that has been forgotten through a password reset email process.
 servers:
   - url: 'https://demo.aminocom.com/api/users/v2/'
 components:
@@ -18,6 +23,8 @@ security:
   - bearerAuth: []         # use the same name as above
 
 paths:
+  # -------------------------------------------------------------------------------------------------------------------------------------
+  # USER PREFERENCES
   # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}:
@@ -70,3 +77,33 @@ paths:
                     code: "30502"
                     title: "Unauthorized"
                     detail: 'Password verification failed.'
+
+
+  # -------------------------------------------------------------------------------------------------------------------------------------
+  # PASSWORD RESET
+  # -------------------------------------------------------------------------------------------------------------------------------------
+  /reset_password:
+    post:
+      description: |
+        * **Available since:** 2020-02 BPLAT-12525
+      tags:
+        - Password Reset
+      summary: Request password reset email
+      operationId: requestResetPassword
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  example: "test@24i.com"
+
+      responses:
+        204:
+          description: Successful response, the requested reset password email was sent. No content returned. Also returned if the user email does not exist.
