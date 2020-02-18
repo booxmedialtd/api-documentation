@@ -509,12 +509,65 @@ paths:
 
     post:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2020-02 (BPLAT-12073)
+      summary: Create automated recording request for a given user profile, series and channel
       tags:
         - Automated Recording Requests
-      operationId: createRecordingRequests
-      # TODO
+      operationId: createRecordingRequest
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to create recording request for.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../../snippets/UserRecordings/AutoRecordingRequestEntity.yml#/CreateAutoRecordingRequestEntity"
+      responses:
+        201:
+          description: "Successful response on created resource"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: "../../snippets/UserRecordings/AutoRecordingRequestEntity.yml#/RecordingRequestEntity"
+        403:
+          description: |
+            User auto recording request was rejected. Possible reasons include:
+            - Requested channel is not recordable
+            - User lacks sufficient license to record requested channel
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "403"
+                    code: "30303"
+                    title: "Forbidden"
+                    detail: "Channel with id \"42\" is not recordable"
+        409:
+          description: User auto recording request was rejected because same recording request already exists for the given user profile, series and channel
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "934dc960-a733-409f-a000-c112b64c8553"
+                    status: "409"
+                    code: "30308"
+                    title: "Recording request already exists"
+                    detail: "Could not create recording request because it already exists for user profile \"282cf6fc-5238-11ea-938e-296a836025b0\", series id \"284a265a-5238-11ea-87cc-83904c78ff0d\", channel id \"42\""
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -742,3 +795,4 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+

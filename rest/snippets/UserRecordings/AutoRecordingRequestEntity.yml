@@ -69,3 +69,68 @@ PatchRecordingRequestEntity:
           type: boolean
           example: true
           description: Indicate whether old epsoides of the series will be deleted automatically.
+
+CreateAutoRecordingRequestEntity:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          example: "AutoRecordingRequest"
+          description: Resource type of the resource to create. Must be "AutoRecordingRequest".
+        attributes:
+          type: object
+          properties:
+            is_auto_delete:
+              type: boolean
+              example: true
+              default: false
+              description: True if the created automated user recording is to be marked so that old epsoides of the series will be deleted automatically.
+        relationships:
+          type: object
+          required:
+            - series
+            - channel
+          properties:
+            series:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Series"
+                      description: Resource type of the relationship, for this relationship it must be "Series".
+                    id:
+                      type: string
+                      example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
+                      description: The ID of the related Series resource, UUID.
+            channel:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Channel"
+                      description: Resource type of the relationship, for this relationship it must be "Channel".
+                    id:
+                      type: integer
+                      example: "42"
+                      description: The ID of the related Channel resource, integer.
