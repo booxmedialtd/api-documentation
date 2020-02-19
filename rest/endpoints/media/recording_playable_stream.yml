@@ -110,7 +110,7 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 servers:
-  - url: 'https://demo.aminocom.com/api/recordings/v1/'
+  - url: 'https://demo.aminocom.com/api/v1/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme

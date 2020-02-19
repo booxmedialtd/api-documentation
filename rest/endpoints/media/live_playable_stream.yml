@@ -112,7 +112,7 @@ paths:
       x-s2o-produces:
         - application/json
 servers:
-  - url: 'https://demo.aminocom.com/api/v1/media/'
+  - url: 'https://demo.aminocom.com/api/v1/'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme
