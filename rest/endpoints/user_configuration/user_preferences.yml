@@ -107,67 +107,64 @@ paths:
       responses:
         204:
           description: Successful response, the requested reset password email was sent. No content returned. Also returned if the user email does not exist.
+# -------------------------------------------------------------------------------------------------------------------------------------
 
+  /confirm_reset_password:
+    post:
+      description: |
+        * **Available since:** 2020-02 BPLAT-12526
+      tags:
+        - Password Reset
+      summary: Confirm password reset email
+      operationId: confirmResetPassword
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - reset_code
+                - new_password
+              properties:
+                email:
+                  type: string
+                  example: "test@24i.com"
+                reset_code:
+                  type: string
+                  example: "6b76938f079574a6f7ce862e83b6e213"
+                new_password:
+                  type: string
+                  example: "foorBar1234"
 
-    # -------------------------------------------------------------------------------------------------------------------------------------
-    # CONFIRM PASSWORD RESET
-    # -------------------------------------------------------------------------------------------------------------------------------------
-    /confirm_reset_password:
-      post:
-        description: |
-          * **Available since:** 2020-02 BPLAT-12526
-        tags:
-          - Password Reset
-        summary: Confirm password reset email
-        operationId: confirmResetPassword
-        security: []
-        requestBody:
-          required: true
+      responses:
+        204:
+          description: Successful response, the requested reset password was confirmed. No content returned.
+        404:
+          description: The user for a provided email does not exist.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - email
-                  - reset_code
-                  - new_password
-                properties:
-                  email:
-                    type: string
-                    example: "test@24i.com"
-                  reset_code:
-                    type: string
-                    example: "6b76938f079574a6f7ce862e83b6e213"
-                  new_password:
-                    type: string
-                    example: "foorBar1234"
-
-        responses:
-          204:
-            description: Successful response, the requested reset password was confirmed. No content returned.
-          404:
-            description: The user for a provided email does not exist.
-            content:
-              application/json:
-                schema:
-                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
-                example:
-                  errors:
-                    - id: "27175c94-4987-11ea-bf0a-0b4d2657da40"
-                      status: "404"
-                      code: "30501"
-                      title: "Not found"
-                      detail: 'User with email "foo@email.com" does not exist'
-          400:
-            description: Reset code provided was invalid.
-            content:
-              application/json:
-                schema:
-                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
-                example:
-                  errors:
-                    - id: "27175c94-4987-11ea-bf0a-0b4d2657da40"
-                      status: "400"
-                      code: "10100"
-                      title: "Invalid ResetCode"
-                      detail: 'Invalid reset code: 6b76938f079574a6f7ce862e83b6e213'
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "27175c94-4987-11ea-bf0a-0b4d2657da40"
+                    status: "404"
+                    code: "30501"
+                    title: "Not found"
+                    detail: 'User with email "foo@email.com" does not exist'
+        400:
+          description: Reset code provided was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "27175c94-4987-11ea-bf0a-0b4d2657da40"
+                    status: "400"
+                    code: "10100"
+                    title: "Invalid ResetCode"
+                    detail: 'Invalid reset code: 6b76938f079574a6f7ce862e83b6e213'
