@@ -31,7 +31,7 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /broadcast_slots/{channel_id}/{date_yyyy-mm-dd}:
+  /broadcast_slots/{channel_id}/{date_yyyymmdd}:
     get:
       summary: Get an index of BroadcastSlots
       description:  |
