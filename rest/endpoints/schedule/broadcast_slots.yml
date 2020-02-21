@@ -31,7 +31,7 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /broadcast_slots/{channel_id}:
+  /broadcast_slots/{channel_id}/{date_yyyy-mm-dd}:
     get:
       summary: Get an index of BroadcastSlots
       description:  |
@@ -47,6 +47,14 @@ paths:
           description: The ID of the channel to fetch EPG for.
           schema:
             type: string
+        - in: path
+          name: date_yyyy-mm-dd
+          required: true
+          example: 2020-02-21
+          description: >-
+            The API returns Epg within a window starting from 04:00 AM on the given date until 04:00 AM on the following date.
+          schema:
+            type: string
         - in: query
           name: language
           required: false
@@ -54,14 +62,6 @@ paths:
             The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
             If this is omitted the system defined default will be used.
             If the requested language is not available then the system will return translations in order of the system defined preferences
-          schema:
-            type: string
-        - in: query
-          name: date_yyyymmdd
-          required: true
-          example: 20190623
-          description: >-
-            The API returns Epg within a window starting from 04:00 AM on the given date until 04:00 AM on the following date.
           schema:
             type: string
       responses:
