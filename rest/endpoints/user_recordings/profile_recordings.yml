@@ -605,12 +605,30 @@ paths:
             
     delete:
       description: |
-        * **Available since:** NOT YET AVAILABLE
-      summary: # TODO
+        * **Available since:** 2020-02 (BPLAT-12074)
+      summary: Delete automated recording request for a given user profile
       tags:
         - Automated Recording Requests
       operationId: deleteRecordingRequests
-      # TODO
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: ID of the user profile to delete the automated recording request from.
+          schema:
+            type: string
+        - in: path
+          name: recording_request_id
+          required: true
+          description: The identity of the recording request
+          schema:
+            type: string
+      requestBody:
+        required: false
+      responses:
+        204:
+          description: |
+            The resource was updated successfully, no response body is needed
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   # RECORDING GROUPS
