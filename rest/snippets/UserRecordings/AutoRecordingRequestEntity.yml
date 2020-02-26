@@ -23,35 +23,46 @@ RecordingRequestEntity:
           description: Indicate whether old epsoides of the series will be deleted automatically.
     relationships:
       type: object
+      required:
+        - series
+        - channel
       properties:
         series:
           type: object
           required:
-          - type
-          - id
+            - data
           properties:
-            type:
-              type: string
-              description: Type of the related resource, must be "Series"
-              example: "Series"
-            id:
-              type: string
-              description: The ID of the series resource
-              example: "abdf8785-cb23-445b-946f-69e8770500a1"
+            data:
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  example: "Series"
+                  description: Resource type of the relationship, for this relationship it must be "Series".
+                id:
+                  type: string
+                  example: "f0e52ad6-a790-44a9-8885-61f66c7ebec8"
+                  description: The ID of the related Series resource, UUID.
         channel:
           type: object
           required:
-          - type
-          - id
+            - data
           properties:
-            type:
-              type: string
-              description: Type of the related resource, must be "Channel"
-              example: "Channel"
-            id:
-              type: string
-              description: The ID of the Channel resource
-              example: "100"
+            data:
+              required:
+                - type
+                - id
+              properties:
+                type:
+                  type: string
+                  example: "Channel"
+                  description: Resource type of the relationship, for this relationship it must be "Channel".
+                id:
+                  type: integer
+                  example: "42"
+                  description: The ID of the related Channel resource, integer.
 
 PatchRecordingRequestEntity:
   type: object
@@ -134,3 +145,4 @@ CreateAutoRecordingRequestEntity:
                       type: integer
                       example: "42"
                       description: The ID of the related Channel resource, integer.
+
