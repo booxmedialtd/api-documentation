@@ -35,7 +35,7 @@ paths:
     get:
       summary: Get an index of BroadcastSlots
       description:  |
-        * **Available since:** NOT YET AVAILABLE
+        * **Available since:** 2020-03 (BPLAT-10388)
         * We do not support including related resources in the index view.
       tags:
       - BroadcastSlots
