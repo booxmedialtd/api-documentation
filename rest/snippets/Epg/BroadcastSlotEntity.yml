@@ -43,4 +43,63 @@ BroadcastSlotEntity:
           type: integer
           example: 1000
           description: Duration of the broadcast slot in seconds.
-      # TODO: Add metadata relationships
+        commercial_break_duration_seconds:
+          type: integer
+          example: 120
+          description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
+        broadcast_languages:
+          type: array
+          items:
+            type: object
+            properties:
+              audio_language_iso639_2:
+                type: integer
+                example: fin
+                description: The ISO 639-2 three letter code for the language that the audio is in
+        subtitle_languages:
+          type: array
+          items:
+            type: object
+            properties:
+              language_iso639_2:
+                type: string
+                example: fin
+                description: The ISO 639-2 three letter code for a subitle language that is available
+
+    services_available:
+      type: object
+      description: >-
+        This key should only be present in order to override the channel settings.
+        If it is omitted then you may assume the channel settings apply.
+      required:
+        - services_enabled
+        - trickplay_enabled
+      properties:
+        services_enabled:
+          type: array
+          description: >-
+            An array of the service types that are available for this channel.
+            Services may be one of [live,npvr,lpvr,catchup,startover]
+          items:
+            type: string
+            example: ["live","npvr","catchup"]
+            enum: [live,npvr,lpvr,catchup,startover]
+
+    program:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          example: "Movie: Die Hard"
+          description: "This may be different from the Program title, to allow broadcasters flexibility, for example to add prefixes"
+        images:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
+        content_flags:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+
