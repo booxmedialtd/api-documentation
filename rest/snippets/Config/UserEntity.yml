@@ -195,7 +195,7 @@ UserEntity:
       description: List of flags the user is assigned with.
       items:
         type: string
-        example: ["TEST_FLAG1", "TEST_FLAG2"]
+        example: "TEST_FLAG1"
 
     relationships:
       type: object
