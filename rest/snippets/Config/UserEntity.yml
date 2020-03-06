@@ -190,7 +190,10 @@ UserEntity:
           description: >-
             The Unix timestamp that the user was marked for soft deletion.
             Note:  Soft deletion removes all information from 'name' and 'contact details'
-
+    user_flags:
+      type: array
+      description: List of flags the user is assigned with.
+      example: ["TEST_FLAG1", "TEST_FLAG2"]
 
     relationships:
       type: object
