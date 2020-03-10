@@ -39,6 +39,10 @@ BroadcastSlotEntity:
           type: integer
           example: 1574244553
           description: End time of the broadcast slot as a UNIX timestamp.
+        advertising_enabled:
+          type: boolean
+          example: true
+          description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"
         program_duration_seconds:
           type: integer
           example: 1000
@@ -66,40 +70,40 @@ BroadcastSlotEntity:
                 example: fin
                 description: The ISO 639-2 three letter code for a subitle language that is available
 
-    services_available:
-      type: object
-      description: >-
-        This key should only be present in order to override the channel settings.
-        If it is omitted then you may assume the channel settings apply.
-      required:
-        - services_enabled
-        - trickplay_enabled
-      properties:
-        services_enabled:
-          type: array
-          description: >-
-            An array of the service types that are available for this channel.
-            Services may be one of [live,npvr,lpvr,catchup,startover]
-          items:
-            type: string
-            example: ["live","npvr","catchup"]
-            enum: [live,npvr,lpvr,catchup,startover]
+      services_available:
+        type: object
+        description: >-
+          This key should only be present in order to override the channel settings.
+          If it is omitted then you may assume the channel settings apply.
+        required:
+          - services_enabled
+          - trickplay_enabled
+        properties:
+          services_enabled:
+            type: array
+            description: >-
+              An array of the service types that are available for this channel.
+              Services may be one of [live,npvr,lpvr,catchup,startover]
+            items:
+              type: string
+              example: ["live","npvr","catchup"]
+              enum: [live,npvr,lpvr,catchup,startover]
 
-    program:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          example: "Movie: Die Hard"
-          description: "This may be different from the Program title, to allow broadcasters flexibility, for example to add prefixes"
-        images:
-          type: array
-          items:
-            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
-        content_flags:
-          type: array
-          items:
-            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
+      program:
+        type: object
+        required:
+        - title
+        properties:
+          title:
+            type: string
+            example: "Movie: Die Hard"
+            description: "This may be different from the Program title, to allow broadcasters flexibility, for example to add prefixes"
+          images:
+            type: array
+            items:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ImageValueObject.yml#/ImageValueObject"
+          content_flags:
+            type: array
+            items:
+              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
 
