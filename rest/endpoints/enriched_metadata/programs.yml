@@ -326,7 +326,7 @@ paths:
                           description: "The id of the entity being referenced"
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                          $ref: "../../snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 
         400:
           description: Standard error response

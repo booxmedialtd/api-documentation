@@ -242,7 +242,7 @@ paths:
                             type: string
                             example: "b36d0abf-f689-44c5-9a22-04e97b353bbf"
                           attributes:
-                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                            $ref: "../../snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
         '400':
           description: Standard error response
           content:
