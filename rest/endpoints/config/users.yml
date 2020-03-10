@@ -284,9 +284,9 @@ paths:
 # ------------------------------------------------------------------------
 
   /management/users/{user_id}/relationships/user_flags:
-    tags:
-      - User Flags
     put:
+      tags:
+        - User Flags
       summary: Add user flags to an user
       operationId: addUserFlags
       parameters:
@@ -303,8 +303,6 @@ paths:
           schema:
             type: string
           example: flag1,flag2
-      requestBody:
-        required: false
 
       responses:
         '204':
@@ -315,6 +313,8 @@ paths:
             Bad request.
 
     delete:
+      tags:
+        - User Flags
       summary: Delete given user flags belonging to an user
       operationId: deleteUserFlags
       parameters:
@@ -330,9 +330,6 @@ paths:
           description: Comma separated list of user flags
           schema:
             type: string
-            example: flag1,flag2
-      requestBody:
-        required: false
 
       responses:
         '204':
