@@ -280,3 +280,65 @@ paths:
                           example: "bab838b3-def8-4bff-87ed-66e663134f50"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/MarketSegment.yml#/MarketSegment"
+
+# ------------------------------------------------------------------------
+
+  /management/users/{user_id}/relationships/user_flags:
+    tags:
+      - User Flags
+    put:
+      summary: Add user flags to an user
+      operationId: addUserFlags
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: path
+          name: flags
+          required: true
+          description: Comma separated list of user flags
+          schema:
+            type: string
+          example: flag1,flag2
+      requestBody:
+        required: false
+
+      responses:
+        '204':
+          description: |
+            Successful response.
+        '400':
+          description: |
+            Bad request.
+
+    delete:
+      summary: Delete given user flags belonging to an user
+      operationId: deleteUserFlags
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: path
+          name: flags
+          required: true
+          description: Comma separated list of user flags
+          schema:
+            type: string
+            example: flag1,flag2
+      requestBody:
+        required: false
+
+      responses:
+        '204':
+          description: |
+            Successful response.
+
+        '400':
+          description: |
+            Bad request.
