@@ -14,6 +14,10 @@ tags:
   description: >-
     Market segmentation allows us to flexibly group users together by shared characteristics in order to provide services
     that are more relevant to them.
+- name: User Flags
+  description: >-
+    User flags allows us to flexibly mark users a flag based on which they can be allowed/disallowed to take some actions.
+    For eg, LICENSE_PURCHASE_RESTRICTED restricts them from purchasing a on-screen subscription.
 servers:
 - url: 'https://demo.aminocom.com/api/users/v1/'
 components:
@@ -280,3 +284,62 @@ paths:
                           example: "bab838b3-def8-4bff-87ed-66e663134f50"
                         attributes:
                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/MarketSegment.yml#/MarketSegment"
+
+# ------------------------------------------------------------------------
+
+  /management/users/{user_id}/relationships/user_flags:
+    put:
+      tags:
+        - User Flags
+      summary: Add user flags to an user
+      operationId: addUserFlags
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: query
+          name: flags
+          required: true
+          description: Comma separated list of user flags
+          schema:
+            type: string
+          example: flag1,flag2
+
+      responses:
+        '204':
+          description: |
+            Successful response.
+        '400':
+          description: |
+            Bad request.
+
+    delete:
+      tags:
+        - User Flags
+      summary: Delete given user flags belonging to an user
+      operationId: deleteUserFlags
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The user identity (please do not use an email address to identify the user)
+          schema:
+            type: string
+        - in: query
+          name: flags
+          required: true
+          description: Comma separated list of user flags
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: |
+            Successful response.
+
+        '400':
+          description: |
+            Bad request.
