@@ -31,7 +31,7 @@ paths:
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  /broadcast_slots/{channel_id}/{date_yyyy-mm-dd}:
+  /broadcast_slots/{channel_id}/{yyyy-mm-dd}:
     get:
       summary: Get an index of BroadcastSlots
       description:  |
@@ -48,11 +48,11 @@ paths:
           schema:
             type: string
         - in: path
-          name: date_yyyy-mm-dd
+          name: yyyy-mm-dd
           required: true
           example: 2020-02-21
           description: >-
-            The API returns Epg within a window starting from 04:00 AM on the given date until 04:00 AM on the following date.
+            Date for which to get EPG for. The API returns EPG within a window starting from 04:00 AM on the given date until 04:00 AM on the following date.
           schema:
             type: string
         - in: query
