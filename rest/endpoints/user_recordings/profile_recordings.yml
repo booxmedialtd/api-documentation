@@ -465,7 +465,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                      $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
                       
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   # AUTOMATED RECORDING REQUESTS
@@ -744,7 +744,7 @@ paths:
                   included:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                      $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -812,5 +812,5 @@ paths:
                   included:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
+                      $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
 

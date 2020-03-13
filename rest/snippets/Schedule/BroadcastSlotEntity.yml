@@ -1,53 +1,59 @@
 BroadcastSlotEntity:
   type: object
   required:
-  - timeslot
+  - title
+  - description
+  - start_time_unix
+  - end_time_unix
+  - program_duration_seconds
   - program
   properties:
-    timeslot:
-      type: object
-      required:
-      - start_time_unix
-      - end_time_unix
-      properties:
-        start_time_unix:
-          type: integer
-          example: 1523268666
-          description: "The Unix epoch timestamp denoting the start of the timeslot"
-        end_time_unix:
-          type: integer
-          example: 1523270886
-          description: "The Unix epoch timestamp denoting the end of the timeslot.  Note:  end_time_unix - start_time_unix = program_duration_seconds + commercial_break_duration_seconds"
-        advertising_enabled:
-          type: boolean
-          example: true
-          description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"
-        program_duration_seconds:
-          type: integer
-          example: 2100
-          description: "The duration (in seconds) of the program sans adverts"
-        commercial_break_duration_seconds:
-          type: integer
-          example: 120
-          description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
-        broadcast_languages:
-          type: array
-          items:
-            type: object
-            properties:
-              audio_language_iso639_2:
-                type: integer
-                example: fin
-                description: The ISO 639-2 three letter code for the language that the audio is in
-        subtitle_languages:
-          type: array
-          items:
-            type: object
-            properties:
-              language_iso639_2:
-                type: string
-                example: fin
-                description: The ISO 639-2 three letter code for a subitle language that is available
+    title:
+      type: string
+      example: "Die Hard"
+      description: Title of the program aired at the broadcast slot.
+    description:
+      type: string
+      example: "John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+      description: Description of the program aired at the broadcast slot.
+    start_time_unix:
+      type: integer
+      example: 1523268666
+      description: "The Unix epoch timestamp denoting the start of the timeslot"
+    end_time_unix:
+      type: integer
+      example: 1523270886
+      description: "The Unix epoch timestamp denoting the end of the timeslot.  Note:  end_time_unix - start_time_unix = program_duration_seconds + commercial_break_duration_seconds"
+    advertising_enabled:
+      type: boolean
+      example: true
+      description: "This will be true if ad insertion is enabled for this slot (the program duration will be shorter than the slot duration)"
+    program_duration_seconds:
+      type: integer
+      example: 2100
+      description: "The duration (in seconds) of the program sans adverts"
+    commercial_break_duration_seconds:
+      type: integer
+      example: 120
+      description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
+    broadcast_languages:
+      type: array
+      items:
+        type: object
+        properties:
+          audio_language_iso639_2:
+            type: integer
+            example: fin
+            description: The ISO 639-2 three letter code for the language that the audio is in
+    subtitle_languages:
+      type: array
+      items:
+        type: object
+        properties:
+          language_iso639_2:
+            type: string
+            example: fin
+            description: The ISO 639-2 three letter code for a subitle language that is available
 
     services_available:
       type: object
