@@ -56,8 +56,6 @@
         type: array
         items:
           type: object
-          required:
-          - external_showing_id
           properties:
             provider:
               type: string
@@ -66,10 +64,6 @@
               type: string
               example: "5271885"
               description: This is the id of the program in the foreign metadata provider
-            external_showing_id:
-              type: string
-              example: "724693092"
-              description: This is used by recommendation engines (like xroadmedia)
       created_at:
         type: integer
         example: 1516804728
