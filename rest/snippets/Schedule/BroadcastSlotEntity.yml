@@ -42,12 +42,12 @@ BroadcastSlotEntity:
         type: object
         required:
         - provider
-        - external_showing_id
+        - external_id
         properties:
           provider:
             type: string
             example: "ERICSSON"
-          external_showing_id:
+          external_id:
             type: string
             example: "724693092"
             description: This is used by recommendation engines (like xroadmedia)
