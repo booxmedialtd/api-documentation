@@ -57,8 +57,7 @@
         items:
           type: object
           required:
-          - provider
-          - external_program_id
+          - external_showing_id
           properties:
             provider:
               type: string
