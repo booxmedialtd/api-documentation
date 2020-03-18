@@ -51,6 +51,21 @@ BroadcastSlotEntity:
           type: integer
           example: 120
           description: "How much time is devoted to adverts.  The length of the program plus the commercial breaks should total the seconds betwen start_time and end_time"
+        metadata_provider_information:
+          type: array
+          items:
+            type: object
+            required:
+            - provider
+            - external_id
+            properties:
+              provider:
+                type: string
+                example: "ERICSSON"
+              external_id:
+                type: string
+                example: "724693092"
+                description: This is used by recommendation engines (like xroadmedia)
         broadcast_languages:
           type: array
           items:
