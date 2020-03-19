@@ -113,23 +113,23 @@ BroadcastSlotEntity:
       type: object
       properties:
         channel:
-        type: object
-        required:
-          - data
-        properties:
-          data:
-            type: object
-            required:
-            - id
-            - type
-            properties:
-              id:
-                type: string
-                example: 78d4e684-dec8-4621-9c6d-115f97552283
-              type:
-                type: string
-                example: Channel
-                description: The type of the entity being included
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: 78d4e684-dec8-4621-9c6d-115f97552283
+                type:
+                  type: string
+                  example: Channel
+                  description: The type of the entity being included
         program:
           type: object
           required:
