@@ -110,10 +110,15 @@ BroadcastSlotEntity:
                 $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ContentFlagValueObject.yml#/ContentFlagValueObject"
 
     relationships:
-      type: array
-      items:
-        anyOf:
-          - type: object
+      type: object
+      properties:
+        channel:
+        type: object
+        required:
+          - data
+        properties:
+          data:
+            type: object
             required:
             - id
             - type
@@ -125,27 +130,41 @@ BroadcastSlotEntity:
                 type: string
                 example: Channel
                 description: The type of the entity being included
-          - type: object
-            required:
-            - id
-            - type
-            properties:
-              id:
-                type: string
-                example: 530a08c0-3fd7-4d0d-b799-712ed9c07573
-              type:
-                type: string
-                example: Program
-                description: The type of the entity being included
-          - type: object
-            required:
-            - id
-            - type
-            properties:
-              id:
-                type: string
-                example: 6dfc6d52-6c6c-4274-a037-a9331280aa41
-              type:
-                type: string
-                example: Genre
-                description: The type of the entity being included
+        program:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  example: 530a08c0-3fd7-4d0d-b799-712ed9c07573
+                type:
+                  type: string
+                  example: Program
+                  description: The type of the entity being included
+        genres:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                - id
+                - type
+                properties:
+                  id:
+                    type: string
+                    example: 6dfc6d52-6c6c-4274-a037-a9331280aa41
+                  type:
+                    type: string
+                    example: Genre
+                    description: The type of the entity being included
