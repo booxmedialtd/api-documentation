@@ -84,14 +84,13 @@ BroadcastSlotEntity:
                 type: string
                 example: fin
                 description: The ISO 639-2 three letter code for a subitle language that is available
-          services_enabled:
-            type: array
-            description: >-
-              An array of the service types that are available for this broadcast slot.
-            items:
-              type: string
-              enum: [live,npvr,catchup,startover,pause]
-            example: ["live","npvr","catchup"]
+        services_enabled:
+          type: array
+          description: An array of the service types that are available for this broadcast slot.
+          items:
+            type: string
+            enum: [live,npvr,catchup,startover,pause]
+          example: ["live","npvr","catchup"]
 
         program:
           type: object
