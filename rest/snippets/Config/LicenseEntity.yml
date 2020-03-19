@@ -1,42 +1,102 @@
 LicenseEntity:
   type: object
+  description: "Note that different sorts of entity may be included (this array is not guaranteed to be homogenous), but the Swagger definition does not allow including more than one example of an item of an array so only one type is shown."
   properties:
-    status:
+    type:
       type: string
-      example: ACTIVE
-    valid_from_timestamp:
-      type: integer
-      example: 1513728000
-      description: The Unix timestamp that the license is active from
-    valid_until_timestamp:
-      type: integer
-      example: 1526645894
-      description: The Unix timestamp when this license expires
-    recurring:
-      type: boolean
-      example: false
-    purchase_record:
+      example:  License
+      description: The type of the entity that is being included.  It will always be one of [Product|License] in this endpoint.
+    id:
+      type: string
+      example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
+    attributes:
       type: object
       properties:
-        price_currency_amount:
-          type: float
-          example: 12.23
-          description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
-        price_currency_iso4217:
+        order_id:
           type: string
-          example: EUR
-          description: The ISO-4217 code of the currency (https://en.wikipedia.org/wiki/ISO_4217)
-        purchase_timestamp:
+          example: "1adc0dbe-3c65-4248-896c-78c049e276c8"
+        status:
+          type: string
+          example: ACTIVE
+        valid_from_timestamp:
           type: integer
-          example: 1526648593
-          description: The Unix timestamp at which this license was purchased
-        payment_method:
-          type: string
-          example: credit card
-          description: The purchase instrument
+          example: 1513728000
+          description: The Unix timestamp that the license is active from
+        valid_until_timestamp:
+          type: integer
+          example: 1526645894
+          description: The Unix timestamp when this license expires
+        recurring:
+          type: boolean
+          example: false
+        purchase_record:
+          type: object
+          properties:
+            price_currency_amount:
+              type: float
+              example: 12.23
+              description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
+            price_currency_iso4217:
+              type: string
+              example: EUR
+              description: The ISO-4217 code of the currency (https://en.wikipedia.org/wiki/ISO_4217)
+            purchase_timestamp:
+              type: integer
+              example: 1526648593
+              description: The Unix timestamp at which this license was purchased
+            payment_method:
+              type: string
+              example: credit card
+              description: The purchase instrument
+    relationships:
+      type: object
+      description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
+      properties:
+        User:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                  - type
+                  - id
+                properties:
+                  id:
+                    type: string
+                    example: "5f596672-2796-4f86-b608-9295fa111916"
+                  type:
+                    type: string
+                    example: User
+                    description: The type of the entity being included
+        Product:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                required:
+                  - id
+                  - type
+                properties:
+                  id:
+                    type: string
+                    example: "0adc0dbe-3c65-4248-896c-78c049e276c8"
+                  type:
+                    type: string
+                    example: Product
+                    description: The type of the entity being included
     links:
       type: object
       properties:
-        view_product:
+        self:
           type: string
-          example: https://boox.fi/api/user/waqqas.jabbar%40gmail.com/product/2?service=sevice1
+          example: https://boox.fi/api/user/waqqas.jabbar%40gmail.com/license/1
+
+
