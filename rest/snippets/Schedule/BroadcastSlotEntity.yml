@@ -91,7 +91,6 @@ BroadcastSlotEntity:
             type: string
             enum: [live,npvr,catchup,startover,pause]
           example: ["live","npvr","catchup"]
-
         program:
           type: object
           required:
@@ -121,7 +120,7 @@ BroadcastSlotEntity:
             properties:
               id:
                 type: string
-                example: 1d92c7ee-56b4-499a-b0bb-eb0efa92b24e
+                example: 78d4e684-dec8-4621-9c6d-115f97552283
               type:
                 type: string
                 example: Channel
