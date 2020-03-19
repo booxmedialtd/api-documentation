@@ -92,17 +92,15 @@ BroadcastSlotEntity:
             If it is omitted then you may assume the channel settings apply.
           required:
             - services_enabled
-            - trickplay_enabled
           properties:
             services_enabled:
               type: array
               description: >-
-                An array of the service types that are available for this channel.
-                Services may be one of [live,npvr,lpvr,catchup,startover]
+                An array of the service types that are available for this broadcast slot.
               items:
                 type: string
                 example: ["live","npvr","catchup"]
-                enum: [live,npvr,lpvr,catchup,startover]
+                enum: [live,npvr,catchup,startover,pause]
 
         program:
           type: object

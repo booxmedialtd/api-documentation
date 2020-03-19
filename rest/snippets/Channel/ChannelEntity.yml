@@ -1,0 +1,32 @@
+ChannelEntity:
+  type: object
+  required:
+    - type
+    - id
+    - attributes
+  properties:
+    type:
+      type: string
+      example: Channel
+    id:
+      type: string
+      description: "The id of the entity being referenced"
+      example: "78d4e684-dec8-4621-9c6d-115f97552283"
+    attributes:
+      type: object
+      required:
+        - name
+        - services_enabled
+      properties:
+        name:
+          type: string
+          example: "YLE 1"
+          description: The name of the channel.
+        services_enabled:
+          type: array
+          description: >-
+            An array of the service types that are available for this channel.
+          items:
+            type: string
+            example: ["live","npvr","catchup"]
+            enum: [live,npvr,catchup,startover,pause]
