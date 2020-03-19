@@ -84,23 +84,14 @@ BroadcastSlotEntity:
                 type: string
                 example: fin
                 description: The ISO 639-2 three letter code for a subitle language that is available
-
-        services_available:
-          type: object
-          description: >-
-            This key should only be present in order to override the channel settings.
-            If it is omitted then you may assume the channel settings apply.
-          required:
-            - services_enabled
-          properties:
-            services_enabled:
-              type: array
-              description: >-
-                An array of the service types that are available for this broadcast slot.
-              items:
-                type: string
-                example: ["live","npvr","catchup"]
-                enum: [live,npvr,catchup,startover,pause]
+          services_enabled:
+            type: array
+            description: >-
+              An array of the service types that are available for this broadcast slot.
+            items:
+              type: string
+              enum: [live,npvr,catchup,startover,pause]
+            example: ["live","npvr","catchup"]
 
         program:
           type: object

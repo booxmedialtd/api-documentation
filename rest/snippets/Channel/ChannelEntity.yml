@@ -24,9 +24,8 @@ ChannelEntity:
           description: The name of the channel.
         services_enabled:
           type: array
-          description: >-
-            An array of the service types that are available for this channel.
+          description: An array of the service types that are available for this channel.
           items:
             type: string
-            example: ["live","npvr","catchup"]
             enum: [live,npvr,catchup,startover,pause]
+          example: ["live","npvr","catchup"]
