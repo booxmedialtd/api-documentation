@@ -28,7 +28,7 @@ paths:
       summary: >-
         Get all requested licenses.
       description: |
-        * **Available since:** BPLAT-12622
+        * **Available since:** 2020-04 (BPLAT-12622)
       tags:
         - Licenses
       operationId: GetLicenses
