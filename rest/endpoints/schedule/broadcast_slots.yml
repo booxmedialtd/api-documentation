@@ -96,3 +96,16 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
 
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "404"
+                    code: "30301"
+                    title: "Not found"
+                    detail: 'Channel with ID "3333" not found'
