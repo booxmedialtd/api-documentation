@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: User Licenses
+servers:
+  - url: 'https://demo.aminocom.com/api/license/v4/'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
+paths:
+
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  /users/{user_id}:
+    post:
+      summary: |
+        Purchase a license for a user
+      description: |
+        * **Available since:** 2020-04 (BPLAT-12621)
+      tags:
+      - License
+      operationId: "createLicense"
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: "The user identifier"
+          schema:
+            type: string
+        - in: header
+          name: Idempotency-Key
+          required: true
+          description: "Client unique generated value for server to recognize subsequent retries"
+          schema:
+            type: string
+          example: "518d5812-b8e8-43a4-b3b0-8f9c5cdc31b9"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../../snippets/Config/LicenseEntity.yml#/CreateLicenseEntity"
+
+      responses:
+        201:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Config/LicenseEntity.yml#/LicenseEntity"
+        403:
+          description: Incorrect PIN code
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "403"
+                    code: "10200"
+                    title: "Incorrect PIN code"
+                    detail: 'The PIN code that you supplied does not match the one we have stored for the account.'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "2d3ba0ea-0aca-11ea-b2d0-4bc6fcad2537"
+                    status: "404"
+                    code: "30701"
+                    title: "Unable to purchase license"
+                    detail: 'Product "5000" not found'

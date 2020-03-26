@@ -99,4 +99,90 @@ LicenseEntity:
           type: string
           example: https://boox.fi/api/user/waqqas.jabbar%40gmail.com/license/1
 
-
+CreateLicenseEntity:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: object
+      required:
+        - type
+        - attributes
+        - relationships
+        - meta
+      properties:
+        type:
+          type: string
+          example: "License"
+          description: Resource type of the resource to create. Must be "License".
+        attributes:
+          type: object
+          required:
+            - purchase_record
+          properties:
+            purchase_record:
+              type: object
+              required:
+                - payment_method
+              properties:
+                payment_method:
+                  type: string
+                  example: "billing"
+                  description: License purcahse payment method
+        relationships:
+          type: object
+          required:
+            - user
+            - product
+          properties:
+            user:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "User"
+                      description: Resource type of the relationship, for this relationship it must be "User".
+                    id:
+                      type: string
+                      example: "1200000"
+                      description: The user identifier.
+            product:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Product"
+                      description: Resource type of the relationship, for this relationship it must be "Product".
+                    id:
+                      type: string
+                      example: "5000"
+                      description: The ID of the related Product resource.
+        meta:
+          type: object
+          required:
+            - authorization
+          properties:
+            authorization:
+              type: object
+              required:
+                - pin_code
+              properties:
+                pin_code:
+                  type: string
+                  example: "0000"
+                  description: User PIN code.
