@@ -119,12 +119,17 @@ CreateLicenseEntity:
         attributes:
           type: object
           required:
-            - payment_method
+            - purchase_record
           properties:
-            payment_method:
-              type: string
-              example: "billing"
-              description: License purcahse payment method
+            purchase_record:
+              type: object
+              required:
+                - payment_method
+              properties:
+                payment_method:
+                  type: string
+                  example: "billing"
+                  description: License purcahse payment method
         relationships:
           type: object
           required:
