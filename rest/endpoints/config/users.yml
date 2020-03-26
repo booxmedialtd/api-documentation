@@ -277,11 +277,11 @@ paths:
 # ------------------------------------------------------------------------
 
   /management/users/{user_id}/relationships/user_flags:
-    put:
+    post:
       tags:
         - User Flags
-      summary: Add user flags to an user
-      operationId: addUserFlags
+      summary: Add user flag to an user
+      operationId: addUserFlag
       parameters:
         - in: path
           name: user_id
@@ -290,12 +290,12 @@ paths:
           schema:
             type: string
         - in: query
-          name: flags
+          name: flag
           required: true
-          description: Comma separated list of user flags
+          description: Name of the flag
           schema:
             type: string
-          example: flag1,flag2
+          example: flag1
 
       responses:
         '204':
@@ -308,8 +308,8 @@ paths:
     delete:
       tags:
         - User Flags
-      summary: Delete given user flags belonging to an user
-      operationId: deleteUserFlags
+      summary: Delete given user flag belonging to an user
+      operationId: deleteUserFlag
       parameters:
         - in: path
           name: user_id
@@ -318,9 +318,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: flags
+          name: flag
           required: true
-          description: Comma separated list of user flags
+          description: Name of the flag to be deleted
           schema:
             type: string
 
