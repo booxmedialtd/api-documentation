@@ -281,6 +281,8 @@ paths:
       tags:
         - User Flags
       summary: Add user flag to an user
+      description: |
+        * **Available since:** 2020-04 (BPLAT-12627)
       operationId: addUserFlag
       parameters:
         - in: path
@@ -309,6 +311,8 @@ paths:
       tags:
         - User Flags
       summary: Delete given user flag belonging to an user
+      description: |
+        * **Available since:** 2020-04 (BPLAT-12627)
       operationId: deleteUserFlag
       parameters:
         - in: path
