@@ -52,7 +52,7 @@ LicenseEntity:
       type: object
       description: Multiple sorts of entities could be included so this is an array, not an object.  DO NOT include this key UNLESS there is a top level `included` key
       properties:
-        User:
+        user:
           type: object
           required:
             - data
@@ -72,7 +72,7 @@ LicenseEntity:
                     type: string
                     example: User
                     description: The type of the entity being included
-        Product:
+        product:
           type: object
           required:
             - data
