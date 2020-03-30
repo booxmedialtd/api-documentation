@@ -14,6 +14,7 @@ LicenseEntity:
       properties:
         order_id:
           type: string
+          nullable: true
           example: "1adc0dbe-3c65-4248-896c-78c049e276c8"
         status:
           type: string
@@ -34,18 +35,22 @@ LicenseEntity:
           properties:
             price_currency_amount:
               type: number
+              nullable: true
               example: 12.23
               description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
             price_currency_iso4217:
               type: string
               example: EUR
+              nullable: true
               description: The ISO-4217 code of the currency (https://en.wikipedia.org/wiki/ISO_4217)
             purchase_timestamp:
               type: integer
+              nullable: true
               example: 1526648593
               description: The Unix timestamp at which this license was purchased
             payment_method:
               type: string
+              nullable: true
               example: credit card
               description: The purchase instrument
     relationships:
