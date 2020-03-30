@@ -277,7 +277,7 @@ paths:
 # ------------------------------------------------------------------------
 
   /management/users/{user_id}/relationships/user_flags:
-    post:
+    put:
       tags:
         - User Flags
       summary: Add user flag to an user
