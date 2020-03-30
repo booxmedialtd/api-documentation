@@ -33,7 +33,7 @@ LicenseEntity:
           type: object
           properties:
             price_currency_amount:
-              type: float
+              type: number
               example: 12.23
               description: The float (double precision) amount of currency that was paid (some fiat currencies have three decimal points of precision)
             price_currency_iso4217:
