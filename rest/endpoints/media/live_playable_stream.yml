@@ -53,7 +53,7 @@ paths:
         - in: query
           name: drmSystem
           description: >-
-            By default the middleware will output a default DRM system based on the stream type type,
+            By default the middleware will output a default DRM system based on the stream type,
             but the client can request a specific DRM system by specifying this parameter.
             It can be one of fairplay, widevine, playready
           required: false
