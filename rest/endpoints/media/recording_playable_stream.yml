@@ -53,6 +53,23 @@ paths:
           required: false
           schema:
               type: string
+        - in: query
+          name: streamType
+          description: >-
+            By default the middleware will output a default stream type, but the client can request
+            a specific stream type by specifying this parameter.  It can be one of hls, dash, mp4, mss
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: drmSystem
+          description: >-
+            By default the middleware will output a default DRM system based on the stream type,
+            but the client can request a specific DRM system by specifying this parameter.
+            It can be one of fairplay, widevine, playready
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: A collection of Stream entities
