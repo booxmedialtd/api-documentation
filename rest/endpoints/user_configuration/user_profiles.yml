@@ -102,28 +102,26 @@ paths:
                 - data
                 properties:
                   data:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                      - type
-                      - id
-                      properties:
-                        type:
-                          type: string
-                          example: UserProfile
-                        id:
-                          type: string
-                          description: "The id of the entity that was created"
-                          example: "dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
-                        attributes:
-                          $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
-                        links:
-                          type: object
-                          properties:
-                            self:
-                              type: string
-                              example: "https://demo.aminocom.com/api/users/v1/5b56765e-fa7b-45d2-8dee-2869ec736cc9/user_profiles/dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
+                    type: object
+                    required:
+                    - type
+                    - id
+                    properties:
+                      type:
+                        type: string
+                        example: UserProfile
+                      id:
+                        type: string
+                        description: "The id of the entity that was created"
+                        example: "dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
+                      attributes:
+                        $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserProfile.yml#/UserProfile"
+                      links:
+                        type: object
+                        properties:
+                          self:
+                            type: string
+                            example: "https://demo.aminocom.com/api/users/v1/5b56765e-fa7b-45d2-8dee-2869ec736cc9/user_profiles/dc11a654-882d-47cb-a971-bb1fc6f0ffd8"
 # -------------------------------------------------------------------------------------------------------------------------------------
 
   /users/{user_id}/user_profiles/{user_profile_id}:
