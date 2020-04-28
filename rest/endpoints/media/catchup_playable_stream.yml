@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  description: >
+    This API provides information about playback streams which belong to a
+    Catchup recording program (one catchup has many Stream).
+
+    Please refer to
+    https://confluence.aminocom.com/display/BPLAT/Ubiquitous+Domain+Language#UbiquitousDomainLanguage-Stream
+    for the domain understanding of what a Stream is.
+  version: 1.0.0
+  title: Catchup Streams API
+externalDocs:
+  description: Requirements documentation
+  url: 'https://confluence.aminocom.com/pages/viewpage.action?pageId=124061868'
+servers:
+  - url: 'https://demo.aminocom.com/api/v1/'
+tags:
+  - name: Stream
+    description: |
+      This API focuses on one relationship of the Broadcast Slot - Recording Entity.
+paths:
+  '/catchup/{broadcast_slot_id}/relationships/streams':
+    get:
+      tags:
+        - Stream
+      summary: Returns a collection of Stream entities
+      description: |
+        * **Available since:** 2020-04 (BPLAT-13214)
+      operationId: getChannelStreams
+      parameters:
+        - in: path
+          name: broadcast_slot_id
+          description: >-
+            The id of the broadcast slot that you want to retrieve playback streams
+            for
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: suggested_start_time
+          description: >-
+            The time used to suggest client when the stream will start
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: autoplay
+          description: >-
+            Supported context(s): catchup.
+            Usage: autoplay=catchup.
+            If provided, API response will return with links for next available stream URL.
+          required: false
+          schema:
+              type: string
+        - in: query
+          name: streamType
+          description: >-
+            By default the middleware will output a default stream type, but the client can request
+            a specific stream type by specifying this parameter.  It can be one of hls, dash, mp4, mss
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: network
+          description: >-
+            This is a legacy parameter that will be removed in a future release.  It describes the service that
+            the user belongs to.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A collection of Stream entities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      play_next_catchup:
+                        type: string
+                        description: "When valid autoplay is requested, and next playable catchup is present – its API URL is added to links array"
+                        example: https://boox.fi/api/v1/recordings/1234/relationships/streams?autoplay=catchup&suggested_start_time=450
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - type
+                        - attributes
+                      properties:
+                        id:
+                          type: integer
+                          example: 123
+                        type:
+                          type: string
+                          example: Stream
+                        attributes:
+                          type: array
+                          items:
+                            $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/Media/StreamEntity.yml#/StreamEntity"
+        '400':
+          description: Invalid param requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+        '451':
+          description: Unavailable For Legal Reasons
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+        403:
+          description: User has no active catchup license
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+security:
+  - bearerAuth: []         # use the same name as above
