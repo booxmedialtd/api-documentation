@@ -93,11 +93,11 @@ paths:
                         - attributes
                       properties:
                         id:
-                          type: integer
-                          example: 123
+                          type: string
+                          example: "{\"stream_url\":\"https:\\/\\/test.aminocom.com\\/recs\",\"profile_name\":\"abc\"}"
                         type:
                           type: string
-                          example: Stream
+                          example: PlayableStream
                         attributes:
                           type: array
                           items:
