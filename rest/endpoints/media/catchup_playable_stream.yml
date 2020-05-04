@@ -53,7 +53,7 @@ paths:
           schema:
               type: string
         - in: query
-          name: streamType
+          name: stream_type
           description: >-
             By default the middleware will output a default stream type, but the client can request
             a specific stream type by specifying this parameter.  It can be one of hls, dash, mp4, mss
@@ -93,11 +93,11 @@ paths:
                         - attributes
                       properties:
                         id:
-                          type: integer
-                          example: 123
+                          type: string
+                          example: "{\"stream_url\":\"https:\\/\\/test.aminocom.com\\/recs\",\"profile_name\":\"abc\"}"
                         type:
                           type: string
-                          example: Stream
+                          example: PlayableStream
                         attributes:
                           type: array
                           items:
