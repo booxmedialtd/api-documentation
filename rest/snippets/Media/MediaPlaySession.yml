@@ -14,6 +14,7 @@ MediaPlaySession:
       - vod
     ip4_address:
       type: string
+      nullable: true
       description: The ip address of the client that created this session
     device_type:
       type: string
