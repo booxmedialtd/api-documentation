@@ -45,9 +45,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: page_number
+          name: page
           required: false
-          description: Page number if the results have more items than ipp. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
             type: integer
         - in: query
@@ -487,9 +487,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: page_number
+          name: page
           required: false
-          description: Page number if the results have more items than ipp. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
             type: integer
       responses:
@@ -650,9 +650,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: page_number
+          name: page
           required: false
-          description: Page number if the results have more items than ipp. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
             type: integer
         - in: query
@@ -715,9 +715,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: page_number
+          name: page
           required: false
-          description: Page number if the results have more items than ipp. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
             type: integer
         - in: query
@@ -764,9 +764,9 @@ paths:
           schema:
             type: string
         - in: query
-          name: page_number
+          name: page
           required: false
-          description: Page number if the results have more items than ipp. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
             type: integer
         - in: query
