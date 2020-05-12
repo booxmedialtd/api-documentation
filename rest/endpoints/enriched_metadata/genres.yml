@@ -41,6 +41,10 @@ paths:
           If the requested language is not available then the system will return translations in order of the system defined preferences"
         schema:
           type: string
+      - in: query
+          name: page
+          required: false
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
       responses:
         '200':
           description: "Successful response"
