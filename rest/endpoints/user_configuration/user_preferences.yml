@@ -50,7 +50,7 @@ paths:
               type: object
               required:
                 - data
-              attributes:
+              properties:
                 data:
                   $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserEntity.yml#/UserPatchRequestBody"
       responses:
