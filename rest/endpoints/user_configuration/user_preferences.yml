@@ -47,7 +47,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserEntity.yml#/UserPatchRequestBody"
+              type: object
+              required:
+                - data
+              attributes:
+                data:
+                  $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserConfiguration/UserEntity.yml#/UserPatchRequestBody"
       responses:
         204:
           description: Successful response, the user attributes were updated successfully as specified. No content returned.
