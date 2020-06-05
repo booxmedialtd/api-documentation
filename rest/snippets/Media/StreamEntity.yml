@@ -64,7 +64,7 @@ StreamEntity:
       type: array
       items:
         type: string
-        description: "This must be one of none, AES-128, widevine, playready, fairplay, irderto, verimatrix"
+        description: "This must be one of none, vualto, irderto, verimatrix"
     protection_keys:
       type: array
       description: "This will include DRM and authentication keys that are required by the client to access and decrypt the stream.  Note that there may be additional keys in the protection object as these are deployment specific."
