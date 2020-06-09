@@ -1,7 +1,6 @@
 StreamEntity:
   type: object
   required:
-    - profile_name
     - suggested_devices
     - codec_info
     - transport_protocol
