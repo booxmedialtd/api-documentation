@@ -115,6 +115,39 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
+        '404':
+          description: Recording does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "string"
+                          description: "A unique identifier for this instance of error (allows tracking in logs)"
+                        status:
+                          type: "string"
+                          description: "The http status code for the response"
+                        code:
+                          type: "string"
+                          description: "A static 7 character code that is associated with this family of errors"
+                        title:
+                          type: "string"
+                          description: "A human readable and user friendly (no implementation details) description of the general condition of the error"
+                        details:
+                          type: "string"
+                          description: "A human readable and user friendly description of the specific details of the error"
+                      example:
+                        - id: "5941163294aef"
+                          status: "404"
+                          code: "3303"
+                          title: "Not found"
+                          details: "Recording with ID \"233232\" not found"
         '451':
           description: Unavailable For Legal Reasons
           content:
