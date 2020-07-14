@@ -116,7 +116,7 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
         '404':
-          description: Recording does not exist
+          description: Not found
           content:
             application/json:
               schema:
