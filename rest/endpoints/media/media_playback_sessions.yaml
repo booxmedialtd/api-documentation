@@ -229,10 +229,6 @@ paths:
                   details: >-
                     You are trying to update session with a different device type than what was used to create the original. Device type cannot be updated. Please contact the support desk for assistance.
 
-# ------------------------------------------------------------------------------------------------------------------------
-
-  /media_play_sessions/{media_play_session_id}:
-
     patch:
       tags:
       - Media Play Sessions
@@ -243,6 +239,12 @@ paths:
         * The API server will reject a PATCH whose timestamp is signficantly different (3-5 seconds) from the server timestamp.
       operationId: patchMediaPlaySession
       parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string
         - in: path
           name: media_play_session_id
           required: true
@@ -287,6 +289,12 @@ paths:
         * **Available since:** 2019-06 (BPLAT-3223)
       operationId: deleteMediaPlaySession
       parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: The identity of the user.  Please do not use an email address to identify the user.
+          schema:
+            type: string
         - in: path
           name: media_play_session_id
           required: true
