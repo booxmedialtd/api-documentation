@@ -177,8 +177,9 @@ paths:
         201:
           description: |
             The resource was created or updated successfully, no response body is needed
+
         403:
-          description: Forbidden
+          description: User tried to start session but already has too many
           content:
             application/json:
               schema:
@@ -189,11 +190,13 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
                 example:
-                  id: 607223e0
-                  code: 6b10ac9
-                  title: User not permitted
+                  id: 56071904
+                  code: df1e80a
+                  title: Too many sessions
                   details: >-
-                    You are trying to access something that belongs to another user account or you have exceeded session limit. Please contact the support desk for assistance.
+                    You have tried to open a new playback session but you are already at the maximum allowable limit.  You need to stop playing content
+                    on another device in order to watch on this one.
+
         404:
           description: Not found
           content:
@@ -261,8 +264,8 @@ paths:
         204:
           description: |
             The resource was updated successfully, no response body is needed
-        403:
-          description: Forbidden
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
@@ -273,13 +276,11 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
                 example:
-                  id: 607223e0
-                  code: 6b10ac9
-                  title: User not permitted
+                  id: "c970dd76-43d2-4c85-aa0d-73b5210eaa48"
+                  code: 30100
+                  title: Not Found
                   details: >-
-                    You are trying to access something that belongs to another user account.  If you are seeing this error it is most likely
-                    a problem with your client and you should not attempt to retry the operation.  Please rather contact the support desk for
-                    assistance.
+                    Session for user "42" and ID "4dbb5355-925e-47d2-82f1-a42c115ecbd0" not found
 
     delete:
       tags:
@@ -302,11 +303,11 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        204:
           description: |
             Successful response code indicates that the resource was deleted and no response body is being returned.
-        403:
-          description: Forbidden
+        404:
+          description: Not Found
           content:
             application/json:
               schema:
@@ -317,10 +318,8 @@ paths:
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ErrorEntity.yml#/Error"
                 example:
-                  id: 607223e0
-                  code: 6b10ac9
-                  title: User not permitted
+                  id: "c970dd76-43d2-4c85-aa0d-73b5210eaa48"
+                  code: 30100
+                  title: Not Found
                   details: >-
-                    You are trying to access something that belongs to another user account.  If you are seeing this error it is most likely
-                    a problem with your client and you should not attempt to retry the operation.  Please rather contact the support desk for
-                    assistance.
+                    Session for user "42" and ID "4dbb5355-925e-47d2-82f1-a42c115ecbd0" not found
