@@ -684,8 +684,6 @@ paths:
           description: The identity of the recording request
           schema:
             type: string
-      requestBody:
-        required: false
       responses:
         204:
           description: |
