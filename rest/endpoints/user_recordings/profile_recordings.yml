@@ -484,10 +484,11 @@ paths:
           schema:
             type: string
         - in: path
-            name: broadcast_slot_id
-            required: true
-            description: The identity of the broadcast slot to fetch recording.
-            schema:
+          name: broadcast_slot_id
+          required: true
+          description: The identity of the broadcast slot to fetch recording.
+          schema:
+            type: string
       responses:
         200:
           description: "Successful response"
