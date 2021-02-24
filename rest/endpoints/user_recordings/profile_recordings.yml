@@ -739,7 +739,7 @@ paths:
               - 0
         - in: query
           name: filter[starts_before]
-          description: Return only recordings with broadcast start time before specified time, in Unix timestamp.
+          description: Consider only recordings having broadcast start time before specified time (in Unix timestamp) in the groups.
           example: 1526648593
           schema:
             type: string
