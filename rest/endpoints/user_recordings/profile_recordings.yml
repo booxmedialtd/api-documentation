@@ -667,7 +667,7 @@ paths:
         204:
           description: |
             The resource was updated successfully, no response body is needed
-            
+
     delete:
       description: |
         * **Available since:** 2020-02 (BPLAT-12074)
@@ -728,10 +728,19 @@ paths:
           schema:
             type: string
         - in: query
-          name: filter
-          description: >-
-            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [is_favourite]
-            Accepted values for the "is_favourite" filter: "true", "false", "1", "0"
+          name: filter[is_favourite]
+          description: Return only recordings with specificed favourite flag.
+          schema:
+            type: string
+            enum:
+              - true
+              - false
+              - 1
+              - 0
+        - in: query
+          name: filter[starts_before]
+          description: Return only recordings with broadcast start time before specified time, in Unix timestamp.
+          example: 1526648593
           schema:
             type: string
 
@@ -876,4 +885,3 @@ paths:
                     type: array
                     items:
                       $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
-
