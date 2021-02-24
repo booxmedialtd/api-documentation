@@ -676,7 +676,7 @@ paths:
               - 0
         - in: query
           name: filter[starts_before]
-          description: Return only recordings which were broadcasted before specified time, in Unix epoch timestamp.
+          description: Return only recordings with broadcast start time before specified time, in Unix timestamp.
           example: 1526648593
           schema:
             type: string
@@ -822,4 +822,3 @@ paths:
                     type: array
                     items:
                       $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
-
