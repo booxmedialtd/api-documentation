@@ -375,6 +375,70 @@ paths:
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+  /user_profiles/{user_profile_id}/recorded_broadcast_slots/{broadcast_slot_id}:
+    get:
+      description: |
+        * **Available since:** 2021-2 (BPLAT-14510)
+      summary: Fetch a single recording with a given user profile ID and broadcast slot ID
+      tags:
+        - Recordings
+      operationId: getRecordingByBroadcastSlotId
+      parameters:
+        - in: path
+          name: user_profile_id
+          required: true
+          description: The identity of the user profile to fetch recording.
+          schema:
+            type: string
+        - in: path
+          name: broadcast_slot_id
+          required: true
+          description: The identity of the broadcast slot to fetch recording.
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingEntity.yml#/RecordingEntity"
+        403:
+          description: Client not authorized to access content.
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
+                example:
+                  errors:
+                    - id: "fc82b838-75dc-11eb-9874-1d8ad1347229"
+                      status: "403"
+                      code: "0523AC"
+                      title: "Forbidden"
+                      detail: "You are not authorized to access that resource."
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/JsonApiErrorEntity.yml#/JsonApiErrorEntity"
+              example:
+                errors:
+                  - id: "fc82b838-75dc-11eb-9874-1d8ad1347229"
+                    status: "404"
+                    code: "30308"
+                    title: "Not found"
+                    detail: "Recording with Broadcast slot ID \"cf7df6d6-75e6-11eb-9439-0242ac130002\" and User profile ID \"cf7df974-75e6-11eb-9439-0242ac130002\" not found"
+
+  # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   /user/{user_id}/storage_quota:
     get:
       description: |
@@ -435,6 +499,7 @@ paths:
                     type: array
                     items:
                       $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/General/ForbiddenEntity.yml#/ForbiddenError"
+
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   /most_popular/{period}:
@@ -466,7 +531,7 @@ paths:
                     type: array
                     items:
                       $ref: "../../snippets/Epg/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
-                      
+
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   # AUTOMATED RECORDING REQUESTS
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -623,8 +688,6 @@ paths:
           description: The identity of the recording request
           schema:
             type: string
-      requestBody:
-        required: false
       responses:
         204:
           description: |
