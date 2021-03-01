@@ -60,13 +60,17 @@ paths:
           schema:
             type: string
         - in: query
-          name: filter
-          description: >-
-            Please see http://jsonapi.org/recommendations/#filtering. The following are attributes to filter on: [search]
-            Supports search by title keywords, when no search string provided, API returns all the recorded slots for the requested user_profile_id
+          name: filter[search]
+          description: Supports search by title keywords, when no search string provided, API returns all the recorded slots for the requested user_profile_id.
           required: false
           schema:
             type: string
+        - in: query
+          name: filter[starts_before]
+          description: Include only recordings having broadcast start time before specified time (in Unix timestamp).
+          example: 1526648593
+          schema:
+            type: integer
       responses:
         200:
           description: "Successful response on updated resource"
@@ -742,7 +746,7 @@ paths:
           description: Consider only recordings having broadcast start time before specified time (in Unix timestamp) in the groups.
           example: 1526648593
           schema:
-            type: string
+            type: integer
 
       responses:
         200:
