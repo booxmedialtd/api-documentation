@@ -18,7 +18,6 @@ MediaPlaySession:
       description: The ip address of the client that created this session
     device_type:
       type: string
-      enum: ["stb","mobile","browser"]
       description: >-
         The type of device of the client that created this session.  This should be included when listing the media sessions for the user so that they can
         identify which devices they are thought to be connected with.
