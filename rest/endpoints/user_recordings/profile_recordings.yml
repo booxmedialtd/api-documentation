@@ -521,6 +521,15 @@ paths:
           description: Period to list recordings from. Valid options include 'today', 'next_week'
           schema:
             type: string
+        - in: query
+          name: language
+          description: >-
+            A 3 character ISO 639-2 string (e.g.: fin) specifying the requested language to use in the response.
+            If this is omitted the system defined default will be used. If the requested language is not available
+            then the system will return translations in order of the system defined preferences
+          required: false
+          schema:
+            type: string
       responses:
         200:
           description: "Successful response"
