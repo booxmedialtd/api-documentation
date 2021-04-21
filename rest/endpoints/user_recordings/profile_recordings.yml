@@ -524,9 +524,7 @@ paths:
         - in: query
           name: language
           description: >-
-              The PK of the language to use, which will be a 3 character ISO 639-2 string (e.g.: fin).
-              If this is omitted the system defined default will be used. If the requested language is not available
-              then the system will return translations in order of the system defined preferences
+            A 3 character ISO 639-2 string (e.g.: fin) specifying the requested language to use in the response.
           required: false
           schema:
             type: string
