@@ -30,7 +30,7 @@ StreamEntity:
     suggested_devices:
       type: array
       items:
-        type: string        
+        type: string
         description: >-
           By default the following values are allowed [iOS | Android | Linux STB | Android STB | Mac | Windows | Linux | Chromecast].
           However this list is configurable for each installation.  Please ask your account manager for a list of acceptable values.
@@ -61,7 +61,8 @@ StreamEntity:
       type: array
       items:
         type: string
-        description: "This must be one of none, vualto, irderto, verimatrix"
+        description: "This must be one of none, vualto, irderto, verimatrix, ezdrm"
+        enum: ['none', 'vualto', 'irderto', 'verimatrix', 'ezdrm']
     protection_keys:
       type: array
       description: "This will include DRM and authentication keys that are required by the client to access and decrypt the stream.  Note that there may be additional keys in the protection object as these are deployment specific."
