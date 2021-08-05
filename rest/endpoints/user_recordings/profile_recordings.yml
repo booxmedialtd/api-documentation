@@ -289,9 +289,9 @@ paths:
                 errors:
                   - id: "934dc960-a733-409f-a000-c112b64c8553"
                     status: "404"
-                    code: "30301"
+                    code: "30309"
                     title: "Not Found"
-                    detail: "Broadcast slot for ID \"f826091a-1102-11ea-b8a0-35120745a64c,f826aa78-1102-11ea-98f1-d56eb8e1dafc,f827360a-1102-11ea-be52-39ecefb436af\" not found"
+                    detail: "Recordings with id \"f826091a-1102-11ea-b8a0-35120745a64c\",\"f826aa78-1102-11ea-98f1-d56eb8e1dafc\",\"f827360a-1102-11ea-be52-39ecefb436af\" cannot be found."
         400:
           description: |
             A requirement for the request was not met. None of the recordings should be deleted. Possible reasons include:
