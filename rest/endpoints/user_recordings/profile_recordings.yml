@@ -45,7 +45,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: page
+          name: page[number]
           required: false
           description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
@@ -565,7 +565,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: page
+          name: page[number]
           required: false
           description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
@@ -726,7 +726,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: page
+          name: page[number]
           required: false
           description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
@@ -800,7 +800,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: page
+          name: page[number]
           required: false
           description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
@@ -849,7 +849,7 @@ paths:
           schema:
             type: string
         - in: query
-          name: page
+          name: page[number]
           required: false
           description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
           schema:
