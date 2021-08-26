@@ -71,6 +71,12 @@ paths:
           example: 1526648593
           schema:
             type: integer
+        - in: query
+          name: sort
+          description: Supports sort by specifing sort=created_at for assending and sort=-created_at for desending order, when no sort provided , API returns by assending order.
+          required: false
+          schema:
+            type: string
       responses:
         200:
           description: "Successful response on updated resource"
