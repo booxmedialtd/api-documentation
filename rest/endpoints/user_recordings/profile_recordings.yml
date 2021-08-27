@@ -71,6 +71,12 @@ paths:
           example: 1526648593
           schema:
             type: integer
+        - in: query
+          name: sort
+          description: Specifies sorting of the results. Supported fields to sort by `created_at`. If sort field is prepended with a minus sign, the order is descending. Default is ascending by `created_at` field. Example `sort=-created_at`
+          required: false
+          schema:
+            type: string
       responses:
         200:
           description: "Successful response on updated resource"
