@@ -73,7 +73,7 @@ paths:
             type: integer
         - in: query
           name: sort
-          description: Supports sort by specifing sort=created_at for assending and sort=-created_at for desending order, when no sort provided , API returns by assending order.
+          description: Specifies sorting of the results. Supported fields to sort by `created_at`. If sort field is prepended with a minus sign, the order is descending. Default is ascending by `created_at` field. Example `sort=-created_at`
           required: false
           schema:
             type: string
