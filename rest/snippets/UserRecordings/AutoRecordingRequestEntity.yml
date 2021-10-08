@@ -51,6 +51,8 @@ RecordingRequestEntity:
             - data
           properties:
             data:
+              nullable: true
+              description: Use null to record multi-channel.
               required:
                 - type
                 - id
@@ -68,7 +70,6 @@ PatchRecordingRequestEntity:
   type: object
   required:
     - type
-    - attributes
   properties:
     type:
       type: string
@@ -80,6 +81,29 @@ PatchRecordingRequestEntity:
           type: boolean
           example: true
           description: Indicate whether old epsoides of the series will be deleted automatically.
+        relationships:
+          type: object
+          properties:
+            channel:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  nullable: true
+                  description: Use null to record multi-channel.
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      example: "Channel"
+                      description: Resource type of the relationship, for this relationship it must be "Channel".
+                    id:
+                      type: integer
+                      example: "42"
+                      description: The ID of the related Channel resource, integer.
 
 CreateAutoRecordingRequestEntity:
   type: object
@@ -133,6 +157,8 @@ CreateAutoRecordingRequestEntity:
                 - data
               properties:
                 data:
+                  nullable: true
+                  description: Use null to record multi-channel.
                   required:
                     - type
                     - id
