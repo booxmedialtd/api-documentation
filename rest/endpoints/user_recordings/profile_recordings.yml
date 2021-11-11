@@ -47,9 +47,15 @@ paths:
         - in: query
           name: page[number]
           required: false
-          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Only page number is supported at the moment. Ex. page[number]=1. Default = 1
+          description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Ex. page[number]=1. Default = 1
           schema:
             type: integer
+        - in: query
+            name: page[size]
+            required: false
+            description: Please see https://jsonapi.org/profiles/ethanresnick/cursor-pagination. Ex. page[size]=100. Default = 100
+            schema:
+              type: integer
         - in: query
           name: language
           description: >-
@@ -72,8 +78,48 @@ paths:
           schema:
             type: integer
         - in: query
+            name: filter[starts_after]
+            required: false
+            description: Include only recordings having broadcast start time after specified time (in Unix timestamp).
+            example: 1526648593
+            schema:
+              type: integer
+        - in: query
+            name: filter[ends_before]
+            required: false
+            description: Include only recordings having broadcast end time before specified time (in Unix timestamp).
+            example: 1526648593
+            schema:
+              type: integer
+        - in: query
+            name: filter[ends_after]
+            required: false
+            description: Include only recordings having broadcast end time after specified time (in Unix timestamp).
+            example: 1526648593
+            schema:
+              type: integer
+        - in: query
+            name: filter[series_id]
+            nullable: true
+            required: false
+            description: Consider only recordings having the same series_id.
+            example: "abdf8785-cb23-445b-946f-69e8770500a1"
+            schema:
+              type: string
+        - in: query
+            name: filter[channel_id]
+            required: false
+            description: Consider only recordings having the same channel_id.
+            example: "abdf8785-cb23-445b-946f-69e8770500a1"
+            schema:
+              type: string
+        - in: query
           name: sort
           description: Specifies sorting of the results. Supported fields to sort by `created_at`. If sort field is prepended with a minus sign, the order is descending. Default is ascending by `created_at` field. Example `sort=-created_at`
+          description: >-
+            Please see http://jsonapi.org/format/#fetching-sorting
+            Specifies sorting of the results. If sort field is prepended with a minus sign, the order is descending. Default is ascending by `created_at` field.
+            The following are attributes to sort on: [created_at|broadcast_slots.start_time_unix]
           required: false
           schema:
             type: string
@@ -762,6 +808,32 @@ paths:
           example: 1526648593
           schema:
             type: integer
+        - in: query
+            name: filter[starts_after]
+            description: Consider only recordings having broadcast start time after specified time (in Unix timestamp) in the groups.
+            example: 1526648594
+            schema:
+              type: integer
+        - in: query
+            name: filter[ends_before]
+            description: Consider only recordings having broadcast end time before specified time (in Unix timestamp) in the groups.
+            example: 1526648595
+            schema:
+              type: integer
+        - in: query
+            name: filter[ends_after]
+            description: Consider only recordings having broadcast end time after specified time (in Unix timestamp) in the groups.
+            example: 1526648596
+            schema:
+              type: integer
+        - in: query
+            name: group_by
+            required: false
+            description: >-
+              Accept values "series_id,channel_id" as well as both combined. By default, recordings will be grouped by series_id
+            example: "https://demo.aminocom.com/api/recordings/v4/user_profiles/{user_profile_id}/recordings/recording_groups?group_by=series_id,channel_id"
+            schema:
+              type: string
 
       responses:
         200:
@@ -788,7 +860,7 @@ paths:
     get:
       description: |
         * **Available since:** 2019-11 (BPLAT-10674)
-      summary: An index of the recordings for a specific recording group
+      summary: An index of the recordings for a specific recording group. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
       tags:
         - Recording Groups
       operationId: getRecordingsForGroup
@@ -843,7 +915,7 @@ paths:
     get:
       description: |
         * **Available since:** 2020-01 (BPLAT-12084)
-      summary: An index of the recordings for a ungrouped recording
+      summary: An index of the recordings for a ungrouped recording. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
       tags:
         - Recording Groups
       operationId: indexUngroupedRecordingGroupRecordings

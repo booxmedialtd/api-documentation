@@ -22,11 +22,22 @@ RecordingGroupEntity:
           description: >-
             A denormalized count of the number of recordings in the group.  This value will be eventually consistent.
           example: 10
+        earliest_start_time:
+          type: integer
+          description: >-
+            The time used to show when the earliest show aired.
+          example: 1636633205
+        latest_start_time:
+          type: integer
+          description: >-
+            The time used to show when the latest show aired.
+          example: 1636495200
     relationships:
       type: object
       properties:
         series:
           type: object
+          nullable: true
           required:
           - type
           - id
@@ -38,4 +49,19 @@ RecordingGroupEntity:
             id:
               type: string
               description: The ID of the series resource
+              example: "abdf8785-cb23-445b-946f-69e8770500a1"
+        channel:
+          type: object
+          nullable: true
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              description: Type of the related resource, must be "Channel"
+              example: "Channel"
+            id:
+              type: string
+              description: The ID of the channel resource
               example: "abdf8785-cb23-445b-946f-69e8770500a1"
