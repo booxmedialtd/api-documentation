@@ -260,8 +260,7 @@ paths:
       summary: Get an index of broadcast_slots in which the program appears
       description:  |
         * **Available since:** NOT YET AVAILABLE
-        * Returns a list of Broadcast slots for a given input set. All related programs are included in the response,
-          the inclusion of related programs is controlled by 'include' parameter.
+        * We do not support including related resources in the index view.
       tags:
       - BroadcastSlots
       operationId: GetBroadcastSlotsForProgram
@@ -300,14 +299,6 @@ paths:
             If the requested language is not available then the system will return translations in order of the system defined preferences
           schema:
             type: string
-        - in: query
-          name: include
-          required: false
-          description: >-
-             Comma separated relationships to be included. Currently supported relationships - program.
-             Follows behaviour described at [Inclusion of Related Resources](https://jsonapi.org/format/1.1/#fetching-includes)
-          schema:
-            type: string
       responses:
         200:
           description: "Successful response"
@@ -335,25 +326,7 @@ paths:
                           example: "f50a8a6b-e96a-4eb7-8d87-a14c1a991b96"
                         attributes:
                           $ref: "../../snippets/Schedule/BroadcastSlotEntity.yml#/BroadcastSlotEntity"
-                - include
-                 properties:
-                   data:
-                     type: array
-                     items:
-                       type: object
-                       required:
-                       -type
-                       -id
-                       properties:
-                         type:
-                           type: string
-                           examp[le: Program
-                         id:
-                           type: string
-                           description: "the id of the entry being referenced"
-                           example: "3173335a-810b-4b53-b009-122a169f9920"
-                         attributes:
-                           $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ProgramEntity.yml#/ProgramEntity"
+
         400:
           description: Standard error response
           content:
