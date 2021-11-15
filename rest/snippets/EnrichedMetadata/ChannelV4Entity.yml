@@ -5,6 +5,14 @@ ChannelEntity:
     - id
     - attributes
   properties:
+    type:
+      type: string
+      description: Type of the resource. Must be "Channel"
+      example: "Channel"
+    id:
+      type: string
+      description: ID of the resource.
+      example: "42"
     attributes:
       type: object
       required:
