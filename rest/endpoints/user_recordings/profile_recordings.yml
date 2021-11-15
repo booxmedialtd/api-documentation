@@ -851,8 +851,9 @@ paths:
                   included:
                     type: array
                     items:
-                      - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
-                      - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/legacy/snippets/channel/Channel.yml#/Channel"
+                      anyOf:
+                        - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
+                        - $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/EnrichedMetadata/ChannelV4Entity.yml#/ChannelEntity"
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
