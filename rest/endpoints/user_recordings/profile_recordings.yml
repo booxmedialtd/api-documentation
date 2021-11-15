@@ -811,8 +811,8 @@ paths:
           name: filter[starts_after]
           description: Consider only recordings having broadcast start time after specified time (in Unix timestamp) in the groups.
           example: 1526648594
-            schema:
-              type: integer
+          schema:
+            type: integer
         - in: query
           name: filter[ends_before]
           description: Consider only recordings having broadcast end time before specified time (in Unix timestamp) in the groups.
