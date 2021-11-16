@@ -847,7 +847,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "https://raw.githubusercontent.com/booxmedialtd/api-documentation/master/rest/snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
+                      $ref: "../../snippets/UserRecordings/RecordingGroupEntity.yml#/RecordingGroupEntity"
                   included:
                     type: array
                     items:
