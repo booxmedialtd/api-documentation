@@ -829,8 +829,8 @@ paths:
           name: group_by
           required: false
           description: >-
-            Accept values "series_id,channel_id" as well as both combined. By default, recordings will be grouped by series_id
-          example: "https://demo.aminocom.com/api/recordings/v4/user_profiles/{user_profile_id}/recordings/recording_groups?group_by=series_id,channel_id"
+            Accept values "series.id,broadcast_slot.channel.id" as well as both combined. By default, recordings will be grouped by series.id
+          example: "https://demo.aminocom.com/api/recordings/v4/user_profiles/{user_profile_id}/recordings/recording_groups?group_by=series.id,broadcast_slot.channel.id"
           schema:
               type: string
 
