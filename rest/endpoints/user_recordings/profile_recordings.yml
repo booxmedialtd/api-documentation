@@ -99,18 +99,18 @@ paths:
           schema:
             type: integer
         - in: query
-          name: filter[series_id]
+          name: filter[series.id]
           required: false
-          description: Consider only recordings having the same series_id.
+          description: Consider only recordings having the same series.id.
           example: "abdf8785-cb23-445b-946f-69e8770500a1"
           schema:
             type: string
             nullable: true
         - in: query
-          name: filter[channel_id]
+          name: filter[broadcast_slot.channel.id]
           required: false
-          description: Consider only recordings having the same channel_id.
-          example: "abdf8785-cb23-445b-946f-69e8770500a1"
+          description: Consider only recordings having the same broadcast_slot.channel.id.
+          example: "42"
           schema:
             type: string
         - in: query
@@ -118,7 +118,7 @@ paths:
           description: >-
             Please see http://jsonapi.org/format/#fetching-sorting
             Specifies sorting of the results. If sort field is prepended with a minus sign, the order is descending. Default is ascending by `created_at` field.
-            The following are attributes to sort on: [created_at|broadcast_slots.start_time_unix]
+            The following are attributes to sort on: [created_at|broadcast_slot.start_time_unix]
           required: false
           schema:
             type: string
@@ -851,9 +851,7 @@ paths:
                   included:
                     type: array
                     items:
-                      anyOf:
-                        - $ref: "../../snippets/EnrichedMetadata/SeriesEntity.yml#/SeriesEntity"
-                        - $ref: "../../snippets/EnrichedMetadata/ChannelV4Entity.yml#/ChannelEntity"
+                      $ref: "https://api.swaggerhub.com/domains/24i-API/Snippets/v1.0.0#/components/schemas/SeriesResource"
 
   # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -861,7 +859,7 @@ paths:
     get:
       description: |
         * **Available since:** 2019-11 (BPLAT-10674)
-      summary: An index of the recordings for a specific recording group. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
+      summary: An index of the recordings for a specific recording group. This endpoint is deprecated and it is not recommended to build new systems using it.
       tags:
         - Recording Groups
       operationId: getRecordingsForGroup
@@ -916,7 +914,7 @@ paths:
     get:
       description: |
         * **Available since:** 2020-01 (BPLAT-12084)
-      summary: An index of the recordings for a ungrouped recording. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
+      summary: An index of the recordings for a ungrouped recording. This endpoint is deprecated and it is not recommended to build new systems using it.
       tags:
         - Recording Groups
       operationId: indexUngroupedRecordingGroupRecordings

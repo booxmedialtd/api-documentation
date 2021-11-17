@@ -64,4 +64,4 @@ RecordingGroupEntity:
             id:
               type: string
               description: The ID of the channel resource
-              example: "abdf8785-cb23-445b-946f-69e8770500a1"
+              example: "42"
