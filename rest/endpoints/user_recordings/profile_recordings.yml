@@ -858,6 +858,7 @@ paths:
 
   /user_profiles/{user_profile_id}/recordings/recording_groups/{recording_group_id}/recordings:
     get:
+      deprecated: true
       description: |
         * **Available since:** 2019-11 (BPLAT-10674)
       summary: An index of the recordings for a specific recording group. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
@@ -913,6 +914,7 @@ paths:
 
   /user_profiles/{user_profile_id}/recordings/recording_groups/ungrouped/recordings:
     get:
+      deprecated: true
       description: |
         * **Available since:** 2020-01 (BPLAT-12084)
       summary: An index of the recordings for a ungrouped recording. This endpoint will be deprecated soon and it is not recommended to build new systems using it.
