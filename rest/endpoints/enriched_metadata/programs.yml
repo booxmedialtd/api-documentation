@@ -69,7 +69,7 @@ paths:
             required: false
             description: >-
               Please see http://jsonapi.org/format/#fetching-sorting
-              The following are attributes to sort on: [program.title|program.release_year]
+              The following are attributes to sort on: [program.release_year]
             schema:
               type: string
           - in: query
