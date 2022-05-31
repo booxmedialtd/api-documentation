@@ -1,0 +1,303 @@
+openapi: 3.0.3
+info:
+  title: EPG metadata upload
+  description: |
+    This endpoint provides a way to import EPG metadata via sending import files.
+    
+    Endpoint currently only supports file based EPG providers, such as Gvidi and Redbee XML.
+  version: 1.0.0
+tags:
+  - name: EPG HTTP Upload
+servers:
+  - url: 'https://demo.aminocom.com/api/upload/v1/'
+components:
+  securitySchemes:
+    Apikey Auth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: 'Prefix the value with \"Apikey\" to indicate the custom authorization type'
+  schemas:
+    errorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              status:
+                type: string
+              code:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+
+paths:
+
+  /metadata:
+    post:
+      summary: >-
+        Upload an EPG metadata import file.
+      description: >-
+        Note that you can also upload multiple files in a single ZIP file if the EPG provider supports it.
+      tags:
+        - EPG HTTP Upload
+      security:
+        - Apikey Auth: []
+      parameters:
+        - in: header
+          name: Content-Disposition
+          required: true
+          description: Information about uploaded file
+          schema:
+            type: string
+          example: attachment; filename="epg_import_2022-01-01.xml"
+      requestBody:
+        required: true
+        description: Raw import file contents
+        content:
+          '*/*':
+            schema:
+              type: string
+            example: >-
+              <?xml version="1.0" encoding="UTF-8"?>
+              
+              <TVAMain publisher="GVIDI" publicationTime="2019-08-19T09:20:05+02:00" xmlns="urn:tva:metadata:2004" xmlns:mpeg7="urn:mpeg:mpeg7:schema:2001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:bds:metadata:2006 http://www.broadcastingdata.com/dataimport/tva/new/tva_v13_am1_bds1r2.xsd">
+                <ProgramDescription>
+                  <ProgramInformationTable>
+                    <ProgramInformation programId="crid://itnm.nl/84072043527_0">
+                      <BasicDescription>
+                        <Title xml:lang="NL" type="main"><![CDATA[Bumba in Australie]]></Title>
+                        <Title xml:lang="NL" type="parentSeriesTitle"><![CDATA[Bumba in Australie]]></Title>
+                        <Synopsis xml:lang="NL" length="short"><![CDATA[Vlaamse animatiereeks over de avonturen van de circusclown Bumba en zijn vriendjes Bumbalu, Kiwi de vogel, Nanadu de berin en Tumbi de olifant. ]]></Synopsis>
+                        <Synopsis xml:lang="NL" length="long"><![CDATA[In deze aflevering gaan Bumba en zijn vrienden aan de andere kant van de wereld op bezoek in het circus van Walulu. Zie ook https://www.ketnet.be/programma/bumba.]]></Synopsis>
+                        <Genre href="urn:tva:metadata:cs:DVBgenre:2005:0.0.5.1">
+                          <Name xml:lang="NL">baby/peuter</Name>
+                        </Genre>
+                        <VOD>
+                          <BlockReplayTV>Yes</BlockReplayTV>
+                        </VOD>
+                        <RelatedMaterial>
+                          <HowRelated href="urn:rbm:metadata:cs:HowRelatedCS:2010:boxCover">
+                            <Name>boxcover</Name>
+                          </HowRelated>
+                          <MediaLocator>
+                            <mpeg7:MediaUri>https://cdn.gvidi.tv/img/booxmedia/99c3/dynamic/878e2efd-0e0b-11e6-8682-00163edf843f.jpg</mpeg7:MediaUri>
+                          </MediaLocator>
+                        </RelatedMaterial>
+                        <ParentalGuidance>
+                          <mpeg7:ParentalRating href="urn:po:metadata:cs:NicamParentalRatingCS:2007:4">
+                            <mpeg7:Name xml:lang="NL">4</mpeg7:Name>
+                          </mpeg7:ParentalRating>
+                        </ParentalGuidance>
+                        <Language>NL</Language>
+                        <Duration>PT00H05M56S</Duration>
+                      </BasicDescription>
+                    </ProgramInformation>
+                  </ProgramInformationTable>
+                  <ProgramLocationTable>
+                    <Schedule serviceIDRef="VRTKETNETNL" start="2019-08-18T06:00:00+02:00" end="2019-08-19T06:00:00+02:00">
+                      <ScheduleEvent>
+                        <Program crid="crid://itnm.nl/84072043527_0"/>
+                        <InstanceMetadataId>imi:743318804327</InstanceMetadataId>
+                        <InstanceDescription>
+                          <AVAttributes>
+                            <VideoAttributes>
+                              <AspectRatio>16:9</AspectRatio>
+                            </VideoAttributes>
+                          </AVAttributes>
+                        </InstanceDescription>
+                        <PublishedStartTime>2019-08-18T04:00:45Z</PublishedStartTime>
+                        <PublishedDuration>PT00H05M56S</PublishedDuration>
+                        <OtherIdentifier type="ProductID">server1-28969b0d:139e80e0c06:-6f7e</OtherIdentifier>
+                        <OtherIdentifier type="ParentSeriesID">server15294b84:12d0dc6d137:-7fbe</OtherIdentifier>
+                        <OtherIdentifier type="SeriesID">server1-28969b0d:139e80e0c06:-7be0</OtherIdentifier>
+                        <OtherIdentifier type="BlockReplayTV">true</OtherIdentifier>
+                      </ScheduleEvent>
+                    </Schedule>
+                  </ProgramLocationTable>
+                  <ServiceInformationTable>
+                    <ServiceInformation serviceId="VRTKETNETNL">
+                      <Name>VRTKETNETNL</Name>
+                    </ServiceInformation>
+                  </ServiceInformationTable>
+                </ProgramDescription>
+              </TVAMain>
+
+          application/zip:
+            schema:
+              type: string
+              format: binary
+
+      responses:
+        '202':
+          description: Uploaded file was accepted and scheduled for import. Response body is empty.
+
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              examples:
+                Invalid Authorization header:
+                  value:
+                    errors:
+                      - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        status: '400'
+                        code: '52'
+                        title: Malformed ApiKey
+                        detail: 'Malformed ApiKey provided: Invalid Api Key type provided in the header for "Authorization"'
+                Filename not provided:
+                  description: Filename or Content-Disposition header is missing
+                  value:
+                    errors:
+                      - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        status: '400'
+                        code: '10100'
+                        title: Bad Request
+                        detail: Filename not found in headers
+                Invalid filename provided:
+                  value:
+                    errors:
+                      - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        status: '400'
+                        code: '10100'
+                        title: Bad Request
+                        detail: >-
+                          - All of the required rules must pass for request
+                            - Given filename in headers is not a valid filename
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              examples:
+                No API Key provided:
+                  value:
+                    errors:
+                      - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        status: '401'
+                        code: '10201'
+                        title: Invalid api key
+                        detail: 'Invalid authorization api key: Api Key not provided in header'
+                Invalid API Key:
+                  value:
+                    errors:
+                      - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                        status: '401'
+                        code: '10201'
+                        title: Invalid api key
+                        detail: 'Invalid authorization api key: Unauthorised Api key provided in the header'
+
+        '403':
+          description: Forbidden. Error is returned if endpoint is disabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    status: '403'
+                    code: '3508'
+                    title: Forbidden
+                    detail: API endpoint disabled
+
+        '413':
+          description: Payload Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - status: '413'
+                    code: '10100'
+                    title: Payload Too Large
+                    detail: File sent in request is too large
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    status: '500'
+                    title: An error occurred while processing the request
+
+        '503':
+          description: Service Unavailable. Error is returned if API is unhealthy and unable to accept file uploads.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    status: '503'
+                    code: '10000'
+                    title: API unhealthy
+                    detail: Uploaded file import handler is not available
+
+  /metadata/health:
+    get:
+      summary: >-
+        Get upload endpoint health
+      tags:
+        - EPG HTTP Upload
+      responses:
+        '200':
+          description: |
+            Upload endpoint is healthy. Note that this response is returned when:
+            
+            - Upload endpoint has been intentionally disabled.
+            - Unsupported EPG provider has been configured.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    status: '500'
+                    title: An error occurred while processing the request
+
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+              example:
+                errors:
+                  - id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                    status: '503'
+                    code: '10000'
+                    title: API unhealthy
+                    detail: Uploaded file import handler is not available
