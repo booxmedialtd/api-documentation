@@ -543,6 +543,10 @@ paths:
                             type: integer
                             description: "Total storable duration of quota in seconds"
                             example: 1000000
+                          used_aired_quota:
+                            type: integer
+                            description: "Total duration of aired quota used in seconds"
+                            example: 70
         403:
           description: Client attempts to fetch the quota of an un-authenticated user.
           content:
