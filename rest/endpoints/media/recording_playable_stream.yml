@@ -70,6 +70,13 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: device_class
+          description: Client device class for stream selection.
+          required: false
+          schema:
+            type: string
+            enum: [stb, mobile, tvos]
       responses:
         '200':
           description: A collection of Stream entities
